@@ -39,7 +39,7 @@ This normalization is essential because the "Valley-Free" audit only cares about
 
 ## 3. Connecting to the Audit Logic
 
-In the context of the `rov_audit` suite, the extractor provides the "Evidence" for the trial.
+In the context of the `rpki_audit` suite, the extractor provides the "Evidence" for the trial.
 
 | Component | Role | Logic |
 | :--- | :--- | :--- |

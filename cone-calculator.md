@@ -48,8 +48,8 @@ This set of ASes represents the **downward-only** reachability of the starting A
 
 ---
 
-## 3. Why this matters for the `rov_audit`
-The `rov_audit` tool uses these cones to detect BGP anomalies.
+## 3. Why this matters for the `rpki_audit`
+The `rpki_audit` tool uses these cones to detect BGP anomalies.
 
 | Scenario | Logic | Result |
 | :--- | :--- | :--- |

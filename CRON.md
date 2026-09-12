@@ -14,10 +14,10 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 Live crontab (`crontab -l`):
 
 ```
-0 2 * * * ${HOME}/rov_audit/rov_cron.sh atlas >> ${HOME}/rov_audit/logs/cron.log 2>&1
-0 6 * * * ${HOME}/rov_audit/rov_cron.sh reports >> ${HOME}/rov_audit/logs/cron.log 2>&1
-0 3 * * 0 ${HOME}/rov_audit/rov_cron.sh full >> ${HOME}/rov_audit/logs/cron.log 2>&1
-0 7 1 * * ${HOME}/rov_audit/rov_cron.sh commit >> ${HOME}/rov_audit/logs/cron.log 2>&1
+0 2 * * * ${HOME}/rpki_audit/rov_cron.sh atlas >> ${HOME}/rpki_audit/logs/cron.log 2>&1
+0 6 * * * ${HOME}/rpki_audit/rov_cron.sh reports >> ${HOME}/rpki_audit/logs/cron.log 2>&1
+0 3 * * 0 ${HOME}/rpki_audit/rov_cron.sh full >> ${HOME}/rpki_audit/logs/cron.log 2>&1
+0 7 1 * * ${HOME}/rpki_audit/rov_cron.sh commit >> ${HOME}/rpki_audit/logs/cron.log 2>&1
 ```
 
 ## Modes

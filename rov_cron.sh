@@ -5,16 +5,16 @@
 # Usage (add to crontab with: crontab -e):
 #
 #   # Atlas forensics: nightly at 02:00
-#   0 2 * * * /home/terry/rov_audit/rov_cron.sh atlas >> /home/terry/rov_audit/logs/cron.log 2>&1
+#   0 2 * * * /home/terry/rpki_audit/rov_cron.sh atlas >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 #   # Full topology rebuild + reports: weekly Sunday 03:00
-#   0 3 * * 0 /home/terry/rov_audit/rov_cron.sh full >> /home/terry/rov_audit/logs/cron.log 2>&1
+#   0 3 * * 0 /home/terry/rpki_audit/rov_cron.sh full >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 #   # Reports-only refresh: daily at 06:00 (uses cached topology)
-#   0 6 * * * /home/terry/rov_audit/rov_cron.sh reports >> /home/terry/rov_audit/logs/cron.log 2>&1
+#   0 6 * * * /home/terry/rpki_audit/rov_cron.sh reports >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 #   # Commit report outputs: monthly on the 1st at 07:00
-#   0 7 1 * * /home/terry/rov_audit/rov_cron.sh commit >> /home/terry/rov_audit/logs/cron.log 2>&1
+#   0 7 1 * * /home/terry/rpki_audit/rov_cron.sh commit >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 # Modes:
 #   atlas    — run batch_verify_smart_v4.py (5 Atlas targets, fast ~5 min)

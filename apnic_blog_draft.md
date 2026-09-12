@@ -63,7 +63,7 @@ The APNIC Labs test result for your network is a public number. The global ROV a
 The tools to verify your progress are at your fingertips:
 - APNIC Labs routing security measurement: [stats.labs.apnic.net/roas](https://stats.labs.apnic.net/roas)
 - Public BGP validation status: [bgp.tools](https://bgp.tools)
-- ROV audit dataset: [github.com/IEISI-ORG/rov_audit](https://github.com/IEISI-ORG/rov_audit)
+- ROV audit dataset: [github.com/IEISI-ORG/rpki_audit](https://github.com/IEISI-ORG/rpki_audit)
 
 APNIC also provides direct technical assistance to Pacific network operators at no cost. If your team needs support with the implementation, contact training@apnic.net — this is exactly what APNIC's capacity-building programmes exist for.
 
@@ -75,4 +75,4 @@ The audit will be updated at PITA 31. The scores will be what they are.
 
 ---
 
-*Terry Sweetser is Chair of the APNIC Routing Security SIG and a member of IEISI (Internet Engineering and Internet Standards Institute). The ROV audit dataset used in this post is open source and updated regularly at github.com/IEISI-ORG/rov_audit. The author can be reached at contact@ieisi.org.*
+*Terry Sweetser is Chair of the APNIC Routing Security SIG and a member of IEISI (Internet Engineering and Internet Standards Institute). The ROV audit dataset used in this post is open source and updated regularly at github.com/IEISI-ORG/rpki_audit. The author can be reached at contact@ieisi.org.*

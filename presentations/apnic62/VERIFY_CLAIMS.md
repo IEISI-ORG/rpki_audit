@@ -8,7 +8,7 @@ Use this prompt with Claude (or another LLM with access to the audit data) to sy
 
 You are fact-checking the APNIC-62 presentation `apnic62_presentation.md` against the May 2026 rov_audit_v22 output. For each claim below, locate the authoritative source in the listed report file, confirm the number or statement matches, and flag any discrepancy. Where the claim is a technical assertion about RPKI/BGP protocol behaviour (not an audit statistic), evaluate it against RFC text or established operator practice.
 
-Use this working directory: `/home/terry/rov_audit/`
+Use this working directory: `/home/terry/rpki_audit/`
 
 **Verdict for each claim:** ✅ Confirmed / ⚠️ Close but imprecise / ❌ Wrong / ❓ Not found in source
 
@@ -210,7 +210,7 @@ These are evaluated against RFC text and established BGP/RPKI practice, not the 
 ## How to run this verification
 
 ```bash
-cd /home/terry/rov_audit
+cd /home/terry/rpki_audit
 # Check a specific report file
 cat reports/statistics.md | grep -A5 "CORE: ACTIVE"
 
