@@ -24,7 +24,7 @@ color: "#1a1a2e"
 2. **Methodology** — Zero-scrape triangulation at scale
 3. **Global Results** — 122,277 ASNs audited
 4. **Herd Immunity** — Where does protection actually come from?
-5. **ROA Signing** — Glass Houses and wasted infrastructure
+5. **ROA Signing** — Secure providers, unsigned routes, and outreach targets
 6. **APNIC Region Deep-Dive** — AU, NZ, JP, IN, ID, CN
 7. **ASPA Readiness** — The next layer and the Reality Gap
 8. **Recommendations** — Concrete actions by audience
@@ -49,7 +49,7 @@ BGP security deployment has **three distinct layers** — each independently mea
 | **ROV** | Are you *filtering* invalid routes? | BGP origin validation |
 | **ASPA** | Are you *validating* the path? | AS_PATH verification |
 
-> **A network that enforces ROV but has not signed its own ROAs is a Glass House** — filtering for others while its own prefixes remain unprotected.
+> **A network that enforces ROV but has not signed its own ROAs is filtering for others while its own prefixes remain unprotected.**
 > A network that signs ROAs but skips ROV claims security it cannot deliver.
 
 The real question: **"What percentage of global traffic is actually protected right now, and by whom?"**
@@ -60,14 +60,14 @@ The real question: **"What percentage of global traffic is actually protected ri
 
 We observe three structural pathologies in the current internet:
 
-**🏚 Glass Houses** — "I filter, but I haven't signed"
+**Secure Provider, Unsigned Routes** — "I filter, but I haven't signed"
 Providers enforce ROV, but their own prefixes are *NotFound* to ROV — unsigned, unprotected. ROV drops *Invalid* routes (mismatched ROA); it passes *NotFound* routes silently. A hijacker targeting unsigned space gets a free pass at every ROV enforcer.
 
-**📢 Screaming Into The Void** — "I signed, but my provider leaks"
-Networks with exemplary ROA hygiene (>97% signed) whose upstreams are confirmed non-ROV. Their diligence is negated at the transit layer.
+**Signed Customers, Unsecured Provider** — "I signed, but my provider leaks"
+Networks with high ROA signing (>97% signed) whose upstreams are confirmed non-ROV. Their signing has no effect because the transit layer does not filter invalid routes.
 
-**🌵 Wild West / SITV (Screaming Into The Void)** — "Neither signed, nor filtering"
-The majority position: no ROA, no ROV. These networks are both vulnerable and a source of routing pollution for their peers.
+**Unsecured Provider, Unsigned Customers** — "Neither signed, nor filtering"
+The majority position: no ROA, no ROV. These networks are vulnerable themselves and also propagate unvalidated routes to their peers.
 
 ---
 
@@ -258,16 +258,16 @@ APNIC's ROV measurement API returns rolling windows: 7, 14, 28, 112 days.
 
 | | **Provider: SECURE** | **Provider: VULNERABLE** |
 |---|---|---|
-| **Customers: Signed (>60%)** | ✅ **Q1: Gold Standard** | 📢 **Q2: Screaming Into The Void** |
-| **Customers: Unsigned (<60%)** | 🏚 **Q3: Glass Houses** | 🌵 **Q4: The Swamp** |
+| **Customers: Signed (>60%)** | **Q1: Secure Provider, Signed Customers** | **Q2: Signed Customers, Unsecured Provider** |
+| **Customers: Unsigned (<60%)** | **Q3: Secure Provider, Unsigned Customers** | **Q4: Unsecured Provider, Unsigned Customers** |
 
-**Q1 Gold Standard examples:** Hurricane Electric (cone 79,819, 68.4% customer signing), Arelion (70,841, 73.7%), NTT America (68,189, 71.5%), TATA Communications America (67,066, 75.7%), PCCW Global (66,610, 76.2%)
+**Q1 (Secure Provider, Signed Customers) examples:** Hurricane Electric (cone 79,819, 68.4% customer signing), Arelion (70,841, 73.7%), NTT America (68,189, 71.5%), TATA Communications America (67,066, 75.7%), PCCW Global (66,610, 76.2%)
 
-**Q2 Screaming Into The Void:** China Telecom Backbone / CN (cone 65,065, 87.8% customer signing — non-ROV), China Unicom Backbone / CN (47,013, 81.7%), RETN / GB (45,263, 78.1%)
+**Q2 (Signed Customers, Unsecured Provider):** China Telecom Backbone / CN (cone 65,065, 87.8% customer signing — non-ROV), China Unicom Backbone / CN (47,013, 81.7%), RETN / GB (45,263, 78.1%)
 
-**Q3 Glass Houses:** Lumen/Level 3 (cone 73,943, only 38.5% customer signing), Cogent (73,283, 51.0%), Zayo (71,693, 43.9%), GTT (69,138, 58.7%), AT&T (69,034, 18.9%)
+**Q3 (Secure Provider, Unsigned Customers):** Lumen/Level 3 (cone 73,943, only 38.5% customer signing), Cogent (73,283, 51.0%), Zayo (71,693, 43.9%), GTT (69,138, 58.7%), AT&T (69,034, 18.9%)
 
-**Q4 The Swamp:** SG.GS (cone 64,564, 0% customer signing), Virtual Technologies & Solutions / BF (58,097, 0%), Converge ICT / PH (43,014, 0%)
+**Q4 (Unsecured Provider, Unsigned Customers):** SG.GS (cone 64,564, 0% customer signing), Virtual Technologies & Solutions / BF (58,097, 0%), Converge ICT / PH (43,014, 0%)
 
 > **Correction note:** a bug in the quadrant-classification script (`"PROTECTED" in verdict` matched `CORE: UNPROTECTED` as a false positive) previously misplaced non-ROV Tier-1s into Q1. Fixed to use `rov_utils.is_secure()`; China Telecom/Unicom Backbone now correctly appear in Q2, and several large ROV-enforcing-but-unsigned transit providers (Cogent, Lumen, Zayo, GTT, AT&T) are confirmed in Q3.
 
@@ -277,7 +277,7 @@ APNIC's ROV measurement API returns rolling windows: 7, 14, 28, 112 days.
 
 # Part IV: ROA Signing
 
-Where is the inventory, and who is wasting it?
+Where is ROA coverage strong, and where is it missing?
 
 ---
 
@@ -299,7 +299,7 @@ ROA signing is the **foundation** of the entire RPKI ecosystem. Without it, ROV 
 
 ---
 
-# Glass Houses: Secure Providers, Unsigned Routes
+# Secure Providers, Unsigned Routes
 
 *These networks filter RPKI invalids for their customers, but expose their own prefixes:*
 
@@ -312,15 +312,15 @@ ROA signing is the **foundation** of the entire RPKI ecosystem. Without it, ROV 
 | AS3786 | KR | 545 | 0.2% | LG DACOM Corporation |
 | AS2764 | AU | 413 | 0.8% | AAPT Limited |
 
-> **The irony:** team.blue (21,696-network cone) actively drops invalid routes for its 21,696 downstream customers, but 100% of its own prefixes are unsigned — meaning any attacker announcing a more-specific prefix wins by longest-match, and because team.blue has no ROA, ROV-enforcing networks have no basis to reject the attacker's announcement as Invalid — it is simply *NotFound*.
+> **Effect:** team.blue (21,696-network cone) actively drops invalid routes for its 21,696 downstream customers, but 100% of its own prefixes are unsigned — meaning any attacker announcing a more-specific prefix wins by longest-match, and because team.blue has no ROA, ROV-enforcing networks have no basis to reject the attacker's announcement as Invalid — it is simply *NotFound*.
 >
-> **Note:** Vimpelcom PJSC (AS3216) — the prior top example — has since dropped out of the Glass Houses list entirely because its own ROV status regressed to VULNERABLE (now rank #26 on the Top Vulnerable Transit Networks table), not because it fixed its signing.
+> **Note:** Vimpelcom PJSC (AS3216) — the prior top example — has since dropped out of this list entirely because its own ROV status regressed to VULNERABLE (now rank #26 on the Top Vulnerable Transit Networks table), not because it fixed its signing.
 
 ---
 
-# Screaming Into The Void
+# Fully Signed, Vulnerable Verdict
 
-*Networks with excellent ROA hygiene whose upstream transit negates the protection:*
+*Networks with high ROA signing whose own verdict is VULNERABLE because upstream feeds carry invalid routes:*
 
 | ASN | CC | Cone | Signed% | Secure Feeds | Name |
 |---|---|---|---|---|---|
@@ -334,11 +334,11 @@ ROA signing is the **foundation** of the entire RPKI ecosystem. Without it, ROV 
 | AS18229 | IN | 435 | 100.0% | 1/1 | CtrlS (India) |
 | AS131111 | ID | 228 | 100.0% | 1/1 | PT Mora Telematika Indonesia |
 
-> **SITV is now dominated by the two largest Chinese backbones.** AS4134 (China Telecom Backbone, 65,065-network cone, 100% self-signed) and AS4837 (China Unicom Backbone, 47,013-network cone) top the list — their own ROA hygiene is exemplary, but neither performs ROV, negating the effect for their combined ~112,000 downstream networks. 3 of 9 top-listed SITV networks remain in APAC.
+> **This list is now dominated by the two largest Chinese backbones.** AS4134 (China Telecom Backbone, 65,065-network cone, 100% self-signed) and AS4837 (China Unicom Backbone, 47,013-network cone) top the list — their own ROA signing is high, but neither performs ROV, so the signing has no effect for their combined ~112,000 downstream networks. 3 of 9 networks on this list are in APAC.
 
 ---
 
-# Weighted ROA Evangelism: Where to Focus
+# Weighted ROA Outreach: Where to Focus
 
 *Impact = (Provider Cone) × (Count of Unsigned Customers)*
 
@@ -377,7 +377,7 @@ AU · NZ · JP · IN · ID · CN
 
 **Key concern:** TPG Telecom (AS7545) — the #2 transit provider with 258 dependent customers — is `PARTIAL: VULNERABLE (Mixed)`. SingTel Optus (AS7474) with 140 dependents is similarly mixed.
 
-**Glass House alert:** AAPT Limited (AS2764) — cone 413, only 0.8% of prefixes signed. Actively filtering but completely unsigned.
+**Note:** AAPT Limited (AS2764) — cone 413, only 0.8% of prefixes signed. Actively filtering but completely unsigned.
 
 > AU sits well above global average but the partial-VULNERABLE providers in the transit supply chain represent real risk for the ~2,100 networks that don't route directly through AARNet or Telstra.
 
@@ -451,7 +451,7 @@ Japan's traffic-protected percentage (53.9%, up from 39.5% previously) is improv
 
 **PT Telkom Indonesia (AS7713, cone 4,804)** is `PASSIVE (Clean Pipe)` — Indonesia's dominant transit operator is not doing local ROV.
 
-**Status change:** PT Mora Telematika / AS23947 (cone 473) has moved from `ACTIVE LOCAL ROV` to `PASSIVE (Clean Pipe)` — it is still protected, but no longer confirmed as filtering locally. AS131111 (same company, different ASN) remains `VULNERABLE` with 100% ROA signing — a persistent SITV case.
+**Status change:** PT Mora Telematika / AS23947 (cone 473) has moved from `ACTIVE LOCAL ROV` to `PASSIVE (Clean Pipe)` — it is still protected, but no longer confirmed as filtering locally. AS131111 (same company, different ASN) remains `VULNERABLE` with 100% ROA signing — a persistent signed-but-unsecured-provider case.
 
 **Regression alert:** PT Indosat Tbk (AS4761, cone 148, APNIC 42%) and PT Sarana Insan Muda Selaras (AS55655, cone dropped to 0) are both `REGRESSED` — their APNIC scores show >30-point drops over the past 12 months from previously secure levels.
 
@@ -592,7 +592,7 @@ Concrete actions by audience
 
 **If you are a transit provider:**
 - Your ROV status is a public good — your customers' ROAs are only useful if you filter.
-- Glass Houses (large cone, unsigned routes) are a reputational and security liability.
+- Large-cone providers with unsigned routes are a reputational and security liability.
 - ASPA signing is now tractable for most transit providers (1–5 upstreams).
 
 ---
@@ -601,7 +601,7 @@ Concrete actions by audience
 
 **APNIC-specific actions:**
 
-1. **Target SITV networks first.** Networks like Converge ICT (PH, cone 43,014, 97.8% signed, 0/10 secure upstreams) have done everything right — their diligence is being negated by providers. RIR-facilitated pressure on the transit providers is needed.
+1. **Target Q2 (signed, unsecured-provider) networks first.** Networks like Converge ICT (PH, cone 43,014, 97.8% signed, 0/10 secure upstreams) have signed their ROAs, but their upstream providers do not filter invalid routes, so the signing has no effect. RIR-facilitated pressure on the transit providers is needed.
 
 2. **Weighted outreach campaigns.** Use the Impact Score metric (Provider Cone × Unsigned Customers) to prioritize customer outreach. The top 25 providers' customers represent the highest ROA density per outreach dollar.
 
@@ -659,7 +659,7 @@ Concrete actions by audience
 - The 3 CORE: UNPROTECTED networks expose 4.6% of global traffic — that's hundreds of millions of users
 - India: 22.2% of traffic exposed through confirmed non-ROV transit — up from 16.9%
 - Indonesia: 67.4% of networks VULNERABLE — up from 65.8%
-- SITV is now dominated by China Telecom and China Unicom Backbone — regional diligence is being undercut by global holdouts
+- Signed-but-unsecured-provider networks are now dominated by China Telecom and China Unicom Backbone — regional signing progress has no effect without upstream filtering
 
 **The structural truth:**
 The internet is not uniformly close to security. Traffic coverage is high; network coverage is not. The long tail of small vulnerable transit providers represents real harm to their customers, even if the traffic volumes are small globally.
@@ -676,7 +676,7 @@ The internet is not uniformly close to security. Traffic coverage is high; netwo
 | **CN Telecom Backbone** | Align with AS4809 ROV deployment | Ongoing |
 | **IN Bharti Airtel** | Move from PASSIVE → ACTIVE LOCAL ROV | This year |
 | **ID Telkom Indonesia** | Move from PASSIVE → ACTIVE LOCAL ROV | This year |
-| **APNIC** | Publish national scorecards; target SITV | Ongoing |
+| **APNIC** | Publish national scorecards; target Q2 networks | Ongoing |
 | **IETF** | ASPA tooling standardization (RFC 9582+) | In progress |
 
 > **The herd immunity threshold is within reach.** Closing the gap requires political will at the provider layer — not new technology.

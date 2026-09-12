@@ -35,25 +35,25 @@ def analyze():
     print(f"  - Partially Signed:     {len(partial_signed):>6,}  ({(len(partial_signed)/total)*100:.1f}%)")
     print(f"  - Totally Unsigned:     {len(unsigned):>6,}  ({(len(unsigned)/total)*100:.1f}%)")
 
-    # Insight 1: Glass Houses
-    glass_houses = df[is_secure & (df['signed_pct'] < 10.0)].sort_values(by='cone', ascending=False)
+    # Insight 1: Secure providers with unsigned routes
+    secure_unsigned = df[is_secure & (df['signed_pct'] < 10.0)].sort_values(by='cone', ascending=False)
     print("\n" + "="*80)
-    print("THE 'GLASS HOUSES' (Secure Provider, but Unsigned Routes)")
-    print("These giants protect the internet, but don't protect themselves.")
+    print("SECURE PROVIDERS WITH UNSIGNED ROUTES")
+    print("These networks filter RPKI-invalid routes for others but have not signed ROAs for their own prefixes.")
     print("-" * 80)
     print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Signed':<6} | {'Name'}")
     print("-" * 80)
-    for asn, row in glass_houses.head(15).iterrows():
+    for asn, row in secure_unsigned.head(15).iterrows():
         print(f"AS{asn:<6} | {row['cc']:<2} | {int(row['cone']):<8} | {row['signed_pct']:>5.1f}% | {row['name'][:40]}")
 
-    # Insight 2: Screaming into the Void
-    screaming = df[is_vuln & (df['signed_pct'] > 95.0)].sort_values(by='cone', ascending=False)
+    # Insight 2: Fully signed, but classified vulnerable
+    signed_vulnerable = df[is_vuln & (df['signed_pct'] > 95.0)].sort_values(by='cone', ascending=False)
     print("\n" + "="*80)
-    print("SCREAMING INTO THE VOID (Fully Signed, but Vulnerable Upstreams)")
+    print("FULLY SIGNED, VULNERABLE VERDICT (Own Routes Signed, Feeds Show Invalid Routes)")
     print("-" * 80)
     print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Feeds':<6} | {'Name'}")
     print("-" * 80)
-    for asn, row in screaming.head(15).iterrows():
+    for asn, row in signed_vulnerable.head(15).iterrows():
         ups = f"{row['dirty_feeds']}/{row['total_feeds']}"
         print(f"AS{asn:<6} | {row['cc']:<2} | {int(row['cone']):<8} | {ups:<6} | {row['name'][:40]}")
 

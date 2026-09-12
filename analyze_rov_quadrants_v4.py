@@ -82,13 +82,13 @@ def analyze() -> None:
         is_high_sign = avg_roa >= HIGH_SIGNING
 
         if secure and is_high_sign:
-            quadrant = "Q1: GOLD STANDARD"
+            quadrant = "Q1: SECURE PROVIDER, SIGNED CUSTOMERS"
         elif not secure and is_high_sign:
-            quadrant = "Q2: THE VICTIMS"
+            quadrant = "Q2: SIGNED CUSTOMERS, UNSECURED PROVIDER"
         elif secure and not is_high_sign:
-            quadrant = "Q3: WASTED TECH"
+            quadrant = "Q3: SECURE PROVIDER, UNSIGNED CUSTOMERS"
         else:
-            quadrant = "Q4: THE SWAMP"
+            quadrant = "Q4: UNSECURED PROVIDER, UNSIGNED CUSTOMERS"
 
         results.append({
             'Quadrant': quadrant,
@@ -104,17 +104,17 @@ def analyze() -> None:
     print_header("ROV STRATEGIC QUADRANT REPORT")
 
     definitions = {
-        "Q1: GOLD STANDARD": "IDEAL STATE: Secure Provider + Responsible Customers.\n   The system is working as intended.",
-        "Q2: THE VICTIMS":   "SCREAMING INTO THE VOID: Customers have signed ROAs (>60%), but Provider is LEAKING.\n   These providers are negating their customers' hard work.",
-        "Q3: WASTED TECH":   "GLASS HOUSES: Provider filters invalids, but Customers (<60%) haven't signed ROAs.\n   The provider's security hardware is idle because customers are lazy.",
-        "Q4: THE SWAMP":     "TOTAL FAILURE: Vulnerable Provider + Unsigned Customers.\n   The 'Wild West' of the internet.",
+        "Q1: SECURE PROVIDER, SIGNED CUSTOMERS":   "Provider filters RPKI-invalid routes and customers have signed ROAs (>60% cone average).\n   Both layers of defense are active.",
+        "Q2: SIGNED CUSTOMERS, UNSECURED PROVIDER": "Customers have signed ROAs (>60% cone average), but the provider does not filter invalid routes.\n   Customer-side signing has no effect without upstream filtering.",
+        "Q3: SECURE PROVIDER, UNSIGNED CUSTOMERS": "Provider filters invalid routes, but customers (<60% cone average) have not signed ROAs.\n   Filtering has few signed routes to act on.",
+        "Q4: UNSECURED PROVIDER, UNSIGNED CUSTOMERS": "Provider does not filter invalid routes and customers have not signed ROAs.\n   Neither defense layer is active.",
     }
 
     q_order = [
-        ("Q1: GOLD STANDARD", "\033[92m"),  # Green
-        ("Q2: THE VICTIMS",   "\033[93m"),  # Yellow
-        ("Q3: WASTED TECH",   "\033[96m"),  # Cyan
-        ("Q4: THE SWAMP",     "\033[91m"),  # Red
+        ("Q1: SECURE PROVIDER, SIGNED CUSTOMERS",    "\033[92m"),  # Green
+        ("Q2: SIGNED CUSTOMERS, UNSECURED PROVIDER", "\033[93m"),  # Yellow
+        ("Q3: SECURE PROVIDER, UNSIGNED CUSTOMERS",  "\033[96m"),  # Cyan
+        ("Q4: UNSECURED PROVIDER, UNSIGNED CUSTOMERS", "\033[91m"),  # Red
     ]
 
     for q_name, color in q_order:
