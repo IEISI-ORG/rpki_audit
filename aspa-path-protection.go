@@ -36,6 +36,18 @@ import (
 
 const minPathASNs = 2 // a path needs >=2 ASNs to have even one testable hop
 
+// maxRealisticHops excludes almost-certainly-padded/poisoned paths. Verified
+// against a real example: three routes with completely different entry
+// points (different origin ASNs and second hops) converged at AS3491 and
+// then followed an *identical* 28-hop tail, carrying a BGP community
+// (65535:101, alongside several 3491:90xx/62xxx communities) consistent
+// with a "please prepend this path" signaling convention — deliberate
+// traffic-engineering padding, not 28 genuine customer<->provider
+// relationships. Real, non-poisoned AS_PATHs today are almost always well
+// under this even with legitimate prepending; treating anything longer as
+// padding is a deliberately generous margin, not a tight fit to the median.
+const maxRealisticHops = 15
+
 type pathRecord struct {
 	Collector     string
 	Prefix        string
@@ -191,7 +203,7 @@ func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize in
 	hopsPool := &topKHeap{cap: poolSize, worse: worseThanByHops}
 	scanner := bufio.NewScanner(stdout)
 	scanner.Buffer(make([]byte, 0, 64*1024), 1024*1024)
-	routeCount, qualifying := 0, 0
+	routeCount, qualifying, tooLong := 0, 0, 0
 	for scanner.Scan() {
 		routeCount++
 		fields := strings.Split(scanner.Text(), "|")
@@ -205,6 +217,10 @@ func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize in
 		}
 		deduped, ok := dedupePath(pathTokens)
 		if !ok || len(deduped) < minPathASNs {
+			continue
+		}
+		if len(deduped)-1 > maxRealisticHops {
+			tooLong++ // almost certainly path padding/poisoning, not genuine hops
 			continue
 		}
 
@@ -232,8 +248,9 @@ func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize in
 	if err := cmd.Wait(); err != nil {
 		fmt.Fprintf(os.Stderr, "    [!] %s: bgpdump exited with error: %v\n", collector, err)
 	}
-	fmt.Printf("    - %-6s %9d routes, %9d qualifying (>=%d ASNs after de-dup), top %d kept per pool\n",
-		collector, routeCount, qualifying, minPathASNs, fractionPool.Len())
+	fmt.Printf("    - %-6s %9d routes, %9d qualifying (>=%d ASNs, <=%d hops after de-dup), "+
+		"%d excluded as likely padding/poisoning (>%d hops), top %d kept per pool\n",
+		collector, routeCount, qualifying, minPathASNs, maxRealisticHops, tooLong, maxRealisticHops, fractionPool.Len())
 	return fractionPool.items, hopsPool.items
 }
 
