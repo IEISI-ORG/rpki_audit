@@ -14,6 +14,10 @@ python3 analyze_aspa_realistic_v5.py        | aha --black | tee reports/analyze_
 python3 analyze_roa_signing_trends.py       | aha --black | tee reports/analyze_roa_signing_trends.html
 python3 analyze_aspa_real_deployment.py     | aha --black | tee reports/analyze_aspa_real_deployment.html
 
+echo "ASPA PATH PROTECTION (compiled Go — needs 'make aspa-path-protection' built once,"
+echo "and reads the raw output/*-bview.gz dumps from the last do_data_gathering run)"
+./aspa-path-protection                      | aha --black | tee reports/aspa_path_protection.html
+
 echo "BASIC STATS"
 python3 statistics_v6.py                    | aha --black | tee reports/statistics.html
 

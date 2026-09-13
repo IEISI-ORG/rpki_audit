@@ -57,6 +57,9 @@ def analyze() -> None:
     print(f"ASNs with a real published ASPA object:  {adopters:,} "
           f"({adopters/total_asns*100:.2f}% of all ASNs, "
           f"{adopters/total_with_upstreams*100:.2f}% of ASNs with a provider to declare)")
+    avg_providers = sum(len(p) for p in real_aspa.values()) / adopters
+    max_providers = max(len(p) for p in real_aspa.values())
+    print(f"Average declared providers per ASPA record: {avg_providers:.2f} (max {max_providers})")
 
     # ------------------------------------------------------------------
     # SECTION 2: Cross-check against the "Ready-to-Sign Giants" readiness model

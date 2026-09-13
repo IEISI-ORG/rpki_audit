@@ -3,6 +3,7 @@ GO := go
 BINARY_EXTRACTOR := bgp-extractor
 BINARY_CALCULATOR := cone-calculator
 BINARY_FETCHROA := fetch-roa
+BINARY_ASPAPATH := aspa-path-protection
 MARP := npx @marp-team/marp-cli
 
 # Source files — constants.go is shared across all binaries
@@ -10,6 +11,7 @@ SRC_SHARED    := constants.go
 SRC_EXTRACTOR := bgp-extractor.go
 SRC_CALCULATOR := cone-calculator.go
 SRC_FETCHROA := fetch-roa.go
+SRC_ASPAPATH := aspa-path-protection.go
 
 # Data URLs
 RIB_URL := http://data.ris.ripe.net/rrc00/latest-bview.gz
@@ -41,7 +43,7 @@ setup:
 	$(GO) mod tidy
 
 # 2. Compile Binaries
-build: $(BINARY_EXTRACTOR) $(BINARY_CALCULATOR) $(BINARY_FETCHROA)
+build: $(BINARY_EXTRACTOR) $(BINARY_CALCULATOR) $(BINARY_FETCHROA) $(BINARY_ASPAPATH)
 
 $(BINARY_EXTRACTOR): $(SRC_EXTRACTOR) $(SRC_SHARED)
 	@echo "[*] Building $(BINARY_EXTRACTOR)..."
@@ -54,6 +56,10 @@ $(BINARY_CALCULATOR): $(SRC_CALCULATOR) $(SRC_SHARED)
 $(BINARY_FETCHROA): $(SRC_FETCHROA) $(SRC_SHARED)
 	@echo "[*] Building $(BINARY_FETCHROA)..."
 	$(GO) build -o $(BINARY_FETCHROA) $(SRC_FETCHROA) $(SRC_SHARED)
+
+$(BINARY_ASPAPATH): $(SRC_ASPAPATH)
+	@echo "[*] Building $(BINARY_ASPAPATH)..."
+	$(GO) build -o $(BINARY_ASPAPATH) $(SRC_ASPAPATH)
 
 # 3. Download Data
 download:
@@ -83,7 +89,7 @@ present-apnic: presentations/apnic62/apnic62_presentation.md
 # Cleanup
 clean:
 	@echo "[*] Cleaning up..."
-	rm -f $(BINARY_EXTRACTOR) $(BINARY_CALCULATOR) $(BINARY_FETCHROA)
+	rm -f $(BINARY_EXTRACTOR) $(BINARY_CALCULATOR) $(BINARY_FETCHROA) $(BINARY_ASPAPATH)
 	rm -rf $(OUTPUT_DIR)
 	# Note: We do not delete the large .gz file by default to save bandwidth
 

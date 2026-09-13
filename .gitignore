@@ -18,6 +18,7 @@ table.txt
 bgp-extractor
 cone-calculator
 fetch-roa
+aspa-path-protection
 
 # Data and Outputs (Stop uploading all the data)
 data/

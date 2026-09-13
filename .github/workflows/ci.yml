@@ -63,9 +63,13 @@ jobs:
         go vet bgp-extractor.go constants.go
         go vet cone-calculator.go constants.go
         go vet fetch-roa.go constants.go
+        # aspa-path-protection.go doesn't use constants.go (no Tier-1/non-transit
+        # classification needed for path-hop validation)
+        go vet aspa-path-protection.go
 
     - name: Compile Binaries
       run: |
         go build -o bgp-extractor bgp-extractor.go constants.go
         go build -o cone-calculator cone-calculator.go constants.go
         go build -o fetch-roa fetch-roa.go constants.go
+        go build -o aspa-path-protection aspa-path-protection.go
