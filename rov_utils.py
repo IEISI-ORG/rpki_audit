@@ -7,6 +7,7 @@ import gzip
 import time
 import socket
 import re
+import concurrent.futures
 from collections import defaultdict, Counter
 from io import StringIO, BytesIO
 
@@ -461,11 +462,28 @@ def sync_apnic_timeseries(apnic_map: dict, meta: dict) -> dict:
 
     if not candidates: return {}
     print(f"[Sync] APNIC Time Series ({len(candidates)} ASNs)...")
+
+    # Fetching is network-bound (one blocking HTTP request per ASN, ~1.6s
+    # average measured, up to 15s on timeout) and each ASN's cache file is
+    # independent, so it's safe to parallelize with a thread pool. The large
+    # majority of candidates are cache hits that never touch the network —
+    # only genuinely-stale entries (7-day TTL) make a real request. Measured
+    # on this repo: ~1,444 stale ASNs sequentially took ~39 minutes; the
+    # bottleneck is I/O wait, not CPU, so concurrency fixes it directly.
+    asn_cc_pairs = [(asn, meta.get(asn, {}).get('cc', '')) for asn in candidates]
+    asn_cc_pairs = [(asn, cc) for asn, cc in asn_cc_pairs if cc]
+    raw_by_asn = {}
+    with concurrent.futures.ThreadPoolExecutor(max_workers=20) as pool:
+        futures = {pool.submit(_fetch_apnic_ts_rates, asn, cc): asn for asn, cc in asn_cc_pairs}
+        for future in concurrent.futures.as_completed(futures):
+            asn = futures[future]
+            try:
+                raw_by_asn[asn] = future.result()
+            except Exception:
+                raw_by_asn[asn] = []
+
     result, fetched, skipped_sparse = {}, 0, 0
-    for asn in candidates:
-        cc = meta.get(asn, {}).get('cc', '')
-        if not cc: continue
-        raw = _fetch_apnic_ts_rates(asn, cc)
+    for asn, raw in raw_by_asn.items():
         if not raw: continue
 
         # Normalise: new format [[rate, samples], ...] or old format [float, ...]
