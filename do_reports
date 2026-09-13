@@ -12,6 +12,7 @@ python3 analyze_aspa_readiness_v2.py        | aha --black | tee reports/analyze_
 python3 analyze_rov_quadrants_v4.py         | aha --black | tee reports/analyze_rov_quadrants.html
 python3 analyze_aspa_realistic_v5.py        | aha --black | tee reports/analyze_aspa_realistic.html
 python3 analyze_roa_signing_trends.py       | aha --black | tee reports/analyze_roa_signing_trends.html
+python3 analyze_aspa_real_deployment.py     | aha --black | tee reports/analyze_aspa_real_deployment.html
 
 echo "BASIC STATS"
 python3 statistics_v6.py                    | aha --black | tee reports/statistics.html

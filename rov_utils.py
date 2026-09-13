@@ -20,6 +20,7 @@ DIR_APNIC = "data/apnic"
 DIR_ATLAS = "data/atlas"
 DIR_APNIC_TS = "data/apnic/timeseries"
 DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
+FILE_ASPA_REAL_CACHE = "data/aspa_real.json"
 DIR_TAGS = "data/tags"
 FILE_CC_TO_RIR = "data/cc_to_rir.json"
 DIR_RRC = "output"          # parent dir; each collector writes to output/rrcNN/
@@ -127,6 +128,7 @@ URL_IPTOASN_V4 = "https://iptoasn.com/data/ip2asn-v4.tsv.gz"
 URL_IPTOASN_V6 = "https://iptoasn.com/data/ip2asn-v6.tsv.gz"
 URL_APNIC_TS = "https://stats.labs.apnic.net/cgi-bin/rpki-json-table.pl"
 URL_APNIC_ROA = "https://stats.labs.apnic.net/roa"
+URL_ASPA_REAL = "https://console.rpki-client.org/aspa.html"
 
 # ===========================================================================
 # AUTHORITATIVE CLASSIFICATION CONSTANTS
@@ -609,6 +611,47 @@ def fetch_apnic_roa_by_country(target_date=None) -> dict:
                 json.dump(result, f)
     except Exception as e:
         print(f"    [!] APNIC ROA fetch failed for {cache_key}: {type(e).__name__}: {e}")
+
+    return result
+
+def fetch_real_aspa_deployment() -> dict:
+    """Fetch actually-published ASPA objects from a real RPKI relying-party validator.
+
+    Ground truth, not a model: console.rpki-client.org/aspa.html is rpki-client's
+    own view of every ASPA (RFC 9582) object it has validated across all RPKI
+    repositories. Returns {customer_asn: [provider_asn, ...]}. Current snapshot
+    only — this source has no historical view, unlike the APNIC ROA endpoint.
+    7-day TTL, matching other APNIC/RPKI external syncs in this file.
+    """
+    TTL = 86400 * 7
+    if os.path.exists(FILE_ASPA_REAL_CACHE):
+        if (time.time() - os.path.getmtime(FILE_ASPA_REAL_CACHE)) < TTL:
+            with open(FILE_ASPA_REAL_CACHE) as f:
+                return {int(k): v for k, v in json.load(f).items()}
+
+    result = {}
+    try:
+        resp = requests.get(URL_ASPA_REAL, headers=HEADERS, timeout=60)
+        resp.raise_for_status()
+        text = resp.text
+
+        customer_re = re.compile(r'<a href="/AS(\d+)\.html">AS\d+</a>')
+        provider_re = re.compile(r'Provider AS:\s*(\d+)')
+
+        for row in text.split('<tr>')[1:]:  # [0] is header/preamble
+            m = customer_re.search(row)
+            if not m:
+                continue
+            customer = int(m.group(1))
+            providers = [int(p) for p in provider_re.findall(row)]
+            if providers:
+                result[customer] = providers
+
+        if len(result) > 500:  # sanity floor — a broken/truncated fetch won't have this many
+            with open(FILE_ASPA_REAL_CACHE, 'w') as f:
+                json.dump(result, f)
+    except Exception as e:
+        print(f"    [!] Real ASPA fetch failed: {type(e).__name__}: {e}")
 
     return result
 
