@@ -19,7 +19,9 @@ DIR_PARSED = "data/parsed"
 DIR_APNIC = "data/apnic"
 DIR_ATLAS = "data/atlas"
 DIR_APNIC_TS = "data/apnic/timeseries"
+DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
 DIR_TAGS = "data/tags"
+FILE_CC_TO_RIR = "data/cc_to_rir.json"
 DIR_RRC = "output"          # parent dir; each collector writes to output/rrcNN/
 FILE_RELATIONSHIPS = "output/relationships.csv"   # legacy single-collector path
 FILE_CONES = "final_as_rank.csv"
@@ -124,6 +126,7 @@ URL_CLOUDFLARE_CSV = "https://raw.githubusercontent.com/cloudflare/isbgpsafeyet.
 URL_IPTOASN_V4 = "https://iptoasn.com/data/ip2asn-v4.tsv.gz"
 URL_IPTOASN_V6 = "https://iptoasn.com/data/ip2asn-v6.tsv.gz"
 URL_APNIC_TS = "https://stats.labs.apnic.net/cgi-bin/rpki-json-table.pl"
+URL_APNIC_ROA = "https://stats.labs.apnic.net/roa"
 
 # ===========================================================================
 # AUTHORITATIVE CLASSIFICATION CONSTANTS
@@ -510,6 +513,103 @@ def sync_apnic_timeseries(apnic_map: dict, meta: dict) -> dict:
         fetched += 1
     print(f"    - Result: {fetched} Analysed, {skipped_sparse} Sparse/skipped, "
           f"{len(candidates)-fetched-skipped_sparse} No data.")
+    return result
+
+def load_cc_to_rir() -> dict:
+    """Load the country-code -> RIR mapping (data/cc_to_rir.json).
+
+    Derived from the NRO combined delegated-stats file by majority RIR among
+    each country's 'asn' allocation records — see the file's own '_source' and
+    '_method' fields for provenance. Missing/unmapped countries return ''.
+    """
+    if not os.path.exists(FILE_CC_TO_RIR):
+        return {}
+    with open(FILE_CC_TO_RIR) as f:
+        return json.load(f).get('mapping', {})
+
+def _apnic_roa_date_param(target_date) -> str:
+    """Build the 'd' query param stats.labs.apnic.net/roa expects for a given date.
+
+    The endpoint has an off-by-one month bug: it treats the month you send as
+    0-indexed (like a raw JS Date field) rather than the 1-indexed value shown
+    in its own UI. Verified empirically: sending month=08 returns September
+    data, month=00 returns January data, with day and year passed through
+    unchanged. This subtracts 1 from the calendar month to compensate.
+    """
+    return f"{target_date.day:02d}/{target_date.month - 1:02d}/{target_date.year}"
+
+def fetch_apnic_roa_by_country(target_date=None) -> dict:
+    """Fetch APNIC Labs' per-country ROA (Route Object) coverage table.
+
+    Returns {cc: {'valid': int, 'valid_pct': float, 'invalid': int,
+    'invalid_pct': float, 'unknown': int, 'unknown_pct': float, 'total': int}}
+    for IPv4 route objects, plus a 'date' key on the returned dict giving the
+    date APNIC actually reports (may snap to the nearest date with data).
+
+    target_date=None fetches the current snapshot (7-day TTL, like other APNIC
+    syncs). A specific past date is a fixed historical fact once fetched, so
+    it is cached indefinitely — re-running never changes it.
+    """
+    import datetime as _dt
+    os.makedirs(DIR_APNIC_ROA_HISTORY, exist_ok=True)
+
+    if target_date is None:
+        cache_key = "current"
+        ttl = 86400 * 7
+        url = URL_APNIC_ROA
+    else:
+        cache_key = target_date.strftime("%Y-%m-%d")
+        ttl = None  # historical dates never expire
+        url = f"{URL_APNIC_ROA}?d={_apnic_roa_date_param(target_date)}"
+
+    cache_path = os.path.join(DIR_APNIC_ROA_HISTORY, f"{cache_key}.json")
+    if os.path.exists(cache_path):
+        if ttl is None or (time.time() - os.path.getmtime(cache_path)) < ttl:
+            with open(cache_path) as f:
+                return json.load(f)
+
+    result = {}
+    try:
+        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp.raise_for_status()
+        text = resp.text
+
+        date_match = re.search(r'<p>Date:\s*([\d/]+)</p>', text)
+        result['date'] = date_match.group(1) if date_match else None
+
+        # Country table rows look like:
+        # ["<a href=\"/roa/CN\">CN</a>","<a ...>China</a>, ...",
+        #  V4_valid,{v: pct,...},V4_invalid,{v: pct,...},V4_unknown,{v: pct,...},V4_total,
+        #  V6_valid,{v: pct,...},V6_invalid,{v: pct,...},V6_unknown,{v: pct,...},V6_total]
+        row_re = re.compile(r'\["<a href=\\"/roa/([A-Z]{2})\\">')
+        pair_re = re.compile(r'(\d+),\{v:\s*([\d.]+)')
+        total1_re = re.compile(r'\},(\d+),\d+,\{v:')
+        total2_re = re.compile(r'\},(\d+)\]')
+
+        for line in text.splitlines():
+            m = row_re.search(line)
+            if not m:
+                continue
+            cc = m.group(1)
+            pairs = pair_re.findall(line)
+            t1 = total1_re.search(line)
+            t2 = total2_re.search(line)
+            if len(pairs) < 3 or not t1 or not t2:
+                continue
+            (v_cnt, v_pct), (i_cnt, i_pct), (u_cnt, u_pct) = pairs[0], pairs[1], pairs[2]
+            result[cc] = {
+                'valid': int(v_cnt), 'valid_pct': float(v_pct),
+                'invalid': int(i_cnt), 'invalid_pct': float(i_pct),
+                'unknown': int(u_cnt), 'unknown_pct': float(u_pct),
+                'total': int(t1.group(1)),
+            }
+
+        if len(result) > 50:  # sanity floor — a truncated/error page won't have this many rows
+            with open(cache_path, 'w') as f:
+                json.dump(result, f)
+    except Exception as e:
+        print(f"    [!] APNIC ROA fetch failed for {cache_key}: {type(e).__name__}: {e}")
+
     return result
 
 def load_security_status() -> tuple[set, set, dict]:
