@@ -61,16 +61,33 @@ func worseThan(a, b pathRecord) bool {
 	return false
 }
 
-// topKHeap is a bounded min-heap (by "worst first") of pathRecords: once
-// full, a new candidate only enters by evicting the current worst, so
-// memory never grows past capacity regardless of how many routes are scanned.
+// worseThanByHops ranks the *longest* paths as best, breaking ties toward
+// higher fraction protected. Used for the "longest paths with meaningful
+// coverage" supplementary view — a genuinely independent pool from the
+// fraction-ranked one, not a filter over it, since a long path with a
+// merely-decent (not top-tier) fraction would otherwise have already been
+// evicted from the fraction-ranked pool before ever being considered here.
+func worseThanByHops(a, b pathRecord) bool {
+	if a.TotalHops != b.TotalHops {
+		return a.TotalHops < b.TotalHops
+	}
+	return a.Fraction < b.Fraction
+}
+
+// topKHeap is a bounded min-heap (by "worst first", per the given
+// comparator) of pathRecords: once full, a new candidate only enters by
+// evicting the current worst, so memory never grows past capacity
+// regardless of how many routes are scanned. Two independently-parameterized
+// heaps (one per ranking criterion) can run over the same stream in a
+// single pass at negligible extra cost.
 type topKHeap struct {
 	items []pathRecord
 	cap   int
+	worse func(a, b pathRecord) bool
 }
 
 func (h topKHeap) Len() int            { return len(h.items) }
-func (h topKHeap) Less(i, j int) bool  { return worseThan(h.items[i], h.items[j]) }
+func (h topKHeap) Less(i, j int) bool  { return h.worse(h.items[i], h.items[j]) }
 func (h topKHeap) Swap(i, j int)       { h.items[i], h.items[j] = h.items[j], h.items[i] }
 func (h *topKHeap) Push(x interface{}) { h.items = append(h.items, x.(pathRecord)) }
 func (h *topKHeap) Pop() interface{} {
@@ -87,7 +104,7 @@ func (h *topKHeap) offer(rec pathRecord) {
 		heap.Push(h, rec)
 		return
 	}
-	if worseThan(h.items[0], rec) { // rec is better than the current worst kept
+	if h.worse(h.items[0], rec) { // rec is better than the current worst kept
 		heap.Pop(h)
 		heap.Push(h, rec)
 	}
@@ -148,23 +165,30 @@ func containsInt(list []int, target int) bool {
 }
 
 // processDump streams `bgpdump -m <dump>` and folds every route with a
-// valid, sufficiently-long AS_PATH into a bounded top-K pool — it never
-// holds more than poolSize records for this collector at once, regardless
-// of how many million routes the dump contains. bgpdump handles the .gz
-// decompression itself (matches how do_data_gathering invokes it).
-func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize int) []pathRecord {
+// valid, sufficiently-long AS_PATH into two independent bounded top-K pools
+// — one ranked by fraction protected (the main ranking), one by path length
+// (for the "longest paths with meaningful coverage" supplementary view).
+// Both are maintained in the same single pass over each route: a long path
+// with a merely-decent fraction would already be evicted from the
+// fraction-ranked pool by the time a "longest paths" view could filter it,
+// so that view needs its own independent pool, not a filter over the other
+// one's survivors. Neither pool ever holds more than poolSize records
+// regardless of how many million routes the dump contains. bgpdump handles
+// the .gz decompression itself (matches how do_data_gathering invokes it).
+func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize int) (byFraction, byHops []pathRecord) {
 	cmd := exec.Command("bgpdump", "-m", dumpPath)
 	stdout, err := cmd.StdoutPipe()
 	if err != nil {
 		fmt.Fprintf(os.Stderr, "    [!] %s: %v\n", collector, err)
-		return nil
+		return nil, nil
 	}
 	if err := cmd.Start(); err != nil {
 		fmt.Fprintf(os.Stderr, "    [!] %s: %v\n", collector, err)
-		return nil
+		return nil, nil
 	}
 
-	pool := &topKHeap{cap: poolSize}
+	fractionPool := &topKHeap{cap: poolSize, worse: worseThan}
+	hopsPool := &topKHeap{cap: poolSize, worse: worseThanByHops}
 	scanner := bufio.NewScanner(stdout)
 	scanner.Buffer(make([]byte, 0, 64*1024), 1024*1024)
 	routeCount, qualifying := 0, 0
@@ -194,21 +218,23 @@ func processDump(collector, dumpPath string, realASPA map[int][]int, poolSize in
 		}
 
 		qualifying++
-		pool.offer(pathRecord{
+		rec := pathRecord{
 			Collector:     collector,
 			Prefix:        prefix,
 			Path:          deduped,
 			TotalHops:     totalHops,
 			ProtectedHops: protectedHops,
 			Fraction:      float64(protectedHops) / float64(totalHops),
-		})
+		}
+		fractionPool.offer(rec)
+		hopsPool.offer(rec)
 	}
 	if err := cmd.Wait(); err != nil {
 		fmt.Fprintf(os.Stderr, "    [!] %s: bgpdump exited with error: %v\n", collector, err)
 	}
-	fmt.Printf("    - %-6s %9d routes, %9d qualifying (>=%d ASNs after de-dup), top %d kept\n",
-		collector, routeCount, qualifying, minPathASNs, pool.Len())
-	return pool.items
+	fmt.Printf("    - %-6s %9d routes, %9d qualifying (>=%d ASNs after de-dup), top %d kept per pool\n",
+		collector, routeCount, qualifying, minPathASNs, fractionPool.Len())
+	return fractionPool.items, hopsPool.items
 }
 
 func formatPath(path []int) string {
@@ -256,7 +282,8 @@ func main() {
 	// direct win rather than running one after another.
 	collectors := []string{"rrc00", "rrc14", "rrc19", "rrc23", "rrc24"}
 	fmt.Println("[*] Processing collector dumps concurrently (bgpdump -m, dual-stack)...")
-	results := make([][]pathRecord, len(collectors))
+	byFractionResults := make([][]pathRecord, len(collectors))
+	byHopsResults := make([][]pathRecord, len(collectors))
 	var wg sync.WaitGroup
 	for i, rrc := range collectors {
 		dumpPath := fmt.Sprintf("%s/%s-bview.gz", *outputDir, rrc)
@@ -267,14 +294,17 @@ func main() {
 		wg.Add(1)
 		go func(idx int, collector, path string) {
 			defer wg.Done()
-			results[idx] = processDump(collector, path, realASPA, *poolSize)
+			byFractionResults[idx], byHopsResults[idx] = processDump(collector, path, realASPA, *poolSize)
 		}(i, rrc, dumpPath)
 	}
 	wg.Wait()
 
-	var all []pathRecord
-	for _, recs := range results {
+	var all, allByHops []pathRecord
+	for _, recs := range byFractionResults {
 		all = append(all, recs...)
+	}
+	for _, recs := range byHopsResults {
+		allByHops = append(allByHops, recs...)
 	}
 
 	fmt.Printf("[*] Ranking %d pooled candidates (top %d per collector)...\n", len(all), *poolSize)
@@ -301,6 +331,38 @@ func main() {
 		n = len(all)
 	}
 	for _, r := range all[:n] {
+		fmt.Printf("%-9s | %7.1f%% | %11d / %-10d | %-19s | %s\n",
+			r.Collector, r.Fraction*100, r.ProtectedHops, r.TotalHops, r.Prefix, formatPath(r.Path))
+	}
+
+	// Supplementary view: the literal top-10 above is dominated by trivial
+	// 1-2 hop paths that are trivially 100% protected (nothing else to test).
+	// Technically correct per the ranking rule, but not substantively
+	// interesting. This draws from allByHops — an INDEPENDENT longest-first
+	// pool gathered in the same pass as the fraction-ranked one above, not a
+	// filter over its survivors: a long path with a merely-decent fraction
+	// would already have been evicted from the fraction-ranked pool before
+	// a filter could ever see it.
+	const minHopsForSupplement = 3
+	supplement := make([]pathRecord, 0, len(allByHops))
+	for _, r := range allByHops {
+		if r.TotalHops >= minHopsForSupplement {
+			supplement = append(supplement, r)
+		}
+	}
+	sort.SliceStable(supplement, func(i, j int) bool { return worseThanByHops(supplement[j], supplement[i]) })
+
+	fmt.Println()
+	fmt.Println(strings.Repeat("=", 100))
+	fmt.Printf(" SUPPLEMENTARY: TOP %d MULTI-HOP PATHS (>=%d hops), LONGEST FIRST\n", *topN, minHopsForSupplement)
+	fmt.Println(strings.Repeat("=", 100))
+	fmt.Printf("%-9s | %-8s | %-23s | %-19s | AS_PATH\n", "Collector", "Fraction", "Hops (protected/total)", "Prefix")
+	fmt.Println(strings.Repeat("-", 100))
+	n2 := *topN
+	if n2 > len(supplement) {
+		n2 = len(supplement)
+	}
+	for _, r := range supplement[:n2] {
 		fmt.Printf("%-9s | %7.1f%% | %11d / %-10d | %-19s | %s\n",
 			r.Collector, r.Fraction*100, r.ProtectedHops, r.TotalHops, r.Prefix, formatPath(r.Path))
 	}
