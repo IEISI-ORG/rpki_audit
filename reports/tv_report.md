@@ -6,17 +6,17 @@
     Total Networks:      3
     Total Cone Gravity:  0
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 (33.3%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         0 ( 0.0%) -> Exposes  0.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:         1 (33.3%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE TV CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS142573 | NOT ROUTED                     | 0        | -      | Government of Tuvalu
-    AS23917  | STUB: PASSIVE (Clean Pipe)     | 0        | 77%    | Tuvalu Telecommunications Corporation
+    AS23917  | REGRESSED                      | 0        | 0%     | Tuvalu Telecommunications Corporation
     AS133117 | NOT ROUTED                     | 0        | -      | Tuvalu Telecommunications Corporation
+    AS142573 | NOT ROUTED                     | 0        | -      | Government of Tuvalu
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TV?)

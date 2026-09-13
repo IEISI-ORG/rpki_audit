@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: EG
     ====================================================================================================
     Total Networks:      86
-    Total Cone Gravity:  138
+    Total Cone Gravity:  140
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    60 (69.8%) -> Protects 43.5% of Traffic
-    VULNERABLE NETWORKS:        12 (14.0%) -> Exposes  5.8% of Traffic
+    SECURE (ACTIVE/PASSIVE):    59 (68.6%) -> Protects 41.4% of Traffic
+    VULNERABLE NETWORKS:        12 (14.0%) -> Exposes  6.4% of Traffic
 
     ====================================================================================================
      THE EG CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS8452   | PARTIAL: VULNERABLE (Mixed)    | 70       | 98%    | Telecom Egypt
-    AS24835  | ACTIVE LOCAL ROV               | 36       | 99%    | Vodafone Egypt
-    AS20928  | ACTIVE LOCAL ROV               | 12       | 96%    | The Noor Group
-    AS24863  | ACTIVE LOCAL ROV               | 12       | 97%    | Link Egypt (Link.NET)
-    AS36992  | REGRESSED                      | 8        | 26%    | Etisalat Egypt
-    AS207740 | STUB: VULNERABLE               | 0        | -      | Youssef Hamed
-    AS329114 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Halan for technology and services
-    AS329132 | STUB: PASSIVE (Clean Pipe)     | 0        | 96%    | National Company for Telecommunication S
-    AS329131 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Bank of Kuwait (NBK) - Egypt - 
-    AS328794 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Vodafone International Services L.L.C
-    AS328786 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | valU
-    AS328762 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Mansoura University
-    AS328927 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Fixed Solutions
-    AS328972 | STUB: VULNERABLE               | 0        | -      | Geidea Technology
-    AS328969 | NOT ROUTED                     | 0        | -      | Albaraka Bank of Egypt
-    AS328876 | STUB: VULNERABLE               | 0        | -      | Unipak Nile Ltd
-    AS329720 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Thndr Securities Brokerage
-    AS329763 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Housing and Development Bank
-    AS329359 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Agility Infrastructure a limited liabili
-    AS329352 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | IP4Solutions
+    AS8452   | PARTIAL: VULNERABLE (Mixed)    | 73       | 98%    | Telecom Egypt
+    AS24835  | ACTIVE LOCAL ROV               | 35       | 99%    | Vodafone Egypt
+    AS24863  | ACTIVE LOCAL ROV               | 13       | 95%    | Link Egypt (Link.NET)
+    AS20928  | ACTIVE LOCAL ROV               | 10       | 96%    | The Noor Group
+    AS36992  | REGRESSED                      | 9        | 0%     | Etisalat Egypt
+    AS8524   | STUB: FORTUITOUS ROV           | 0        | 100%   | AUCEGYPT Autonomous System
+    AS6879   | STUB: VULNERABLE               | 0        | -      | ENSTINET
+    AS15475  | NOT ROUTED                     | 0        | -      | Nile Online
+    AS6127   | STUB: FORTUITOUS ROV           | 0        | 98%    | IDSC
+    AS25364  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Egypt Cyber Center aka ECC Solutions
+    AS25576  | STUB: PASSIVE (Clean Pipe)     | 0        | 2%     | AFMIC
+    AS30995  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Vodafone Data
+    AS30993  | STUB: FORTUITOUS ROV           | 0        | 100%   | Egypt Centers
+    AS31065  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Ministry of Communications and Informati
+    AS31619  | STUB: VULNERABLE               | 0        | -      | City Stars
+    AS33778  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Mantrac Group
+    AS33777  | NOT ROUTED                     | 0        | -      | CEQUENS  TECHNOLOGIES-Egyptian Joint-Sto
+    AS33789  | NOT ROUTED                     | 0        | -      | Ministry of Communications and Informati
+    AS33785  | NOT ROUTED                     | 0        | -      | City Net Telecom
+    AS33782  | NOT ROUTED                     | 0        | -      | Bibliotheca Alexandrina
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to EG?)
@@ -49,14 +49,14 @@
     #7   | AS6762   | 2          | CORE: ACTIVE PROTECTOR         | Telecom Italia Sparkle (Seabone)
     #8   | AS3257   | 2          | CORE: ACTIVE PROTECTOR         | GTT Communications Inc.
     #9   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #10  | AS8697   | 1          | PARTIAL: VULNERABLE (Mixed)    | Jordan Telecommunications PSC
+    #10  | AS8697   | 1          | REGRESSED                      | Jordan Telecommunications PSC
     #11  | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #12  | AS15412  | 1          | PARTIAL: VULNERABLE (Mixed)    | Flag Telecom UK Limited
     #13  | AS1273   | 1          | CORE: ACTIVE PROTECTOR         | Vodafone Group PLC
     #14  | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | NTT America, Inc.
     #15  | AS10241  | 1          | VULNERABLE                     | Options & Choices, Inc.
     #16  | AS3491   | 1          | CORE: ACTIVE PROTECTOR         | PCCW Global (HK) Ltd.
-    #17  | AS29632  | 1          | PARTIAL: VULNERABLE (Mixed)    | Netassist International EOOD
-    #18  | AS8772   | 1          | PARTIAL: VULNERABLE (Mixed)    | NetAssist LLC
-    #19  | AS211083 | 1          | STUB: VULNERABLE               | ServerGurus UG
-    #20  | AS34927  | 1          | PASSIVE (Clean Pipe)           | iFog GmbH
+    #17  | AS55002  | 1          | Unverified (Transit/Peer?)     | F5, Inc.
+    #18  | AS6127   | 1          | STUB: FORTUITOUS ROV           | IDSC
+    #19  | AS35280  | 1          | ACTIVE LOCAL ROV               | F5 Networks SARL
+    #20  | AS13335  | 1          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.

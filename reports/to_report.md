@@ -14,21 +14,21 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS140987 | NOT ROUTED                     | 0        | -      | Government of Tonga, Ministry of MEIDECC
-    AS132579 | STUB: VULNERABLE               | 0        | -      | Tonga Cable Limited
-    AS132831 | STUB: UNRELIABLE               | 0        | 100%   | TokoWireless Limited
     AS38201  | STUB: VOLATILE                 | 0        | 100%   | Tonga Communications Internet Network
     AS38198  | NOT ROUTED                     | 0        | 100%   | Digicel Tonga Ltd
+    AS132579 | STUB: VULNERABLE               | 0        | -      | Tonga Cable Limited
+    AS132831 | STUB: UNRELIABLE               | 0        | -      | TokoWireless Limited
+    AS140987 | NOT ROUTED                     | 0        | -      | Government of Tonga, Ministry of MEIDECC
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TO?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #2   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
-    #3   | AS135069 | 1          | PARTIAL: VULNERABLE (Mixed)    | Feenix Communications Limited
-    #4   | AS38198  | 1          | NOT ROUTED                     | Digicel Tonga Ltd
-    #5   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
-    #6   | AS132579 | 1          | STUB: VULNERABLE               | Tonga Cable Limited
-    #7   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
+    #1   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
+    #2   | AS132579 | 1          | STUB: VULNERABLE               | Tonga Cable Limited
+    #3   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
+    #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #5   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
+    #6   | AS135069 | 1          | REGRESSED                      | Feenix Communications Limited
+    #7   | AS38198  | 1          | NOT ROUTED                     | Digicel Tonga Ltd

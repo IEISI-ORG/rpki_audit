@@ -14,21 +14,21 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS142139 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Boom! Inc.
-    AS139759 | NOT ROUTED                     | 0        | 39%    | FSM Telecommunications Corporation
     AS10130  | STUB: VULNERABLE               | 0        | -      | FSM Telecommunications Corporation
-    AS58524  | NOT ROUTED                     | 0        | 5%     | FSM Telecom
-    AS45193  | NOT ROUTED                     | 0        | 42%    | FSM Telecommunications Corporation
-    AS38875  | NOT ROUTED                     | 0        | 17%    | FSM Telecommunications Corporation
+    AS38875  | NOT ROUTED                     | 0        | 0%     | FSM Telecommunications Corporation
+    AS45193  | NOT ROUTED                     | 0        | 2%     | FSM Telecommunications Corporation
+    AS58524  | NOT ROUTED                     | 0        | 0%     | FSM Telecom
+    AS139759 | NOT ROUTED                     | 0        | 0%     | FSM Telecommunications Corporation
+    AS142139 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Boom! Inc.
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to FM?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
-    #2   | AS6461   | 1          | CORE: ACTIVE PROTECTOR         | Zayo Bandwidth
-    #3   | AS9246   | 1          | STUB: VULNERABLE               | Teleguam Holdings, LLC
-    #4   | AS14593  | 1          | PARTIAL: VULNERABLE (Mixed)    | SpaceX Starlink
-    #5   | AS139759 | 1          | NOT ROUTED                     | FSM Telecommunications Corporation
-    #6   | AS10130  | 1          | STUB: VULNERABLE               | FSM Telecommunications Corporation
+    #1   | AS6461   | 1          | CORE: ACTIVE PROTECTOR         | Zayo Bandwidth
+    #2   | AS9246   | 1          | STUB: VULNERABLE               | Teleguam Holdings, LLC
+    #3   | AS10130  | 1          | STUB: VULNERABLE               | FSM Telecommunications Corporation
+    #4   | AS139759 | 1          | NOT ROUTED                     | FSM Telecommunications Corporation
+    #5   | AS14593  | 1          | PARTIAL: VULNERABLE (Mixed)    | SpaceX Starlink
+    #6   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
