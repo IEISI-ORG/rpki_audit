@@ -552,7 +552,6 @@ def fetch_apnic_roa_by_country(target_date=None) -> dict:
     syncs). A specific past date is a fixed historical fact once fetched, so
     it is cached indefinitely — re-running never changes it.
     """
-    import datetime as _dt
     os.makedirs(DIR_APNIC_ROA_HISTORY, exist_ok=True)
 
     if target_date is None:
