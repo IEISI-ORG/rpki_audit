@@ -28,7 +28,7 @@ This project moves beyond simple "Is ROV enabled?" lists. It builds a full depen
 
 ### 2. Python Dependencies
 ```bash
-pip install pandas numpy requests beautifulsoup4 pyyaml ripe.atlas.cousteau pycountry
+pip install pandas numpy requests beautifulsoup4 pyyaml ripe.atlas.cousteau pycountry==24.6.1
 ```
 
 ### 3. API Keys (Optional but Recommended)

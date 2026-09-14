@@ -26,7 +26,7 @@ jobs:
         # SIM102) this codebase had never been checked against — every push
         # failed CI from ~Aug 11 to Sep 13 as a result, unrelated to what
         # those commits actually changed. Bump deliberately, not by drift.
-        pip install pandas numpy requests pyyaml pycountry ruff==0.15.12
+        pip install pandas numpy requests pyyaml pycountry==24.6.1 ruff==0.15.12
 
     - name: Lint with Ruff
       run: |
