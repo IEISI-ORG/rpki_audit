@@ -85,10 +85,9 @@ python3 rov_no_scrape_v21.py
 Run all analysis scripts (via `do_reports`):
 
 ```bash
-python3 analyze_roa_signing_v2.py       # "Glass Houses" — filters but doesn't sign
+python3 analyze_roa_signing_v2.py       # Filters but doesn't sign, and vice versa
 python3 analyze_herd_immunity_v2.py     # % of global traffic protected by Core
 python3 analyze_roa_strategy_v3.py      # ROA signing strategy recommendations
-python3 analyze_aspa_readiness.py       # ASPA deployment readiness
 python3 statistics_v6.py               # Summary statistics
 ```
 
@@ -171,9 +170,8 @@ The `cone-calculator.go` tool processes relationships into a "Customer Cone" (th
 | `rov_no_scrape_v21.py` | **Main audit engine.** Generates `rov_audit_v21_final.csv` |
 | `statistics_v6.py` | Summary statistics from the audit CSV |
 | `analyze_herd_immunity_v2.py` | Global protection stats based on Cone Weight |
-| `analyze_roa_signing_v2.py` | Identifies "Glass Houses" |
+| `analyze_roa_signing_v2.py` | Networks that filter but haven't signed, and vice versa |
 | `analyze_roa_strategy_v3.py` | ROA signing strategy recommendations |
-| `analyze_aspa_readiness.py` | ASPA deployment readiness analysis |
 | `analyze_cone_quality_v2.py` | Upstream provider quality analysis |
 | `analyze_country_deep_dive_v2.py` | Per-country detailed report |
 | `verify_forensic_path_v2.py` | Active RIPE Atlas tool — Valid vs Invalid traceroutes |

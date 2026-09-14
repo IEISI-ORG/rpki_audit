@@ -65,8 +65,7 @@ def analyze() -> None:
     # SECTION 2: Cross-check against the "Ready-to-Sign Giants" readiness model
     # ------------------------------------------------------------------
     print_header("2. MODEL vs REALITY — 'Ready-to-Sign Giants'")
-    print(f"Giants (cone > {READY_MIN_CONE}) with 100% ROA hygiene and 100% secure upstreams "
-          f"(per analyze_aspa_readiness_v2.py's criteria):")
+    print(f"Giants (cone > {READY_MIN_CONE}) with 100% ROA hygiene and 100% secure upstreams:")
 
     ready, ready_signed, ready_unsigned = [], [], []
     for asn, ups in upstreams.items():

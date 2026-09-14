@@ -16,7 +16,7 @@
     ====================================================================================================
      2. MODEL vs REALITY — 'Ready-to-Sign Giants'
     ====================================================================================================
-    Giants (cone > 100) with 100% ROA hygiene and 100% secure upstreams (per analyze_aspa_readiness_v2.py's criteria):
+    Giants (cone > 100) with 100% ROA hygiene and 100% secure upstreams:
       Ready-to-sign giants:     88
       ...who HAVE signed ASPA:  9 (10.2%)
       ...who HAVEN'T yet:       79 (89.8%)
