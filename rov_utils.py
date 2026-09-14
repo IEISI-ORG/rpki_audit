@@ -179,7 +179,13 @@ PROVIDER_RATIO: float = 4.0
 
 # AS13335 (Cloudflare) deliberately accepts RPKI-invalid routes on test infrastructure
 # so researchers can verify their ROV posture. Hardcoding prevents false VULNERABLE verdicts.
-HARDCODED_SECURE: set[int] = {13335}
+# AS14789 (Cloudflare, Inc.) is the same phenomenon on a second, much smaller
+# Cloudflare-operated ASN (cone 1,197 vs AS13335's massive anycast footprint —
+# consistent with a dedicated test/canary deployment, not primary production
+# traffic): confirmed dirty_feeds=2/2 (every observed feed shows it forwarding
+# RPKI-invalid routes), matching intentional canary behavior rather than a
+# real leak. Verified 2026-09-14 per user's direct domain knowledge.
+HARDCODED_SECURE: set[int] = {13335, 14789}
 
 def ensure_dirs():
     """Ensure all required data directories exist."""
