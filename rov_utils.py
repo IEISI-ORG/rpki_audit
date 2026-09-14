@@ -909,6 +909,69 @@ def is_vulnerable(verdict: str) -> bool:
 def is_partial(verdict: str) -> bool:
     return classify_verdict(verdict) == "PARTIAL"
 
+def classify_rov_coverage(verdict: str) -> str:
+    """Split classify_verdict()'s SECURE bucket into LOCAL vs UPSTREAM.
+
+    Returns one of NONE / PARTIAL / LOCAL / UPSTREAM. LOCAL means the ASN
+    itself has confirmed ROV (ACTIVE/PROTECTOR/VOLATILE-flavored verdicts).
+    UPSTREAM means the protection is real but comes from a provider's
+    filtering, not the ASN's own routers (PASSIVE/FORTUITOUS verdicts) — see
+    the PASSIVE/FORTUITOUS ROV notes in CLAUDE.md. VOLATILE is grouped with
+    LOCAL: it shares the exact is_safe=True/dirty_feeds=0 code path as
+    ACTIVE LOCAL ROV in assign_verdict(), just flagged as inconsistent over
+    time, not a different provenance.
+    """
+    bucket = classify_verdict(verdict)
+    if bucket in ("VULNERABLE", "UNKNOWN"):
+        return "NONE"
+    if bucket == "PARTIAL":
+        return "PARTIAL"
+    v = str(verdict).upper()
+    if "PASSIVE" in v or "FORTUITOUS" in v:
+        return "UPSTREAM"
+    return "LOCAL"
+
+def classify_signing_rov_state(signed_pct: float, verdict: str) -> str:
+    """Formal ROA-signing x ROV-coverage classification for a single ASN.
+
+    ROA signing and ROV coverage are separate axes: if an ASN has not
+    signed its own prefix, no ROV anywhere (local or upstream) can validate
+    that prefix as legitimate — an unsigned route is always RPKI 'NotFound',
+    never 'Valid'. So NOT SIGNED is always the insecure tier for that
+    prefix by definition; the ROV qualifier on a NOT SIGNED state is then
+    an operational note about the ASN's own filtering behavior, not a
+    protection claim.
+
+    Thresholds match the global signing breakdown already used elsewhere
+    in this codebase (analyze_roa_signing_v2.py's GLOBAL ROA SIGNING
+    REPORT): 0% = none, <90% = partial, >=90% = full.
+    """
+    rov = classify_rov_coverage(verdict)
+
+    if signed_pct <= 0.0:
+        signed = "NONE"
+    elif signed_pct < 90.0:
+        signed = "PARTIAL"
+    else:
+        signed = "FULL"
+
+    if signed == "NONE":
+        return {
+            "NONE": "NOT SIGNED (INSECURE)",
+            "PARTIAL": "NOT SIGNED (ROV PARTIAL)",
+            "LOCAL": "NOT SIGNED (ROV LOCAL)",
+            "UPSTREAM": "NOT SIGNED (ROV UPSTREAM)",
+        }[rov]
+    if signed == "PARTIAL":
+        return "PARTIALLY SIGNED (WEAK)"
+    # signed == FULL
+    return {
+        "NONE": "SIGNED (NO ROV)",
+        "PARTIAL": "PARTIALLY SECURE",
+        "LOCAL": "FULL ROV COVERAGE",
+        "UPSTREAM": "FULL ROV COVERAGE",
+    }[rov]
+
 def assign_verdict(asn: int, is_safe: bool, cone: int, parents: list, dirty_feeds: int, volatile: bool, atlas_v: str = "") -> str:
     """Standardized logic for assigning safety verdicts."""
     if asn in HARDCODED_SECURE:

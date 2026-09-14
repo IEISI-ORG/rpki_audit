@@ -10,29 +10,42 @@
       - Totally Unsigned:     70,406  (57.3%)
 
     ================================================================================
-    SECURE PROVIDERS WITH UNSIGNED ROUTES
-    These networks filter RPKI-invalid routes for others but have not signed ROAs for their own prefixes.
+    ROA SIGNING x ROV COVERAGE CLASSIFICATION
     --------------------------------------------------------------------------------
-    ASN      | CC | Cone     | Signed | Name
-    --------------------------------------------------------------------------------
-    AS48185  | BE | 30588    |   0.0% | team.blue NV
-    AS29632  | DE | 30481    |   0.0% | Netassist International EOOD
-    AS56662  | PL | 16975    |   0.0% | Marcin Gondek
-    AS16735  | BR | 1979     |   0.0% | Algar Telecom
-    AS201054 | PL | 1348     |   0.0% | Stowarzyszenie e-Poludnie
-    AS1031   | US | 1274     |   0.0% | PEER 1031 LLC
-    AS46887  | US | 1182     |   0.3% | Zayo (fka. Crown Castle)
-    AS3549   | US | 454      |   1.0% | Lumen (fka. Global Crossing)
-    AS10429  | BR | 435      |   0.0% | Vivo (Telefônica Brasil)
-    AS209    | US | 394      |   1.3% | Lumen (ex. Qwest)
-    AS2764   | AU | 344      |   0.8% | AAPT Limited
-    AS62081  | PL | 279      |   0.0% | Stowarzyszenie e-Poludnie
-    AS263009 | BR | 232      |   0.0% | FORTE TELECOM LTDA.
-    AS28368  | BR | 208      |   0.0% | Wirelink (Sobralnet)
-    AS11664  | AR | 197      |   0.0% | Techtel LMDS Comunicaciones Interactivas
+      FULL ROV COVERAGE             10,460  ( 8.5%)
+      PARTIALLY SECURE               1,825  ( 1.5%)
+      SIGNED (NO ROV)               34,102  (27.8%)
+      PARTIALLY SIGNED (WEAK)        5,998  ( 4.9%)
+      NOT SIGNED (ROV LOCAL)           333  ( 0.3%)
+      NOT SIGNED (ROV UPSTREAM)     10,343  ( 8.4%)
+      NOT SIGNED (ROV PARTIAL)         408  ( 0.3%)
+      NOT SIGNED (INSECURE)         59,322  (48.3%)
 
     ================================================================================
-    FULLY SIGNED, VULNERABLE VERDICT (Own Routes Signed, Feeds Show Invalid Routes)
+    NOT SIGNED, BY ROV COVERAGE TYPE
+    Own prefix is unsigned — no ROV anywhere can validate it. Shown: whether this
+    ASN's own inbound traffic is separately protected by local, upstream, or partial ROV.
+    --------------------------------------------------------------------------------
+    ASN      | CC | Cone     | State                      | Name
+    --------------------------------------------------------------------------------
+    AS33891  | DE | 36364    | NOT SIGNED (ROV PARTIAL)   | Core-Backbone GmbH
+    AS48185  | BE | 30588    | NOT SIGNED (ROV UPSTREAM)  | team.blue NV
+    AS29632  | DE | 30481    | NOT SIGNED (ROV UPSTREAM)  | Netassist International EOOD
+    AS56662  | PL | 16975    | NOT SIGNED (ROV UPSTREAM)  | Marcin Gondek
+    AS16735  | BR | 1979     | NOT SIGNED (ROV LOCAL)     | Algar Telecom
+    AS201054 | PL | 1348     | NOT SIGNED (ROV UPSTREAM)  | Stowarzyszenie e-Poludnie
+    AS1031   | US | 1274     | NOT SIGNED (ROV UPSTREAM)  | PEER 1031 LLC
+    AS35598  | RU | 893      | NOT SIGNED (ROV PARTIAL)   | INETCOM CARRIER LLC
+    AS4635   | HK | 768      | NOT SIGNED (ROV PARTIAL)   | HKIX Route Servers
+    AS62255  | SI | 690      | NOT SIGNED (ROV PARTIAL)   | BiMajLink d.o.o.
+    AS50263  | PL | 559      | NOT SIGNED (ROV PARTIAL)   | A-Systems Sp. z o.o.
+    AS10429  | BR | 435      | NOT SIGNED (ROV LOCAL)     | Vivo (Telefônica Brasil)
+    AS24115  | SG | 406      | NOT SIGNED (ROV PARTIAL)   | Equinix IX
+    AS62081  | PL | 279      | NOT SIGNED (ROV UPSTREAM)  | Stowarzyszenie e-Poludnie
+    AS263009 | BR | 232      | NOT SIGNED (ROV LOCAL)     | FORTE TELECOM LTDA.
+
+    ================================================================================
+    SIGNED (NO ROV) — Own Routes Signed, Feeds Show Invalid Routes
     --------------------------------------------------------------------------------
     ASN      | CC | Cone     | Feeds  | Name
     --------------------------------------------------------------------------------

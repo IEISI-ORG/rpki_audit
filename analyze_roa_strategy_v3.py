@@ -17,29 +17,35 @@ def analyze():
     
     df['signed_pct'] = df['asn'].map(roa_map).fillna(0.0)
 
-    # Insight 1: Secure providers, unsigned routes
-    print("\n" + "="*95)
-    print("1. SECURE PROVIDERS, UNSIGNED ROUTES")
-    print("-" * 95)
-    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Signed%':<8} | {'Name'}")
-    print("-" * 95)
-    
-    df['category'] = df['verdict'].apply(rov_utils.classify_verdict)
-    is_secure = df['category'] == "SECURE"
-    secure_unsigned = df[is_secure & (df['signed_pct'] < 10.0)].sort_values(by='cone', ascending=False)
-    for _, r in secure_unsigned.head(15).iterrows():
-        print(f"AS{r['asn']:<6} | {r['cc']:<2} | {int(r['cone']):<8} | \033[91m{r['signed_pct']:>5.1f}%\033[0m  | {r['name'][:45]}")
+    df['state'] = df.apply(
+        lambda r: rov_utils.classify_signing_rov_state(r['signed_pct'], str(r['verdict'])), axis=1
+    )
 
-    # Insight 2: Fully signed, but classified vulnerable
+    # Insight 1: not signed, by ROV coverage type (see
+    # rov_utils.classify_signing_rov_state for the full matrix definition —
+    # an unsigned prefix can't be validated by ROV anywhere, local or
+    # upstream, so this shows the operational nuance of why each ASN is
+    # still unsigned-insecure, not a protection claim).
     print("\n" + "="*95)
-    print("2. FULLY SIGNED, VULNERABLE VERDICT")
+    print("1. NOT SIGNED, BY ROV COVERAGE TYPE")
+    print("-" * 95)
+    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'State':<26} | {'Signed%':<8} | {'Name'}")
+    print("-" * 95)
+
+    not_signed_states = ["NOT SIGNED (ROV LOCAL)", "NOT SIGNED (ROV UPSTREAM)", "NOT SIGNED (ROV PARTIAL)"]
+    not_signed = df[df['state'].isin(not_signed_states)].sort_values(by='cone', ascending=False)
+    for _, r in not_signed.head(15).iterrows():
+        print(f"AS{r['asn']:<6} | {r['cc']:<2} | {int(r['cone']):<8} | {r['state']:<26} | \033[91m{r['signed_pct']:>5.1f}%\033[0m  | {r['name'][:45]}")
+
+    # Insight 2: signed, but classified with no ROV coverage
+    print("\n" + "="*95)
+    print("2. SIGNED (NO ROV)")
     print("-" * 95)
     print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Signed%':<8} | {'Name'}")
     print("-" * 95)
-    
-    is_vuln = df['category'] == "VULNERABLE"
-    signed_vulnerable = df[is_vuln & (df['signed_pct'] > 95.0)].sort_values(by='cone', ascending=False)
-    for _, r in signed_vulnerable.head(15).iterrows():
+
+    signed_no_rov = df[(df['state'] == "SIGNED (NO ROV)") & (df['signed_pct'] > 95.0)].sort_values(by='cone', ascending=False)
+    for _, r in signed_no_rov.head(15).iterrows():
         print(f"AS{r['asn']:<6} | {r['cc']:<2} | {int(r['cone']):<8} | \033[92m{r['signed_pct']:>5.1f}%\033[0m  | {r['name'][:45]}")
 
     # Insight 3: Weighted outreach targets
