@@ -28,7 +28,7 @@ def get_smart_targets(limit=50) -> list[int]:
         print(f"[!] {rov_utils.FILE_AUDIT_FINAL} not found.")
         return sorted(stale_asns)[:limit]
 
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
+    df = rov_utils.load_audit_csv()
     df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
 
     def get_priority(row):

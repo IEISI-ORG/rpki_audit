@@ -95,6 +95,22 @@ BGPTOOLS_TAGS: dict[str, str] = {
 
 # ... (other functions)
 
+def load_audit_csv(path: str = None) -> pd.DataFrame:
+    """Load the main audit CSV (FILE_AUDIT_FINAL by default).
+
+    Namibia's ISO country code is the literal string "NA" — one of pandas'
+    default missing-value markers (alongside "NULL", "n/a", "NaN", etc). A
+    plain pd.read_csv() silently turns every Namibian row's `cc` into NaN,
+    which then breaks any cc-based grouping, RIR rollup, or `df['cc'] ==
+    'NA'` lookup downstream (confirmed: analyze_country_deep_dive_v2.py NA
+    reported "no ASNs found" despite 18 real Namibian ASNs in the file).
+    `keep_default_na=False, na_values=['']` disables that string-sniffing
+    while still treating genuinely empty cells as NaN, so numeric columns
+    with missing values (e.g. `atlas_result`) behave exactly as before.
+    """
+    return pd.read_csv(path or FILE_AUDIT_FINAL, low_memory=False, keep_default_na=False, na_values=[''])
+
+
 def load_all_asn_data() -> dict:
     """Load all ASN data from either packed JSONL or individual JSON files."""
     data = {}

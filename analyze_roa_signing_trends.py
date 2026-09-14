@@ -66,7 +66,7 @@ def analyze() -> None:
         print(f"[!] {rov_utils.FILE_CC_TO_RIR} not found or empty. Cannot compute RIR rollups.")
         return
 
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL, low_memory=False)
+    df = rov_utils.load_audit_csv()
     asn_count_by_cc = df['cc'].value_counts().to_dict()
     asn_count_by_rir = {}
     for cc, n in asn_count_by_cc.items():

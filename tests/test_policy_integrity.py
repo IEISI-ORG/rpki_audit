@@ -1,4 +1,3 @@
-import pandas as pd
 import os
 import sys
 import rov_utils
@@ -10,7 +9,7 @@ def test_tier1_gravity():
         print("    [!] Audit file missing, skipping.")
         return True
 
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
+    df = rov_utils.load_audit_csv()
     # Check a few major Tier 1s that should NEVER have zero cones
     major_t1s = [3356, 174, 2914, 1299, 701, 6939, 5511]
     

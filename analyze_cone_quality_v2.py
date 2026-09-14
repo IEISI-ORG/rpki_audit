@@ -32,8 +32,8 @@ def analyze_cones():
 
     # 2. Load Audit Data
     print("    - Parsing verdicts...")
-    df = pd.read_csv(FILE_AUDIT_CSV)
-    
+    df = rov_utils.load_audit_csv(FILE_AUDIT_CSV)
+
     # Maps for O(1) lookup
     status_map = {}
     meta_map = {}

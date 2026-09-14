@@ -9,8 +9,8 @@ def analyze():
         return
 
     # 1. Load Audit Results
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL, low_memory=False)
-    
+    df = rov_utils.load_audit_csv()
+
     # 2. Load topology and signing stats
     cones, downstream, upstreams = rov_utils.load_topology()
     roa_map = rov_utils.load_signing_stats()

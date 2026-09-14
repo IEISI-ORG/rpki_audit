@@ -1,4 +1,3 @@
-import pandas as pd
 import os
 import rov_utils
 
@@ -9,7 +8,7 @@ def analyze():
         return
 
     # 1. Load Audit Results
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL, low_memory=False)
+    df = rov_utils.load_audit_csv()
     df.set_index('asn', inplace=True)
     
     # 2. Load Signing Stats from Cache

@@ -18,7 +18,7 @@ def analyze_country(target_cc):
 
     # 1. Load Data
     print(f"[*] Loading Global Audit for {target_cc}...")
-    df = pd.read_csv(csv_file, low_memory=False)
+    df = rov_utils.load_audit_csv(csv_file)
     country_df = df[df['cc'] == target_cc].copy()
     
     if len(country_df) == 0:

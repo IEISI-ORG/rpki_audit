@@ -25,7 +25,7 @@ def analyze() -> None:
         return
 
     print("[*] Loading Data...")
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL, low_memory=False)
+    df = rov_utils.load_audit_csv()
     df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
     verdict_map = df.set_index('asn')['verdict'].to_dict()
     name_map = df.set_index('asn')['name'].to_dict()

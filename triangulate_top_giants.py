@@ -70,7 +70,7 @@ def main():
     if not os.path.exists(rov_utils.FILE_AUDIT_FINAL):
         print(f"[!] Audit file missing."); return
 
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
+    df = rov_utils.load_audit_csv()
     df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
     
     # Filter for Top Giants

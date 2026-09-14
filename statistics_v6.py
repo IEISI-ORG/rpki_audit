@@ -15,7 +15,7 @@ def analyze(csv_file):
 
     print(f"[*] Loading {csv_file}...")
     try:
-        df = pd.read_csv(csv_file, low_memory=False)
+        df = rov_utils.load_audit_csv(csv_file)
     except Exception as e:
         print(f"[!] Error reading CSV: {e}")
         return

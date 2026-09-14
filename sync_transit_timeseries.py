@@ -19,7 +19,7 @@ def main():
         print(f"[!] {rov_utils.FILE_AUDIT_FINAL} not found.")
         return
 
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
+    df = rov_utils.load_audit_csv()
     # Define transit as cone > 0
     transit_df = df[df['cone'] > 0].copy()
     

@@ -10,8 +10,8 @@ def find_boundary_candidates():
         print(f"[!] Error: {rov_utils.FILE_AUDIT_FINAL} not found.")
         return
     
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
-    
+    df = rov_utils.load_audit_csv()
+
     # 2. Load Topology
     cones, downstream, upstreams = rov_utils.load_topology()
     

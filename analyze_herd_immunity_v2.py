@@ -17,7 +17,7 @@ def analyze():
         return
 
     print(f"[*] Loading {csv_file}...")
-    df = pd.read_csv(csv_file, low_memory=False)
+    df = rov_utils.load_audit_csv(csv_file)
     df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
 
     # Load topology for cone quality checks

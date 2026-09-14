@@ -3,7 +3,6 @@ import subprocess
 import os
 import json
 import glob
-import pandas as pd
 
 def main():
     # 1. Load Metadata
@@ -30,7 +29,7 @@ def main():
         print("[!] Audit file not found. Skipping Phase 2.")
         return
         
-    df = pd.read_csv(rov_utils.FILE_AUDIT_FINAL)
+    df = rov_utils.load_audit_csv()
     asn_data = rov_utils.load_all_asn_data()
     
     # Important ASNs (Cone > 50)
