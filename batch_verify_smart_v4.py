@@ -8,10 +8,10 @@ from datetime import datetime, timezone
 import rov_utils
 import verify_forensic_path_v2 as forensic
 
-MAX_TARGETS_PER_RUN = 5
+MAX_TARGETS_PER_RUN = 50
 
 
-def get_smart_targets(limit=5) -> list[int]:
+def get_smart_targets(limit=50) -> list[int]:
     """
     Selects ASNs for re-verification, in priority order:
       1. Stale cached results (TTL expired) — always refresh these first

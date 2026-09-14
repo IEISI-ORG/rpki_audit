@@ -17,7 +17,7 @@
 #   0 7 1 * * /home/terry/rpki_audit/rov_cron.sh commit >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 # Modes:
-#   atlas    — run batch_verify_smart_v4.py (5 Atlas targets, fast ~5 min)
+#   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
 #   commit   — git commit changed report outputs (monthly, local commit only — no push)
@@ -72,9 +72,9 @@ release_lock() {
 # Stage: Atlas forensics
 # -----------------------------------------------------------
 run_atlas() {
-    log "[atlas] Starting Atlas forensic batch (limit=5)..."
+    log "[atlas] Starting Atlas forensic batch (limit=50)..."
     cd "$SCRIPT_DIR"
-    $PYTHON batch_verify_smart_v4.py --limit 5
+    $PYTHON batch_verify_smart_v4.py --limit 50
     log "[atlas] Done."
 }
 
@@ -193,7 +193,7 @@ case "$MODE" in
     *)
         echo "Usage: $0 {atlas|reports|full|commit}"
         echo ""
-        echo "  atlas    — RIPE Atlas forensic batch (nightly, ~5 min)"
+        echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
         echo "  commit   — Commit changed report outputs (monthly, local only)"

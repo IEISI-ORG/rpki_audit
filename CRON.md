@@ -6,7 +6,7 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 
 | Time | Mode | Purpose | Typical runtime |
 |---|---|---|---|
-| Nightly, 02:00 | `atlas` | RIPE Atlas forensic batch (5 targets) | ~5 min |
+| Nightly, 02:00 | `atlas` | RIPE Atlas forensic batch (50 targets) | ~50 min |
 | Daily, 06:00 | `reports` | Audit + analysis + HTML/MD reports (cached topology) | up to 3 hr (timeout) |
 | Weekly, Sunday 03:00 | `full` | Topology rebuild + atlas + reports | up to 6 hr (timeout) |
 | Monthly, 1st at 07:00 | `commit` | Commit changed report outputs | seconds |
@@ -23,7 +23,7 @@ Live crontab (`crontab -l`):
 ## Modes
 
 ### `atlas`
-Runs `batch_verify_smart_v4.py --limit 5` — the prioritized RIPE Atlas re-verification scheduler. Fast, runs nightly to keep forensic verdicts within the 7-day TTL without exhausting Atlas credits.
+Runs `batch_verify_smart_v4.py --limit 50` — the prioritized RIPE Atlas re-verification scheduler. Runs nightly to keep forensic verdicts within the 7-day TTL. Bumped from 5 to 50 on 2026-09-14: at 5/night the stale-result backlog (783 at the time) could never actually shrink — clearing it needs a throughput north of the corpus size / 7 days. At 50/night, once the stale backlog is worked down, remaining nightly capacity reaches genuinely new territory: large transit ASNs with no prior Atlas forensic result at all (`REGRESSED`/`CORE: UNPROTECTED` first, then `VULNERABLE`/`UNRELIABLE`, then large `Unverified` transit — see `get_smart_targets()` in `batch_verify_smart_v4.py`).
 
 ### `reports`
 Runs `do_reports` — `rov_no_scrape_v22.py` (main audit) + all analysis scripts (`analyze_roa_signing_v2.py`, `analyze_herd_immunity_v2.py`, `analyze_roa_strategy_v3.py`, `analyze_aspa_readiness_v2.py`, `analyze_rov_quadrants_v4.py`, `analyze_aspa_realistic_v5.py`) + `statistics_v6.py` + per-country deep dives + pandoc HTML→MD conversion. Uses cached topology from the last `full` run — does **not** touch ROA data or rebuild topology. Wrapped in a 3-hour `timeout`; a timeout or non-zero exit is logged as a warning but doesn't fail the cron slot (partial output is still useful).
