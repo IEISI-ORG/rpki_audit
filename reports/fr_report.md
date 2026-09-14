@@ -6,8 +6,8 @@
     Total Networks:      1,881
     Total Cone Gravity:  164,796
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   703 (37.4%) -> Protects 96.9% of Traffic
-    VULNERABLE NETWORKS:       607 (32.3%) -> Exposes  0.1% of Traffic
+    SECURE (ACTIVE/PASSIVE):   705 (37.5%) -> Protects 96.9% of Traffic
+    VULNERABLE NETWORKS:       604 (32.1%) -> Exposes  0.1% of Traffic
 
     ====================================================================================================
      THE FR CORE (Top 20 Networks)

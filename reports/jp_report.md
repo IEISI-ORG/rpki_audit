@@ -6,8 +6,8 @@
     Total Networks:      981
     Total Cone Gravity:  1,802
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   281 (28.6%) -> Protects 38.0% of Traffic
-    VULNERABLE NETWORKS:       438 (44.6%) -> Exposes  19.3% of Traffic
+    SECURE (ACTIVE/PASSIVE):   238 (24.3%) -> Protects 35.0% of Traffic
+    VULNERABLE NETWORKS:       471 (48.0%) -> Exposes  19.3% of Traffic
 
     ====================================================================================================
      THE JP CORE (Top 20 Networks)
@@ -21,7 +21,7 @@
     AS4713   | ACTIVE LOCAL ROV               | 96       | 98%    | NTT Communications Corporation (OCN)
     AS2519   | REGRESSED                      | 87       | 0%     | ARTERIA Networks Corporation
     AS10010  | REGRESSED                      | 38       | 0%     | TOKAI Communications Corporation
-    AS2518   | ACTIVE LOCAL ROV               | 33       | 99%    | BIGLOBE Inc.
+    AS2518   | PARTIAL: VULNERABLE (Mixed)    | 33       | 99%    | BIGLOBE Inc.
     AS59105  | ACTIVE LOCAL ROV               | 27       | -      | Home NOC Operators Group
     AS7529   | PARTIAL: VULNERABLE (Mixed)    | 17       | -      | GMO NetIRD, Inc.
     AS150369 | ACTIVE LOCAL ROV               | 16       | -      | TelHi Corporation
@@ -31,7 +31,7 @@
     AS59103  | UNRELIABLE                     | 12       | -      | SoftEther Corporation
     AS7679   | REGRESSED                      | 11       | 0%     | QTnet,Inc.
     AS38074  | PASSIVE (Clean Pipe)           | 11       | -      | SDCC Japan-West Area
-    AS9354   | PASSIVE (Clean Pipe)           | 11       | 99%    | Community Network Center Inc.
+    AS9354   | PARTIAL: VULNERABLE (Mixed)    | 11       | 99%    | Community Network Center Inc.
     AS214675 | PARTIAL: VULNERABLE (Mixed)    | 10       | -      | Hidenori Matsuo
     AS17511  | REGRESSED                      | 8        | 0%     | OPTAGE Inc.
 
@@ -49,7 +49,7 @@
     #7   | AS2519   | 71         | REGRESSED                      | ARTERIA Networks Corporation
     #8   | AS6939   | 35         | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
     #9   | AS4637   | 35         | CORE: ACTIVE PROTECTOR         | Telstra International Limited
-    #10  | AS2518   | 34         | ACTIVE LOCAL ROV               | BIGLOBE Inc.
+    #10  | AS2518   | 34         | PARTIAL: VULNERABLE (Mixed)    | BIGLOBE Inc.
     #11  | AS10010  | 32         | REGRESSED                      | TOKAI Communications Corporation
     #12  | AS3356   | 20         | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #13  | AS9607   | 19         | ACTIVE LOCAL ROV               | BroadBand Tower, Inc.

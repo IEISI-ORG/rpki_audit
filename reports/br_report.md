@@ -7,7 +7,7 @@
     Total Cone Gravity:  22,239
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):  1131 (12.4%) -> Protects 38.0% of Traffic
-    VULNERABLE NETWORKS:      7196 (78.6%) -> Exposes  50.0% of Traffic
+    VULNERABLE NETWORKS:      7197 (78.6%) -> Exposes  50.4% of Traffic
 
     ====================================================================================================
      THE BR CORE (Top 20 Networks)

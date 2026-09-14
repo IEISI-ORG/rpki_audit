@@ -16,7 +16,7 @@
     ----------------------------------------------------------------------------------------------------
     AS37282  | PARTIAL: VULNERABLE (Mixed)    | 179      | 0%     | MainOne Cable Company Nigeria Limited
     AS29465  | PARTIAL: VULNERABLE (Mixed)    | 45       | 6%     | MTN NIGERIA Communication limited
-    AS36873  | VULNERABLE                     | 26       | 1%     | Airtel Networks Limited
+    AS36873  | VULNERABLE (Atlas Verified)    | 26       | 1%     | Airtel Networks Limited
     AS37148  | REGRESSED                      | 16       | 3%     | Globacom Limited
     AS16284  | REGRESSED                      | 10       | 6%     | Inq. Digital Nigeria
     AS29091  | PARTIAL: VULNERABLE (Mixed)    | 7        | 71%    | ipNX Nigeria Limited
@@ -44,7 +44,7 @@
     #2   | AS37662  | 46         | PARTIAL: VULNERABLE (Mixed)    | West Indian Ocean Cable Company (WIOCC)
     #3   | AS29465  | 29         | PARTIAL: VULNERABLE (Mixed)    | MTN NIGERIA Communication limited
     #4   | AS37148  | 25         | REGRESSED                      | Globacom Limited
-    #5   | AS36873  | 24         | VULNERABLE                     | Airtel Networks Limited
+    #5   | AS36873  | 24         | VULNERABLE (Atlas Verified)    | Airtel Networks Limited
     #6   | AS37613  | 20         | PARTIAL: VULNERABLE (Mixed)    | DOLPHIN TELECOMMUNICATION LIMITED
     #7   | AS30844  | 19         | PASSIVE (Clean Pipe)           | Liquid Intelligent Technologies 
     #8   | AS30998  | 9          | STUB: VULNERABLE               | Netcom Africa Limited

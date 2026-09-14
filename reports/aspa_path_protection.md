@@ -1,8 +1,8 @@
     [*] Loaded 3031 real ASPA records from data/aspa_real.json
     [*] Processing collector dumps concurrently (bgpdump -m, dual-stack)...
         - rrc14    6982050 routes,   6978430 qualifying (>=2 ASNs, <=15 hops after de-dup), 11 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
-        - rrc23   11142330 routes,  11127887 qualifying (>=2 ASNs, <=15 hops after de-dup), 13 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
         - rrc19   11590363 routes,  11572624 qualifying (>=2 ASNs, <=15 hops after de-dup), 16 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
+        - rrc23   11142330 routes,  11127887 qualifying (>=2 ASNs, <=15 hops after de-dup), 13 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
         - rrc24   15073207 routes,  15069422 qualifying (>=2 ASNs, <=15 hops after de-dup), 27 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
         - rrc00   52604317 routes,  52589104 qualifying (>=2 ASNs, <=15 hops after de-dup), 68 excluded as likely padding/poisoning (>15 hops), top 1000 kept per pool
     [*] Ranking 5000 pooled candidates (top 1000 per collector)...

@@ -11,6 +11,7 @@
     Total audited ASNs:                     122,791
     ASNs with an inferred upstream (customers): 83,855
     ASNs with a real published ASPA object:  3,031 (2.47% of all ASNs, 3.61% of ASNs with a provider to declare)
+    Average declared providers per ASPA record: 3.31 (max 225)
 
     ====================================================================================================
      2. MODEL vs REALITY — 'Ready-to-Sign Giants'

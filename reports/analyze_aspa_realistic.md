@@ -36,20 +36,20 @@
     #16   | AS46887  | 965    | 965.0     | YES   | Zayo (fka. Crown Castle)
     #17   | AS8218   | 788    | 788.0     | YES   | Zayo Europe
     #18   | AS30844  | 760    | 760.0     | YES   | Liquid Intelligent Technologies 
-    #19   | AS20485  | 1,756  | 702.4     | no    | TransTeleCom JSC
-    #20   | AS32787  | 697    | 697.0     | YES   | Akamai (Prolexic)
-    #21   | AS3491   | 659    | 659.0     | YES   | PCCW Global (HK) Ltd.
-    #22   | AS6762   | 652    | 652.0     | YES   | Telecom Italia Sparkle (Seabone)
-    #23   | AS3320   | 648    | 648.0     | YES   | Deutsche Telekom AG
-    #24   | AS208972 | 630    | 630.0     | YES   | GIBIRNet Iletisim
-    #25   | AS6453   | 620    | 620.0     | YES   | TATA Communications (America) Inc
-    #26   | AS8359   | 618    | 618.0     | YES   | MTS PJSC
-    #27   | AS7575   | 608    | 608.0     | YES   | Australian Academic and Research Network (AAR
-    #28   | AS31133  | 590    | 590.0     | YES   | MegaFon PJSC
-    #29   | AS16735  | 583    | 583.0     | YES   | Algar Telecom
-    #30   | AS33891  | 1,414  | 565.6     | no    | Core-Backbone GmbH
+    #19   | AS32787  | 697    | 697.0     | YES   | Akamai (Prolexic)
+    #20   | AS3491   | 659    | 659.0     | YES   | PCCW Global (HK) Ltd.
+    #21   | AS6762   | 652    | 652.0     | YES   | Telecom Italia Sparkle (Seabone)
+    #22   | AS3320   | 648    | 648.0     | YES   | Deutsche Telekom AG
+    #23   | AS208972 | 630    | 630.0     | YES   | GIBIRNet Iletisim
+    #24   | AS6453   | 620    | 620.0     | YES   | TATA Communications (America) Inc
+    #25   | AS8359   | 618    | 618.0     | YES   | MTS PJSC
+    #26   | AS7575   | 608    | 608.0     | YES   | Australian Academic and Research Network (AAR
+    #27   | AS31133  | 590    | 590.0     | YES   | MegaFon PJSC
+    #28   | AS16735  | 583    | 583.0     | YES   | Algar Telecom
+    #29   | AS33891  | 1,414  | 565.6     | no    | Core-Backbone GmbH
+    #30   | AS4637   | 518    | 518.0     | YES   | Telstra International Limited
     -----------------------------------------------------------------------------------------------
-    Total links: 169,643  |  Realistic protected leverage: 100,610 (59.3% of theoretical max)
+    Total links: 169,643  |  Realistic protected leverage: 99,130 (58.4% of theoretical max)
 
     ===============================================================================================
      3. COMPLEXITY GIANTS (Traffic Engineering Heavyweights)

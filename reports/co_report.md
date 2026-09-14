@@ -6,8 +6,8 @@
     Total Networks:      518
     Total Cone Gravity:  2,425
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    51 ( 9.8%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:       355 (68.5%) -> Exposes  11.1% of Traffic
+    SECURE (ACTIVE/PASSIVE):    68 (13.1%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:       338 (65.3%) -> Exposes  11.1% of Traffic
 
     ====================================================================================================
      THE CO CORE (Top 20 Networks)
@@ -18,7 +18,7 @@
     AS18678  | PARTIAL: VULNERABLE (Mixed)    | 148      | 9%     | INTERNEXA S.A. E.S.P
     AS52320  | PARTIAL: VULNERABLE (Mixed)    | 123      | -      | V.tal (GlobeNet)
     AS262191 | REGRESSED                      | 58       | 2%     | LIBERTY NETWORKS DE COLOMBIA S.A.S
-    AS27951  | REGRESSED                      | 51       | 2%     | Media Commerce Partners S.A
+    AS27951  | INCONSISTENT                   | 51       | 2%     | Media Commerce Partners S.A
     AS3816   | REGRESSED                      | 42       | 6%     | COLOMBIA TELECOMUNICACIONES S.A. ESP BIC
     AS262186 | REGRESSED                      | 32       | 1%     | TV AZTECA SUCURSAL COLOMBIA
     AS14080  | REGRESSED                      | 25       | 33%    | Telmex Colombia S.A.
@@ -42,7 +42,7 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS18678  | 65         | PARTIAL: VULNERABLE (Mixed)    | INTERNEXA S.A. E.S.P
     #2   | AS52468  | 64         | PASSIVE (Clean Pipe)           | UFINET PANAMA S.A.
-    #3   | AS27951  | 48         | REGRESSED                      | Media Commerce Partners S.A
+    #3   | AS27951  | 48         | INCONSISTENT                   | Media Commerce Partners S.A
     #4   | AS262191 | 46         | REGRESSED                      | LIBERTY NETWORKS DE COLOMBIA S.A.S
     #5   | AS3549   | 46         | ACTIVE LOCAL ROV               | Lumen (fka. Global Crossing)
     #6   | AS3816   | 35         | REGRESSED                      | COLOMBIA TELECOMUNICACIONES S.A. ESP BIC

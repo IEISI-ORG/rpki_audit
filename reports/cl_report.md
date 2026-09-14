@@ -6,8 +6,8 @@
     Total Networks:      400
     Total Cone Gravity:  297
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    56 (14.0%) -> Protects 10.1% of Traffic
-    VULNERABLE NETWORKS:       245 (61.3%) -> Exposes  69.4% of Traffic
+    SECURE (ACTIVE/PASSIVE):    54 (13.5%) -> Protects 10.1% of Traffic
+    VULNERABLE NETWORKS:       247 (61.8%) -> Exposes  69.4% of Traffic
 
     ====================================================================================================
      THE CL CORE (Top 20 Networks)

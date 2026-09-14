@@ -8,13 +8,13 @@
     ================================================================================
 
     [GLOBAL CORE] (The 100 largest legitimate transit networks)
-      Networks Secure:      53 / 100  (53.0%)
-      Traffic Protected:   80.6% (by Cone Weight)
+      Networks Secure:      51 / 100  (51.0%)
+      Traffic Protected:   80.5% (by Cone Weight)
       Progress: |████████████████████████████████████████░░░░░░░░░░|
 
     [TRANSIT LAYER] (The 1000 largest legitimate transit networks)
-      Networks Secure:     236 / 1000  (23.6%)
-      Traffic Protected:   78.2% (by Cone Weight)
+      Networks Secure:     228 / 1000  (22.8%)
+      Traffic Protected:   78.1% (by Cone Weight)
       Progress: |███████████████████████████████████████░░░░░░░░░░░|
 
     ================================================================================
@@ -25,6 +25,7 @@
     ------------------------------------------------------------------------------------
     #20   | AS4134   | CN |     50,788 |    82% | China Telecom Backbone
     #21   | AS4837   | CN |     48,116 |    61% | China Unicom Backbone
+    #25   | AS20485  | RU |     34,017 |    19% | TransTeleCom JSC
     #26   | AS3216   | RU |     26,727 |    32% | Vimpelcom PJSC
     #29   | AS15830  | NL |     15,000 |    37% | Equinix, Inc.
     #35   | AS9498   | IN |      6,974 |    61% | Bharti Airtel Ltd.
@@ -47,7 +48,6 @@
     #93   | AS20804  | PL |        550 |    54% | Exatel S.A.
     #94   | AS61568  | BR |        545 |    53% | ALOO TELECOM - FSF TECNOLOGIA SA
     #101  | AS3786   | KR |        495 |    73% | LG DACOM Corporation
-    #113  | AS10075  | BD |        428 |    68% | Fiber@Home Global Limited
     ------------------------------------------------------------------------------------
 
     CONCLUSION:
