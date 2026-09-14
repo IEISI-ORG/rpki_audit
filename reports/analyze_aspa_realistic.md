@@ -12,47 +12,7 @@
       - Complex (>5 Providers):     3,419 ( 4.1%) -> Target for Engineering Support
 
     ===============================================================================================
-     2. THE REALISTIC ENFORCERS (Ranked by ROV-Weighted Leverage)
-    ===============================================================================================
-    Raw = customer-links held. Realistic = raw, weighted by the provider's own ROV status.
-    -----------------------------------------------------------------------------------------------
-    Rank  | ASN      | Raw    | Realistic | ROV?  | Name
-    -----------------------------------------------------------------------------------------------
-    #1    | AS6939   | 10,964 | 10964.0   | YES   | Hurricane Electric LLC
-    #2    | AS3356   | 6,504  | 6504.0    | YES   | Lumen (Level 3)
-    #3    | AS174    | 6,475  | 6475.0    | YES   | Cogent Communications, LLC
-    #4    | AS38255  | 4,101  | 4101.0    | YES   | China Education and Research Network (CERNET)
-    #5    | AS6461   | 2,710  | 2710.0    | YES   | Zayo Bandwidth
-    #6    | AS1299   | 2,605  | 2605.0    | YES   | Arelion (fka. Telia Carrier)
-    #7    | AS7018   | 2,294  | 2294.0    | YES   | AT&T Enterprises, LLC
-    #8    | AS3257   | 1,818  | 1818.0    | YES   | GTT Communications Inc.
-    #9    | AS34927  | 1,627  | 1627.0    | YES   | iFog GmbH
-    #10   | AS2914   | 1,473  | 1473.0    | YES   | NTT America, Inc.
-    #11   | AS20473  | 1,368  | 1368.0    | YES   | The Constant Company, LLC
-    #12   | AS9002   | 3,043  | 1217.2    | no    | RETN Limited
-    #13   | AS701    | 1,162  | 1162.0    | YES   | Verizon Business
-    #14   | AS8220   | 1,087  | 1087.0    | YES   | COLT
-    #15   | AS52468  | 982    | 982.0     | YES   | UFINET PANAMA S.A.
-    #16   | AS46887  | 965    | 965.0     | YES   | Zayo (fka. Crown Castle)
-    #17   | AS8218   | 788    | 788.0     | YES   | Zayo Europe
-    #18   | AS30844  | 760    | 760.0     | YES   | Liquid Intelligent Technologies 
-    #19   | AS32787  | 697    | 697.0     | YES   | Akamai (Prolexic)
-    #20   | AS3491   | 659    | 659.0     | YES   | PCCW Global (HK) Ltd.
-    #21   | AS6762   | 652    | 652.0     | YES   | Telecom Italia Sparkle (Seabone)
-    #22   | AS3320   | 648    | 648.0     | YES   | Deutsche Telekom AG
-    #23   | AS208972 | 630    | 630.0     | YES   | GIBIRNet Iletisim
-    #24   | AS6453   | 620    | 620.0     | YES   | TATA Communications (America) Inc
-    #25   | AS8359   | 618    | 618.0     | YES   | MTS PJSC
-    #26   | AS7575   | 608    | 608.0     | YES   | Australian Academic and Research Network (AAR
-    #27   | AS31133  | 590    | 590.0     | YES   | MegaFon PJSC
-    #28   | AS16735  | 583    | 583.0     | YES   | Algar Telecom
-    #29   | AS33891  | 1,414  | 565.6     | no    | Core-Backbone GmbH
-    #30   | AS4637   | 518    | 518.0     | YES   | Telstra International Limited
-    -----------------------------------------------------------------------------------------------
-    Total links: 169,643  |  Realistic protected leverage: 99,130 (58.4% of theoretical max)
-
-    ===============================================================================================
-     3. COMPLEXITY GIANTS (Traffic Engineering Heavyweights)
+     2. COMPLEXITY GIANTS (Traffic Engineering Heavyweights)
     ===============================================================================================
     Networks with >5 Upstreams (Highest Maintenance Burden).
     ------------------------------------------------------------------------------------------
