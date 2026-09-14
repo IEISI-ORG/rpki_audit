@@ -134,12 +134,13 @@ def analyze() -> None:
         print(f"  {rir:<10} | {n:>5,} adopters")
 
     print_header("TOP 15 REAL ASPA ADOPTERS BY CONE SIZE")
-    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Verdict':<20} | {'Name'}")
-    print("-" * 90)
+    print(f"{'ASN':<8} | {'Country':<15} | {'Cone':<8} | {'Verdict':<20} | {'Name'}")
+    print("-" * 100)
     top_adopters = sorted(real_aspa.keys(), key=lambda a: cone_map.get(a, 0), reverse=True)[:15]
     for asn in top_adopters:
         v = str(verdict_map.get(asn, 'UNKNOWN'))
-        print(f"AS{asn:<6} | {cc_map.get(asn, '??'):<2} | {cone_map.get(asn, 0):<8,} | {v[:20]:<20} | {name_map.get(asn, 'Unknown')[:40]}")
+        country = rov_utils.cc_to_name(cc_map.get(asn, ''))[:15]
+        print(f"AS{asn:<6} | {country:<15} | {cone_map.get(asn, 0):<8,} | {v[:20]:<20} | {name_map.get(asn, 'Unknown')[:40]}")
 
     # ------------------------------------------------------------------
     # Save full cross-reference CSV

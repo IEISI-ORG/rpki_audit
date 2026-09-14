@@ -1,7 +1,7 @@
     [*] Loading Global Audit for AS...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: AS
+     NATIONAL ROUTING SECURITY: AS (American Samoa)
     ====================================================================================================
     Total Networks:      2
     Total Cone Gravity:  0

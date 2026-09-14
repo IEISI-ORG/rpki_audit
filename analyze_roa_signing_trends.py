@@ -139,16 +139,16 @@ def analyze() -> None:
         decliners = valid_rows.sort_values(by=col, ascending=True).head(TOP_N)
 
         print_header(f"BIGGEST MOVERS — {window} WINDOW (% Valid, ROA coverage)")
-        print(f"{'CC':<4} | {'RIR':<8} | {'ASNs':<6} | {'Now':<7} | {window:<7} | {'Delta'}")
-        print("-" * 60)
+        print(f"{'CC':<4} | {'Country':<20} | {'RIR':<8} | {'ASNs':<6} | {'Now':<7} | {window:<7} | {'Delta'}")
+        print("-" * 85)
         print("Improvers:")
         for _, r in improvers.iterrows():
-            print(f"{r['cc']:<4} | {r['rir']:<8} | {r['asn_count']:<6.0f} | {r['valid_pct_now']:>5.1f}% | "
-                  f"{r[f'valid_pct_{window}']:>5.1f}% | {r[col]:>+6.1f}pp")
+            print(f"{r['cc']:<4} | {rov_utils.cc_to_name(r['cc'])[:20]:<20} | {r['rir']:<8} | {r['asn_count']:<6.0f} | "
+                  f"{r['valid_pct_now']:>5.1f}% | {r[f'valid_pct_{window}']:>5.1f}% | {r[col]:>+6.1f}pp")
         print("Decliners:")
         for _, r in decliners.iterrows():
-            print(f"{r['cc']:<4} | {r['rir']:<8} | {r['asn_count']:<6.0f} | {r['valid_pct_now']:>5.1f}% | "
-                  f"{r[f'valid_pct_{window}']:>5.1f}% | {r[col]:>+6.1f}pp")
+            print(f"{r['cc']:<4} | {rov_utils.cc_to_name(r['cc'])[:20]:<20} | {r['rir']:<8} | {r['asn_count']:<6.0f} | "
+                  f"{r['valid_pct_now']:>5.1f}% | {r[f'valid_pct_{window}']:>5.1f}% | {r[col]:>+6.1f}pp")
 
     # ------------------------------------------------------------------
     # SECTION 4: Named callout — China (the case that prompted this check-up)

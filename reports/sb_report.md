@@ -1,7 +1,7 @@
     [*] Loading Global Audit for SB...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: SB
+     NATIONAL ROUTING SECURITY: SB (Solomon Islands)
     ====================================================================================================
     Total Networks:      11
     Total Cone Gravity:  2

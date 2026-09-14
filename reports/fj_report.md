@@ -1,7 +1,7 @@
     [*] Loading Global Audit for FJ...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: FJ
+     NATIONAL ROUTING SECURITY: FJ (Fiji)
     ====================================================================================================
     Total Networks:      20
     Total Cone Gravity:  11

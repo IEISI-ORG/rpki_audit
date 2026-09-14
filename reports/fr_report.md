@@ -1,7 +1,7 @@
     [*] Loading Global Audit for FR...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: FR
+     NATIONAL ROUTING SECURITY: FR (France)
     ====================================================================================================
     Total Networks:      1,881
     Total Cone Gravity:  164,796

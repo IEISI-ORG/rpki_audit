@@ -66,22 +66,22 @@
     ====================================================================================================
      TOP 15 REAL ASPA ADOPTERS BY CONE SIZE
     ====================================================================================================
-    ASN      | CC | Cone     | Verdict              | Name
-    ------------------------------------------------------------------------------------------
-    AS174    | US | 73,560   | CORE: ACTIVE PROTECT | Cogent Communications, LLC
-    AS1299   | SE | 71,086   | CORE: ACTIVE PROTECT | Arelion (fka. Telia Carrier)
-    AS3257   | US | 68,432   | CORE: ACTIVE PROTECT | GTT Communications Inc.
-    AS7018   | US | 67,122   | CORE: ACTIVE PROTECT | AT&T Enterprises, LLC
-    AS3320   | DE | 66,965   | CORE: ACTIVE PROTECT | Deutsche Telekom AG
-    AS6830   | NL | 56,800   | CORE: ACTIVE PROTECT | Liberty Global Europe Holding B.V.
-    AS33891  | DE | 36,364   | PARTIAL: VULNERABLE  | Core-Backbone GmbH
-    AS12779  | IT | 28,249   | PARTIAL: VULNERABLE  | IT.Gate S.p.A.
-    AS34019  | FR | 27,269   | ACTIVE LOCAL ROV     | Hivane Association
-    AS56662  | PL | 16,975   | PASSIVE (Clean Pipe) | Marcin Gondek
-    AS212024 | FR | 13,405   | PASSIVE (Clean Pipe) | Marc Schmitt
-    AS20764  | RU | 9,321    | ACTIVE LOCAL ROV     | CJSC RASCOM
-    AS49673  | RU | 9,213    | PASSIVE (Clean Pipe) | Truenetwork LLC
-    AS3303   | CH | 8,966    | PARTIAL: VULNERABLE  | Swisscom (Schweiz) AG
-    AS204092 | FR | 3,871    | PARTIAL: VULNERABLE  | Association GRIFON
+    ASN      | Country         | Cone     | Verdict              | Name
+    ----------------------------------------------------------------------------------------------------
+    AS174    | United States   | 73,560   | CORE: ACTIVE PROTECT | Cogent Communications, LLC
+    AS1299   | Sweden          | 71,086   | CORE: ACTIVE PROTECT | Arelion (fka. Telia Carrier)
+    AS3257   | United States   | 68,432   | CORE: ACTIVE PROTECT | GTT Communications Inc.
+    AS7018   | United States   | 67,122   | CORE: ACTIVE PROTECT | AT&T Enterprises, LLC
+    AS3320   | Germany         | 66,965   | CORE: ACTIVE PROTECT | Deutsche Telekom AG
+    AS6830   | Netherlands     | 56,800   | CORE: ACTIVE PROTECT | Liberty Global Europe Holding B.V.
+    AS33891  | Germany         | 36,364   | PARTIAL: VULNERABLE  | Core-Backbone GmbH
+    AS12779  | Italy           | 28,249   | PARTIAL: VULNERABLE  | IT.Gate S.p.A.
+    AS34019  | France          | 27,269   | ACTIVE LOCAL ROV     | Hivane Association
+    AS56662  | Poland          | 16,975   | PASSIVE (Clean Pipe) | Marcin Gondek
+    AS212024 | France          | 13,405   | PASSIVE (Clean Pipe) | Marc Schmitt
+    AS20764  | Russian Federat | 9,321    | ACTIVE LOCAL ROV     | CJSC RASCOM
+    AS49673  | Russian Federat | 9,213    | PASSIVE (Clean Pipe) | Truenetwork LLC
+    AS3303   | Switzerland     | 8,966    | PARTIAL: VULNERABLE  | Swisscom (Schweiz) AG
+    AS204092 | France          | 3,871    | PARTIAL: VULNERABLE  | Association GRIFON
 
     [+] Full cross-reference saved to aspa_real_vs_model.csv

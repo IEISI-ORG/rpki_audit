@@ -1,7 +1,7 @@
     [*] Loading Global Audit for GU...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: GU
+     NATIONAL ROUTING SECURITY: GU (Guam)
     ====================================================================================================
     Total Networks:      10
     Total Cone Gravity:  6

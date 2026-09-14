@@ -1,7 +1,7 @@
     [*] Loading Global Audit for NR...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: NR
+     NATIONAL ROUTING SECURITY: NR (Nauru)
     ====================================================================================================
     Total Networks:      5
     Total Cone Gravity:  0

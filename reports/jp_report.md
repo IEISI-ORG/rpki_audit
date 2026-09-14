@@ -1,7 +1,7 @@
     [*] Loading Global Audit for JP...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: JP
+     NATIONAL ROUTING SECURITY: JP (Japan)
     ====================================================================================================
     Total Networks:      981
     Total Cone Gravity:  1,802

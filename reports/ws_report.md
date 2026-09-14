@@ -1,7 +1,7 @@
     [*] Loading Global Audit for WS...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: WS
+     NATIONAL ROUTING SECURITY: WS (Samoa)
     ====================================================================================================
     Total Networks:      10
     Total Cone Gravity:  1

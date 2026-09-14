@@ -1,7 +1,7 @@
     [*] Loading Global Audit for VU...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: VU
+     NATIONAL ROUTING SECURITY: VU (Vanuatu)
     ====================================================================================================
     Total Networks:      13
     Total Cone Gravity:  3

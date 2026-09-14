@@ -1,7 +1,7 @@
     [*] Loading Global Audit for PW...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: PW
+     NATIONAL ROUTING SECURITY: PW (Palau)
     ====================================================================================================
     Total Networks:      4
     Total Cone Gravity:  0

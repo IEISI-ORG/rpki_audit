@@ -8,6 +8,7 @@ import time
 import socket
 import re
 import concurrent.futures
+import pycountry
 from collections import defaultdict, Counter
 from io import StringIO, BytesIO
 
@@ -568,6 +569,24 @@ def load_cc_to_rir() -> dict:
         return {}
     with open(FILE_CC_TO_RIR) as f:
         return json.load(f).get('mapping', {})
+
+def cc_to_name(cc: str) -> str:
+    """ISO 3166-1 alpha-2 country code -> common country name, via pycountry.
+
+    Uses pycountry's `common_name` where available (e.g. "Bolivia" rather
+    than the official "Bolivia, Plurinational State of", "South Korea"
+    rather than "Korea, Republic of") since these reports are read by
+    people, not indexed against a formal registry. Falls back to the code
+    itself, unchanged, for anything pycountry doesn't recognize — RIR/BGP
+    data carries pseudo-codes for unallocated or regional blocks (e.g.
+    "EU", "XX") that aren't real countries, so there's no name to look up.
+    """
+    if not cc or not isinstance(cc, str):
+        return str(cc) if cc else ''
+    country = pycountry.countries.get(alpha_2=cc.upper())
+    if not country:
+        return cc
+    return getattr(country, 'common_name', None) or country.name
 
 def _apnic_roa_date_param(target_date) -> str:
     """Build the 'd' query param stats.labs.apnic.net/roa expects for a given date.

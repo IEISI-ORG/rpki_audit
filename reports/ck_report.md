@@ -1,7 +1,7 @@
     [*] Loading Global Audit for CK...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: CK
+     NATIONAL ROUTING SECURITY: CK (Cook Islands)
     ====================================================================================================
     Total Networks:      2
     Total Cone Gravity:  0

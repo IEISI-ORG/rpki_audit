@@ -1,7 +1,7 @@
     [*] Loading Global Audit for NA...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: NA
+     NATIONAL ROUTING SECURITY: NA (Namibia)
     ====================================================================================================
     Total Networks:      18
     Total Cone Gravity:  5

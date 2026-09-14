@@ -29,7 +29,9 @@ def analyze_country(target_cc):
     country_df['apnic_score'] = pd.to_numeric(country_df['apnic_score'], errors='coerce').fillna(-1)
     
     # SECTION 1: NATIONAL IMMUNITY STATS
-    print_header(f"NATIONAL ROUTING SECURITY: {target_cc}")
+    country_name = rov_utils.cc_to_name(target_cc)
+    print_header(f"NATIONAL ROUTING SECURITY: {target_cc} ({country_name})" if country_name != target_cc
+                 else f"NATIONAL ROUTING SECURITY: {target_cc}")
     total_asns = len(country_df)
     total_cone = country_df['cone'].sum()
     

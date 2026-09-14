@@ -1,7 +1,7 @@
     [*] Loading Global Audit for DE...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: DE
+     NATIONAL ROUTING SECURITY: DE (Germany)
     ====================================================================================================
     Total Networks:      3,260
     Total Cone Gravity:  175,733

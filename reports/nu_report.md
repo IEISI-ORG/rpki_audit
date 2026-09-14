@@ -1,7 +1,7 @@
     [*] Loading Global Audit for NU...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: NU
+     NATIONAL ROUTING SECURITY: NU (Niue)
     ====================================================================================================
     Total Networks:      1
     Total Cone Gravity:  0

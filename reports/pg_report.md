@@ -1,7 +1,7 @@
     [*] Loading Global Audit for PG...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: PG
+     NATIONAL ROUTING SECURITY: PG (Papua New Guinea)
     ====================================================================================================
     Total Networks:      39
     Total Cone Gravity:  25

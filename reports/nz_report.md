@@ -1,7 +1,7 @@
     [*] Loading Global Audit for NZ...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: NZ
+     NATIONAL ROUTING SECURITY: NZ (New Zealand)
     ====================================================================================================
     Total Networks:      704
     Total Cone Gravity:  2,206

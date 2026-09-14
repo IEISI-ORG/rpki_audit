@@ -1,7 +1,7 @@
     [*] Loading Global Audit for EG...
 
     ====================================================================================================
-     NATIONAL ROUTING SECURITY: EG
+     NATIONAL ROUTING SECURITY: EG (Egypt)
     ====================================================================================================
     Total Networks:      86
     Total Cone Gravity:  140
