@@ -20,7 +20,7 @@ echo "BASIC STATS"
 python3 statistics_v6.py                    | aha --black | tee reports/statistics.html
 
 echo "CCTLD DEEP DIVES"
-for cc in NP BT BD IN PK AU NZ CN JP ID BR CL CO PG FJ CK PF NU WS SB NC GU AS MP KI MH FM PW NR TV TK TO VU WF FR DE GR ES PT ZA NG EG MA KE CI; do
+for cc in NP BT BD IN PK AU NZ CN JP ID BR CL CO PG FJ CK PF NU WS SB NC GU AS MP KI MH FM PW NR TV TK TO VU WF FR DE GR ES PT ZA NA NG EG MA KE CI; do
     echo "Processing $cc..."
     python3 analyze_country_deep_dive_v2.py $cc | aha --black | tee reports/${cc,,}_report.html
 done
