@@ -5,6 +5,12 @@ Each subdirectory is a self-contained presentation with its own `Makefile`
 scope** each one targets, so material doesn't drift between talks meant for
 different rooms.
 
+**Starting a new deck?** Copy [`_template/`](_template/) rather than an
+existing talk directory — see its `README.md` for what to reuse verbatim
+(methodology, ASPA rationale, verdict taxonomy) versus what must be
+rewritten per event (current-run numbers, the audience deep-dive section).
+Add a row below for every new deck.
+
 | Directory | Event | Scope / Audience | Theme |
 |---|---|---|---|
 | [`apnic62/`](apnic62/) | APNIC 62 | The 56 economies in the APNIC service region (as listed on apnic.net) | Asia-Pacific-wide RIR/NOG technical audience |
