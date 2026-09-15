@@ -45,7 +45,7 @@ color: "#1a1a2e"
 3. **Global Results** — {{TOTAL_ASNS}} ASNs audited
 4. **Herd Immunity** — Where does protection actually come from?
 5. **ROA Signing** — Secure providers, unsigned routes, and outreach targets
-6. **{{AUDIENCE_DEEP_DIVE_TITLE}}** — <!-- e.g. "APNIC Region Deep-Dive" / "Pacific Islands Progress Check" -->
+6. **{{LOCAL_CONTEXT_TITLE}}** — <!-- e.g. "APNIC Region Deep-Dive" / "Pacific Islands Progress Check" -->
 7. **ASPA Readiness** — The next layer and the Reality Gap
 8. **Recommendations** — Concrete actions for {{AUDIENCE}}
 
@@ -82,11 +82,36 @@ The real question: **"What percentage of {{AUDIENCE}} traffic is actually protec
 
 Zero-scrape triangulation at scale
 
-<!-- Boilerplate — reuse near-verbatim from apnic62/apnic62_presentation.md
-     ("Zero-Scrape Architecture", "Topology: Valley-Free BGP",
-     "Multi-Collector IXP Phantom Mitigation", "RIPE Atlas Forensic
-     Verification", "APNIC Data Quality: Adaptive Window Selection") unless
-     this venue needs a shorter methodology section. -->
+---
+
+# Zero-Scrape Architecture
+
+<!-- Boilerplate — reuse near-verbatim from apnic62/apnic62_presentation.md.
+     Data sources + pipeline overview: Go extractor -> topology/cone
+     calculation -> Python triangulation (APNIC, bgp.tools, RIPE Atlas). -->
+
+---
+
+# Topology & Multi-Collector Validation
+
+<!-- Merges apnic62's two topology slides ("Topology: Valley-Free BGP" +
+     "Multi-Collector IXP Phantom Mitigation") into one: Gao-Rexford
+     valley-free inference, then why multi-collector consensus is needed to
+     catch IXP phantom cones. Keep this compact — one Gao-Rexford diagram/
+     rule summary + one line on the multi-collector fix, not both full
+     slides' worth of detail. -->
+
+---
+
+# RIPE Atlas Forensic Verification
+
+<!-- Boilerplate — reuse near-verbatim from apnic62. This is the active
+     data-plane verification layer, distinct from the passive APNIC/
+     bgp.tools sources above.
+     Cut for this deck: apnic62's "APNIC Data Quality: Adaptive Window
+     Selection" slide — that's a data-quality caveat, not core method. Fold
+     one line into this slide or the appendix if the audience needs it,
+     don't give it a full slide in the default 3-slide cut. -->
 
 ---
 
@@ -127,9 +152,10 @@ Zero-scrape triangulation at scale
 
 <!-- _class: section-divider -->
 
-# Part V: {{AUDIENCE_DEEP_DIVE_TITLE}}
+# Part V: {{LOCAL_CONTEXT_TITLE}}
 
-<!-- This is the section that should differ most between decks. Check
+<!-- Always the local/regional context for THIS audience — the one section
+     that must be rewritten per deck, never copied from a past talk. Check
      presentations/README.md's scope table for this deck's audience before
      writing it: region-specific (apnic62-style per-economy slides),
      initiative-progress (pita31-style before/after comparison), or generic

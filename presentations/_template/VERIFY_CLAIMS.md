@@ -46,7 +46,7 @@ Source: `reports/analyze_roa_signing.md`, `reports/analyze_roa_signing_trends.md
 
 ---
 
-## Section IV — {{AUDIENCE_DEEP_DIVE_TITLE}} (slide {{N}})
+## Section IV — {{LOCAL_CONTEXT_TITLE}} (slide {{N}})
 
 Source: `reports/{{cc}}_report.md` (per-economy) or the relevant audience-specific report
 
