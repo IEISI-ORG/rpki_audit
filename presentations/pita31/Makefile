@@ -1,12 +1,5 @@
-# Generic Makefile for rpki_audit conference decks.
-#
-# File names are derived from the directory name so that copying this
-# template to `presentations/<event>/` and renaming the two source files to
-# `<event>_presentation.md` / `<event>-theme.css` is enough to build — no
-# edits to this Makefile are required.
-#
-# If you don't want a custom theme, delete the *-theme.css file and remove
-# THEME and every `--theme-set $(THEME)` below.
+# Makefile for the PITA31 deck. Generated from presentations/_template/ —
+# see that directory for the reusable version this was copied from.
 
 NAME    := $(notdir $(CURDIR))
 SRC     := $(NAME)_presentation.md
@@ -19,8 +12,8 @@ MARP      := npx @marp-team/marp-cli
 # marp-cli's yargs parser misparses and silently fails to build the HTML.
 MARPFLAGS := --allow-local-files --theme-set $(THEME) --html
 
-# Set to the final slide count before running `make check`.
-SLIDES  ?= 0
+# 32 slides as of the 2026-09-15 draft — update if the deck grows/shrinks.
+SLIDES  ?= 32
 
 .PHONY: all html pdf check clean
 

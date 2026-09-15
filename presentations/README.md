@@ -15,7 +15,7 @@ Add a row below for every new deck.
 |---|---|---|---|
 | [`apnic62/`](apnic62/) | APNIC 62 | The 56 economies in the APNIC service region (as listed on apnic.net) | Asia-Pacific-wide RIR/NOG technical audience |
 | [`pita30/`](pita30/) | PITA 30 AGM, Rarotonga, Cook Islands — April 2026 | Pacific Islands specifically — PITA member telcos | Launch of the Pacific routing security push (see below) |
-| [`pita31/`](pita31/) | PITA 31 AGM Business Forum & Tradeshow, Fiji (default venue) — 12–16 April 2027 (dates earmarked, per [PITA event page](https://pita.org.fj/events/pita-31-agm-business-forum-tradeshow-2027/)) | Pacific Islands specifically — PITA member telcos | Checkpoint on the routing security initiative below |
+| [`pita31/`](pita31/) | PITA 31 AGM Business Forum & Tradeshow, Fiji (default venue) — 12–16 April 2027 (dates earmarked, per [PITA event page](https://pita.org.fj/events/pita-31-agm-business-forum-tradeshow-2027/)) | 18 Pacific Island economies with data in `reports/`: AS, CK, FJ, FM, GU, KI, MH, NC, NR, PF, PG, PW, SB, TK, TO, TV, VU, WS. Explicitly excludes Hawaii, Australia, and NZ (covered elsewhere); includes Guam. | Checkpoint on the routing security initiative below |
 | [`ietf/`](ietf/) | IETF | Worldwide — general Internet engineering audience | Global routing security, not region-specific |
 
 PITA30 and PITA31 share the PITA scope (Pacific Islands telcos) but differ in
