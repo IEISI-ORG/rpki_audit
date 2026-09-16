@@ -52,13 +52,13 @@ def analyze():
     # Insight 3: Weighted outreach targets
     print("\n" + "="*95)
     print("3. WEIGHTED OUTREACH TARGETS")
-    print("   Metric = log10(Signing Opportunity)")
+    print("   Metric = log(Signing Opportunity,2)")
     print("   Signing Opportunity = sum over downstream customers of (100 - signed_pct) —")
     print("   partial credit, not a binary unsigned/signed cutoff: a 0%-signed customer")
     print("   contributes 100, a 95%-signed customer contributes only 5. Shown as log10")
     print("   to read as an ordinal scale rather than a raw magnitude.")
     print("-" * 95)
-    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'log10(Opportunity)':<18} | {'Name'}")
+    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Opportunity':<18} | {'Name'}")
     print("-" * 95)
 
     providers = df[df['cone'] > 50].copy()
@@ -70,7 +70,7 @@ def analyze():
         if t_cnt > 0 and opportunity > 0:
             outreach_list.append({
                 'asn': asn, 'cc': row['cc'], 'name': row['name'], 'cone': row['cone'],
-                'signing_opportunity_log10': round(math.log10(opportunity), 2)
+                'signing_opportunity_log10': round(math.log(opportunity,2), 2)
             })
 
     outreach_list.sort(key=lambda x: x['signing_opportunity_log10'], reverse=True)
