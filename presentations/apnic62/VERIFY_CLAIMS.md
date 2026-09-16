@@ -146,20 +146,30 @@ entirely, not just dropped in rank.
 **"Weighted ROA Outreach" table (slide 21)** — source is `reports/analyze_roa_strategy.md`
 (not independently re-pulled for this rebuild — flag for a dedicated check).
 
-**2026-09-16 formula change, logged here for the record:** the Impact Score formula
-itself changed after this rebuild. It was `Cone × Unsigned Customers` (a binary count —
-any customer under 10% signed counted as 1, everyone else as 0). It's now
-`Cone × Signing Opportunity`, where Signing Opportunity is a partial-credit weighted sum
-(`Σ (100 − signed_pct)` over downstream customers — a 0%-signed customer contributes
-100, a 95%-signed one contributes only 5). This fixes a real distortion: the old cutoff
-gave identical credit to a customer at 0% and one at 9%, and zero credit to one at 11%
-even though it's still almost entirely unsigned. If the deck's ASPA/ROA outreach section
-is ever refreshed, slide 21's numbers and its "Impact = (Provider Cone) × (Count of
-Unsigned Customers)" description both need updating to match — the ranking order among
-Tier-1s stays broadly similar (still cone-dominated, see Section III's structural note
-above about squared-units size bias, which this change did not address), but the actual
-Impact Score values and the "Unsigned Customers" column no longer exist in the script's
-output.
+**2026-09-16 formula changes, logged here for the record (two rounds):** the ranking
+metric for this section changed twice after this rebuild.
+
+Round 1: `Cone × Unsigned Customers` (binary count — any customer under 10% signed
+counted as 1, everyone else as 0) became `Cone × Signing Opportunity`, where Signing
+Opportunity is a partial-credit weighted sum (`Σ (100 − signed_pct)` over downstream
+customers — a 0%-signed customer contributes 100, a 95%-signed one contributes only 5).
+This fixed a real distortion: the old cutoff gave identical credit to a customer at 0%
+and one at 9%, and zero credit to one at 11% even though it's still almost entirely
+unsigned.
+
+Round 2: **Impact Score was removed entirely.** The metric is now just
+`log10(Signing Opportunity)` — no cone multiplication at all, and log-scaled so the
+figure reads as an ordinal rank rather than a raw magnitude dominated by a few huge
+numbers. This also resolves the squared-units/size-bias concern noted in Round 1: cone
+size no longer directly multiplies into the ranking, so a smaller network with a high
+signing opportunity can now outrank a much bigger one with a proportionally smaller gap
+— e.g. the current top 25 includes PT Telkom Indonesia (AS7713, cone only 3,221) ahead
+of several Tier-1s, which could never have happened under either of the old formulas.
+
+If the deck's ASPA/ROA outreach section (slide 21) is ever refreshed, both its numbers
+and its "Impact = (Provider Cone) × (Count of Unsigned Customers)" description need a
+full rewrite to match — "Impact Score" and "Unsigned Customers" no longer exist in the
+script's output at all; the only remaining column is `log10(Opportunity)`.
 
 ---
 
