@@ -423,15 +423,70 @@ def test_non_transit_not_providers_in_graph():
     print("  [PASS] No non-transit ASNs appear as providers")
 
 
+def _load_rrc00_graph() -> dict[int, list[int]] | None:
+    """
+    Rebuild the provider->customers graph from output/rrc00/relationships.csv —
+    the SAME single-collector input cone-calculator.go actually reads (per
+    do_data_gathering step 3: "Cone calculation uses the primary (rrc00)
+    relationships for ranking"). Applies the identical degree-ratio inference
+    (_infer_link) that both cone-calculator.go and build_topology_from_go.py use.
+
+    This is deliberately NOT downstream_graph.json: that file is built from ALL
+    5 collectors with cross-regional consensus (see build_topology_from_go.py),
+    a different, independently-computed topology than the one final_as_rank.csv's
+    cone sizes were derived from. Comparing cone sizes against edges from a
+    different graph is not a valid monotonicity check — see the 2026-09-16 fix
+    note below.
+    """
+    path = os.path.join(rov_utils.DIR_RRC, "rrc00", "relationships.csv")
+    if not os.path.exists(path):
+        return None
+
+    import csv as csv_mod
+    neighbors: dict[int, set[int]] = defaultdict(set)
+    pairs: set[tuple[int, int]] = set()
+    with open(path) as f:
+        for row in csv_mod.reader(f):
+            if len(row) < 2:
+                continue
+            try:
+                as1, as2 = int(row[0]), int(row[1])
+            except ValueError:
+                continue  # header row, if present
+            if as1 == as2:
+                continue
+            neighbors[as1].add(as2)
+            neighbors[as2].add(as1)
+            pairs.add((as1, as2) if as1 < as2 else (as2, as1))
+
+    degrees = {asn: len(ns) for asn, ns in neighbors.items()}
+    graph: dict[int, list[int]] = defaultdict(list)
+    for as1, as2 in pairs:
+        provider, customer = _infer_link(as1, as2, degrees[as1], degrees[as2])
+        if provider is not None:
+            graph[provider].append(customer)
+    return graph
+
+
 def test_cone_sizes_monotone(cone_file: str = rov_utils.FILE_CONES):
     """
     For every provider→customer link, provider cone >= customer cone.
     Strictly: a provider's reachable set includes all customers' reachable sets,
     so cone(provider) can never be smaller than cone(customer).
+
+    2026-09-16 fix: this used to check downstream_graph.json's edges against
+    final_as_rank.csv's cone sizes. Those two files are built by two different
+    programs from two different inputs (multi-collector consensus graph vs.
+    single-collector rrc00-only graph — see do_data_gathering step 3's own
+    comment), so they are not guaranteed to agree edge-for-edge, and never
+    were — the failures this caught were an artifact of comparing across
+    pipeline stages, not a bug in cone-calculator.go's own arithmetic. Fixed
+    to rebuild the graph from the same rrc00-only source cone-calculator.go
+    actually used, so this now tests what it claims to test.
     """
-    graph = _load_graph()
+    graph = _load_rrc00_graph()
     if graph is None:
-        print("  [SKIP] downstream_graph.json not found")
+        print("  [SKIP] output/rrc00/relationships.csv not found")
         return
     if not os.path.exists(cone_file):
         print(f"  [SKIP] {cone_file} not found")
@@ -500,8 +555,15 @@ def test_non_transit_lists_are_in_sync():
     """
     # Mirror of constants.go isNonTransit() switch cases (excluding 23456 and 0).
     # When you update constants.go, update this too.
+    #
+    # NOTE (2026-09-16): AS24482 (SG.GS) was removed from BOTH constants.go and
+    # rov_utils.py's real non-transit lists back in commits a645ca2/b12bed6 — it
+    # was originally miscategorized as an IXP route server but is actually a
+    # ~65,000-cone legitimate transit network. This test's own hardcoded mirror
+    # was never updated to match, leaving a phantom drift against two lists that
+    # were, in fact, already back in sync with each other.
     go_non_transit_py_subset = {
-        213241, 24482, 13335, 3333, 4608, 4777,
+        213241, 13335, 3333, 4608, 4777,
         394353, 2149, 10886, 21556, 3557, 5927, 1508, 29216, 26415, 25152, 20144, 7500,
         112,
     }

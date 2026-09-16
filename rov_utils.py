@@ -603,9 +603,12 @@ def fetch_apnic_roa_by_country(target_date=None) -> dict:
     """Fetch APNIC Labs' per-country ROA (Route Object) coverage table.
 
     Returns {cc: {'valid': int, 'valid_pct': float, 'invalid': int,
-    'invalid_pct': float, 'unknown': int, 'unknown_pct': float, 'total': int}}
-    for IPv4 route objects, plus a 'date' key on the returned dict giving the
-    date APNIC actually reports (may snap to the nearest date with data).
+    'invalid_pct': float, 'unknown': int, 'unknown_pct': float, 'total': int,
+    'v6_valid': int, 'v6_valid_pct': float, 'v6_invalid': int,
+    'v6_invalid_pct': float, 'v6_unknown': int, 'v6_unknown_pct': float,
+    'v6_total': int}} for IPv4 (unprefixed keys) and IPv6 (v6_-prefixed keys)
+    route objects, plus a 'date' key on the returned dict giving the date
+    APNIC actually reports (may snap to the nearest date with data).
 
     target_date=None fetches the current snapshot (7-day TTL, like other APNIC
     syncs). A specific past date is a fixed historical fact once fetched, so
@@ -626,7 +629,14 @@ def fetch_apnic_roa_by_country(target_date=None) -> dict:
     if os.path.exists(cache_path):
         if ttl is None or (time.time() - os.path.getmtime(cache_path)) < ttl:
             with open(cache_path) as f:
-                return json.load(f)
+                cached = json.load(f)
+            # Cache files written before IPv6 parsing was added lack 'v6_total'
+            # on every country entry — treat that old format as a miss rather
+            # than silently returning IPv4-only data forever (historical-date
+            # entries are otherwise cached indefinitely).
+            country_rows = [v for k, v in cached.items() if k != 'date']
+            if not country_rows or 'v6_total' in country_rows[0]:
+                return cached
 
     result = {}
     try:
@@ -654,14 +664,19 @@ def fetch_apnic_roa_by_country(target_date=None) -> dict:
             pairs = pair_re.findall(line)
             t1 = total1_re.search(line)
             t2 = total2_re.search(line)
-            if len(pairs) < 3 or not t1 or not t2:
+            if len(pairs) < 6 or not t1 or not t2:
                 continue
             (v_cnt, v_pct), (i_cnt, i_pct), (u_cnt, u_pct) = pairs[0], pairs[1], pairs[2]
+            (v6_cnt, v6_pct), (i6_cnt, i6_pct), (u6_cnt, u6_pct) = pairs[3], pairs[4], pairs[5]
             result[cc] = {
                 'valid': int(v_cnt), 'valid_pct': float(v_pct),
                 'invalid': int(i_cnt), 'invalid_pct': float(i_pct),
                 'unknown': int(u_cnt), 'unknown_pct': float(u_pct),
                 'total': int(t1.group(1)),
+                'v6_valid': int(v6_cnt), 'v6_valid_pct': float(v6_pct),
+                'v6_invalid': int(i6_cnt), 'v6_invalid_pct': float(i6_pct),
+                'v6_unknown': int(u6_cnt), 'v6_unknown_pct': float(u6_pct),
+                'v6_total': int(t2.group(1)),
             }
 
         if len(result) > 50:  # sanity floor — a truncated/error page won't have this many rows

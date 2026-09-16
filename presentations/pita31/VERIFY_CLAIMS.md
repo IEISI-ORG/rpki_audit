@@ -34,10 +34,14 @@ Source: `reports/analyze_roa_signing.md`, `reports/analyze_roa_signing_trends.md
 
 | Claim | Source field |
 |---|---|
-| Fully Signed (>90%) 46,387 (37.8%); Partially Signed 5,998 (4.9%); Totally Unsigned 70,431 (57.3%) | GLOBAL ROA SIGNING REPORT |
+| Fully Signed (>90%) 46,387 (37.8%); Partially Signed 5,998 (4.9%); Totally Unsigned 70,431 (57.3%) | GLOBAL ROA SIGNING REPORT (ASN-level, this project's own classification) |
 | NOT SIGNED (INSECURE) 59,298 (48.3%) is the largest single bucket; SIGNED (NO ROV) 34,096 (27.8%) | ROA SIGNING x ROV COVERAGE CLASSIFICATION |
-| Global ROA coverage: 67.9% now vs. 53.2% 12mo ago (+14.7pp) | GLOBAL ROA COVERAGE TREND |
-| APNIC region: 76.1% now vs. 49.2% 12mo ago, 50.8% 24mo ago | RIR ROA COVERAGE TREND, apnic row |
+| IPv4 route objects valid: 68.0% now vs. 53.2% 12mo ago (+14.8pp) | GLOBAL ROA COVERAGE TREND (IPv4 Route Objects, % Valid) — **route-object level, APNIC's own measure, NOT the same metric as the ASN-level table above** |
+| IPv6 route objects valid: 75.3% now vs. 57.4% 12mo ago (+17.9pp) | GLOBAL ROA COVERAGE TREND (IPv6 Route Objects, % Valid) — added 2026-09-16, this script did not parse IPv6 before that date, see below |
+| APNIC region, IPv4: 76.5% now vs. 49.1% 12mo ago | RIR ROA COVERAGE TREND (IPv4), apnic row |
+| APNIC region, IPv6: 83.5% now vs. 48.1% 12mo ago | RIR ROA COVERAGE TREND (IPv6), apnic row |
+
+**2026-09-16 fix, logged here for the record:** `rov_utils.fetch_apnic_roa_by_country()` previously parsed only the IPv4 block from APNIC's per-country ROA table and silently discarded the IPv6 block that APNIC's own source already includes in every row. Confirmed directly against APNIC's live raw response (China's row: IPv4 89.4% valid vs IPv6 97.5% valid — a real, non-trivial difference, not noise). Fixed in `rov_utils.py` and `analyze_roa_signing_trends.py`; `reports/analyze_roa_signing_trends.md` regenerated same day. The pre-fix cached JSON files under `data/apnic/roa_history/` for historical dates (which are normally cached indefinitely, since a past date's reported figures don't change) are auto-invalidated by a format check — old-format cache entries lacking `v6_total` are treated as a miss and refetched, they do not silently persist forever.
 
 ---
 
@@ -91,3 +95,4 @@ Source: `reports/analyze_aspa_real_deployment.md`
 - [ ] No retired apnic62-era phrasing ("SITV", "Glass Houses", "The Swamp") carried over
 - [ ] Tone matches `CLAUDE.md`'s honesty notes (APNIC filter_rate ambiguity, inherited vs. direct ROV, `FORTUITOUS ROV`)
 - [ ] `classify_verdict()` re-checked against current `rov_utils.py` source, not just this file's 2026-09-15 snapshot
+- [x] IPv4/IPv6 ROA coverage distinction fixed and slide re-worded (2026-09-16, user-flagged) — re-confirm the "APNIC region, IPv6" and "IPv4 route objects valid" numbers are still current before presenting, since they refresh daily

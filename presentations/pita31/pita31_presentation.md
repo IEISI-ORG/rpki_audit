@@ -166,6 +166,8 @@ Fewer than a quarter of the top 1,000 transit networks are SECURE, yet they carr
 
 **Signing (ROA) and filtering (ROV) move independently — most of the internet has done at most one of the two.**
 
+**This project's own network-level classification** (from the audited ASN, not APNIC's route-object measure below):
+
 | Signing status | Networks | Share |
 |---|---|---|
 | Fully Signed (>90%) | 46,387 | 37.8% |
@@ -174,7 +176,16 @@ Fewer than a quarter of the top 1,000 transit networks are SECURE, yet they carr
 
 **The two biggest buckets by ROA×ROV cross-classification:** `NOT SIGNED (INSECURE)` — 59,298 (48.3%), the largest single bucket globally — and `SIGNED (NO ROV)` — 34,096 (27.8%): signed, but nobody's filtering on their behalf either.
 
-**Trend:** global ROA coverage is up from 53.2% to 67.9% over the last 12 months (+14.7pp). The APNIC region specifically: 76.1% now vs. 49.2% a year ago — the fastest-growing RIR region, and the one every economy in this deck belongs to.
+**A separate, narrower measure — APNIC Labs' own trend data on *announced route objects with a valid ROA*** (not the same metric as the network-level table above; reported for IPv4 and IPv6 separately, since they move differently):
+
+| | Now | 12mo ago | Change |
+|---|---|---|---|
+| IPv4 route objects valid | 68.0% | 53.2% | +14.8pp |
+| IPv6 route objects valid | 75.3% | 57.4% | +17.9pp |
+| APNIC region, IPv4 | 76.5% | 49.1% | +27.4pp |
+| APNIC region, IPv6 | 83.5% | 48.1% | +35.4pp |
+
+IPv6 is consistently ahead of IPv4 here — worth knowing before anyone in this room assumes "ROA coverage" means IPv4 only. The APNIC region (every economy in this deck) is growing faster than the global average on both.
 
 ---
 
