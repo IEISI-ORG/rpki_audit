@@ -687,7 +687,7 @@ The internet is not uniformly close to security. Traffic coverage is high; netwo
 
 **Contact:** Terry Sweetser · tcs@ieisi.org
 
-**Repository:** https://github.com/IEISI-ORG/rov_audit
+**Repository:** https://github.com/IEISI-ORG/rpki_audit
 
 **Discussion prompts:**
 

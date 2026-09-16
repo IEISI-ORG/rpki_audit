@@ -878,11 +878,22 @@ def load_signing_stats() -> dict:
     signing_data = {asn: d.get('roa_signed_pct', 0.0) for asn, d in data.items()}
     return signing_data
 
-def calculate_cone_health(root_asn: int, downstream: dict, roa_map: dict) -> tuple[int, int]:
-    """BFS to find unique downstream ASNs and count unsigned ones. Returns (unsigned, total)."""
+def calculate_cone_health(root_asn: int, downstream: dict, roa_map: dict) -> tuple[float, int]:
+    """
+    BFS to find unique downstream ASNs and score how much signing opportunity
+    remains among them. Returns (signing_opportunity, total_customers).
+
+    signing_opportunity is a partial-credit weighted sum, not a binary count:
+    each downstream customer contributes (100 - signed_pct) — a fully unsigned
+    customer (0%) contributes 100, a 95%-signed customer contributes only 5.
+    This replaced a binary "signed_pct < 10.0 counts as unsigned, else ignored"
+    cutoff, which gave a customer sitting at 11% signed the same (zero) credit
+    as one at 100%, and gave equal weight to every customer below the cutoff
+    regardless of whether they were at 0% or 9%.
+    """
     queue = [root_asn]
     seen = {root_asn}
-    unsigned_customers, total_customers, idx = 0, 0, 0
+    signing_opportunity, total_customers, idx = 0.0, 0, 0
     while idx < len(queue):
         curr = queue[idx]
         idx += 1
@@ -892,9 +903,8 @@ def calculate_cone_health(root_asn: int, downstream: dict, roa_map: dict) -> tup
                 seen.add(child)
                 queue.append(child)
                 total_customers += 1
-                if roa_map.get(child, 0.0) < 10.0:
-                    unsigned_customers += 1
-    return unsigned_customers, total_customers
+                signing_opportunity += 100.0 - roa_map.get(child, 0.0)
+    return signing_opportunity, total_customers
 
 def load_upstreams_from_cache(target_asns: list) -> Counter:
     """Read local JSON files for target ASNs to find who feeds them."""

@@ -51,28 +51,31 @@ def analyze():
     # Insight 3: Weighted outreach targets
     print("\n" + "="*95)
     print("3. WEIGHTED OUTREACH TARGETS")
-    print("   Metric = (Provider Cone Size) * (Count of Unsigned Customers)")
+    print("   Metric = (Provider Cone Size) * (Signing Opportunity)")
+    print("   Signing Opportunity = sum over downstream customers of (100 - signed_pct) —")
+    print("   partial credit, not a binary unsigned/signed cutoff: a 0%-signed customer")
+    print("   contributes 100, a 95%-signed customer contributes only 5.")
     print("-" * 95)
-    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Unsigned':<8} | {'Impact Score':<14} | {'Name'}")
+    print(f"{'ASN':<8} | {'CC':<2} | {'Cone':<8} | {'Opportunity':<11} | {'Impact Score':<14} | {'Name'}")
     print("-" * 95)
-    
+
     providers = df[df['cone'] > 50].copy()
     outreach_list = []
-    
+
     for _, row in providers.iterrows():
         asn = int(row['asn'])
-        u_cnt, t_cnt = rov_utils.calculate_cone_health(asn, downstream, roa_map)
+        opportunity, t_cnt = rov_utils.calculate_cone_health(asn, downstream, roa_map)
         if t_cnt > 0:
-            impact_score = int(row['cone']) * u_cnt
+            impact_score = int(row['cone']) * opportunity
             outreach_list.append({
                 'asn': asn, 'cc': row['cc'], 'name': row['name'], 'cone': row['cone'],
-                'unsigned_customers': u_cnt, 'impact_score': impact_score
+                'signing_opportunity': round(opportunity, 1), 'impact_score': round(impact_score)
             })
-            
+
     outreach_list.sort(key=lambda x: x['impact_score'], reverse=True)
     for item in outreach_list[:25]:
         score_str = f"{item['impact_score']:,}"
-        print(f"AS{item['asn']:<6} | {item['cc']:<2} | {int(item['cone']):<8} | {item['unsigned_customers']:<8} | {score_str:<14} | {item['name'][:35]}")
+        print(f"AS{item['asn']:<6} | {item['cc']:<2} | {int(item['cone']):<8} | {item['signing_opportunity']:<11,.1f} | {score_str:<14} | {item['name'][:35]}")
 
     pd.DataFrame(outreach_list).to_csv("roa_strategy_weighted_v2.csv", index=False)
     print(f"\n[+] Saved strategy to roa_strategy_weighted_v2.csv")
