@@ -138,7 +138,7 @@ run_data_gathering() {
 # -----------------------------------------------------------
 # Stage: Commit report outputs
 # Only stages *already-tracked* files under reports/ and root-level
-# CSVs (git add -u), so it can never sweep in unrelated untracked
+# CSVs + top-level data/*.json (git add -u), so it can never sweep in unrelated untracked
 # files (secrets, new scratch scripts, etc.). Commits nothing and
 # exits cleanly if there are no changes. Local commit only — never
 # pushes.
@@ -162,7 +162,7 @@ run_commit() {
         log "[commit] Rotated cron.log -> ${archive}.gz"
     fi
     log "[commit] Checking for changed report outputs..."
-    git add -u -- reports/ '*.csv'
+    git add -u -- reports/ '*.csv' ':(glob)data/*.json'
     if git diff --cached --quiet; then
         log "[commit] No changes to commit."
         return
