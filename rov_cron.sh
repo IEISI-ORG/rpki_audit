@@ -156,7 +156,7 @@ run_data_gathering() {
 run_commit() {
     cd "$SCRIPT_DIR"
     if [ -s logs/cron.log ]; then
-        local archive="logs/cron.log.$(date '+%Y-%m-%d').log"
+        local archive="logs/cron.log.$(date '+%Y-%m-%d-%H%M').log"
         cp logs/cron.log "$archive" && : > logs/cron.log
         gzip -f "$archive"
         log "[commit] Rotated cron.log -> ${archive}.gz"

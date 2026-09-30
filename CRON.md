@@ -44,7 +44,7 @@ Each mode acquires an exclusive `flock` lock (`.locks/<mode>.lock`) before runni
 
 `logs/cron.log` is pure operational output (every mode's `log()` calls, plus the full captured stdout/stderr of whatever it invokes — e.g. `reports` captures the entire report-generation output). It is **never committed** — it's not a research artifact, just a debug log, and treating it as one led to it being accidentally bulk-committed for months (92MB across history) before that was caught and fixed. It's gitignored entirely (`logs/cron.log` and `logs/cron.log.*`).
 
-`commit` mode rotates it at the start of every run: the accumulated log is copied to a dated, gzipped archive (`logs/cron.log.YYYY-MM-DD.log.gz`) and the live file is truncated in place. Truncate-in-place (not rename) matters specifically because the crontab entries redirect with `>> logs/cron.log 2>&1` — that file descriptor is already open by the time `commit` mode runs, so a rename would silently keep writing the rest of that run's output into the now-archived file instead of a fresh one.
+`commit` mode rotates it at the start of every run: the accumulated log is copied to a dated, gzipped archive (`logs/cron.log.YYYY-MM-DD-HHMM.log.gz`) and the live file is truncated in place. Truncate-in-place (not rename) matters specifically because the crontab entries redirect with `>> logs/cron.log 2>&1` — that file descriptor is already open by the time `commit` mode runs, so a rename would silently keep writing the rest of that run's output into the now-archived file instead of a fresh one.
 
 ## Installing / modifying
 
