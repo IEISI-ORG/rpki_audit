@@ -4,7 +4,7 @@
      NATIONAL ROUTING SECURITY: PF (French Polynesia)
     ====================================================================================================
     Total Networks:      6
-    Total Cone Gravity:  4
+    Total Cone Gravity:  3
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
     VULNERABLE NETWORKS:         5 (83.3%) -> Exposes  100.0% of Traffic
@@ -14,12 +14,12 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS55943  | REGRESSED                      | 4        | 0%     | ONATI
-    AS9471   | STUB: VULNERABLE               | 0        | 0%     | ONATI
-    AS56017  | STUB: VULNERABLE               | 0        | 0%     | VITI
-    AS133896 | NOT ROUTED                     | 0        | -      | Tahiti Nui Telecom
-    AS138179 | STUB: VULNERABLE               | 0        | 0%     | PACIFIC MOBILE TELECOM
+    AS55943  | REGRESSED                      | 3        | 0%     | ONATI
     AS139263 | STUB: VULNERABLE               | 0        | -      | Universite de la Polynesie Francaise
+    AS9471   | STUB: VULNERABLE               | 0        | 0%     | ONATI
+    AS56017  | STUB: VULNERABLE               | 0        | 2%     | VITI
+    AS138179 | STUB: VULNERABLE               | 0        | 0%     | PACIFIC MOBILE TELECOM
+    AS133896 | NOT ROUTED                     | 0        | -      | Tahiti Nui Telecom
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PF?)

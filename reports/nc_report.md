@@ -15,24 +15,24 @@
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
     AS18200  | PARTIAL: VULNERABLE (Mixed)    | 12       | 100%   | Office des Postes et Telecommunications 
-    AS17480  | STUB: FORTUITOUS ROV           | 0        | 100%   | CANL
-    AS24053  | NOT ROUTED                     | 0        | -      | Data Services Pacific
-    AS45345  | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Nautile
-    AS45461  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | TeleNet
-    AS56055  | STUB: FORTUITOUS ROV           | 0        | 100%   | Micro Logic Systems
-    AS56089  | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | OFFRATEL
-    AS131248 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GOTV
-    AS131995 | STUB: VULNERABLE               | 0        | -      | XLPM
-    AS132079 | NOT ROUTED                     | 0        | -      | Office des Postes et Telecommunications 
-    AS134405 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Data Services Pacific
-    AS136402 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Nautile SARL
-    AS137243 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INGENIERIE DES SYSTEMES DES INFORMATIONS
+    AS141695 | NOT ROUTED                     | 0        | -      | Pacific Community
     AS140718 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | ENGIE PACIFIQUE INFORMATIQUE
     AS141197 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Pacific Community
-    AS141695 | NOT ROUTED                     | 0        | -      | Pacific Community
     AS147030 | NOT ROUTED                     | 0        | -      | Mynet
-    AS149003 | NOT ROUTED                     | 0        | -      | CAN'L
     AS149520 | NOT ROUTED                     | 0        | -      | THEMIS
+    AS149003 | NOT ROUTED                     | 0        | -      | CAN'L
+    AS24053  | NOT ROUTED                     | 0        | -      | Data Services Pacific
+    AS17480  | STUB: FORTUITOUS ROV           | 0        | 100%   | CANL
+    AS56055  | STUB: FORTUITOUS ROV           | 0        | 99%    | Micro Logic Systems
+    AS56089  | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | OFFRATEL
+    AS136402 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Nautile SARL
+    AS137243 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INGENIERIE DES SYSTEMES DES INFORMATIONS
+    AS131995 | STUB: VULNERABLE               | 0        | -      | XLPM
+    AS132079 | NOT ROUTED                     | 0        | -      | Office des Postes et Telecommunications 
+    AS131248 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GOTV
+    AS134405 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Data Services Pacific
+    AS45461  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | TeleNet
+    AS45345  | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Nautile
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NC?)
@@ -43,5 +43,5 @@
     #2   | AS38195  | 1          | PARTIAL: VULNERABLE (Mixed)    | Superloop
     #3   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #4   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
-    #5   | AS4638   | 1          | Unverified (Transit/Peer?)     | Telecom Fiji Limited
+    #5   | AS4638   | 1          | REGRESSED                      | Telecom Fiji Limited
     #6   | AS56055  | 1          | STUB: FORTUITOUS ROV           | Micro Logic Systems

@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: GR (Greece)
     ====================================================================================================
     Total Networks:      262
-    Total Cone Gravity:  607
+    Total Cone Gravity:  602
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   125 (47.7%) -> Protects 77.8% of Traffic
-    VULNERABLE NETWORKS:        95 (36.3%) -> Exposes  5.4% of Traffic
+    SECURE (ACTIVE/PASSIVE):   124 (47.3%) -> Protects 77.6% of Traffic
+    VULNERABLE NETWORKS:        94 (35.9%) -> Exposes  5.6% of Traffic
 
     ====================================================================================================
      THE GR CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS8280   | VOLATILE                       | 362      | 100%   | SYNAPSECOM S.A. Provider of Telecommunic
+    AS8280   | VOLATILE                       | 359      | -      | SYNAPSECOM S.A. Provider of Telecommunic
     AS6799   | Unverified (Transit/Peer?)     | 40       | 99%    | Ote SA (Hellenic Telecommunications Orga
     AS1241   | PARTIAL: VULNERABLE (Mixed)    | 31       | 99%    | Nova Telecommunications & Media Single M
-    AS3329   | ACTIVE LOCAL ROV               | 30       | 99%    | Vodafone Greece
+    AS3329   | ACTIVE LOCAL ROV               | 29       | 99%    | Vodafone Greece
     AS5408   | ACTIVE LOCAL ROV               | 29       | 99%    | National Infrastructures for Research an
-    AS199081 | PARTIAL: VULNERABLE (Mixed)    | 24       | 100%   | Lancom Ltd.
+    AS199081 | PARTIAL: VULNERABLE (Mixed)    | 23       | 100%   | Lancom Ltd.
     AS198477 | PASSIVE (Clean Pipe)           | 23       | -      | TI SPARKLE GREECE SA
-    AS56910  | PASSIVE (Clean Pipe)           | 21       | -      | Digital Realty Hellas Single Member S.A
+    AS56910  | PASSIVE (Clean Pipe)           | 20       | -      | Digital Realty Hellas Single Member S.A
     AS25472  | REGRESSED                      | 19       | 0%     | Nova Telecommunications & Media Single M
     AS206735 | REGRESSED                      | 12       | 0%     | Novelcomm LP
-    AS216285 | PASSIVE (Clean Pipe)           | 3        | -      | MYIP NETWORKS G.P.
-    AS213835 | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Solidity Technology Services SA
+    AS216285 | PASSIVE (Clean Pipe)           | 4        | -      | MYIP NETWORKS G.P.
     AS12713  | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Ote SA (Hellenic Telecommunications Orga
+    AS213835 | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Solidity Technology Services SA
     AS4601   | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Antonios A. Chariton
+    AS50919  | REGRESSED                      | 1        | -      | INTERWORKS Single Member S.A.
     AS215492 | PASSIVE (Clean Pipe)           | 1        | -      | BUTLER CHAT I.K.E.
+    AS196945 | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Microbase PC
     AS51505  | REGRESSED                      | 1        | 0%     | Dimosia Epicheirisi Ilektrismou Anonymi 
-    AS50919  | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | INTERWORKS Single Member S.A.
     AS35506  | ACTIVE LOCAL ROV               | 1        | 99%    | INFORMATION SOCIETY S.A.
     AS56457  | ACTIVE LOCAL ROV               | 1        | -      | FASTPATH IKE
-    AS196945 | PASSIVE (Clean Pipe)           | 1        | -      | Microbase PC
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to GR?)
@@ -55,7 +55,7 @@
     #13  | AS8280   | 10         | VOLATILE                       | SYNAPSECOM S.A. Provider of Telecommunic
     #14  | AS3356   | 8          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #15  | AS3491   | 6          | CORE: ACTIVE PROTECTOR         | PCCW Global (HK) Ltd.
-    #16  | AS32787  | 6          | PASSIVE (Clean Pipe)           | Akamai (Prolexic)
+    #16  | AS32787  | 6          | PARTIAL: VULNERABLE (Mixed)    | Akamai (Prolexic)
     #17  | AS1299   | 5          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
     #18  | AS57463  | 5          | PARTIAL: VULNERABLE (Mixed)    | NetIX Communications JSC
     #19  | AS13335  | 4          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.

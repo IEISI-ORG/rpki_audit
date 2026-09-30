@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: NP (Nepal)
     ====================================================================================================
     Total Networks:      210
-    Total Cone Gravity:  174
+    Total Cone Gravity:  176
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     2 ( 1.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:       141 (67.1%) -> Exposes  69.5% of Traffic
+    VULNERABLE NETWORKS:       145 (69.0%) -> Exposes  70.5% of Traffic
 
     ====================================================================================================
      THE NP CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS17501  | REGRESSED                      | 36       | 0%     | WorldLink Communications Pvt Ltd
+    AS17501  | REGRESSED                      | 37       | 0%     | WorldLink Communications Pvt Ltd
     AS45274  | PARTIAL: VULNERABLE (Mixed)    | 34       | -      | WorldLink International Transit Services
-    AS4007   | REGRESSED                      | 30       | 0%     | Subisu Cablenet (Pvt) Ltd, Baluwatar, Ka
-    AS45650  | REGRESSED                      | 26       | 0%     | VIA NET COMMUNICATION LTD.
+    AS4007   | REGRESSED                      | 31       | 0%     | Subisu Cablenet (Pvt) Ltd, Baluwatar, Ka
+    AS45650  | REGRESSED                      | 25       | 0%     | VIA NET COMMUNICATION LTD.
     AS141047 | Unverified (Transit/Peer?)     | 10       | 0%     | Nepal Digital Service Pvt. Ltd.
     AS139922 | REGRESSED                      | 9        | 0%     | DISH MEDIA NETWORK PUBLIC LIMITED
-    AS148979 | Unverified (Transit/Peer?)     | 9        | -      | Fiberworld Communication Pvt. Ltd.
+    AS148979 | Unverified (Transit/Peer?)     | 8        | -      | Fiberworld Communication Pvt. Ltd.
     AS58504  | REGRESSED                      | 6        | 0%     | TECHMINDS NETWORKS PVT. LTD.
-    AS141767 | REGRESSED                      | 5        | 0%     | C G Communications Ltd
+    AS141767 | REGRESSED                      | 6        | 0%     | C G Communications Ltd
+    AS38565  | VULNERABLE                     | 4        | 0%     | Ncell Pvt. Ltd.
     AS151396 | REGRESSED                      | 4        | 0%     | Sajilo Net Pvt Ltd
-    AS38565  | VULNERABLE                     | 3        | 0%     | Ncell Pvt. Ltd.
     AS24550  | REGRESSED                      | 1        | 0%     | Websurfer Nepal Internet Service Provide
     AS55915  | REGRESSED                      | 1        | 0%     | Classic Tech Pvt. Ltd.
-    AS17412  | NOT ROUTED                     | 0        | -      | Internet Exchange Nepal
-    AS18222  | STUB: VULNERABLE               | 0        | -      | Data Hub Pvt. Ltd.
-    AS18395  | NOT ROUTED                     | 0        | -      | I.B.SYS. Solution Nepal Pvt. Ltd.
-    AS23647  | STUB: VULNERABLE               | 0        | -      | Communications & Communicate Nepal Pvt L
-    AS23672  | STUB: VULNERABLE               | 0        | -      | I.B.SYS. Solution Nepal Pvt. Ltd.
-    AS23752  | STUB: VULNERABLE               | 0        | 0%     | Nepal Telecommunications Corporation, In
-    AS24123  | NOT ROUTED                     | 0        | -      | Vianet Communications Pvt Ltd
+    AS154542 | STUB: VULNERABLE               | 0        | -      | Fonepay Payment Service Limited
+    AS154541 | STUB: VULNERABLE               | 0        | -      | Fonepay Payment Service Limited
+    AS154858 | STUB: VULNERABLE               | 0        | -      | Sajilo Cloud Pvt Ltd
+    AS142626 | NOT ROUTED                     | 0        | -      | Cloud Himalaya Inc. Nepal Pvt. Ltd.
+    AS142621 | STUB: VULNERABLE               | 0        | -      | Nepal Payment Solution Pvt. Ltd.
+    AS142606 | STUB: VULNERABLE               | 0        | -      | Shangrila Informatics Private Limited
+    AS142556 | NOT ROUTED                     | 0        | -      | Life Net Pvt. Ltd.
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NP?)
@@ -50,13 +50,13 @@
     #8   | AS9498   | 7          | REGRESSED                      | Bharti Airtel Ltd.
     #9   | AS58504  | 5          | REGRESSED                      | TECHMINDS NETWORKS PVT. LTD.
     #10  | AS141767 | 4          | REGRESSED                      | C G Communications Ltd
-    #11  | AS151396 | 4          | REGRESSED                      | Sajilo Net Pvt Ltd
-    #12  | AS45157  | 4          | NOT ROUTED                     | Mercantile International Transit Service
-    #13  | AS38565  | 4          | VULNERABLE                     | Ncell Pvt. Ltd.
+    #11  | AS38565  | 4          | VULNERABLE                     | Ncell Pvt. Ltd.
+    #12  | AS45157  | 4          | STUB: VULNERABLE               | Mercantile International Transit Service
+    #13  | AS151396 | 4          | REGRESSED                      | Sajilo Net Pvt Ltd
     #14  | AS132799 | 3          | STUB: VULNERABLE               | DISH MEDIA NETWORK PUBLIC LIMITED
     #15  | AS24550  | 3          | REGRESSED                      | Websurfer Nepal Internet Service Provide
     #16  | AS6453   | 2          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
     #17  | AS55427  | 2          | STUB: VULNERABLE               | Broadlink Nepal
-    #18  | AS136908 | 2          | STUB: VULNERABLE               | Sky Broadband Pvt. Ltd
-    #19  | AS23752  | 2          | STUB: VULNERABLE               | Nepal Telecommunications Corporation, In
-    #20  | AS45353  | 2          | NOT ROUTED                     | NITC: IT Agency of Government of Nepal
+    #18  | AS55915  | 2          | REGRESSED                      | Classic Tech Pvt. Ltd.
+    #19  | AS45353  | 2          | STUB: VULNERABLE               | NITC: IT Agency of Government of Nepal
+    #20  | AS23752  | 2          | STUB: VULNERABLE               | Nepal Telecommunications Corporation, In

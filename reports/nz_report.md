@@ -3,37 +3,37 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: NZ (New Zealand)
     ====================================================================================================
-    Total Networks:      704
-    Total Cone Gravity:  2,206
+    Total Networks:      703
+    Total Cone Gravity:  2,201
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    80 (11.4%) -> Protects 5.3% of Traffic
-    VULNERABLE NETWORKS:       312 (44.3%) -> Exposes  84.7% of Traffic
+    SECURE (ACTIVE/PASSIVE):    77 (11.0%) -> Protects 5.4% of Traffic
+    VULNERABLE NETWORKS:       315 (44.8%) -> Exposes  84.6% of Traffic
 
     ====================================================================================================
      THE NZ CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS64073  | REGRESSED                      | 1689     | 0%     | Vetta Group
+    AS64073  | REGRESSED                      | 1683     | 0%     | Vetta Group
     AS9790   | VOLATILE                       | 108      | 99%    | Two Degrees Networks Limited
-    AS45177  | PARTIAL: VULNERABLE (Mixed)    | 56       | 0%     | Devoli
+    AS45177  | PARTIAL: VULNERABLE (Mixed)    | 55       | 0%     | Devoli
     AS135069 | REGRESSED                      | 55       | 0%     | Feenix Communications Limited
     AS55850  | PARTIAL: VULNERABLE (Mixed)    | 51       | 0%     | Mercury NZ Limited
-    AS4648   | REGRESSED                      | 46       | 0%     | Spark New Zealand
+    AS4648   | REGRESSED                      | 47       | 0%     | Spark New Zealand
     AS38022  | PARTIAL: VULNERABLE (Mixed)    | 32       | -      | REANNZ National Research and Education N
-    AS4768   | Unverified (Transit/Peer?)     | 31       | 7%     | One New Zealand Group Limited
-    AS23838  | PARTIAL: VULNERABLE (Mixed)    | 21       | -      | Solarix Networks Limited
+    AS4768   | Unverified (Transit/Peer?)     | 31       | 3%     | One New Zealand Group Limited
+    AS23838  | PARTIAL: VULNERABLE (Mixed)    | 22       | -      | Solarix Networks Limited
     AS18400  | VULNERABLE                     | 16       | -      | Xtreme Networks Limited
     AS24324  | REGRESSED                      | 14       | 0%     | Kordia Limited
     AS4049   | REGRESSED                      | 12       | 0%     | CELLO GROUP LIMITED
-    AS23655  | VOLATILE                       | 10       | 100%   | 2degrees Networks Limited
+    AS23655  | VOLATILE                       | 10       | 99%    | 2degrees Networks Limited
     AS56030  | REGRESSED                      | 9        | 0%     | Voyager Internet Ltd.
+    AS151336 | PARTIAL: VULNERABLE (Mixed)    | 6        | -      | Verge
     AS17705  | REGRESSED                      | 6        | 0%     | InSPire Net Ltd
     AS4771   | REGRESSED                      | 6        | 0%     | Spark New Zealand Trading Ltd.
-    AS151336 | PARTIAL: VULNERABLE (Mixed)    | 6        | -      | Verge
-    AS24183  | PARTIAL: VULNERABLE (Mixed)    | 4        | 100%   | DTS LTD
-    AS45267  | REGRESSED                      | 4        | 0%     | Lightwire LTD
+    AS45637  | REGRESSED                      | 4        | 0%     | UniFone New Zealand Ltd
     AS138398 | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | Prodigi Technology Services Limited
+    AS24183  | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | DTS LTD
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NZ?)
@@ -57,6 +57,6 @@
     #15  | AS23655  | 12         | VOLATILE                       | 2degrees Networks Limited
     #16  | AS174    | 11         | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #17  | AS6939   | 11         | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
-    #18  | AS32787  | 10         | PASSIVE (Clean Pipe)           | Akamai (Prolexic)
+    #18  | AS32787  | 10         | PARTIAL: VULNERABLE (Mixed)    | Akamai (Prolexic)
     #19  | AS4049   | 9          | REGRESSED                      | CELLO GROUP LIMITED
     #20  | AS9500   | 7          | REGRESSED                      | One New Zealand Group Limited

@@ -3,37 +3,37 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: ID (Indonesia)
     ====================================================================================================
-    Total Networks:      4,005
-    Total Cone Gravity:  9,897
+    Total Networks:      4,027
+    Total Cone Gravity:  9,916
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   127 ( 3.2%) -> Protects 31.1% of Traffic
-    VULNERABLE NETWORKS:      2644 (66.0%) -> Exposes  59.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):   126 ( 3.1%) -> Protects 35.0% of Traffic
+    VULNERABLE NETWORKS:      2661 (66.1%) -> Exposes  56.7% of Traffic
 
     ====================================================================================================
      THE ID CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS7713   | REGRESSED                      | 3221     | 0%     | PT Telkom Indonesia Tbk
-    AS136106 | PASSIVE (Clean Pipe)           | 726      | 0%     | PT Mega Akses Persada
-    AS4800   | REGRESSED                      | 630      | 0%     | PT Aplikanusa Lintasarta
-    AS23947  | VOLATILE                       | 504      | -      | PT Mora Telematika Indonesia Tbk
-    AS147094 | PARTIAL: VULNERABLE (Mixed)    | 490      | -      | PT Mitra Visioner Pratama
-    AS138840 | PASSIVE (Clean Pipe)           | 436      | -      | PT Parsaoran Global Datatrans
-    AS38158  | PASSIVE (Clean Pipe)           | 310      | -      | PT Cyberindo Aditama
-    AS133095 | PASSIVE (Clean Pipe)           | 196      | 1%     | PT Pusat Fiber Indonesia
-    AS7717   | VULNERABLE                     | 195      | -      | OpenIXP Route Servers
-    AS58389  | PASSIVE (Clean Pipe)           | 194      | 0%     | PT Sumber Data Indonesia
-    AS150506 | PASSIVE (Clean Pipe)           | 179      | -      | PT Pusat Fiber Indonesia
-    AS4787   | REGRESSED                      | 175      | 1%     | PT Cyberindo Aditama
-    AS24534  | REGRESSED                      | 170      | 0%     | PT Trans Hybrid Communication
-    AS64315  | REGRESSED                      | 141      | 1%     | PT Mitra Visioner Pratama
-    AS137366 | PASSIVE (Clean Pipe)           | 133      | 0%     | PT iForte Solusi Infotek
-    AS45147  | PASSIVE (Clean Pipe)           | 133      | -      | PT NAP Info Lintas Nusa
+    AS7713   | REGRESSED                      | 2865     | 0%     | PT Telkom Indonesia Tbk
+    AS136106 | PASSIVE (Clean Pipe)           | 684      | -      | PT Mega Akses Persada
+    AS4800   | REGRESSED                      | 630      | 1%     | PT Aplikanusa Lintasarta
+    AS147094 | PASSIVE (Clean Pipe)           | 527      | -      | PT Mitra Visioner Pratama
+    AS23947  | VOLATILE                       | 501      | -      | PT Mora Telematika Indonesia Tbk
+    AS138840 | PASSIVE (Clean Pipe)           | 430      | -      | PT Parsaoran Global Datatrans
+    AS38158  | PASSIVE (Clean Pipe)           | 304      | -      | PT Cyberindo Aditama
+    AS4787   | REGRESSED                      | 229      | 6%     | PT Cyberindo Aditama
+    AS131111 | REGRESSED                      | 229      | 0%     | PT Mora Telematika Indonesia Tbk
+    AS7717   | VULNERABLE                     | 212      | -      | OpenIXP Route Servers
+    AS58389  | PASSIVE (Clean Pipe)           | 206      | 1%     | PT Sumber Data Indonesia
+    AS150506 | PASSIVE (Clean Pipe)           | 205      | -      | PT Pusat Fiber Indonesia
+    AS133095 | PASSIVE (Clean Pipe)           | 194      | 0%     | PT Pusat Fiber Indonesia
+    AS24534  | REGRESSED                      | 164      | 0%     | PT Trans Hybrid Communication
+    AS45147  | PASSIVE (Clean Pipe)           | 152      | -      | PT NAP Info Lintas Nusa
+    AS64315  | REGRESSED                      | 150      | 2%     | PT Mitra Visioner Pratama
+    AS137366 | PASSIVE (Clean Pipe)           | 144      | 1%     | PT iForte Solusi Infotek
+    AS17995  | REGRESSED                      | 131      | 1%     | PT iForte Global Internet
     AS58495  | REGRESSED                      | 130      | 0%     | PT Parsaoran Global Datatrans
-    AS17995  | REGRESSED                      | 128      | 1%     | PT iForte Global Internet
-    AS4761   | REGRESSED                      | 127      | 46%    | PT Indosat Tbk
-    AS55685  | REGRESSED                      | 124      | 0%     | PT Jala Lintas Media
+    AS4761   | PARTIAL: VULNERABLE (Mixed)    | 128      | 47%    | PT Indosat Tbk
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to ID?)
@@ -47,7 +47,7 @@
     #5   | AS136106 | 234        | PASSIVE (Clean Pipe)           | PT Mega Akses Persada
     #6   | AS23947  | 207        | VOLATILE                       | PT Mora Telematika Indonesia Tbk
     #7   | AS38158  | 187        | PASSIVE (Clean Pipe)           | PT Cyberindo Aditama
-    #8   | AS4761   | 139        | REGRESSED                      | PT Indosat Tbk
+    #8   | AS4761   | 139        | PARTIAL: VULNERABLE (Mixed)    | PT Indosat Tbk
     #9   | AS4787   | 108        | REGRESSED                      | PT Cyberindo Aditama
     #10  | AS45296  | 99         | NOT ROUTED                     | PT Rabik Bangun Nusantara
     #11  | AS55685  | 98         | REGRESSED                      | PT Jala Lintas Media
@@ -57,6 +57,6 @@
     #15  | AS24534  | 79         | REGRESSED                      | PT Trans Hybrid Communication
     #16  | AS134654 | 67         | PASSIVE (Clean Pipe)           | PT Data Utama Dinamika
     #17  | AS45147  | 64         | PASSIVE (Clean Pipe)           | PT NAP Info Lintas Nusa
-    #18  | AS138128 | 58         | PASSIVE (Clean Pipe)           | PT Solnet Indonesia
+    #18  | AS138128 | 58         | PARTIAL: VULNERABLE (Mixed)    | PT Solnet Indonesia
     #19  | AS137366 | 56         | PASSIVE (Clean Pipe)           | PT iForte Solusi Infotek
-    #20  | AS56258  | 52         | PASSIVE (Clean Pipe)           | PT PGAS Telekomunikasi Nusantara
+    #20  | AS56258  | 52         | PARTIAL: VULNERABLE (Mixed)    | PT PGAS Telekomunikasi Nusantara
