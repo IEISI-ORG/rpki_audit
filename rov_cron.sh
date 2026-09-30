@@ -20,7 +20,7 @@
 #   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
-#   commit   — git commit changed report outputs (monthly, local commit only — no push)
+#   commit   — git commit changed report outputs, then push to origin (monthly)
 #
 # Lock files prevent overlapping runs of the same mode.
 # ============================================================
@@ -162,6 +162,23 @@ run_commit() {
     log "[commit] Committed: $msg"
 }
 
+# Push monthly so the public data cited on ieisi.org/citations stays current.
+run_push() {
+    cd "$SCRIPT_DIR"
+    local branch
+    branch="$(git rev-parse --abbrev-ref HEAD)"
+    git fetch -q origin "$branch" || { log "[push] fetch failed; not pushing."; return; }
+    if [ "$(git rev-list --count "origin/$branch..HEAD")" -eq 0 ]; then
+        log "[push] Nothing to push."
+        return
+    fi
+    if git push -q origin "$branch"; then
+        log "[push] Pushed $branch to origin."
+    else
+        log "[push] Push failed (diverged or auth); left for a manual push."
+    fi
+}
+
 # -----------------------------------------------------------
 # Main dispatch
 # -----------------------------------------------------------
@@ -189,6 +206,7 @@ case "$MODE" in
         acquire_lock commit
         trap release_lock EXIT
         run_commit
+        run_push
         ;;
     *)
         echo "Usage: $0 {atlas|reports|full|commit}"
@@ -196,7 +214,7 @@ case "$MODE" in
         echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
-        echo "  commit   — Commit changed report outputs (monthly, local only)"
+        echo "  commit   — Commit changed report outputs and push (monthly)"
         exit 1
         ;;
 esac
