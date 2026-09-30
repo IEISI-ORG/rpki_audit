@@ -9,7 +9,7 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 | Nightly, 02:00 | `atlas` | RIPE Atlas forensic batch (50 targets) | ~50 min |
 | Daily, 06:00 | `reports` | Audit + analysis + HTML/MD reports (cached topology) | up to 3 hr (timeout) |
 | Weekly, Sunday 03:00 | `full` | Topology rebuild + atlas + reports | up to 6 hr (timeout) |
-| Monthly, 1st at 07:00 | `commit` | Commit changed report outputs | seconds |
+| Weekly, Sunday 08:00 | `commit` | Commit and push changed report outputs | seconds (after waiting for `full`/`reports`) |
 
 Live crontab (`crontab -l`):
 
@@ -17,7 +17,7 @@ Live crontab (`crontab -l`):
 0 2 * * * ${HOME}/rpki_audit/rov_cron.sh atlas >> ${HOME}/rpki_audit/logs/cron.log 2>&1
 0 6 * * * ${HOME}/rpki_audit/rov_cron.sh reports >> ${HOME}/rpki_audit/logs/cron.log 2>&1
 0 3 * * 0 ${HOME}/rpki_audit/rov_cron.sh full >> ${HOME}/rpki_audit/logs/cron.log 2>&1
-0 7 1 * * ${HOME}/rpki_audit/rov_cron.sh commit >> ${HOME}/rpki_audit/logs/cron.log 2>&1
+0 8 * * 0 ${HOME}/rpki_audit/rov_cron.sh commit >> ${HOME}/rpki_audit/logs/cron.log 2>&1
 ```
 
 ## Modes
@@ -32,7 +32,7 @@ Runs `do_reports` — `rov_no_scrape_v22.py` (main audit) + all analysis scripts
 Weekly heavyweight run: `do_data_gathering` (downloads RIB dumps, runs the Go extractors, rebuilds topology via `build_topology_from_go.py`, syncs ROA data via `do_roa_sync.py`, packs ASN data) → `atlas` → `reports`, in sequence. Wrapped in a 6-hour `timeout`; a timeout or failure here **does** abort the cron slot (`die`), since a broken topology rebuild shouldn't be silently treated as success.
 
 ### `commit`
-Local-only, scoped commit of changed report outputs — **never pushes**. Stages only already-tracked files under `reports/` and root-level CSVs (`git add -u -- reports/ '*.csv'`), so it can never sweep in unrelated untracked files (secrets, scratch scripts, etc.). Exits cleanly with no commit if nothing changed.
+Weekly scoped commit of changed report outputs, then a push to `origin` so the public reports cited on ieisi.org/citations stay current. It first waits (up to 6 hr each) for any running `full` or `reports` job to release its lock, so it never snapshots a half-written `reports/` directory. The push only happens when the branch is ahead of `origin`; a failed push (diverged history, auth) is logged and left for a manual push. Stages only already-tracked files under `reports/` and root-level CSVs (`git add -u -- reports/ '*.csv'`), so it can never sweep in unrelated untracked files (secrets, scratch scripts, etc.). Exits cleanly with no commit if nothing changed.
 
 Also rotates `logs/cron.log` first, via copytruncate (`cp` + in-place truncate, not `mv`) — see [Logging](#logging).
 
@@ -44,7 +44,7 @@ Each mode acquires an exclusive `flock` lock (`.locks/<mode>.lock`) before runni
 
 `logs/cron.log` is pure operational output (every mode's `log()` calls, plus the full captured stdout/stderr of whatever it invokes — e.g. `reports` captures the entire report-generation output). It is **never committed** — it's not a research artifact, just a debug log, and treating it as one led to it being accidentally bulk-committed for months (92MB across history) before that was caught and fixed. It's gitignored entirely (`logs/cron.log` and `logs/cron.log.*`).
 
-`commit` mode rotates it at the start of every run: the accumulated log is copied to a dated, gzipped archive (`logs/cron.log.YYYY-MM.log.gz`) and the live file is truncated in place. Truncate-in-place (not rename) matters specifically because the crontab entries redirect with `>> logs/cron.log 2>&1` — that file descriptor is already open by the time `commit` mode runs, so a rename would silently keep writing the rest of that run's output into the now-archived file instead of a fresh one.
+`commit` mode rotates it at the start of every run: the accumulated log is copied to a dated, gzipped archive (`logs/cron.log.YYYY-MM-DD.log.gz`) and the live file is truncated in place. Truncate-in-place (not rename) matters specifically because the crontab entries redirect with `>> logs/cron.log 2>&1` — that file descriptor is already open by the time `commit` mode runs, so a rename would silently keep writing the rest of that run's output into the now-archived file instead of a fresh one.
 
 ## Installing / modifying
 

@@ -13,14 +13,14 @@
 #   # Reports-only refresh: daily at 06:00 (uses cached topology)
 #   0 6 * * * /home/terry/rpki_audit/rov_cron.sh reports >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
-#   # Commit report outputs: monthly on the 1st at 07:00
-#   0 7 1 * * /home/terry/rpki_audit/rov_cron.sh commit >> /home/terry/rpki_audit/logs/cron.log 2>&1
+#   # Commit + push report outputs: weekly Sunday 08:00 (waits for full/reports)
+#   0 8 * * 0 /home/terry/rpki_audit/rov_cron.sh commit >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 # Modes:
 #   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
-#   commit   — git commit changed report outputs, then push to origin (monthly)
+#   commit   — git commit changed report outputs, then push to origin (weekly, Sunday)
 #
 # Lock files prevent overlapping runs of the same mode.
 # ============================================================
@@ -66,6 +66,17 @@ acquire_lock() {
 
 release_lock() {
     flock -u 9 2>/dev/null || true
+}
+
+# Block (up to 6 hr) until another mode's lock is free, so commit never
+# snapshots a reports/ directory that full/reports is still writing.
+wait_for_lock() {
+    local name="$1"
+    local f="$LOCK_DIR/${name}.lock"
+    [ -e "$f" ] || return 0
+    if ! flock -w 21600 "$f" true; then
+        log "[commit] Timed out waiting for $name to finish; committing anyway."
+    fi
 }
 
 # -----------------------------------------------------------
@@ -145,7 +156,7 @@ run_data_gathering() {
 run_commit() {
     cd "$SCRIPT_DIR"
     if [ -s logs/cron.log ]; then
-        local archive="logs/cron.log.$(date '+%Y-%m').log"
+        local archive="logs/cron.log.$(date '+%Y-%m-%d').log"
         cp logs/cron.log "$archive" && : > logs/cron.log
         gzip -f "$archive"
         log "[commit] Rotated cron.log -> ${archive}.gz"
@@ -157,12 +168,12 @@ run_commit() {
         return
     fi
     local msg
-    msg="chore: monthly report output snapshot ($(date '+%Y-%m'))"
+    msg="chore: weekly report output snapshot ($(date '+%Y-%m-%d'))"
     git commit -m "$msg" >/dev/null
     log "[commit] Committed: $msg"
 }
 
-# Push monthly so the public data cited on ieisi.org/citations stays current.
+# Push weekly so the public data cited on ieisi.org/citations stays current.
 run_push() {
     cd "$SCRIPT_DIR"
     local branch
@@ -205,6 +216,8 @@ case "$MODE" in
     commit)
         acquire_lock commit
         trap release_lock EXIT
+        wait_for_lock full
+        wait_for_lock reports
         run_commit
         run_push
         ;;
@@ -214,7 +227,7 @@ case "$MODE" in
         echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
-        echo "  commit   — Commit changed report outputs and push (monthly)"
+        echo "  commit   — Commit changed report outputs and push (weekly, Sunday)"
         exit 1
         ;;
 esac
