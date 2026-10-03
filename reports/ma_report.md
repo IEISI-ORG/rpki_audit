@@ -4,10 +4,10 @@
      NATIONAL ROUTING SECURITY: MA (Morocco)
     ====================================================================================================
     Total Networks:      32
-    Total Cone Gravity:  34
+    Total Cone Gravity:  33
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    21 (65.6%) -> Protects 5.9% of Traffic
-    VULNERABLE NETWORKS:         4 (12.5%) -> Exposes  0.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):    20 (62.5%) -> Protects 6.1% of Traffic
+    VULNERABLE NETWORKS:         5 (15.6%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE MA CORE (Top 20 Networks)
@@ -15,25 +15,25 @@
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
     AS36925  | PARTIAL: VULNERABLE (Mixed)    | 12       | 99%    | Orange Maroc
-    AS36884  | PARTIAL: VULNERABLE (Mixed)    | 10       | 98%    | Wana Corporate
+    AS36884  | PARTIAL: VULNERABLE (Mixed)    | 9        | 98%    | Wana Corporate
     AS6713   | PARTIAL: VULNERABLE (Mixed)    | 8        | 99%    | Maroc Telecom
-    AS328867 | PASSIVE (Clean Pipe)           | 2        | -      | Corebach Backbone SARL
     AS36956  | Unverified (Transit/Peer?)     | 2        | -      | Office National des Postes et Telecommun
+    AS328867 | PASSIVE (Clean Pipe)           | 2        | -      | Corebach Backbone SARL
     AS201129 | STUB: VULNERABLE               | 0        | -      | Linceris International Cloud Solutions -
     AS329280 | STUB: VULNERABLE               | 0        | -      | Centre Royal de Télédétection Spatiale
     AS328960 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Ministry of Foreign Affairs African Coop
     AS329461 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Maroc Datacenter MDC
     AS329442 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
-    AS329628 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | AL BARID BANK
     AS329691 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | AFRIQUIA S.M.D.C.
     AS329612 | STUB: VULNERABLE               | 0        | -      | MTDS
     AS329605 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | ATTIJARIWAFABANK
-    AS327989 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Genious Communications
+    AS329628 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | AL BARID BANK
     AS328066 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | MEDAFRICA SYSTEMS
     AS328055 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | NPONE
-    AS328272 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | CIE NATIONALE ROYAL AIR MAROC
+    AS328280 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
+    AS328272 | STUB: VULNERABLE               | 0        | -      | CIE NATIONALE ROYAL AIR MAROC
     AS328268 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INSTITUT NATIONAL DES POSTES ET TELECOMM
-    AS327917 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Direction Generale de la Securite des Sy
+    AS327989 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Genious Communications
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to MA?)

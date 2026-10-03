@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: PT (Portugal)
     ====================================================================================================
     Total Networks:      167
-    Total Cone Gravity:  237
+    Total Cone Gravity:  235
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    69 (41.3%) -> Protects 35.4% of Traffic
-    VULNERABLE NETWORKS:        58 (34.7%) -> Exposes  15.6% of Traffic
+    SECURE (ACTIVE/PASSIVE):    71 (42.5%) -> Protects 36.2% of Traffic
+    VULNERABLE NETWORKS:        57 (34.1%) -> Exposes  15.3% of Traffic
 
     ====================================================================================================
      THE PT CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS6424   | PARTIAL: VULNERABLE (Mixed)    | 95       | -      | EDGOO NETWORKS
-    AS2860   | ACTIVE LOCAL ROV               | 57       | 99%    | NOS COMUNICACOES, S.A.
+    AS6424   | PARTIAL: VULNERABLE (Mixed)    | 94       | -      | EDGOO NETWORKS
+    AS2860   | ACTIVE LOCAL ROV               | 58       | 99%    | NOS COMUNICACOES, S.A.
     AS15525  | REGRESSED                      | 25       | 1%     | MEO - SERVICOS DE COMUNICACOES E MULTIME
     AS8657   | PARTIAL: VULNERABLE (Mixed)    | 15       | -      | MEO International Backbone
-    AS9186   | REGRESSED                      | 12       | 2%     | ONITELECOM - INFOCOMUNICACOES, S.A.
+    AS9186   | REGRESSED                      | 11       | 2%     | ONITELECOM - INFOCOMUNICACOES, S.A.
     AS12353  | ACTIVE LOCAL ROV               | 7        | 99%    | Vodafone Portugal - Communicacoes Pessoa
     AS3243   | VOLATILE                       | 6        | 0%     | MEO
     AS1930   | ACTIVE LOCAL ROV               | 5        | 99%    | Fundacao para a Ciencia e a Tecnologia, 
     AS29003  | PASSIVE (Clean Pipe)           | 4        | -      | IP TELECOM, SERVICOS DE TELECOMUNICACOES
     AS24768  | ACTIVE LOCAL ROV               | 3        | 0%     | AlmourolTec, Lda
-    AS209874 | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Tech Tide Portugal Unipessoal LDA
     AS47787  | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | EDGOO NETWORKS UNIPESSOAL LDA
     AS44222  | PASSIVE (Clean Pipe)           | 1        | -      | Nuno Felgueiras
+    AS209874 | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Tech Tide Portugal Unipessoal LDA
     AS50293  | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Interfiber Networks LDA
-    AS12926  | PARTIAL: VULNERABLE (Mixed)    | 1        | 8%     | AR TELECOM - Acessos e Redes de Telecomu
     AS201782 | PASSIVE (Clean Pipe)           | 1        | -      | Make It Simple Consultoria Informatica L
+    AS12926  | PARTIAL: VULNERABLE (Mixed)    | 1        | 8%     | AR TELECOM - Acessos e Redes de Telecomu
     AS200706 | STUB: VULNERABLE               | 0        | -      | AXIANSEU - DIGITAL SOLUTIONS, S.A.
     AS200859 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | IDON Digital Solutions, Unipessoal LDA
+    AS200952 | NOT ROUTED                     | 0        | -      | Samuel Barata
     AS200942 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | ATEP - Amkor Technology Portugal, S.A.
-    AS200454 | STUB: VULNERABLE               | 0        | -      | Tomas Oliveira Valente Leite de Castro
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PT?)

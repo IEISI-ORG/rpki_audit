@@ -16,8 +16,8 @@
     ----------------------------------------------------------------------------------------------------
     AS154410 | Unverified (Transit/Peer?)     | 6        | -      | Marshall Telecom Ltd
     AS200877 | NOT ROUTED                     | 0        | -      | iSH TRANSIT LTD
-    AS205009 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | HDM Solutions LTD
     AS201501 | STUB: VULNERABLE               | 0        | -      | ISECLAYER INC
+    AS205009 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | HDM Solutions LTD
     AS204938 | NOT ROUTED                     | 0        | -      | APEX NODE LTD
     AS213205 | NOT ROUTED                     | 0        | -      | Unknown
     AS213846 | NOT ROUTED                     | 0        | -      | NALMI LIMITED

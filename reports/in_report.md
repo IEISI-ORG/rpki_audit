@@ -3,37 +3,37 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: IN (India)
     ====================================================================================================
-    Total Networks:      6,197
-    Total Cone Gravity:  14,447
+    Total Networks:      6,207
+    Total Cone Gravity:  16,257
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   195 ( 3.1%) -> Protects 3.9% of Traffic
-    VULNERABLE NETWORKS:      2586 (41.7%) -> Exposes  89.7% of Traffic
+    SECURE (ACTIVE/PASSIVE):   199 ( 3.2%) -> Protects 3.5% of Traffic
+    VULNERABLE NETWORKS:      2591 (41.7%) -> Exposes  90.5% of Traffic
 
     ====================================================================================================
      THE IN CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS9498   | REGRESSED                      | 7428     | 1%     | Bharti Airtel Ltd.
-    AS4755   | REGRESSED                      | 2541     | 4%     | TATA Communications (formerly VSNL)
-    AS18229  | REGRESSED                      | 570      | 0%     | CtrlS
-    AS9583   | PASSIVE (Clean Pipe)           | 555      | 63%    | Sify Limited
-    AS55836  | Unverified (Transit/Peer?)     | 392      | 0%     | Reliance Jio Infocomm Limited
-    AS45820  | REGRESSED                      | 383      | 1%     | Tata Teleservices ISP
-    AS55410  | PARTIAL: VULNERABLE (Mixed)    | 374      | 3%     | Vodafone Idea Ltd
-    AS9730   | VULNERABLE                     | 234      | -      | Bharti Telesonic Ltd
-    AS17762  | REGRESSED                      | 142      | 1%     | Tata Teleservices Maharashtra Ltd
-    AS17665  | REGRESSED                      | 135      | 0%     | ONEOTT INTERTAINMENT LIMITED
-    AS45117  | REGRESSED                      | 108      | 0%     | Ishan Netsol Pvt Ltd
+    AS9498   | REGRESSED                      | 9481     | 1%     | Bharti Airtel Ltd.
+    AS4755   | REGRESSED                      | 2235     | 4%     | TATA Communications (formerly VSNL)
+    AS18229  | REGRESSED                      | 600      | 0%     | CtrlS
+    AS9583   | PASSIVE (Clean Pipe)           | 550      | 63%    | Sify Limited
+    AS55836  | Unverified (Transit/Peer?)     | 448      | 0%     | Reliance Jio Infocomm Limited
+    AS45820  | REGRESSED                      | 390      | 1%     | Tata Teleservices ISP
+    AS55410  | PARTIAL: VULNERABLE (Mixed)    | 376      | 3%     | Vodafone Idea Ltd
+    AS9730   | VULNERABLE                     | 230      | -      | Bharti Telesonic Ltd
+    AS17762  | REGRESSED                      | 127      | 1%     | Tata Teleservices Maharashtra Ltd
+    AS45117  | REGRESSED                      | 124      | 0%     | Ishan Netsol Pvt Ltd
+    AS17665  | REGRESSED                      | 115      | 0%     | ONEOTT INTERTAINMENT LIMITED
     AS55824  | INCONSISTENT                   | 87       | 3%     | NKN Core Network
     AS9829   | PARTIAL: VULNERABLE (Mixed)    | 84       | 0%     | BSNL (Bharat Sanchar Nigam Ltd)
-    AS17439  | REGRESSED                      | 70       | -      | NTT Communications India Pvt. Ltd.
+    AS17439  | REGRESSED                      | 64       | -      | NTT Communications India Pvt. Ltd.
     AS132770 | REGRESSED                      | 63       | 0%     | Gazon Communications India Limited
-    AS133296 | VULNERABLE (Atlas Verified)    | 60       | 1%     | Web Werks India Pvt. Ltd.
-    AS135718 | REGRESSED                      | 50       | 0%     | DISHAWAVES INFONET PVT. LTD
+    AS133296 | VULNERABLE (Atlas Verified)    | 61       | 1%     | Web Werks India Pvt. Ltd.
+    AS135718 | REGRESSED                      | 51       | 0%     | DISHAWAVES INFONET PVT. LTD
     AS136334 | REGRESSED                      | 49       | 0%     | Vortex Netsol Private Limited
+    AS151690 | REGRESSED                      | 49       | 0%     | FAB FIVE NETWORK PRIVATE LIMITED
     AS137085 | REGRESSED                      | 49       | 0%     | ANONET COMMUNICATIONS PVT LTD
-    AS151690 | REGRESSED                      | 44       | 0%     | FAB FIVE NETWORK PRIVATE LIMITED
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to IN?)

@@ -4,10 +4,10 @@
      NATIONAL ROUTING SECURITY: EG (Egypt)
     ====================================================================================================
     Total Networks:      86
-    Total Cone Gravity:  140
+    Total Cone Gravity:  145
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    59 (68.6%) -> Protects 40.0% of Traffic
-    VULNERABLE NETWORKS:        12 (14.0%) -> Exposes  7.1% of Traffic
+    SECURE (ACTIVE/PASSIVE):    59 (68.6%) -> Protects 42.1% of Traffic
+    VULNERABLE NETWORKS:        12 (14.0%) -> Exposes  6.9% of Traffic
 
     ====================================================================================================
      THE EG CORE (Top 20 Networks)
@@ -15,25 +15,25 @@
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
     AS8452   | PARTIAL: VULNERABLE (Mixed)    | 74       | 98%    | Telecom Egypt
-    AS24835  | ACTIVE LOCAL ROV               | 34       | 99%    | Vodafone Egypt
-    AS24863  | ACTIVE LOCAL ROV               | 14       | 97%    | Link Egypt (Link.NET)
+    AS24835  | ACTIVE LOCAL ROV               | 36       | 99%    | Vodafone Egypt
+    AS24863  | ACTIVE LOCAL ROV               | 15       | 97%    | Link Egypt (Link.NET)
     AS36992  | REGRESSED                      | 10       | 1%     | Etisalat Egypt
-    AS20928  | ACTIVE LOCAL ROV               | 8        | 95%    | The Noor Group
+    AS20928  | ACTIVE LOCAL ROV               | 10       | 95%    | The Noor Group
     AS207740 | STUB: VULNERABLE               | 0        | -      | Youssef Hamed
-    AS329132 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Company for Telecommunication S
-    AS329114 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Halan for technology and services
-    AS329131 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Bank of Kuwait (NBK) - Egypt - 
     AS329359 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Agility Infrastructure a limited liabili
+    AS329397 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GlobeMed Egypt
     AS329352 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | IP4Solutions
     AS329336 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | WhiTech
-    AS329397 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GlobeMed Egypt
     AS329325 | STUB: VOLATILE                 | 0        | -      | Maxko for Gaming Development LLC
     AS328927 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Fixed Solutions
-    AS328876 | STUB: VULNERABLE               | 0        | -      | Unipak Nile Ltd
     AS328972 | STUB: VULNERABLE               | 0        | -      | Geidea Technology
     AS328969 | NOT ROUTED                     | 0        | -      | Albaraka Bank of Egypt
-    AS329720 | STUB: VULNERABLE               | 0        | -      | Thndr Securities Brokerage
+    AS328876 | STUB: VULNERABLE               | 0        | -      | Unipak Nile Ltd
+    AS329132 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Company for Telecommunication S
+    AS329131 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Bank of Kuwait (NBK) - Egypt - 
+    AS329114 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Halan for technology and services
     AS329763 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Housing and Development Bank
+    AS329520 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Arpu Telecommunication Services S.A.E
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to EG?)
@@ -59,4 +59,4 @@
     #17  | AS29632  | 1          | PARTIAL: VULNERABLE (Mixed)    | Netassist International EOOD
     #18  | AS8772   | 1          | REGRESSED                      | NetAssist LLC
     #19  | AS211083 | 1          | NOT ROUTED                     | ServerGurus UG
-    #20  | AS34927  | 1          | PASSIVE (Clean Pipe)           | iFog GmbH
+    #20  | AS34927  | 1          | VULNERABLE (Atlas Verified)    | iFog GmbH

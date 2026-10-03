@@ -3,37 +3,37 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: FR (France)
     ====================================================================================================
-    Total Networks:      1,882
-    Total Cone Gravity:  166,184
+    Total Networks:      1,887
+    Total Cone Gravity:  164,686
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   655 (34.8%) -> Protects 46.4% of Traffic
-    VULNERABLE NETWORKS:       648 (34.4%) -> Exposes  7.6% of Traffic
+    SECURE (ACTIVE/PASSIVE):   674 (35.7%) -> Protects 46.3% of Traffic
+    VULNERABLE NETWORKS:       636 (33.7%) -> Exposes  7.6% of Traffic
 
     ====================================================================================================
      THE FR CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS5511   | CORE: ACTIVE PROTECTOR         | 61995    | 98%    | Orange S.A.
-    AS35280  | PARTIAL: VULNERABLE (Mixed)    | 33369    | -      | F5 Networks SARL
-    AS34019  | PARTIAL: VULNERABLE (Mixed)    | 25438    | -      | Hivane Association
-    AS212024 | PASSIVE (Clean Pipe)           | 13096    | -      | Marc Schmitt
-    AS20766  | VULNERABLE (Atlas Verified)    | 12419    | -      | Association "Gitoyen"
-    AS8218   | PARTIAL: VULNERABLE (Mixed)    | 8323     | -      | Zayo Europe
-    AS29075  | PARTIAL: VULNERABLE (Mixed)    | 3973     | 100%   | IELO-LIAZO SERVICES SAS
-    AS204092 | PARTIAL: VULNERABLE (Mixed)    | 3900     | -      | Association GRIFON
-    AS50628  | PASSIVE (Clean Pipe)           | 1757     | -      | Leonix Telecom SAS
-    AS16276  | PARTIAL: VULNERABLE (Mixed)    | 543      | 1%     | OVH SAS
-    AS35661  | PARTIAL: VULNERABLE (Mixed)    | 212      | 3%     | VIRTUA SYSTEMS SAS
+    AS5511   | CORE: ACTIVE PROTECTOR         | 61919    | 98%    | Orange S.A.
+    AS35280  | PARTIAL: VULNERABLE (Mixed)    | 32708    | -      | F5 Networks SARL
+    AS34019  | PARTIAL: VULNERABLE (Mixed)    | 24934    | -      | Hivane Association
+    AS212024 | PASSIVE (Clean Pipe)           | 12523    | -      | Marc Schmitt
+    AS20766  | VULNERABLE (Atlas Verified)    | 12333    | -      | Association "Gitoyen"
+    AS8218   | PARTIAL: VULNERABLE (Mixed)    | 8789     | -      | Zayo Europe
+    AS29075  | PARTIAL: VULNERABLE (Mixed)    | 3972     | 100%   | IELO-LIAZO SERVICES SAS
+    AS204092 | PARTIAL: VULNERABLE (Mixed)    | 3898     | -      | Association GRIFON
+    AS50628  | PASSIVE (Clean Pipe)           | 1693     | -      | Leonix Telecom SAS
+    AS16276  | PARTIAL: VULNERABLE (Mixed)    | 555      | 1%     | OVH SAS
+    AS35661  | PARTIAL: VULNERABLE (Mixed)    | 224      | 3%     | VIRTUA SYSTEMS SAS
     AS30781  | PARTIAL: VULNERABLE (Mixed)    | 169      | 100%   | Free Pro SAS
-    AS3215   | ACTIVE LOCAL ROV               | 138      | 100%   | Orange S.A.
-    AS29169  | PARTIAL: VULNERABLE (Mixed)    | 117      | -      | GANDI SAS
+    AS3215   | ACTIVE LOCAL ROV               | 130      | 100%   | Orange S.A.
+    AS29169  | PARTIAL: VULNERABLE (Mixed)    | 102      | -      | GANDI SAS
     AS15557  | PARTIAL: VULNERABLE (Mixed)    | 94       | 99%    | SFR SA
     AS35625  | PARTIAL: VULNERABLE (Mixed)    | 67       | 1%     | Eurofiber France SAS
-    AS62000  | REGRESSED                      | 53       | -      | SERVERD SAS
+    AS62000  | REGRESSED                      | 49       | -      | SERVERD SAS
     AS2200   | REGRESSED                      | 39       | 2%     | Renater
+    AS16347  | REGRESSED                      | 25       | 1%     | ADISTA SAS
     AS39801  | PARTIAL: VULNERABLE (Mixed)    | 24       | -      | France-IX L3 Services
-    AS16347  | REGRESSED                      | 22       | 1%     | ADISTA SAS
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to FR?)

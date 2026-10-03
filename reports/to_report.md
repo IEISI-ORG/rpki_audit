@@ -15,8 +15,8 @@
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
     AS140987 | NOT ROUTED                     | 0        | -      | Government of Tonga, Ministry of MEIDECC
-    AS132831 | STUB: UNRELIABLE               | 0        | -      | TokoWireless Limited
     AS132579 | STUB: VULNERABLE               | 0        | -      | Tonga Cable Limited
+    AS132831 | STUB: UNRELIABLE               | 0        | -      | TokoWireless Limited
     AS38201  | STUB: VOLATILE                 | 0        | 100%   | Tonga Communications Internet Network
     AS38198  | NOT ROUTED                     | 0        | 100%   | Digicel Tonga Ltd
 
@@ -25,10 +25,10 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
-    #2   | AS135069 | 1          | REGRESSED                      | Feenix Communications Limited
-    #3   | AS38198  | 1          | NOT ROUTED                     | Digicel Tonga Ltd
-    #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #2   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
+    #3   | AS135069 | 1          | REGRESSED                      | Feenix Communications Limited
+    #4   | AS38198  | 1          | NOT ROUTED                     | Digicel Tonga Ltd
     #5   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
     #6   | AS132579 | 1          | STUB: VULNERABLE               | Tonga Cable Limited
     #7   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited

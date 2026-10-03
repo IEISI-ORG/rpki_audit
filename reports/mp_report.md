@@ -6,7 +6,7 @@
     Total Networks:      2
     Total Cone Gravity:  4
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 (50.0%) -> Protects 100.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
     VULNERABLE NETWORKS:         1 (50.0%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
@@ -14,7 +14,7 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS7131   | PASSIVE (Clean Pipe)           | 4        | 2%     | PTI Pacifica Inc.
+    AS7131   | PARTIAL: VULNERABLE (Mixed)    | 4        | 2%     | PTI Pacifica Inc.
     AS9839   | STUB: VULNERABLE               | 0        | -      | Micronesian Telecommunications Corp
 
     ====================================================================================================

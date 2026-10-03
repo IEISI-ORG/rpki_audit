@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: NZ (New Zealand)
     ====================================================================================================
     Total Networks:      703
-    Total Cone Gravity:  2,201
+    Total Cone Gravity:  2,211
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    77 (11.0%) -> Protects 5.4% of Traffic
-    VULNERABLE NETWORKS:       315 (44.8%) -> Exposes  84.6% of Traffic
+    SECURE (ACTIVE/PASSIVE):    76 (10.8%) -> Protects 5.6% of Traffic
+    VULNERABLE NETWORKS:       316 (45.0%) -> Exposes  84.4% of Traffic
 
     ====================================================================================================
      THE NZ CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS64073  | REGRESSED                      | 1683     | 0%     | Vetta Group
-    AS9790   | VOLATILE                       | 108      | 99%    | Two Degrees Networks Limited
+    AS64073  | REGRESSED                      | 1685     | 0%     | Vetta Group
+    AS9790   | VOLATILE                       | 112      | 99%    | Two Degrees Networks Limited
     AS45177  | PARTIAL: VULNERABLE (Mixed)    | 55       | 0%     | Devoli
     AS135069 | REGRESSED                      | 55       | 0%     | Feenix Communications Limited
     AS55850  | PARTIAL: VULNERABLE (Mixed)    | 51       | 0%     | Mercury NZ Limited
-    AS4648   | REGRESSED                      | 47       | 0%     | Spark New Zealand
+    AS4648   | REGRESSED                      | 48       | 0%     | Spark New Zealand
     AS38022  | PARTIAL: VULNERABLE (Mixed)    | 32       | -      | REANNZ National Research and Education N
-    AS4768   | Unverified (Transit/Peer?)     | 31       | 3%     | One New Zealand Group Limited
+    AS4768   | Unverified (Transit/Peer?)     | 32       | 3%     | One New Zealand Group Limited
     AS23838  | PARTIAL: VULNERABLE (Mixed)    | 22       | -      | Solarix Networks Limited
     AS18400  | VULNERABLE                     | 16       | -      | Xtreme Networks Limited
     AS24324  | REGRESSED                      | 14       | 0%     | Kordia Limited
     AS4049   | REGRESSED                      | 12       | 0%     | CELLO GROUP LIMITED
-    AS23655  | VOLATILE                       | 10       | 99%    | 2degrees Networks Limited
-    AS56030  | REGRESSED                      | 9        | 0%     | Voyager Internet Ltd.
+    AS23655  | VOLATILE                       | 11       | 99%    | 2degrees Networks Limited
+    AS56030  | REGRESSED                      | 10       | 0%     | Voyager Internet Ltd.
     AS151336 | PARTIAL: VULNERABLE (Mixed)    | 6        | -      | Verge
-    AS17705  | REGRESSED                      | 6        | 0%     | InSPire Net Ltd
     AS4771   | REGRESSED                      | 6        | 0%     | Spark New Zealand Trading Ltd.
+    AS17705  | REGRESSED                      | 6        | 0%     | InSPire Net Ltd
+    AS45267  | REGRESSED                      | 4        | 0%     | Lightwire LTD
+    AS9500   | REGRESSED                      | 4        | 0%     | One New Zealand Group Limited
     AS45637  | REGRESSED                      | 4        | 0%     | UniFone New Zealand Ltd
-    AS138398 | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | Prodigi Technology Services Limited
-    AS24183  | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | DTS LTD
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NZ?)

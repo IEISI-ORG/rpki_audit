@@ -17,8 +17,8 @@
     AS45495  | VULNERABLE                     | 3        | -      | Interchange Ltd.
     AS23959  | STUB: VULNERABLE               | 0        | 0%     | Owl Limited
     AS9249   | STUB: VULNERABLE               | 0        | 0%     | Telecom Vanuatu Limited
-    AS136949 | NOT ROUTED                     | 0        | -      | Engineering Business Services Limited
     AS136996 | STUB: VULNERABLE               | 0        | -      | Pacific Networks
+    AS136949 | NOT ROUTED                     | 0        | -      | Engineering Business Services Limited
     AS132429 | STUB: UNRELIABLE               | 0        | 98%    | Digicel Vanuatu LTD
     AS132254 | STUB: VULNERABLE               | 0        | -      | PRIMA DC LIMITED
     AS132228 | STUB: VULNERABLE               | 0        | -      | Vanuatu Government
@@ -43,8 +43,8 @@
     #8   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
     #9   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
     #10  | AS133383 | 1          | NOT ROUTED                     | Vanuatu Government
-    #11  | AS142616 | 1          | PASSIVE (Clean Pipe)           | Misaka Network, Inc.
+    #11  | AS142616 | 1          | STUB: PASSIVE (Clean Pipe)     | Misaka Network, Inc.
     #12  | AS3214   | 1          | PARTIAL: VULNERABLE (Mixed)    | xTom GmbH
     #13  | AS8888   | 1          | PARTIAL: VULNERABLE (Mixed)    | xTom Pty Ltd
     #14  | AS23961  | 1          | PARTIAL: VULNERABLE (Mixed)    | Misaka Network, Inc.
-    #15  | AS57695  | 1          | PASSIVE (Clean Pipe)           | Misaka Network, Inc.
+    #15  | AS57695  | 1          | ACTIVE LOCAL ROV               | Misaka Network, Inc.

@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: ZA (South Africa)
     ====================================================================================================
     Total Networks:      751
-    Total Cone Gravity:  862
+    Total Cone Gravity:  882
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   173 (23.0%) -> Protects 1.5% of Traffic
-    VULNERABLE NETWORKS:       371 (49.4%) -> Exposes  57.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):   177 (23.6%) -> Protects 1.2% of Traffic
+    VULNERABLE NETWORKS:       368 (49.0%) -> Exposes  58.2% of Traffic
 
     ====================================================================================================
      THE ZA CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS37271  | PARTIAL: VULNERABLE (Mixed)    | 169      | 100%   | Workonline Communications(Pty) Ltd
-    AS3741   | REGRESSED                      | 96       | 1%     | Dimension Data
-    AS16637  | REGRESSED                      | 88       | 0%     | MTN SA (Bayobab)
-    AS36994  | REGRESSED                      | 59       | 0%     | Vodacom
-    AS5713   | REGRESSED                      | 55       | 0%     | Telkom SA Ltd.
+    AS37271  | PARTIAL: VULNERABLE (Mixed)    | 167      | 100%   | Workonline Communications(Pty) Ltd
+    AS3741   | REGRESSED                      | 112      | 1%     | Dimension Data
+    AS16637  | REGRESSED                      | 90       | 0%     | MTN SA (Bayobab)
+    AS36994  | REGRESSED                      | 61       | 0%     | Vodacom
+    AS5713   | REGRESSED                      | 53       | 0%     | Telkom SA Ltd.
     AS37497  | PARTIAL: VULNERABLE (Mixed)    | 41       | -      | Network Platforms (PTY) LTD
     AS328748 | PARTIAL: VULNERABLE (Mixed)    | 36       | -      | Agile Solutions Provider (PTY) LTD
     AS327782 | REGRESSED                      | 34       | 0%     | Metrofibre Networx
     AS327693 | PARTIAL: VULNERABLE (Mixed)    | 29       | 85%    | Echotel Pty Ltd
-    AS9129   | Unverified (Transit/Peer?)     | 27       | 1%     | MTN Business Kenya
+    AS9129   | Unverified (Transit/Peer?)     | 25       | 1%     | MTN Business Kenya
     AS36874  | REGRESSED                      | 17       | 0%     | Cybersmart
-    AS328333 | REGRESSED                      | 17       | 5%     | Fixed Mobile Telecommunications (Pty) LT
-    AS37179  | REGRESSED                      | 16       | -      | Africa Independent Network Exchange (Pty
     AS37731  | PARTIAL: VULNERABLE (Mixed)    | 16       | -      | Web Squad Connect (Pty) Ltd
+    AS37179  | REGRESSED                      | 16       | -      | Africa Independent Network Exchange (Pty
+    AS328333 | REGRESSED                      | 15       | 5%     | Fixed Mobile Telecommunications (Pty) LT
     AS37358  | REGRESSED                      | 12       | 1%     | BitCo
+    AS10798  | VULNERABLE                     | 12       | -      | The Standard Bank of South Africa (Propr
     AS37239  | REGRESSED                      | 10       | 1%     | ICTGlobe Management (Pty) Ltd
+    AS25818  | PARTIAL: VULNERABLE (Mixed)    | 10       | -      | CMC NETWORK (PTY) LTD
     AS37153  | VULNERABLE (Atlas Verified)    | 9        | 5%     | Xneelo (Pty) Ltd
-    AS37680  | REGRESSED                      | 9        | 0%     | Cool Ideas Service Provider (Pty) Ltd
     AS11845  | PARTIAL: VULNERABLE (Mixed)    | 9        | 99%    | Vox Telecom Ltd
-    AS37739  | REGRESSED                      | 8        | -      | Abantu Cloud Africa (Pty) Ltd
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to ZA?)

@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: GR (Greece)
     ====================================================================================================
     Total Networks:      262
-    Total Cone Gravity:  602
+    Total Cone Gravity:  585
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   124 (47.3%) -> Protects 77.6% of Traffic
-    VULNERABLE NETWORKS:        94 (35.9%) -> Exposes  5.6% of Traffic
+    SECURE (ACTIVE/PASSIVE):   130 (49.6%) -> Protects 77.1% of Traffic
+    VULNERABLE NETWORKS:        90 (34.4%) -> Exposes  5.8% of Traffic
 
     ====================================================================================================
      THE GR CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS8280   | VOLATILE                       | 359      | -      | SYNAPSECOM S.A. Provider of Telecommunic
+    AS8280   | VOLATILE                       | 346      | -      | SYNAPSECOM S.A. Provider of Telecommunic
     AS6799   | Unverified (Transit/Peer?)     | 40       | 99%    | Ote SA (Hellenic Telecommunications Orga
     AS1241   | PARTIAL: VULNERABLE (Mixed)    | 31       | 99%    | Nova Telecommunications & Media Single M
-    AS3329   | ACTIVE LOCAL ROV               | 29       | 99%    | Vodafone Greece
     AS5408   | ACTIVE LOCAL ROV               | 29       | 99%    | National Infrastructures for Research an
-    AS199081 | PARTIAL: VULNERABLE (Mixed)    | 23       | 100%   | Lancom Ltd.
+    AS3329   | ACTIVE LOCAL ROV               | 29       | 99%    | Vodafone Greece
+    AS199081 | PARTIAL: VULNERABLE (Mixed)    | 24       | 100%   | Lancom Ltd.
     AS198477 | PASSIVE (Clean Pipe)           | 23       | -      | TI SPARKLE GREECE SA
-    AS56910  | PASSIVE (Clean Pipe)           | 20       | -      | Digital Realty Hellas Single Member S.A
     AS25472  | REGRESSED                      | 19       | 0%     | Nova Telecommunications & Media Single M
+    AS56910  | PASSIVE (Clean Pipe)           | 17       | -      | Digital Realty Hellas Single Member S.A
     AS206735 | REGRESSED                      | 12       | 0%     | Novelcomm LP
-    AS216285 | PASSIVE (Clean Pipe)           | 4        | -      | MYIP NETWORKS G.P.
-    AS12713  | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Ote SA (Hellenic Telecommunications Orga
+    AS216285 | PASSIVE (Clean Pipe)           | 3        | -      | MYIP NETWORKS G.P.
     AS213835 | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Solidity Technology Services SA
     AS4601   | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Antonios A. Chariton
     AS50919  | REGRESSED                      | 1        | -      | INTERWORKS Single Member S.A.
     AS215492 | PASSIVE (Clean Pipe)           | 1        | -      | BUTLER CHAT I.K.E.
-    AS196945 | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Microbase PC
-    AS51505  | REGRESSED                      | 1        | 0%     | Dimosia Epicheirisi Ilektrismou Anonymi 
+    AS196945 | PASSIVE (Clean Pipe)           | 1        | -      | Microbase PC
     AS35506  | ACTIVE LOCAL ROV               | 1        | 99%    | INFORMATION SOCIETY S.A.
     AS56457  | ACTIVE LOCAL ROV               | 1        | -      | FASTPATH IKE
+    AS51505  | REGRESSED                      | 1        | 0%     | Dimosia Epicheirisi Ilektrismou Anonymi 
+    AS12713  | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Ote SA (Hellenic Telecommunications Orga
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to GR?)

@@ -4,17 +4,17 @@
      NATIONAL ROUTING SECURITY: GU (Guam)
     ====================================================================================================
     Total Networks:      10
-    Total Cone Gravity:  6
+    Total Cone Gravity:  7
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 (10.0%) -> Protects 33.3% of Traffic
-    VULNERABLE NETWORKS:         6 (60.0%) -> Exposes  66.7% of Traffic
+    SECURE (ACTIVE/PASSIVE):     1 (10.0%) -> Protects 28.6% of Traffic
+    VULNERABLE NETWORKS:         6 (60.0%) -> Exposes  71.4% of Traffic
 
     ====================================================================================================
      THE GU CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS3605   | REGRESSED                      | 4        | 1%     | Guam Cablevision, LLC.
+    AS3605   | REGRESSED                      | 5        | 1%     | Guam Cablevision, LLC.
     AS395400 | PASSIVE (Clean Pipe)           | 2        | -      | UNIVERSITY OF GUAM
     AS152735 | STUB: VULNERABLE               | 0        | -      | Guam Exchange
     AS23676  | STUB: VULNERABLE               | 0        | -      | Mariana Islands Internet Exchange
@@ -30,7 +30,7 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS7131   | 4          | PASSIVE (Clean Pipe)           | PTI Pacifica Inc.
+    #1   | AS7131   | 4          | PARTIAL: VULNERABLE (Mixed)    | PTI Pacifica Inc.
     #2   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #3   | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
     #4   | AS17456  | 1          | STUB: VULNERABLE               | Pacific Data Systems

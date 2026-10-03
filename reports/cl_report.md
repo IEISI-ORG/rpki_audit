@@ -4,36 +4,36 @@
      NATIONAL ROUTING SECURITY: CL (Chile)
     ====================================================================================================
     Total Networks:      401
-    Total Cone Gravity:  294
+    Total Cone Gravity:  297
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    68 (17.0%) -> Protects 11.2% of Traffic
-    VULNERABLE NETWORKS:       236 (58.9%) -> Exposes  69.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):    64 (16.0%) -> Protects 10.8% of Traffic
+    VULNERABLE NETWORKS:       237 (59.1%) -> Exposes  69.0% of Traffic
 
     ====================================================================================================
      THE CL CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS263702 | REGRESSED                      | 64       | 0%     | GRUPO ZGH SPA
-    AS14259  | REGRESSED                      | 60       | 1%     | Gtd Internet S.A.
-    AS7004   | ACTIVE LOCAL ROV               | 30       | 95%    | TELEFÓNICA CHILE S.A.
-    AS16629  | Unverified (Transit/Peer?)     | 19       | 98%    | CTC. CORP S.A. (TELEFONICA EMPRESAS)
+    AS263702 | REGRESSED                      | 66       | 0%     | GRUPO ZGH SPA
+    AS14259  | REGRESSED                      | 61       | 1%     | Gtd Internet S.A.
+    AS7004   | ACTIVE LOCAL ROV               | 29       | 95%    | TELEFÓNICA CHILE S.A.
     AS6471   | Unverified (Transit/Peer?)     | 19       | -      | ENTEL CHILE S.A.
+    AS16629  | Unverified (Transit/Peer?)     | 19       | 98%    | CTC. CORP S.A. (TELEFONICA EMPRESAS)
     AS61503  | REGRESSED                      | 17       | 0%     | SERVICIOS DE TELECOMUNICACIONES INTERCAB
     AS6429   | REGRESSED                      | 15       | 6%     | Telmex Chile Internet S.A.
-    AS263237 | PARTIAL: VULNERABLE (Mixed)    | 13       | -      | PowerHost Telecom SPA
-    AS266771 | REGRESSED                      | 12       | 16%    | MAKRONET CONSULTING TECNOLOGIA E INFORMA
-    AS14117  | REGRESSED                      | 7        | 0%     | Telefonica del Sur S.A.
+    AS263237 | PARTIAL: VULNERABLE (Mixed)    | 14       | -      | PowerHost Telecom SPA
+    AS266771 | REGRESSED                      | 11       | 16%    | MAKRONET CONSULTING TECNOLOGIA E INFORMA
+    AS14117  | REGRESSED                      | 8        | 0%     | Telefonica del Sur S.A.
     AS265757 | REGRESSED                      | 6        | 0%     | Intersur Limitada
     AS11340  | REGRESSED                      | 6        | 0%     | Red Universitaria Nacional
     AS264827 | REGRESSED                      | 5        | 0%     | WIRCOM S.P.A.
     AS10778  | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | MCL Internet
     AS64139  | REGRESSED                      | 4        | 0%     | GRUPO METROWAN TELECOM SPA
-    AS27901  | REGRESSED                      | 3        | 0%     | Pacifico Cable SPA.
     AS262237 | PARTIAL: VULNERABLE (Mixed)    | 3        | -      | Orbyta S.A.
     AS266830 | REGRESSED                      | 3        | 0%     | AIRPOINT TELECOMUNICACIONES LIMITADA
+    AS27901  | REGRESSED                      | 2        | 0%     | Pacifico Cable SPA.
     AS27986  | PASSIVE (Clean Pipe)           | 2        | -      | ENTEL CHILE S.A.
-    AS271869 | REGRESSED                      | 1        | 0%     | SERVICIOS ZONALES DE INTERNET LIMITADA
+    AS270014 | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | GRUPO CG LIMITADA
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to CL?)

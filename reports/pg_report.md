@@ -17,23 +17,23 @@
     AS17828  | PARTIAL: VULNERABLE (Mixed)    | 19       | 99%    | PNG DATACO LTD
     AS58460  | PARTIAL: VULNERABLE (Mixed)    | 6        | 73%    | Digicel (PNG) Ltd
     AS154868 | NOT ROUTED                     | 0        | -      | Neotel Communications Ltd
-    AS139778 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | DALTRON
     AS139898 | STUB: VULNERABLE               | 0        | 0%     | Digitec Communications Limited
+    AS139778 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | DALTRON
     AS138902 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Emstret Holdings Ltd
-    AS138506 | STUB: VULNERABLE               | 0        | -      | PNG Nambawan Trophy Ltd
     AS142269 | NOT ROUTED                     | 0        | -      | KINA BANK
     AS140935 | NOT ROUTED                     | 0        | -      | Asia Pacific Communication Specialist (P
     AS140665 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | KINECT LIMITED
     AS151647 | STUB: VULNERABLE               | 0        | -      | Rural Tech Development
+    AS152477 | STUB: VULNERABLE               | 0        | -      | LOTIC Bige Limited
     AS150693 | NOT ROUTED                     | 0        | -      | 2K Internet Services
     AS151398 | NOT ROUTED                     | 0        | -      | Credit Corporation (PNG) Limited
     AS153781 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Wintop Investment Limited
     AS153621 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GIT LIMITED
     AS152883 | NOT ROUTED                     | 0        | -      | Teachers Savings and Loan Society Limite
-    AS152477 | STUB: VULNERABLE               | 0        | -      | LOTIC Bige Limited
     AS152655 | STUB: VULNERABLE               | 0        | -      | Digicel (PNG) Ltd
-    AS147024 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | bikpla.net
     AS146949 | STUB: VULNERABLE               | 0        | -      | National Superannuation Fund Ltd.
+    AS147024 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | bikpla.net
+    AS150392 | NOT ROUTED                     | 0        | -      | Government Private Network - Papua New G
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PG?)
