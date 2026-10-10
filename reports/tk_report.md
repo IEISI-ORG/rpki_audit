@@ -14,15 +14,15 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS198147 | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
-    AS57382  | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
-    AS55523  | STUB: VULNERABLE               | 0        | -      | Telecommunications Tokelau Corporation -
+    AS198147 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS57382  | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS55523  | STUB: VULNERABLE               | 0        | -      | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TK?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS60679  | 1          | NOT ROUTED                     | Freedom Registry BV
-    #2   | AS4648   | 1          | REGRESSED                      | Spark New Zealand
-    #3   | AS56294  | 1          | PARTIAL: VULNERABLE (Mixed)    | VMvault Pty Ltd
+    #1   | AS60679  | 1          | NOT ROUTED                     | Unknown
+    #2   | AS4648   | 1          | REGRESSED                      | Unknown
+    #3   | AS56294  | 1          | REGRESSED                      | Unknown

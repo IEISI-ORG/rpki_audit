@@ -3,48 +3,46 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: VU (Vanuatu)
     ====================================================================================================
-    Total Networks:      13
+    Total Networks:      11
     Total Cone Gravity:  3
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 ( 7.7%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         8 (61.5%) -> Exposes  100.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):     1 ( 9.1%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:         8 (72.7%) -> Exposes  100.0% of Traffic
 
     ====================================================================================================
      THE VU CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS45495  | VULNERABLE                     | 3        | -      | Interchange Ltd.
-    AS23959  | STUB: VULNERABLE               | 0        | 0%     | Owl Limited
-    AS9249   | STUB: VULNERABLE               | 0        | 0%     | Telecom Vanuatu Limited
-    AS136996 | STUB: VULNERABLE               | 0        | -      | Pacific Networks
-    AS136949 | NOT ROUTED                     | 0        | -      | Engineering Business Services Limited
-    AS132429 | STUB: UNRELIABLE               | 0        | 98%    | Digicel Vanuatu LTD
-    AS132254 | STUB: VULNERABLE               | 0        | -      | PRIMA DC LIMITED
-    AS132228 | STUB: VULNERABLE               | 0        | -      | Vanuatu Government
-    AS131166 | NOT ROUTED                     | 0        | -      | Wantok Network Limited
-    AS132797 | NOT ROUTED                     | 0        | -      | Vanuatu Internet Exchange (VIX)
-    AS133383 | NOT ROUTED                     | 0        | -      | Vanuatu Government
-    AS43357  | STUB: VOLATILE                 | 0        | 100%   | Owl Limited
-    AS45935  | STUB: VULNERABLE               | 0        | -      | Wantok Network Limited
+    AS45495  | VULNERABLE                     | 3        | -      | Unknown
+    AS23959  | STUB: VULNERABLE               | 0        | 0%     | Unknown
+    AS9249   | STUB: VULNERABLE               | 0        | 1%     | Unknown
+    AS132228 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS132797 | NOT ROUTED                     | 0        | -      | Unknown
+    AS132254 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS132429 | STUB: UNRELIABLE               | 0        | 100%   | Unknown
+    AS133383 | NOT ROUTED                     | 0        | -      | Unknown
+    AS136996 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS43357  | STUB: VOLATILE                 | 0        | 100%   | Unknown
+    AS45935  | STUB: VULNERABLE               | 0        | -      | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to VU?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS45495  | 4          | VULNERABLE                     | Interchange Ltd.
-    #2   | AS17819  | 1          | VULNERABLE                     | Equinix Asia Pacific
-    #3   | AS4785   | 1          | PASSIVE (Clean Pipe)           | xTom
-    #4   | AS38442  | 1          | REGRESSED                      | Vodafone Fiji Limited
-    #5   | AS7492   | 1          | STUB: PASSIVE (Clean Pipe)     | Nexon Global Backbone
-    #6   | AS153346 | 1          | STUB: VULNERABLE               | HawkNet Labs Pty Ltd
-    #7   | AS136557 | 1          | REGRESSED                      | Host Universal Pty Ltd
-    #8   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
-    #9   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
-    #10  | AS133383 | 1          | NOT ROUTED                     | Vanuatu Government
-    #11  | AS142616 | 1          | STUB: PASSIVE (Clean Pipe)     | Misaka Network, Inc.
-    #12  | AS3214   | 1          | PARTIAL: VULNERABLE (Mixed)    | xTom GmbH
-    #13  | AS8888   | 1          | PARTIAL: VULNERABLE (Mixed)    | xTom Pty Ltd
-    #14  | AS23961  | 1          | PARTIAL: VULNERABLE (Mixed)    | Misaka Network, Inc.
-    #15  | AS57695  | 1          | ACTIVE LOCAL ROV               | Misaka Network, Inc.
+    #1   | AS45495  | 4          | VULNERABLE                     | Unknown
+    #2   | AS17819  | 1          | VULNERABLE                     | Unknown
+    #3   | AS4785   | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #4   | AS38442  | 1          | REGRESSED                      | Unknown
+    #5   | AS7492   | 1          | STUB: PASSIVE (Clean Pipe)     | Unknown
+    #6   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #7   | AS133383 | 1          | NOT ROUTED                     | Unknown
+    #8   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Unknown
+    #9   | AS153346 | 1          | STUB: VULNERABLE               | Unknown
+    #10  | AS136557 | 1          | REGRESSED                      | Unknown
+    #11  | AS142616 | 1          | STUB: PASSIVE (Clean Pipe)     | Unknown
+    #12  | AS3214   | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #13  | AS8888   | 1          | REGRESSED                      | Unknown
+    #14  | AS23961  | 1          | PASSIVE (Clean Pipe)           | Unknown
+    #15  | AS57695  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown

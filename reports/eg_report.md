@@ -3,60 +3,60 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: EG (Egypt)
     ====================================================================================================
-    Total Networks:      86
+    Total Networks:      74
     Total Cone Gravity:  145
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    59 (68.6%) -> Protects 42.1% of Traffic
-    VULNERABLE NETWORKS:        12 (14.0%) -> Exposes  6.9% of Traffic
+    SECURE (ACTIVE/PASSIVE):    58 (78.4%) -> Protects 41.4% of Traffic
+    VULNERABLE NETWORKS:        13 (17.6%) -> Exposes  6.9% of Traffic
 
     ====================================================================================================
      THE EG CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS8452   | PARTIAL: VULNERABLE (Mixed)    | 74       | 98%    | Telecom Egypt
-    AS24835  | ACTIVE LOCAL ROV               | 36       | 99%    | Vodafone Egypt
-    AS24863  | ACTIVE LOCAL ROV               | 15       | 97%    | Link Egypt (Link.NET)
-    AS36992  | REGRESSED                      | 10       | 1%     | Etisalat Egypt
-    AS20928  | ACTIVE LOCAL ROV               | 10       | 95%    | The Noor Group
-    AS207740 | STUB: VULNERABLE               | 0        | -      | Youssef Hamed
-    AS329359 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Agility Infrastructure a limited liabili
-    AS329397 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GlobeMed Egypt
-    AS329352 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | IP4Solutions
-    AS329336 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | WhiTech
-    AS329325 | STUB: VOLATILE                 | 0        | -      | Maxko for Gaming Development LLC
-    AS328927 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Fixed Solutions
-    AS328972 | STUB: VULNERABLE               | 0        | -      | Geidea Technology
-    AS328969 | NOT ROUTED                     | 0        | -      | Albaraka Bank of Egypt
-    AS328876 | STUB: VULNERABLE               | 0        | -      | Unipak Nile Ltd
-    AS329132 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Company for Telecommunication S
-    AS329131 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | National Bank of Kuwait (NBK) - Egypt - 
-    AS329114 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Halan for technology and services
-    AS329763 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Housing and Development Bank
-    AS329520 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Arpu Telecommunication Services S.A.E
+    AS8452   | PARTIAL: VULNERABLE (Mixed)    | 75       | 98%    | Unknown
+    AS24835  | ACTIVE LOCAL ROV               | 36       | 99%    | Unknown
+    AS24863  | ACTIVE LOCAL ROV               | 14       | 97%    | Unknown
+    AS36992  | REGRESSED                      | 10       | 2%     | Unknown
+    AS20928  | ACTIVE LOCAL ROV               | 10       | 97%    | Unknown
+    AS207740 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS328308 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328299 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328405 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328430 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328052 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328105 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS328067 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328011 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328786 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328762 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328794 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328876 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS328927 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS328553 | STUB: VULNERABLE               | 0        | -      | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to EG?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS8452   | 45         | PARTIAL: VULNERABLE (Mixed)    | Telecom Egypt
-    #2   | AS24835  | 32         | ACTIVE LOCAL ROV               | Vodafone Egypt
-    #3   | AS24863  | 16         | ACTIVE LOCAL ROV               | Link Egypt (Link.NET)
-    #4   | AS36992  | 11         | REGRESSED                      | Etisalat Egypt
-    #5   | AS20928  | 9          | ACTIVE LOCAL ROV               | The Noor Group
-    #6   | AS5511   | 2          | CORE: ACTIVE PROTECTOR         | Orange S.A.
-    #7   | AS6762   | 2          | CORE: ACTIVE PROTECTOR         | Telecom Italia Sparkle (Seabone)
-    #8   | AS3257   | 2          | CORE: ACTIVE PROTECTOR         | GTT Communications Inc.
-    #9   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #10  | AS8697   | 1          | REGRESSED                      | Jordan Telecommunications PSC
-    #11  | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #12  | AS15412  | 1          | PARTIAL: VULNERABLE (Mixed)    | Flag Telecom UK Limited
-    #13  | AS1273   | 1          | CORE: ACTIVE PROTECTOR         | Vodafone Group PLC
-    #14  | AS10241  | 1          | VULNERABLE                     | Options & Choices, Inc.
-    #15  | AS3491   | 1          | CORE: ACTIVE PROTECTOR         | PCCW Global (HK) Ltd.
-    #16  | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
-    #17  | AS29632  | 1          | PARTIAL: VULNERABLE (Mixed)    | Netassist International EOOD
-    #18  | AS8772   | 1          | REGRESSED                      | NetAssist LLC
-    #19  | AS211083 | 1          | NOT ROUTED                     | ServerGurus UG
-    #20  | AS34927  | 1          | VULNERABLE (Atlas Verified)    | iFog GmbH
+    #1   | AS8452   | 43         | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #2   | AS24835  | 31         | ACTIVE LOCAL ROV               | Unknown
+    #3   | AS24863  | 16         | ACTIVE LOCAL ROV               | Unknown
+    #4   | AS20928  | 9          | ACTIVE LOCAL ROV               | Unknown
+    #5   | AS36992  | 9          | REGRESSED                      | Unknown
+    #6   | AS5511   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
+    #7   | AS6762   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
+    #8   | AS3257   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
+    #9   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
+    #10  | AS8697   | 1          | REGRESSED                      | Unknown
+    #11  | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #12  | AS15412  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #13  | AS1273   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #14  | AS10241  | 1          | VULNERABLE                     | Unknown
+    #15  | AS3491   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #16  | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #17  | AS29632  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #18  | AS8772   | 1          | REGRESSED                      | Unknown
+    #19  | AS211083 | 1          | NOT ROUTED                     | Unknown
+    #20  | AS34927  | 1          | VULNERABLE (Atlas Verified)    | Unknown

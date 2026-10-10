@@ -5,33 +5,32 @@
     ===============================================================================================
     VERDICT                             |     ASNs |  % ASNs |   Avg Cone | Impact%
     -----------------------------------------------------------------------------------------------
-    STUB: VULNERABLE                    |   55,172 |   44.8% |        0.0 |    0.0%
-    STUB: PASSIVE (Clean Pipe)          |   17,318 |   14.1% |        0.0 |    0.0%
-    REGRESSED                           |    4,356 |    3.5% |       75.8 |   13.2%
-    PARTIAL: VULNERABLE (Mixed)         |    2,795 |    2.3% |      178.5 |   19.9%
-    STUB: VOLATILE                      |    1,042 |    0.8% |        0.0 |    0.0%
-    STUB: FORTUITOUS ROV                |      951 |    0.8% |        0.0 |    0.0%
-    STUB: UNRELIABLE                    |      812 |    0.7% |        0.0 |    0.0%
-    PASSIVE (Clean Pipe)                |      519 |    0.4% |      287.3 |    5.9%
-    STUB: ACTIVE LOCAL ROV              |      394 |    0.3% |        0.0 |    0.0%
-    VULNERABLE                          |      361 |    0.3% |        7.4 |    0.1%
-    ACTIVE LOCAL ROV                    |      219 |    0.2% |      158.0 |    1.4%
-    VOLATILE                            |       70 |    0.1% |      271.7 |    0.8%
-    VULNERABLE (Atlas Verified)         |       48 |    0.0% |     2389.3 |    4.6%
-    INCONSISTENT                        |       44 |    0.0% |     1575.4 |    2.8%
-    UNRELIABLE                          |       25 |    0.0% |        6.4 |    0.0%
-    CORE: ACTIVE PROTECTOR              |       19 |    0.0% |    61823.2 |   46.9%
-    ACTIVE (Atlas Verified)             |        8 |    0.0% |      855.1 |    0.3%
-    CORE: UNPROTECTED                   |        3 |    0.0% |    33708.0 |    4.0%
-    ACTIVE LOCAL ROV (Hardcoded)        |        2 |    0.0% |      610.0 |    0.0%
-    Unverified (Transit/Peer?)          |      130 |    0.1% |       31.7 |    0.2%
-    NOT ROUTED                          |   38,867 |   31.6% |        0.0 |    0.0%
+    STUB: VULNERABLE                    |   57,075 |   64.7% |        0.0 |    0.0%
+    STUB: PASSIVE (Clean Pipe)          |   15,887 |   18.0% |        0.0 |    0.0%
+    REGRESSED                           |    4,461 |    5.1% |       73.9 |   13.0%
+    PARTIAL: VULNERABLE (Mixed)         |    2,776 |    3.1% |      185.3 |   20.2%
+    STUB: UNRELIABLE                    |      967 |    1.1% |        0.0 |    0.0%
+    STUB: FORTUITOUS ROV                |      931 |    1.1% |        0.0 |    0.0%
+    STUB: VOLATILE                      |      749 |    0.8% |        0.0 |    0.0%
+    PASSIVE (Clean Pipe)                |      524 |    0.6% |      325.1 |    6.7%
+    VULNERABLE                          |      437 |    0.5% |        6.5 |    0.1%
+    ACTIVE LOCAL ROV                    |      158 |    0.2% |      237.6 |    1.5%
+    VOLATILE                            |       56 |    0.1% |      191.9 |    0.4%
+    VULNERABLE (Atlas Verified)         |       44 |    0.0% |     2533.2 |    4.4%
+    STUB: ACTIVE LOCAL ROV              |       42 |    0.0% |        0.0 |    0.0%
+    UNRELIABLE                          |       33 |    0.0% |        4.7 |    0.0%
+    CORE: ACTIVE PROTECTOR              |       20 |    0.0% |    62691.7 |   49.3%
+    ACTIVE (Atlas Verified)             |        6 |    0.0% |      165.5 |    0.0%
+    CORE: UNPROTECTED                   |        3 |    0.0% |    35323.0 |    4.2%
+    ACTIVE LOCAL ROV (Hardcoded)        |        2 |    0.0% |      676.5 |    0.1%
+    Unverified (Transit/Peer?)          |      121 |    0.1% |       32.6 |    0.2%
+    NOT ROUTED                          |    3,962 |    4.5% |        0.0 |    0.0%
 
     ===============================================================================================
      SUMMARY
     ===============================================================================================
-    Total Networks: 123,155
+    Total Networks: 88,254
     ------------------------------------------------------------
-    SECURE:       20,542  (16.7%)
-    PARTIAL:       2,795  (2.3%)
-    VULNERABLE:   60,821  (49.4%)
+    SECURE:       18,375  (20.8%)
+    PARTIAL:       2,776  (3.1%)
+    VULNERABLE:   63,020  (71.4%)

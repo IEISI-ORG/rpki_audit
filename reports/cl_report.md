@@ -3,60 +3,60 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: CL (Chile)
     ====================================================================================================
-    Total Networks:      401
-    Total Cone Gravity:  297
+    Total Networks:      317
+    Total Cone Gravity:  299
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    64 (16.0%) -> Protects 10.8% of Traffic
-    VULNERABLE NETWORKS:       237 (59.1%) -> Exposes  69.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):    60 (18.9%) -> Protects 17.4% of Traffic
+    VULNERABLE NETWORKS:       234 (73.8%) -> Exposes  69.2% of Traffic
 
     ====================================================================================================
      THE CL CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS263702 | REGRESSED                      | 66       | 0%     | GRUPO ZGH SPA
-    AS14259  | REGRESSED                      | 61       | 1%     | Gtd Internet S.A.
-    AS7004   | ACTIVE LOCAL ROV               | 29       | 95%    | TELEFÓNICA CHILE S.A.
-    AS6471   | Unverified (Transit/Peer?)     | 19       | -      | ENTEL CHILE S.A.
-    AS16629  | Unverified (Transit/Peer?)     | 19       | 98%    | CTC. CORP S.A. (TELEFONICA EMPRESAS)
-    AS61503  | REGRESSED                      | 17       | 0%     | SERVICIOS DE TELECOMUNICACIONES INTERCAB
-    AS6429   | REGRESSED                      | 15       | 6%     | Telmex Chile Internet S.A.
-    AS263237 | PARTIAL: VULNERABLE (Mixed)    | 14       | -      | PowerHost Telecom SPA
-    AS266771 | REGRESSED                      | 11       | 16%    | MAKRONET CONSULTING TECNOLOGIA E INFORMA
-    AS14117  | REGRESSED                      | 8        | 0%     | Telefonica del Sur S.A.
-    AS265757 | REGRESSED                      | 6        | 0%     | Intersur Limitada
-    AS11340  | REGRESSED                      | 6        | 0%     | Red Universitaria Nacional
-    AS264827 | REGRESSED                      | 5        | 0%     | WIRCOM S.P.A.
-    AS10778  | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | MCL Internet
-    AS64139  | REGRESSED                      | 4        | 0%     | GRUPO METROWAN TELECOM SPA
-    AS262237 | PARTIAL: VULNERABLE (Mixed)    | 3        | -      | Orbyta S.A.
-    AS266830 | REGRESSED                      | 3        | 0%     | AIRPOINT TELECOMUNICACIONES LIMITADA
-    AS27901  | REGRESSED                      | 2        | 0%     | Pacifico Cable SPA.
-    AS27986  | PASSIVE (Clean Pipe)           | 2        | -      | ENTEL CHILE S.A.
-    AS270014 | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | GRUPO CG LIMITADA
+    AS263702 | REGRESSED                      | 66       | 0%     | Unknown
+    AS14259  | REGRESSED                      | 60       | 0%     | Unknown
+    AS7004   | ACTIVE LOCAL ROV               | 29       | 100%   | Unknown
+    AS16629  | VOLATILE                       | 19       | 99%    | Unknown
+    AS6471   | Unverified (Transit/Peer?)     | 19       | -      | Unknown
+    AS6429   | REGRESSED                      | 18       | 3%     | Unknown
+    AS61503  | REGRESSED                      | 17       | 0%     | Unknown
+    AS263237 | PARTIAL: VULNERABLE (Mixed)    | 14       | -      | Unknown
+    AS266771 | REGRESSED                      | 10       | 16%    | Unknown
+    AS14117  | REGRESSED                      | 8        | 0%     | Unknown
+    AS265757 | REGRESSED                      | 7        | 3%     | Unknown
+    AS11340  | REGRESSED                      | 6        | 0%     | Unknown
+    AS264827 | REGRESSED                      | 5        | 0%     | Unknown
+    AS64139  | REGRESSED                      | 4        | 0%     | Unknown
+    AS10778  | PARTIAL: VULNERABLE (Mixed)    | 4        | -      | Unknown
+    AS262237 | PARTIAL: VULNERABLE (Mixed)    | 3        | -      | Unknown
+    AS266830 | REGRESSED                      | 3        | 0%     | Unknown
+    AS27986  | PASSIVE (Clean Pipe)           | 2        | -      | Unknown
+    AS27901  | REGRESSED                      | 2        | 0%     | Unknown
+    AS27659  | PASSIVE (Clean Pipe)           | 1        | -      | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to CL?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS14259  | 54         | REGRESSED                      | Gtd Internet S.A.
-    #2   | AS263702 | 46         | REGRESSED                      | GRUPO ZGH SPA
-    #3   | AS7004   | 33         | ACTIVE LOCAL ROV               | TELEFÓNICA CHILE S.A.
-    #4   | AS3549   | 26         | ACTIVE LOCAL ROV               | Lumen (fka. Global Crossing)
-    #5   | AS6429   | 22         | REGRESSED                      | Telmex Chile Internet S.A.
-    #6   | AS174    | 21         | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #7   | AS3356   | 21         | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #8   | AS6471   | 20         | Unverified (Transit/Peer?)     | ENTEL CHILE S.A.
-    #9   | AS263237 | 18         | PARTIAL: VULNERABLE (Mixed)    | PowerHost Telecom SPA
-    #10  | AS7049   | 18         | REGRESSED                      | Silica Networks Argentina S.A.
-    #11  | AS16629  | 17         | Unverified (Transit/Peer?)     | CTC. CORP S.A. (TELEFONICA EMPRESAS)
-    #12  | AS7195   | 14         | PARTIAL: VULNERABLE (Mixed)    | EdgeUno
-    #13  | AS61503  | 14         | REGRESSED                      | SERVICIOS DE TELECOMUNICACIONES INTERCAB
-    #14  | AS12956  | 12         | CORE: ACTIVE PROTECTOR         | Telxius (Telefonica Global)
-    #15  | AS18747  | 12         | PARTIAL: VULNERABLE (Mixed)    | IFX Corporation
-    #16  | AS266771 | 12         | REGRESSED                      | MAKRONET CONSULTING TECNOLOGIA E INFORMA
-    #17  | AS262589 | 11         | PARTIAL: VULNERABLE (Mixed)    | SAMM (Internexa)
-    #18  | AS266830 | 11         | REGRESSED                      | AIRPOINT TELECOMUNICACIONES LIMITADA
-    #19  | AS52468  | 10         | REGRESSED                      | UFINET PANAMA S.A.
-    #20  | AS14117  | 9          | REGRESSED                      | Telefonica del Sur S.A.
+    #1   | AS14259  | 52         | REGRESSED                      | Unknown
+    #2   | AS263702 | 45         | REGRESSED                      | Unknown
+    #3   | AS7004   | 32         | ACTIVE LOCAL ROV               | Unknown
+    #4   | AS3549   | 26         | ACTIVE LOCAL ROV               | Unknown
+    #5   | AS174    | 21         | CORE: ACTIVE PROTECTOR         | Unknown
+    #6   | AS3356   | 21         | CORE: ACTIVE PROTECTOR         | Unknown
+    #7   | AS6429   | 21         | REGRESSED                      | Unknown
+    #8   | AS6471   | 20         | Unverified (Transit/Peer?)     | Unknown
+    #9   | AS263237 | 18         | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #10  | AS7049   | 18         | REGRESSED                      | Unknown
+    #11  | AS16629  | 17         | VOLATILE                       | Unknown
+    #12  | AS7195   | 14         | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #13  | AS61503  | 14         | REGRESSED                      | Unknown
+    #14  | AS12956  | 12         | CORE: ACTIVE PROTECTOR         | Unknown
+    #15  | AS18747  | 12         | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #16  | AS266771 | 12         | REGRESSED                      | Unknown
+    #17  | AS266830 | 11         | REGRESSED                      | Unknown
+    #18  | AS52468  | 9          | PASSIVE (Clean Pipe)           | Unknown
+    #19  | AS14117  | 9          | REGRESSED                      | Unknown
+    #20  | AS262589 | 8          | PARTIAL: VULNERABLE (Mixed)    | Unknown

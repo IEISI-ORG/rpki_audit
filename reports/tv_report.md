@@ -3,25 +3,23 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: TV (Tuvalu)
     ====================================================================================================
-    Total Networks:      3
+    Total Networks:      1
     Total Cone Gravity:  0
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         1 (33.3%) -> Exposes  0.0% of Traffic
+    VULNERABLE NETWORKS:         1 (100.0%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE TV CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS142573 | NOT ROUTED                     | 0        | -      | Government of Tuvalu
-    AS23917  | REGRESSED                      | 0        | 0%     | Tuvalu Telecommunications Corporation
-    AS133117 | NOT ROUTED                     | 0        | -      | Tuvalu Telecommunications Corporation
+    AS23917  | REGRESSED                      | 0        | 0%     | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TV?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS9241   | 1          | PARTIAL: VULNERABLE (Mixed)    | Fiji International Telecomunications Ltd
-    #2   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink
+    #1   | AS9241   | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #2   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | Unknown

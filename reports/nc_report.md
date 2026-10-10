@@ -3,45 +3,41 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: NC (New Caledonia)
     ====================================================================================================
-    Total Networks:      19
+    Total Networks:      15
     Total Cone Gravity:  12
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    11 (57.9%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         1 ( 5.3%) -> Exposes  0.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):    11 (73.3%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:         1 ( 6.7%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE NC CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS18200  | PARTIAL: VULNERABLE (Mixed)    | 12       | 100%   | Office des Postes et Telecommunications 
-    AS141695 | NOT ROUTED                     | 0        | -      | Pacific Community
-    AS140718 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | ENGIE PACIFIQUE INFORMATIQUE
-    AS141197 | STUB: ACTIVE LOCAL ROV         | 0        | -      | Pacific Community
-    AS147030 | NOT ROUTED                     | 0        | -      | Mynet
-    AS149520 | NOT ROUTED                     | 0        | -      | THEMIS
-    AS149003 | NOT ROUTED                     | 0        | -      | CAN'L
-    AS24053  | NOT ROUTED                     | 0        | -      | Data Services Pacific
-    AS17480  | STUB: FORTUITOUS ROV           | 0        | 100%   | CANL
-    AS56089  | STUB: FORTUITOUS ROV           | 0        | 100%   | OFFRATEL
-    AS56055  | STUB: FORTUITOUS ROV           | 0        | 99%    | Micro Logic Systems
-    AS136402 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Nautile SARL
-    AS137243 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INGENIERIE DES SYSTEMES DES INFORMATIONS
-    AS132079 | NOT ROUTED                     | 0        | -      | Office des Postes et Telecommunications 
-    AS131995 | STUB: VULNERABLE               | 0        | -      | XLPM
-    AS131248 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GOTV
-    AS134405 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Data Services Pacific
-    AS45345  | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Nautile
-    AS45461  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | TeleNet
+    AS18200  | PARTIAL: VULNERABLE (Mixed)    | 12       | 100%   | Unknown
+    AS147030 | NOT ROUTED                     | 0        | -      | Unknown
+    AS17480  | STUB: FORTUITOUS ROV           | 0        | 100%   | Unknown
+    AS131995 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS131248 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS134405 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS140718 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS141197 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS141695 | NOT ROUTED                     | 0        | -      | Unknown
+    AS136402 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS137243 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS45461  | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS45345  | STUB: FORTUITOUS ROV           | 0        | 100%   | Unknown
+    AS56055  | STUB: FORTUITOUS ROV           | 0        | 100%   | Unknown
+    AS56089  | STUB: FORTUITOUS ROV           | 0        | 99%    | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NC?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS18200  | 11         | PARTIAL: VULNERABLE (Mixed)    | Office des Postes et Telecommunications 
-    #2   | AS38195  | 1          | PARTIAL: VULNERABLE (Mixed)    | Superloop
-    #3   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #4   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Digicel Fiji Limited
-    #5   | AS4638   | 1          | REGRESSED                      | Telecom Fiji Limited
-    #6   | AS56055  | 1          | STUB: FORTUITOUS ROV           | Micro Logic Systems
+    #1   | AS18200  | 11         | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #2   | AS38195  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
+    #3   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #4   | AS56055  | 1          | STUB: FORTUITOUS ROV           | Unknown
+    #5   | AS45355  | 1          | PASSIVE (Clean Pipe)           | Unknown
+    #6   | AS4638   | 1          | Unverified (Transit/Peer?)     | Unknown

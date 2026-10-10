@@ -7,26 +7,25 @@
     Total Cone Gravity:  0
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         1 (20.0%) -> Exposes  0.0% of Traffic
+    VULNERABLE NETWORKS:         0 ( 0.0%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE FM CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS139759 | NOT ROUTED                     | 0        | 0%     | FSM Telecommunications Corporation
-    AS10130  | STUB: VULNERABLE               | 0        | -      | FSM Telecommunications Corporation
-    AS58524  | NOT ROUTED                     | 0        | 0%     | FSM Telecom
-    AS45193  | NOT ROUTED                     | 0        | 2%     | FSM Telecommunications Corporation
-    AS38875  | NOT ROUTED                     | 0        | 0%     | FSM Telecommunications Corporation
+    AS38875  | NOT ROUTED                     | 0        | 0%     | Unknown
+    AS139759 | NOT ROUTED                     | 0        | 0%     | Unknown
+    AS142139 | NOT ROUTED                     | 0        | -      | Unknown
+    AS45193  | NOT ROUTED                     | 0        | 0%     | Unknown
+    AS58524  | NOT ROUTED                     | 0        | 0%     | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to FM?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS6461   | 1          | REGRESSED                      | Zayo Bandwidth
-    #2   | AS9246   | 1          | STUB: VULNERABLE               | Teleguam Holdings, LLC
-    #3   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink
-    #4   | AS139759 | 1          | NOT ROUTED                     | FSM Telecommunications Corporation
-    #5   | AS10130  | 1          | STUB: VULNERABLE               | FSM Telecommunications Corporation
+    #1   | AS10130  | 1          | STUB: VULNERABLE               | Unknown
+    #2   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #3   | AS139759 | 1          | NOT ROUTED                     | Unknown
+    #4   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | Unknown

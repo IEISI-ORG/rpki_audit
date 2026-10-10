@@ -3,28 +3,27 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: MP (Northern Mariana Islands)
     ====================================================================================================
-    Total Networks:      2
+    Total Networks:      1
     Total Cone Gravity:  4
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     0 ( 0.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:         1 (50.0%) -> Exposes  0.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):     1 (100.0%) -> Protects 100.0% of Traffic
+    VULNERABLE NETWORKS:         0 ( 0.0%) -> Exposes  0.0% of Traffic
 
     ====================================================================================================
      THE MP CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS7131   | PARTIAL: VULNERABLE (Mixed)    | 4        | 2%     | PTI Pacifica Inc.
-    AS9839   | STUB: VULNERABLE               | 0        | -      | Micronesian Telecommunications Corp
+    AS7131   | PASSIVE (Clean Pipe)           | 4        | 1%     | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to MP?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #2   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
-    #3   | AS6453   | 1          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
-    #4   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC
-    #5   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #6   | AS701    | 1          | CORE: ACTIVE PROTECTOR         | Verizon Business
+    #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #2   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #3   | AS6453   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #4   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #5   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #6   | AS701    | 1          | CORE: ACTIVE PROTECTOR         | Unknown

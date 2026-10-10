@@ -3,39 +3,36 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: GU (Guam)
     ====================================================================================================
-    Total Networks:      10
-    Total Cone Gravity:  7
+    Total Networks:      7
+    Total Cone Gravity:  6
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 (10.0%) -> Protects 28.6% of Traffic
-    VULNERABLE NETWORKS:         6 (60.0%) -> Exposes  71.4% of Traffic
+    SECURE (ACTIVE/PASSIVE):     2 (28.6%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:         5 (71.4%) -> Exposes  100.0% of Traffic
 
     ====================================================================================================
      THE GU CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS3605   | REGRESSED                      | 5        | 1%     | Guam Cablevision, LLC.
-    AS395400 | PASSIVE (Clean Pipe)           | 2        | -      | UNIVERSITY OF GUAM
-    AS152735 | STUB: VULNERABLE               | 0        | -      | Guam Exchange
-    AS23676  | STUB: VULNERABLE               | 0        | -      | Mariana Islands Internet Exchange
-    AS17456  | STUB: VULNERABLE               | 0        | -      | Pacific Data Systems
-    AS9246   | STUB: VULNERABLE               | 0        | 0%     | Teleguam Holdings, LLC
-    AS9548   | NOT ROUTED                     | 0        | -      | InternetPCI
-    AS56200  | STUB: VULNERABLE               | 0        | -      | Guam Community College
-    AS55863  | NOT ROUTED                     | 0        | -      | Choice Phone LLC
-    AS133071 | NOT ROUTED                     | 0        | -      | DoCoMo Pacific
+    AS3605   | REGRESSED                      | 6        | 0%     | Unknown
+    AS152735 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS395400 | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Unknown
+    AS9246   | STUB: VULNERABLE               | 0        | 0%     | Unknown
+    AS23676  | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS17456  | STUB: VOLATILE                 | 0        | 98%    | Unknown
+    AS56200  | STUB: VULNERABLE               | 0        | -      | Unknown
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to GU?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS7131   | 4          | PARTIAL: VULNERABLE (Mixed)    | PTI Pacifica Inc.
-    #2   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #3   | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
-    #4   | AS17456  | 1          | STUB: VULNERABLE               | Pacific Data Systems
-    #5   | AS3605   | 1          | REGRESSED                      | Guam Cablevision, LLC.
-    #6   | AS395400 | 1          | PASSIVE (Clean Pipe)           | UNIVERSITY OF GUAM
-    #7   | AS140627 | 1          | PARTIAL: VULNERABLE (Mixed)    | OneQode
-    #8   | AS4637   | 1          | CORE: ACTIVE PROTECTOR         | Telstra International Limited
-    #9   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #1   | AS7131   | 4          | PASSIVE (Clean Pipe)           | Unknown
+    #2   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
+    #3   | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #4   | AS17456  | 1          | STUB: VOLATILE                 | Unknown
+    #5   | AS3605   | 1          | REGRESSED                      | Unknown
+    #6   | AS4637   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #7   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #8   | AS395400 | 1          | STUB: PASSIVE (Clean Pipe)     | Unknown
+    #9   | AS140627 | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
