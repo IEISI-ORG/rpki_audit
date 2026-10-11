@@ -9,6 +9,43 @@ import rov_utils
 import verify_forensic_path_v2 as forensic
 
 MAX_TARGETS_PER_RUN = 50
+DIR_ATLAS_V6 = os.path.join(rov_utils.DIR_ATLAS, "v6")  # outside load_atlas_verdicts' glob
+
+
+def result_dir(af: int) -> str:
+    return DIR_ATLAS_V6 if af == 6 else rov_utils.DIR_ATLAS
+
+
+def is_fresh(file_path: str) -> bool:
+    """True when a cached Atlas result exists and is younger than ATLAS_TTL_DAYS."""
+    if not os.path.exists(file_path):
+        return False
+    try:
+        with open(file_path) as f:
+            ts_str = json.load(f).get('timestamp')
+        if not ts_str:
+            return False
+        age_days = (datetime.now(timezone.utc) - datetime.fromisoformat(ts_str)).total_seconds() / 86400
+        return age_days < rov_utils.ATLAS_TTL_DAYS
+    except (OSError, ValueError):
+        return False
+
+
+def get_explicit_targets(asns: list[int] | None, cc: str | None, af: int, limit: int) -> list[int]:
+    """Targets named on the command line, or a country's networks by cone size.
+
+    Skips ASNs with a fresh result for this address family. Lets small-cone
+    networks (e.g. NZ) be tested; get_smart_targets ranks them out of reach.
+    """
+    if asns:
+        candidates = asns
+    else:
+        df = rov_utils.load_audit_csv()
+        df = df[df['cc'] == cc.upper()].copy()
+        df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
+        candidates = [int(a) for a in df.sort_values('cone', ascending=False)['asn']]
+    targets = [a for a in candidates if not is_fresh(os.path.join(result_dir(af), f"as_{a}.json"))]
+    return targets[:limit]
 
 
 def get_smart_targets(limit=50) -> list[int]:
@@ -52,34 +89,19 @@ def get_smart_targets(limit=50) -> list[int]:
             break
         targets.append(asn)
 
-    now = datetime.now(timezone.utc)
     for _, row in candidates.iterrows():
         if len(targets) >= limit:
             break
         asn = int(row['asn'])
         if asn in targets:
             continue
-        file_path = os.path.join(rov_utils.DIR_ATLAS, f"as_{asn}.json")
-        needs_test = True
-        if os.path.exists(file_path):
-            try:
-                with open(file_path) as f:
-                    d = json.load(f)
-                ts_str = d.get('timestamp')
-                if ts_str:
-                    last_test = datetime.fromisoformat(ts_str)
-                    age_days = (now - last_test).total_seconds() / 86400
-                    if age_days < rov_utils.ATLAS_TTL_DAYS:
-                        needs_test = False
-            except:
-                pass
-        if needs_test:
+        if not is_fresh(os.path.join(rov_utils.DIR_ATLAS, f"as_{asn}.json")):
             targets.append(asn)
 
     return targets
 
 
-def find_best_probes_in_cone(target_asn: int, count: int = 5) -> list[int]:
+def find_best_probes_in_cone(target_asn: int, count: int = 5, af: int = 4) -> list[int]:
     """
     Find Atlas probes inside the customer cone of target_asn.
 
@@ -114,7 +136,7 @@ def find_best_probes_in_cone(target_asn: int, count: int = 5) -> list[int]:
         for c_asn in candidate_list[:50]:
             if len(found_probes) >= count:
                 break
-            p_ids = forensic.get_probes(c_asn, count=2)
+            p_ids = forensic.get_probes(c_asn, count=2, af=af)
             if p_ids:
                 found_probes.extend(p_ids)
                 print(f"      * {len(p_ids)} probes in AS{c_asn} ({label})")
@@ -123,7 +145,7 @@ def find_best_probes_in_cone(target_asn: int, count: int = 5) -> list[int]:
 
     # Fallback: probes hosted inside the target ASN itself
     if len(found_probes) < count:
-        local = forensic.get_probes(target_asn, count=count - len(found_probes))
+        local = forensic.get_probes(target_asn, count=count - len(found_probes), af=af)
         if local:
             found_probes.extend(local)
             print(f"      * {len(local)} probes inside AS{target_asn} (fallback)")
@@ -134,42 +156,54 @@ def find_best_probes_in_cone(target_asn: int, count: int = 5) -> list[int]:
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--limit", type=int, default=MAX_TARGETS_PER_RUN)
+    parser.add_argument("--asns", help="comma-separated ASNs to test instead of smart selection")
+    parser.add_argument("--cc", help="test this country's networks (largest cone first)")
+    parser.add_argument("--af", type=int, choices=(4, 6), default=4,
+                        help="address family; IPv6 results go to data/atlas/v6/")
     args = parser.parse_args()
 
     if not forensic.ATLAS_API_KEY:
         print("[!] Missing RIPE Atlas API Key in secrets.yaml")
         return
 
-    os.makedirs(rov_utils.DIR_ATLAS, exist_ok=True)
+    out_dir = result_dir(args.af)
+    os.makedirs(out_dir, exist_ok=True)
 
-    targets = get_smart_targets(limit=args.limit)
+    if args.asns or args.cc:
+        asns = [int(a.strip().upper().removeprefix("AS")) for a in args.asns.split(",")] if args.asns else None
+        targets = get_explicit_targets(asns, args.cc, args.af, args.limit)
+    elif args.af == 6:
+        print("[!] --af 6 needs --asns or --cc (smart selection is IPv4-audit driven).")
+        return
+    else:
+        targets = get_smart_targets(limit=args.limit)
     if not targets:
         print("[*] No targets need re-verification right now.")
         return
 
     print(f"[*] {len(targets)} targets selected for re-verification.")
 
-    ip_v = forensic.resolve_ip(forensic.DOMAIN_VALID)
-    ip_i = forensic.resolve_ip(forensic.DOMAIN_INVALID)
+    ip_v = forensic.resolve_ip(forensic.DOMAIN_VALID, af=args.af)
+    ip_i = forensic.resolve_ip(forensic.DOMAIN_INVALID, af=args.af)
     if not ip_v or not ip_i:
         print("[!] DNS resolution failed for test domains.")
         return
 
     for asn in targets:
         print(f"\n>>> Verifying AS{asn}...")
-        probes = find_best_probes_in_cone(asn, count=5)
+        probes = find_best_probes_in_cone(asn, count=5, af=args.af)
         if not probes:
             print(f"    [!] No usable probes found in cone of AS{asn}. Skipping.")
             continue
 
         print(f"    - {len(probes)} probes selected.")
-        raw_results = forensic.run_forensic_test(asn, probes, ip_v, ip_i)
+        raw_results = forensic.run_forensic_test(asn, probes, ip_v, ip_i, af=args.af)
         if not raw_results:
             print(f"    [!] Forensic test failed for AS{asn}")
             continue
 
         analysis = forensic.analyze_results(asn, raw_results)
-        out_file = os.path.join(rov_utils.DIR_ATLAS, f"as_{asn}.json")
+        out_file = os.path.join(out_dir, f"as_{asn}.json")
         with open(out_file, 'w') as f:
             json.dump(analysis, f, indent=2)
 

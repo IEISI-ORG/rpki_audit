@@ -31,14 +31,16 @@ else:
 # ==============================================================================
 # 1. HELPERS
 # ==============================================================================
-def resolve_ip(domain):
-    try: return socket.gethostbyname(domain)
-    except: return None
+def resolve_ip(domain, af=4):
+    """First IPv4 (af=4) or IPv6 (af=6) address for domain, or None."""
+    family = socket.AF_INET6 if af == 6 else socket.AF_INET
+    try: return socket.getaddrinfo(domain, None, family)[0][4][0]
+    except (socket.gaierror, IndexError): return None
 
-def get_probes(asn, count=5):
-    """Finds probes inside the target ASN."""
+def get_probes(asn, count=5, af=4):
+    """Finds connected probes inside the target ASN for address family af."""
     try:
-        filters = {"asn_v4": asn, "status": 1}
+        filters = {f"asn_v{af}": asn, "status": 1}
         probes = list(ProbeRequest(**filters))
         return [p["id"] for p in probes[:count]]
     except: return []
@@ -74,17 +76,17 @@ def ips_to_as_path(hops, mapping):
 # ==============================================================================
 # 2. EXECUTION ENGINE
 # ==============================================================================
-def run_forensic_test(asn, probes, ip_v, ip_i):
-    print(f"    - Launching 4-Way Test (Ping V/I, Trace V/I) on {len(probes)} probes...")
+def run_forensic_test(asn, probes, ip_v, ip_i, af=4):
+    print(f"    - Launching 4-Way IPv{af} Test (Ping V/I, Trace V/I) on {len(probes)} probes...")
     
     source = AtlasSource(type="probes", value=",".join(map(str, probes)), requested=len(probes))
     
     # Define measurements
     defs = [
-        Ping(af=4, target=ip_v, description=f"RPKI Valid Ping - AS{asn}", is_oneoff=True, packets=3),
-        Ping(af=4, target=ip_i, description=f"RPKI Invalid Ping - AS{asn}", is_oneoff=True, packets=3),
-        Traceroute(af=4, target=ip_v, description=f"RPKI Valid Trace - AS{asn}", is_oneoff=True, protocol="ICMP"),
-        Traceroute(af=4, target=ip_i, description=f"RPKI Invalid Trace - AS{asn}", is_oneoff=True, protocol="ICMP")
+        Ping(af=af, target=ip_v, description=f"RPKI Valid Ping v{af} - AS{asn}", is_oneoff=True, packets=3),
+        Ping(af=af, target=ip_i, description=f"RPKI Invalid Ping v{af} - AS{asn}", is_oneoff=True, packets=3),
+        Traceroute(af=af, target=ip_v, description=f"RPKI Valid Trace v{af} - AS{asn}", is_oneoff=True, protocol="ICMP"),
+        Traceroute(af=af, target=ip_i, description=f"RPKI Invalid Trace v{af} - AS{asn}", is_oneoff=True, protocol="ICMP")
     ]
     
     # --- FIX: Use timezone-aware datetime ---
@@ -110,7 +112,9 @@ def run_forensic_test(asn, probes, ip_v, ip_i):
     results = []
     for msm_id in ids:
         success, res = AtlasResultsRequest(msm_id=msm_id).create()
-        results.append(res if success else [])
+        # A placeholder keeps the ID when a measurement returns nothing; it has
+        # no prb_id, so analyze_results() skips it as a probe result.
+        results.append(res if success and res else [{'msm_id': msm_id}])
         
     return results # [PingV, PingI, TraceV, TraceI]
 
@@ -369,8 +373,17 @@ def analyze_results(asn: int, results: list) -> dict:
     rep_secure = next((d for d in on_path if 'SECURE (Target' in d['verdict']), None)
     rep_any    = on_path[0] if on_path else (probe_details[0] if probe_details else {})
 
+    # Measurement provenance, so every verdict can be re-checked on atlas.ripe.net
+    roles = ('ping_valid', 'ping_invalid', 'trace_valid', 'trace_invalid')
+    measurement_ids = {role: next((r['msm_id'] for r in res if 'msm_id' in r), None)
+                       for role, res in zip(roles, results)}
+    af_seen = next((r['af'] for res in results for r in res if 'af' in r), None)
+
     return {
         'asn':             asn,
+        'af':              af_seen,
+        'measurement_ids': measurement_ids,
+        'probe_ids':       sorted(all_probe_ids),
         'verdict':         final_verdict,
         'notes':           final_notes,
         'n_vulnerable':    n_vulnerable,
