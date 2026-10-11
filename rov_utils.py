@@ -442,11 +442,37 @@ def sync_apnic_data(countries: set, force: bool = False):
 
 APNIC_MIN_SAMPLES = 30           # minimum seen+filtered for a valid daily rate
 APNIC_REGRESSION_CURRENT_MIN_SAMPLES = 100  # minimum n for 'current' in regression detection
+APNIC_TS_WINDOWS = ('7', '14', '28', '112')
+
+# Date ranges whose APNIC readings are measurement artefacts, not ROV changes.
+# (first_day, last_day, country codes affected, reason). A daily point is dropped
+# when the rolling window behind it overlaps the range, so a 7-day reading taken
+# on 22 Aug still counts as contaminated.
+APNIC_EXCLUDED_WINDOWS: tuple[tuple[str, str, frozenset, str], ...] = (
+    ("2026-08-05", "2026-08-18", frozenset({"NZ", "AU"}),
+     "APNIC Labs test window lifted non-filtering NZ/AU networks"),
+)
+
+
+def _ts_point_excluded(date_str: str, window_days: int, cc: str) -> bool:
+    """True when a daily point's rolling window overlaps an excluded range for cc."""
+    from datetime import date, timedelta
+    end = date.fromisoformat(date_str)
+    start = end - timedelta(days=window_days - 1)
+    for first, last, ccs, _ in APNIC_EXCLUDED_WINDOWS:
+        if cc in ccs and start <= date.fromisoformat(last) and end >= date.fromisoformat(first):
+            return True
+    return False
+
+
+def _ts_cache_is_dated(data: list) -> bool:
+    return bool(data) and isinstance(data[0], list) and len(data[0]) == 4
+
 
 def _fetch_apnic_ts_rates(asn: int, cc: str) -> list:
     """Fetch full timeseries for one ASN.
 
-    Returns list of [rate, samples] pairs, one per calendar day.
+    Returns [[date, rate, samples, window_days], ...], one per calendar day.
     rate is None when no window has sufficient samples (network too sparse).
 
     Window selection per day (shortest window with >= APNIC_MIN_SAMPLES):
@@ -454,59 +480,116 @@ def _fetch_apnic_ts_rates(asn: int, cc: str) -> list:
       14-day → fallback
       28-day → fallback
       112-day → last resort
-    Old-format caches (plain floats, no sample counts) are re-fetched on
-    next TTL expiry; until then they are returned as-is in legacy mode.
+    Two older, undated cache formats ([rate, samples] pairs and plain floats)
+    are returned as-is until TTL expiry, except for countries with an
+    APNIC_EXCLUDED_WINDOWS entry: those are re-fetched at once, since an
+    undated series cannot be masked.
     """
     APNIC_TS_TTL = 86400 * 7
     cache = os.path.join(DIR_APNIC_TS, f"{asn}.json")
+    needs_dates = any(cc in ccs for _, _, ccs, _ in APNIC_EXCLUDED_WINDOWS)
+    cached: list = []
     if os.path.exists(cache) and (time.time() - os.path.getmtime(cache)) < APNIC_TS_TTL:
         try:
             with open(cache) as f:
-                data = json.load(f)
-            if data and isinstance(data[0], list):
-                return data          # new format: [[rate, samples], ...]
-            if data and isinstance(data[0], (int, float)):
-                return data          # old format: [float, ...] — caller detects via isinstance
-        except: pass
+                cached = json.load(f)
+            if cached and (_ts_cache_is_dated(cached) or not needs_dates):
+                return cached
+        except (OSError, ValueError):
+            cached = []
     try:
         resp = requests.get(f"{URL_APNIC_TS}?x={cc}{asn}", headers=HEADERS, timeout=15)
         if resp.status_code == 200:
             rows = resp.json().get('data', [])
             result = []
             for r in rows:
-                chosen_rate, chosen_n = None, 0
-                for window in ('7', '14', '28', '112'):
+                chosen_rate, chosen_n, chosen_w = None, 0, 0
+                for window in APNIC_TS_WINDOWS:
                     w = r.get(window)
                     if not w:
                         continue
                     n = w['seen'] + w['filtered']
                     if n >= APNIC_MIN_SAMPLES:
-                        chosen_rate, chosen_n = w['filter_rate'], n
+                        chosen_rate, chosen_n, chosen_w = w['filter_rate'], n, int(window)
                         break
-                result.append([chosen_rate, chosen_n])
-            valid = [x for x in result if x[0] is not None]
+                result.append([r.get('date'), chosen_rate, chosen_n, chosen_w])
+            valid = [x for x in result if x[1] is not None]
             if len(valid) >= 14:
                 with open(cache, 'w') as f:
                     json.dump(result, f)
                 return result
-    except: pass
-    return []
+    except (requests.RequestException, ValueError, KeyError):
+        pass
+    return cached  # forced re-fetch failed: an undated series beats none
+
+
+APNIC_VOLATILE_STDEV = 20.0
+APNIC_REGRESSION_THRESHOLD = 30.0  # >30-point drop from 1-year max to current
+
+
+def _ts_stats(raw: list, cc: str) -> tuple | None:
+    """Volatility/regression stats for one ASN's series, or None if too sparse.
+
+    Returns (stdev90, min90, max90, is_volatile, regression).
+    """
+    import statistics
+    if _ts_cache_is_dated(raw):
+        kept = [r for r in raw
+                if r[1] is not None and not (r[0] and r[3] and _ts_point_excluded(r[0], r[3], cc))]
+        rates = [r[1] for r in kept]
+        # For regression: 'current' must come from a recent data point with enough
+        # samples to be statistically reliable.  A point that barely clears the
+        # APNIC_MIN_SAMPLES floor (e.g. 31 samples from a large transit ASN) is
+        # noise, not a meaningful current measurement.
+        last_30 = {r[0] for r in raw[-30:]}
+        recent = [r for r in kept if r[0] in last_30
+                  and r[2] >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES]
+        current_for_regression = recent[-1][1] if recent else None
+    elif raw and isinstance(raw[0], list):
+        # Undated [rate, samples] cache: no date masking possible.
+        rates = [r[0] for r in raw if r[0] is not None]
+        recent = [r for r in raw[-30:] if r[0] is not None
+                  and r[1] >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES]
+        current_for_regression = recent[-1][0] if recent else None
+    else:
+        # Oldest cache format (plain floats, no sample counts).
+        rates = [v for v in raw if isinstance(v, (int, float))]
+        current_for_regression = rates[-1] if rates else None
+
+    if len(rates) < 14:
+        return None
+
+    # Stats use all valid data points (90-day window)
+    rates_90 = rates[-90:]
+    sd = statistics.stdev(rates_90)
+    mn90, mx90 = min(rates_90), max(rates_90)
+    # Use 1-year lookback, not all-time max.  All-time max over 6 years of
+    # APNIC data includes early measurement noise spikes that never reflected
+    # real ROV deployment.  A genuine regression is "was high in the past
+    # year, now dropped" — not "peaked once in 2020".
+    historical_max = max(rates[-365:])
+
+    # Regression requires a reliable recent 'current' (n >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES
+    # within the last 30 days).  If no such point exists the current state cannot be
+    # determined from APNIC data alone — skip regression rather than use a marginal
+    # low-sample reading as a false low-water-mark.
+    crossed_threshold = (mx90 >= 95.0 and mn90 < 60.0)
+    regression = (current_for_regression is not None
+                  and (historical_max - current_for_regression) > APNIC_REGRESSION_THRESHOLD)
+    is_volatile = (sd > APNIC_VOLATILE_STDEV or crossed_threshold or regression)
+    return (round(sd, 1), round(mn90, 1), round(mx90, 1), is_volatile, regression)
+
 
 def sync_apnic_timeseries(apnic_map: dict, meta: dict) -> dict:
-    """Fetch 90-day time series. Returns {asn: (stdev, min90, max90, is_volatile)}."""
-    import statistics
+    """Fetch time series. Returns {asn: (stdev, min90, max90, is_volatile, regression)}."""
     APNIC_TS_SCORE_MIN = 60.0
-    APNIC_VOLATILE_STDEV = 20.0
-    APNIC_REGRESSION_THRESHOLD = 30.0 # >30-point drop from 1-year max to current
 
     # Candidates: High current score OR existing history we want to keep fresh
     candidates = {asn for asn, score in apnic_map.items() if score >= APNIC_TS_SCORE_MIN}
     for f in glob.glob(os.path.join(DIR_APNIC_TS, "*.json")):
-        try:
-            asn_str = os.path.basename(f).replace(".json", "")
-            if asn_str.isdigit():
-                candidates.add(int(asn_str))
-        except: pass
+        asn_str = os.path.basename(f).replace(".json", "")
+        if asn_str.isdigit():
+            candidates.add(int(asn_str))
 
     if not candidates: return {}
     print(f"[Sync] APNIC Time Series ({len(candidates)} ASNs)...")
@@ -522,62 +605,21 @@ def sync_apnic_timeseries(apnic_map: dict, meta: dict) -> dict:
     asn_cc_pairs = [(asn, cc) for asn, cc in asn_cc_pairs if cc]
     raw_by_asn = {}
     with concurrent.futures.ThreadPoolExecutor(max_workers=20) as pool:
-        futures = {pool.submit(_fetch_apnic_ts_rates, asn, cc): asn for asn, cc in asn_cc_pairs}
+        futures = {pool.submit(_fetch_apnic_ts_rates, asn, cc): (asn, cc) for asn, cc in asn_cc_pairs}
         for future in concurrent.futures.as_completed(futures):
-            asn = futures[future]
             try:
-                raw_by_asn[asn] = future.result()
+                raw_by_asn[futures[future]] = future.result()
             except Exception:
-                raw_by_asn[asn] = []
+                raw_by_asn[futures[future]] = []
 
     result, fetched, skipped_sparse = {}, 0, 0
-    for asn, raw in raw_by_asn.items():
+    for (asn, cc), raw in raw_by_asn.items():
         if not raw: continue
-
-        # Normalise: new format [[rate, samples], ...] or old format [float, ...]
-        if raw and isinstance(raw[0], list):
-            # New format — extract only data points with sufficient samples
-            rates = [r[0] for r in raw if r[0] is not None]
-            # For regression: 'current' must come from a recent data point with enough
-            # samples to be statistically reliable.  A point that barely clears the
-            # APNIC_MIN_SAMPLES floor (e.g. 31 samples from a large transit ASN) is
-            # noise, not a meaningful current measurement.  Look for the most recent
-            # point in the last 30 calendar days where n >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES.
-            recent_reliable = [r for r in raw[-30:] if r[0] is not None
-                               and r[1] >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES]
-            current_for_regression = recent_reliable[-1][0] if recent_reliable else None
-        else:
-            # Old-format cache (plain floats, no sample counts).
-            # Treat all points as valid until cache expires and is re-fetched.
-            rates = [v for v in raw if isinstance(v, (int, float))]
-            current_for_regression = rates[-1] if rates else None
-
-        if len(rates) < 14:
+        stats = _ts_stats(raw, cc)
+        if stats is None:
             skipped_sparse += 1
             continue
-
-        # Stats use all valid data points (90-day window)
-        rates_90 = rates[-90:]
-        sd = statistics.stdev(rates_90)
-        mn90, mx90 = min(rates_90), max(rates_90)
-        # Use 1-year lookback, not all-time max.  All-time max over 6 years of
-        # APNIC data includes early measurement noise spikes that never reflected
-        # real ROV deployment.  A genuine regression is "was high in the past
-        # year, now dropped" — not "peaked once in 2020".
-        rates_1yr = rates[-365:] if len(rates) >= 365 else rates
-        historical_max = max(rates_1yr)
-
-        # Volatility & Regression Criteria
-        # Regression requires a reliable recent 'current' (n >= APNIC_REGRESSION_CURRENT_MIN_SAMPLES
-        # within the last 30 days).  If no such point exists the current state cannot be
-        # determined from APNIC data alone — skip regression rather than use a marginal
-        # low-sample reading as a false low-water-mark.
-        crossed_threshold = (mx90 >= 95.0 and mn90 < 60.0)
-        regression = (current_for_regression is not None
-                      and (historical_max - current_for_regression) > APNIC_REGRESSION_THRESHOLD)
-        is_volatile = (sd > APNIC_VOLATILE_STDEV or crossed_threshold or regression)
-
-        result[asn] = (round(sd, 1), round(mn90, 1), round(mx90, 1), is_volatile, regression)
+        result[asn] = stats
         fetched += 1
     print(f"    - Result: {fetched} Analysed, {skipped_sparse} Sparse/skipped, "
           f"{len(candidates)-fetched-skipped_sparse} No data.")

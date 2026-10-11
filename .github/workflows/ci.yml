@@ -42,6 +42,7 @@ jobs:
       run: |
         export PYTHONPATH=$PYTHONPATH:.
         python3 tests/test_fetch_fallback.py
+        python3 tests/test_apnic_timeseries.py
 
   go-quality:
     name: Go Build & Lint
