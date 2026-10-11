@@ -134,7 +134,7 @@ def probe_notes(asn: int, result: dict, orgs: dict) -> list[str]:
     """
     details = result.get("probe_details", [])
     if not details:
-        return ["no per-probe detail (result predates the current file format)"]
+        return ["no probe returned results (measurements ran, see msm IDs)"]
     org = orgs.get(asn, (None, ""))[0]
     siblings = {a for a, (o, _) in orgs.items() if org and o == org} - {asn}
     counts: dict[str, int] = {}
@@ -221,8 +221,8 @@ def main() -> None:
         asn = int(r["asn"])
         for af in (4, 6):
             res = load_atlas(asn, af)
-            if not res or not res.get("probe_details"):
-                continue
+            if not res or (not res.get("probe_details") and not res.get("measurement_ids")):
+                continue  # untested, or a pre-2026-10-11 result without per-probe detail
             ids = " ".join(str(v) for v in (res.get("measurement_ids") or {}).values() if v)
             print(f"AS{asn:<7} IPv{af} {str(r['name'])[:28]:<28} {res.get('verdict')} "
                   f"({str(res.get('timestamp', ''))[:10]}) msm: {ids or '-'}")
