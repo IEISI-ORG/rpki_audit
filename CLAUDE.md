@@ -127,11 +127,15 @@ The APNIC ROV measurement API returns per-day rows with multiple rolling windows
 Telstra International AS4637 had `seen=2, filtered=4` → 6 samples → 33% "rate" that is
 pure noise). `_fetch_apnic_ts_rates()` now uses **adaptive window selection**: it picks
 the shortest window where `seen + filtered >= APNIC_MIN_SAMPLES`, falling back through
-14 → 28 → 112 days. Data points with no window meeting the threshold are stored as
-`[None, 0]` and excluded from all statistics.
+14 → 28 → 112 days. Data points with no window meeting the threshold are stored with
+`rate = None` and excluded from all statistics.
 
-Cache format is now `[[rate, samples], ...]` (new) vs `[float, ...]` (legacy). Legacy
-caches are accepted as-is until their 7-day TTL expires.
+Cache format is now `[[date, rate, samples, window_days], ...]` (dated, since
+2026-10-11). Two undated legacy formats, `[[rate, samples], ...]` and `[float, ...]`,
+are accepted until their 7-day TTL expires, except for countries listed in
+`APNIC_EXCLUDED_WINDOWS`, which are re-fetched at once because an undated series
+cannot be masked. Statistics live in the pure function `_ts_stats(raw, cc)`
+(tests: `tests/test_apnic_timeseries.py`).
 
 `APNIC_REGRESSION_CURRENT_MIN_SAMPLES = 100` is a separate, stricter threshold used
 only when determining `current_for_regression` in `sync_apnic_timeseries()`. Large
@@ -165,6 +169,15 @@ all-time spike to 100% from early-era noise).
 
 A genuine regression is: **was consistently enforcing ROV in the past 12 months, and
 the current score has dropped by > 30 points**.
+
+### Excluded measurement windows (`APNIC_EXCLUDED_WINDOWS`)
+The APNIC Labs test window of **5–18 Aug 2026** lifted readings for non-filtering NZ
+and AU networks. Left in, it would flag them REGRESSED (current vs 1-year max) until
+Aug 2027. Each entry is `(first_day, last_day, {country codes}, reason)`. A daily point is
+dropped from all statistics when its **rolling window** `[date - window_days + 1, date]`
+overlaps the range. So the 7-day reading for 22 Aug is dropped too, and for sparse
+networks on the 112-day window the effect lasts into December. Only the listed
+countries are masked.
 
 ## RIPE Atlas Forensic Methodology
 
@@ -218,6 +231,15 @@ artefact and the network stays in `safe_asns`. This protects well-evidenced secu
 networks from stale or mis-targeted Atlas results while still allowing Atlas to override
 networks with no independent corroboration.
 
+### Measurement provenance and IPv6
+Each result file stores `measurement_ids` (`ping_valid`, `ping_invalid`, `trace_valid`,
+`trace_invalid`), `probe_ids` and `af`, so a verdict can be re-checked on atlas.ripe.net.
+Files written before 2026-10-11 have none. `batch_verify_smart_v4.py --af 6` runs the
+same test over IPv6 and writes to `data/atlas/v6/`. That directory is outside
+`load_atlas_verdicts()`'s glob, so IPv6 results do not change audit verdicts.
+`--asns` / `--cc` select targets explicitly. The default smart selection ranks by cone
+size and never reaches small-cone countries such as NZ.
+
 ### Probe selection (`batch_verify_smart_v4.py`)
 Probes are selected from the target's **customer cone** using `downstream_graph.json`
 (the phantom-pruned topology), not the stale packed ASN data. **Single-homed customers
@@ -231,6 +253,8 @@ the target.
 - **Packed Data**: 120k+ ASN records are consolidated into `data/as_data.jsonl.gz`.
 - **Ingestion**: ALWAYS use `rov_utils.load_all_asn_data()` for high-performance loading (<1s).
 - **TTL Policy**: All external data fetches enforce a **7-day TTL**: APNIC scores, APNIC timeseries, Atlas forensic results, bgp.tools tags.
+- **Upstream outages**: `fetch_csv(..., cache_paths=...)` saves each good bgp.tools download (`asns.csv`, `rpkirov.csv`) to `data/bgptools/` and falls back to it on failure. `rov_no_scrape_v22.py` refuses to write the audit (exit 1) when 0 ROV tags loaded or the row count drops below 90% of the existing file. Added after the 2026-10-11 bgp.tools outage, which produced an 88k-row audit with every name "Unknown", and the cron job committed it.
+- **bgp.tools User-Agent**: requests to bgp.tools use `BGPTOOLS_HEADERS` (project name + repo URL), per their API rules. Other sources keep `HEADERS`.
 
 ### 2. Safety Verdicts & Topology
 - **Centralized Logic**: Use `rov_utils.classify_verdict()` to bucket strings into `SECURE`, `VULNERABLE`, or `PARTIAL`.
