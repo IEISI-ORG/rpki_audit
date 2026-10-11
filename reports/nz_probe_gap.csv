@@ -1,0 +1,702 @@
+asn,name,verdict,cone,probes_v4,probes_v6,probes_v4_in_direct_customers,apnic_samples,covered_v4
+4768,One New Zealand Group Limited,Unverified (Transit/Peer?),31,0,0,0,104,False
+18400,Xtreme Networks Limited,VULNERABLE,16,0,0,0,62,False
+45637,UniFone New Zealand Ltd,PARTIAL: VULNERABLE (Mixed),4,0,0,0,201,False
+24183,DTS LTD,PARTIAL: VULNERABLE (Mixed),4,0,0,0,48,False
+55561,2talk Global IP Network,PARTIAL: VULNERABLE (Mixed),3,0,0,0,193,False
+17492,Vector Communications LTD.,PARTIAL: VULNERABLE (Mixed),3,0,0,0,39,False
+132040,Vital Data Ltd,PARTIAL: VULNERABLE (Mixed),1,0,0,0,104,False
+18119,ACSData,PARTIAL: VULNERABLE (Mixed),1,0,0,0,100,False
+135889,Softsource Ltd,PARTIAL: VULNERABLE (Mixed),1,0,0,0,89,False
+9303,The Digital Lab 2007 Limited,PARTIAL: VULNERABLE (Mixed),1,0,0,0,43,False
+18015,Fastcom Limited,PARTIAL: VULNERABLE (Mixed),1,0,0,0,33,False
+45230,UberGroup Limited,STUB: VULNERABLE,0,0,0,0,599,False
+55872,ASN for Trusted Partner Peering,STUB: VULNERABLE,0,0,0,0,581,False
+132449,Wireless Nation,STUB: VULNERABLE,0,0,0,0,515,False
+140869,Turing Group Limited,STUB: VOLATILE,0,0,0,0,266,False
+58610,Telnet Telecommunication Limited,STUB: UNRELIABLE,0,0,0,0,209,False
+134967,TopQuality Limited,STUB: VULNERABLE,0,0,0,0,198,False
+134673,Gisborne/Eastcoast Internet Services,STUB: VULNERABLE,0,0,0,0,170,False
+9431,The University of Auckland,STUB: VOLATILE,0,0,0,0,149,False
+133192,Ultimate Mobile limited,STUB: VULNERABLE,0,0,0,0,133,False
+132815,Evolution Wireless Ltd,STUB: PASSIVE (Clean Pipe),0,0,0,0,118,False
+18159,Netspeed Data Ltd,STUB: VULNERABLE,0,0,0,0,106,False
+24006,Liverton Limited,STUB: VULNERABLE,0,0,0,0,97,False
+133043,Enhanced Solutions Ltd,NOT ROUTED,0,0,0,0,90,False
+56068,Lightspeed Technology Group Limited,STUB: VULNERABLE,0,0,0,0,87,False
+23905,Victoria University of Wellington,STUB: VOLATILE,0,0,0,0,83,False
+133451,PC Soft Limited,STUB: VULNERABLE,0,0,0,0,74,False
+133878,UNICOM NEW ZEALAND LIMITED,STUB: PASSIVE (Clean Pipe),0,0,0,0,65,False
+152596,Rodney Broadband Limited,STUB: UNRELIABLE,0,0,0,0,65,False
+24111,nzwireless LTD,STUB: UNRELIABLE,0,0,0,0,64,False
+45179,SiteHost New Zealand,STUB: VULNERABLE,0,0,0,0,64,False
+131198,Mediatribe Limited,STUB: VULNERABLE,0,0,0,0,61,False
+38305,The University of Otago,STUB: VOLATILE,0,0,0,0,58,False
+133187,Ashnet Limited,STUB: VULNERABLE,0,0,0,0,54,False
+132231,Network For Learning Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,53,False
+9432,University of Canterbury,STUB: VULNERABLE,0,0,0,0,37,False
+681,University of Waikato,STUB: VULNERABLE,0,0,0,0,36,False
+4770,ICONZ Ltd,STUB: VULNERABLE,0,0,0,0,35,False
+136524,Zylex Computers Limited,STUB: UNRELIABLE,0,0,0,0,32,False
+7584,TCR Holdings Limted.,NOT ROUTED,0,0,0,0,0,False
+7599,Advanced Management Systems Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+7657,One New Zealand Group Limited,STUB: VULNERABLE,0,0,0,0,0,False
+7696,"Modica Group Limited,",NOT ROUTED,0,0,0,0,0,False
+7714,One New Zealand Group Limited,NOT ROUTED,0,0,0,0,0,False
+9236,AMP Capital Investors NZ,NOT ROUTED,0,0,0,0,0,False
+9281,Palmerston North Internet Exchange,NOT ROUTED,0,0,0,0,0,False
+9338,National Library of New Zealand,NOT ROUTED,0,0,0,0,0,False
+9325,Spark New Zealand Trading Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+9327,Hopcount Limited,STUB: VULNERABLE,0,0,0,0,0,False
+9343,Voyager Internet Ltd.,NOT ROUTED,0,0,0,0,0,False
+9344,Voyager NZ Ltd,NOT ROUTED,0,0,0,0,0,False
+9345,Paradise Net,NOT ROUTED,0,0,0,0,0,False
+9445,Saturn Communications Ltd,NOT ROUTED,0,0,0,0,0,False
+9433,Massey University,STUB: VULNERABLE,0,0,0,0,0,False
+9439,Wellington Internet Exchange (Vital),NOT ROUTED,0,0,0,0,0,False
+9483,Flatnet Networks,STUB: VULNERABLE,0,0,0,0,0,False
+9503,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+9537,Level48 Ltd,NOT ROUTED,0,0,0,0,0,False
+9559,Plain Communications Ltd,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+9560,Auckland Peering Exchange,NOT ROUTED,0,0,0,0,0,False
+9718,Kordia Limited,NOT ROUTED,0,0,0,0,0,False
+9727,Vibe Heavy Industries,NOT ROUTED,0,0,0,0,0,False
+9733,Netspace Services Limited,NOT ROUTED,0,0,0,0,0,False
+9788,Inland Revenue Department - Te Tari Taake,NOT ROUTED,0,0,0,0,0,False
+9834,Trade Me Limited,NOT ROUTED,0,0,0,0,0,False
+9901,One New Zealand Group Limited,NOT ROUTED,0,0,0,0,0,False
+9872,Voyager Internet Ltd.,NOT ROUTED,0,0,0,0,0,False
+9876,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+9889,Two Degrees Mobile Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+9896,David Robb,STUB: VULNERABLE,0,0,0,0,0,False
+9898,IQ Hive Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+10022,Datacom Systems Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+10110,Manukau Institute of Technology and Unitec,STUB: VULNERABLE,0,0,0,0,0,False
+10200,The Digital Lab 2007 Limited,NOT ROUTED,0,0,0,0,0,False
+17435,ASN for Trusted Partner Peering,STUB: VULNERABLE,0,0,0,0,0,False
+17491,New Zealand Internet Exchange Incorporated,NOT ROUTED,0,0,0,0,0,False
+17472,Bank of New Zealand NZ-based networks,STUB: VULNERABLE,0,0,0,0,0,False
+17474,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+17484,CELLO GROUP LIMITED,NOT ROUTED,0,0,0,0,0,False
+17542,The New Zealand Institute for Plant and Food Research,STUB: VULNERABLE,0,0,0,0,0,False
+17646,Wave Internet Services Network,NOT ROUTED,0,0,0,0,0,False
+17649,DMZGlobal Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+17656,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+17663,KAINGA ORA HOMES AND COMMUNITIES,NOT ROUTED,0,0,0,0,0,False
+17746,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+17752,The Digital Lab 2007 Limited,NOT ROUTED,0,0,0,0,0,False
+17792,Metservice,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+17808,One New Zealand Group Limited,NOT ROUTED,0,0,0,0,0,False
+17902,ihug Wholesale Bandwidth Sales,NOT ROUTED,0,0,0,0,0,False
+18021,"Unisys NZ, IT Outsourcer,",STUB: VULNERABLE,0,0,0,0,0,False
+18006,Blue Star Print Group,NOT ROUTED,0,0,0,0,0,False
+18198,Unknown,NOT ROUTED,0,0,0,0,0,False
+18202,Voyager Internet Ltd.,NOT ROUTED,0,0,0,0,0,False
+18203,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+18348,DIRECT PAYMENT SOLUTIONS,NOT ROUTED,0,0,0,0,0,False
+18352,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+18353,Spark New Zealand Trading Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+18406,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+18407,Click Internet Limited,NOT ROUTED,0,0,0,0,0,False
+18378,National Institute of Water and Atmospheric Research Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+5709,Kiwifruit Marketing Board,NOT ROUTED,0,0,0,0,0,False
+23603,Housing New Zealand,NOT ROUTED,0,0,0,0,0,False
+23684,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+23710,ISC F-ROOT AKL1,NOT ROUTED,0,0,0,0,0,False
+23735,EOL (Enternet Online Ltd),STUB: VULNERABLE,0,0,0,0,0,False
+23737,Olypic Software Ltd,NOT ROUTED,0,0,0,0,0,False
+23746,Symbio Networks New Zealand Limited,NOT ROUTED,0,0,0,0,0,False
+23754,Vital,NOT ROUTED,0,0,0,0,0,False
+23755,Citylink,NOT ROUTED,0,0,0,0,0,False
+23869,InternetNZ infrastructure for NZ TLD SRS and DNS servers,STUB: VULNERABLE,0,0,0,0,0,False
+23878,Softsource Ltd,NOT ROUTED,0,0,0,0,0,False
+23934,Turnstone Technologies LTD NZ AS,NOT ROUTED,0,0,0,0,0,False
+23904,Ministry for the Environment,NOT ROUTED,0,0,0,0,0,False
+23916,House of Travel Holdings Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+23958,DTS ISP New Zealand,NOT ROUTED,0,0,0,0,0,False
+23960,Data Traffic Services,NOT ROUTED,0,0,0,0,0,False
+23973,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+23977,Katipo Communications Limited,NOT ROUTED,0,0,0,0,0,False
+24025,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+24005,Securecom Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+24011,Health New Zealand,NOT ROUTED,0,0,0,0,0,False
+24074,New Zealand Post,STUB: VULNERABLE,0,0,0,0,0,False
+24054,Air New Zealand Limited,NOT ROUTED,0,0,0,0,0,False
+24107,CommArc Consulting Ltd AS,STUB: VULNERABLE,0,0,0,0,0,False
+24181,CELLO GROUP LIMITED,NOT ROUTED,0,0,0,0,0,False
+24189,"IBM New Zealand Limited,",NOT ROUTED,0,0,0,0,0,False
+24192,Solarix Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+24226,Catalyst.Net Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+24347,Capgemini New Zealand Limited,NOT ROUTED,0,0,0,0,0,False
+24318,Ministry of Education,NOT ROUTED,0,0,0,0,0,False
+24384,Dunedin Peering Exchange,NOT ROUTED,0,0,0,0,0,False
+24385,Smartlinx3 - Wellington Regional Internet Exchange,NOT ROUTED,0,0,0,0,0,False
+24386,Networker,NOT ROUTED,0,0,0,0,0,False
+24387,SDN Internet Exchange,NOT ROUTED,0,0,0,0,0,False
+24388,Christchurch Internet Exchange,NOT ROUTED,0,0,0,0,0,False
+24459,RIMU HOSTING LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+24466,Accelero Limited,NOT ROUTED,0,0,0,0,0,False
+24484,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+24511,NET TRUST LIMITED,NOT ROUTED,0,0,0,0,0,False
+24548,ASN for Trusted Partner Peering,STUB: VULNERABLE,0,0,0,0,0,False
+4834,eSurf Wireless Ltd,NOT ROUTED,0,0,0,0,0,False
+4830,Westpactrust,STUB: VULNERABLE,0,0,0,0,0,False
+4831,Melco Sales (NZ) Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+4763,One New Zealand Group Limited,NOT ROUTED,0,0,0,0,0,False
+4667,GNS Science New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+4610,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+37979,ThePacific.Net Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+37999,Television New Zealand,NOT ROUTED,0,0,0,0,0,False
+38003,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+38018,REANNZ International Transit Network,NOT ROUTED,0,0,0,0,0,False
+38065,Catalyst.Net Ltd (Unused),NOT ROUTED,0,0,0,0,0,False
+38037,InternetNZ Lab,STUB: VULNERABLE,0,0,0,0,0,False
+38079,Public Services Commission,STUB: VULNERABLE,0,0,0,0,0,False
+38052,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+38178,E-Cast,NOT ROUTED,0,0,0,0,0,False
+38189,Parliamentary Services,NOT ROUTED,0,0,0,0,0,False
+38190,TCR Holdings Limted,NOT ROUTED,0,0,0,0,0,False
+38243,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+38290,TCR Holdings Limted,NOT ROUTED,0,0,0,0,0,False
+38292,"ZeroOne (NZ) Limited,",NOT ROUTED,0,0,0,0,0,False
+38294,Serverworks Content Provider,STUB: VULNERABLE,0,0,0,0,0,False
+38300,REANNZ Research and Development,NOT ROUTED,0,0,0,0,0,False
+38319,"Lincoln University, Canterbury, New Zealand",STUB: VULNERABLE,0,0,0,0,0,False
+38329,Wellington City Council,NOT ROUTED,0,0,0,0,0,False
+38437,Wicked Networks,STUB: VULNERABLE,0,0,0,0,0,False
+38477,Solarix Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+38451,SMX Ltd,NOT ROUTED,0,0,0,0,0,False
+38473,New Zealand Institute for Bioeconomy Science Limited,STUB: VULNERABLE,0,0,0,0,0,False
+38479,Landcare Research,NOT ROUTED,0,0,0,0,0,False
+38485,"SPark Digital Service Delivery Platform,",NOT ROUTED,0,0,0,0,0,False
+38492,REANNZ Customer - Endace,NOT ROUTED,0,0,0,0,0,False
+38560,Meridian energy,NOT ROUTED,0,0,0,0,0,False
+38568,ISC F-ROOT SUV1,NOT ROUTED,0,0,0,0,0,False
+38586,Integral Technology Group,NOT ROUTED,0,0,0,0,0,False
+38605,"Rakon, Auckland,",STUB: VULNERABLE,0,0,0,0,0,False
+38624,Paymark Limited,STUB: VULNERABLE,0,0,0,0,0,False
+38626,NEW ZEALAND INSTITUTE FOR PUBLIC HEALTH AND FORENSIC SCIENCE LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+38711,REANNZ Education and Schools,NOT ROUTED,0,0,0,0,0,False
+38748,One New Zealand Group Mt Eden Test Site,NOT ROUTED,0,0,0,0,0,False
+38793,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+38827,REANNZ Customer - Kristin School,NOT ROUTED,0,0,0,0,0,False
+38881,NZ Lotteries Commission,STUB: VULNERABLE,0,0,0,0,0,False
+38900,Unison Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+38906,Otago Polytechnic.,STUB: VULNERABLE,0,0,0,0,0,False
+3929,Financial Systems Limited,NOT ROUTED,0,0,0,0,0,False
+45116,ASN for Trusted Partner Peering,NOT ROUTED,0,0,0,0,0,False
+45138,Christchurch Polytechnic Institute,STUB: VULNERABLE,0,0,0,0,0,False
+45140,Christ College Christchurch ASN,STUB: VULNERABLE,0,0,0,0,0,False
+45135,Snap National Distributed,NOT ROUTED,0,0,0,0,0,False
+45172,Jade Software Corporation Christchurch ASN,STUB: VULNERABLE,0,0,0,0,0,False
+45190,International Terminal,STUB: VULNERABLE,0,0,0,0,0,False
+45191,Ecans Corporation Christchurch ASN,NOT ROUTED,0,0,0,0,0,False
+45164,Allied Telesis Labs Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45215,OneNet Limited.,STUB: VULNERABLE,0,0,0,0,0,False
+45222,Spark New Zealand Trading Ltd,NOT ROUTED,0,0,0,0,0,False
+45249,"Waikato Institute of Technology,",NOT ROUTED,0,0,0,0,0,False
+45279,Hamilton Internet Exchange (Vital),NOT ROUTED,0,0,0,0,0,False
+45280,New Zealand Technology Group Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45285,InternetNZ (.nz tld),STUB: VULNERABLE,0,0,0,0,0,False
+45359,MediaWorks Holdings Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45459,Solarix Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45473,SOLNETSOLUTIONS-NZ,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+45476,PROPHARMA Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45480,PO Box 805,NOT ROUTED,0,0,0,0,0,False
+45563,Network Pro,NOT ROUTED,0,0,0,0,0,False
+45620,Sky Network Television Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+45585,Nelson Internet Exchange,NOT ROUTED,0,0,0,0,0,False
+45586,Auckland Grammar School,STUB: VULNERABLE,0,0,0,0,0,False
+45631,Contact Energy New Zealand,NOT ROUTED,0,0,0,0,0,False
+45633,Slush Technologies AS V4 Transit,STUB: VULNERABLE,0,0,0,0,0,False
+45641,Advantage Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45738,This is a company that provides specialized Video,NOT ROUTED,0,0,0,0,0,False
+45787,Whitireia Community Polytechnic,STUB: VULNERABLE,0,0,0,0,0,False
+45792,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+45809,ASN for .nz registry content,STUB: VULNERABLE,0,0,0,0,0,False
+45822,Snap Internet Limited,NOT ROUTED,0,0,0,0,0,False
+45823,Snap Internet Limited,NOT ROUTED,0,0,0,0,0,False
+45943,Opus International Consultants,NOT ROUTED,0,0,0,0,0,False
+45946,Air New Zealand Limited,STUB: VULNERABLE,0,0,0,0,0,False
+45950,Gareth Morgan Investments,NOT ROUTED,0,0,0,0,0,False
+46075,PO Box 2420,NOT ROUTED,0,0,0,0,0,False
+3787,Telecom Mobile Communications Ltd.,NOT ROUTED,0,0,0,0,0,False
+3773,TGE,NOT ROUTED,0,0,0,0,0,False
+3747,Wang NZ Ltd,NOT ROUTED,0,0,0,0,0,False
+3711,ISIS International (NZ) Ltd.,NOT ROUTED,0,0,0,0,0,False
+55300,PO Box 805,NOT ROUTED,0,0,0,0,0,False
+55301,PO Box 805,NOT ROUTED,0,0,0,0,0,False
+55368,Lightwire LTD,NOT ROUTED,0,0,0,0,0,False
+55397,Lightwire LTD,NOT ROUTED,0,0,0,0,0,False
+55435,Whangarei District Council,STUB: VULNERABLE,0,0,0,0,0,False
+55436,ASN for Trusted Partner Peering,NOT ROUTED,0,0,0,0,0,False
+55454,Two Degrees Mobile Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+55485,1 Francis Street,STUB: VULNERABLE,0,0,0,0,0,False
+55502,Level 7 50 Customhouse Quay,NOT ROUTED,0,0,0,0,0,False
+55516,Universal College of Learning,STUB: VULNERABLE,0,0,0,0,0,False
+55524,Toi Ohomai Institute of Technology,STUB: VULNERABLE,0,0,0,0,0,False
+55702,EASTERN INSTITUTE OF TECHNOLOGY LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+55703,Liverton Limited,NOT ROUTED,0,0,0,0,0,False
+55746,"Western Institute of Technology at Taranaki,",STUB: VULNERABLE,0,0,0,0,0,False
+55747,"Southern Institute of Technology,",STUB: VULNERABLE,0,0,0,0,0,False
+55715,113 Bank Street,STUB: VULNERABLE,0,0,0,0,0,False
+55716,"Censorship Compliance Unit, Department of Internal Affairs",NOT ROUTED,0,0,0,0,0,False
+55719,Reserve Bank of New Zealand,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+55729,Pacific Technology Solutions Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+55793,Ministry of Civil Defence,NOT ROUTED,0,0,0,0,0,False
+55759,Ministry of Foreign Affairs and Trade,STUB: VULNERABLE,0,0,0,0,0,False
+55853,Nova Energy Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+55857,Harvest Electronics NZ Limited,STUB: VULNERABLE,0,0,0,0,0,False
+55860,Foodstuffs SI Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+55887,Diocesan School for Girls,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+55926,Mercury NZ Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+55936,Spark Digital New Zealand Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+55946,P.C. Exchange Ltd,NOT ROUTED,0,0,0,0,0,False
+55948,ISP Limited,NOT ROUTED,0,0,0,0,0,False
+56028,BTG Networks,STUB: VULNERABLE,0,0,0,0,0,False
+56036,UberGroup Limited,NOT ROUTED,0,0,0,0,0,False
+56101,320 Factory Rd,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+56102,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+56171,Dorys Plaything,NOT ROUTED,0,0,0,0,0,False
+56137,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+56186,Digital Island Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+56189,New Media Networks Limited,NOT ROUTED,0,0,0,0,0,False
+56214,Zelan Ltd,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+56216,Compass Communications Ltd,NOT ROUTED,0,0,0,0,0,False
+56174,Eagle Technology Group Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+56228,Kordia Limited,NOT ROUTED,0,0,0,0,0,False
+56304,The Total Team Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+56683,EXNESS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+2925,Freightways Information Services Ltd.,NOT ROUTED,0,0,0,0,0,False
+2926,Dominion Breweries Ltd.,NOT ROUTED,0,0,0,0,0,False
+58421,Parliamentary Service,STUB: VULNERABLE,0,0,0,0,0,False
+58423,StrataNet,STUB: VULNERABLE,0,0,0,0,0,False
+58443,RackCentral,NOT ROUTED,0,0,0,0,0,False
+58444,Weta Digital Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+58583,Solarix Networks Limited,NOT ROUTED,0,0,0,0,0,False
+58600,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+58624,End 2 End Limited,STUB: VULNERABLE,0,0,0,0,0,False
+58936,Managed Hosted Applications Limited,NOT ROUTED,0,0,0,0,0,False
+58938,HiTech Telecommunication Limited,NOT ROUTED,0,0,0,0,0,False
+58988,Experieco Limited,NOT ROUTED,0,0,0,0,0,False
+59292,Foodstuffs North Island Limited,NOT ROUTED,0,0,0,0,0,False
+2756,Ernst & Young,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+61025,CoCCA Registry Services (NZ) Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+2569,Spark New Zealand Trading Ltd,NOT ROUTED,0,0,0,0,0,False
+2570,Spark New Zealand Trading Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+2537,New Zealand Department of Statistics,NOT ROUTED,0,0,0,0,0,False
+63519,73 Sydney St,STUB: VULNERABLE,0,0,0,0,0,False
+63830,New Zealand Internet Exchange Incorporated,NOT ROUTED,0,0,0,0,0,False
+63839,Megaport Pty Ltd,NOT ROUTED,0,0,0,0,0,False
+63979,TALK A CLOUD LIMITED,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+64015,Pure IP Limited,STUB: VULNERABLE,0,0,0,0,0,False
+64076,CloudSource IT Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+64054,SiteTech Solutions Limited,NOT ROUTED,0,0,0,0,0,False
+64070,healthAlliance,NOT ROUTED,0,0,0,0,0,False
+131110,Slush Technologies AS V6 Transit,NOT ROUTED,0,0,0,0,0,False
+131167,ST JOHN NZ LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+131168,Windcave Limited,NOT ROUTED,0,0,0,0,0,False
+131174,Two Degrees Mobile Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+131176,REANNZ Customer - Tertiary Education Commission,NOT ROUTED,0,0,0,0,0,False
+131187,Teritary Education Commission,STUB: VULNERABLE,0,0,0,0,0,False
+131193,Engineering and Computer Science,NOT ROUTED,0,0,0,0,0,False
+131201,Skope Industries Limited,NOT ROUTED,0,0,0,0,0,False
+131202,Gravity Internet Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+131209,Allied Press Limited,NOT ROUTED,0,0,0,0,0,False
+131196,Enable Networks,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+131239,Auckland Council,STUB: VULNERABLE,0,0,0,0,0,False
+131254,Northpower Ltd,NOT ROUTED,0,0,0,0,0,False
+131227,Yrless Ltd,NOT ROUTED,0,0,0,0,0,False
+131272,Open Polytechnic,STUB: VULNERABLE,0,0,0,0,0,False
+131287,Yonder.Co.Nz Limited,STUB: VULNERABLE,0,0,0,0,0,False
+131291,LANWorx Limited,STUB: VULNERABLE,0,0,0,0,0,False
+131323,Honda New Zealand Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+131296,REXNETWORKS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+131305,MSCA,NOT ROUTED,0,0,0,0,0,False
+131318,Wialus Solutions Limited,STUB: VULNERABLE,0,0,0,0,0,False
+131328,The Loop Trust,NOT ROUTED,0,0,0,0,0,False
+131452,Core Mart Ltd,NOT ROUTED,0,0,0,0,0,False
+131443,Oxygen IT,NOT ROUTED,0,0,0,0,0,False
+132014,NetPoller Limited,NOT ROUTED,0,0,0,0,0,False
+132027,Hastings District Council,STUB: VULNERABLE,0,0,0,0,0,False
+132001,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+132036,InverLoop,NOT ROUTED,0,0,0,0,0,False
+132042,Manux Networks Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132058,VIAN Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132074,Atlantech Hosted Solutions,NOT ROUTED,0,0,0,0,0,False
+132048,PowerDNS Anycast,NOT ROUTED,0,0,0,0,0,False
+132083,FOUNDATION CLOUD SERVICES LIMITED,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+132096,Land Information New Zealand,NOT ROUTED,0,0,0,0,0,False
+132066,New Plymouth District Council,NOT ROUTED,0,0,0,0,0,False
+132125,Braintrust Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132130,TRIKO SECURITY LIMITED,NOT ROUTED,0,0,0,0,0,False
+132143,Harbour City Security Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132149,'Click Internet Limited',NOT ROUTED,0,0,0,0,0,False
+132155,Obtrix LTD,NOT ROUTED,0,0,0,0,0,False
+132161,vGRID Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132174,Matrix Security Group Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+132240,Plan-b Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132219,Ministry of Maori Development (Te Puni Kokiri),NOT ROUTED,0,0,0,0,0,False
+132235,Greater Christchurch Schools Network,NOT ROUTED,0,0,0,0,0,False
+132238,Array Health,NOT ROUTED,0,0,0,0,0,False
+132264,Callaghan Innovation,STUB: VULNERABLE,0,0,0,0,0,False
+132268,Velocity Net Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132284,Radio New Zealand,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+132333,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+132316,Frednet Limited,NOT ROUTED,0,0,0,0,0,False
+132357,Network Service Providers,NOT ROUTED,0,0,0,0,0,False
+132375,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+132347,MikiPro Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132391,FourG Telecom,NOT ROUTED,0,0,0,0,0,False
+132431,Netspace Services Limited,NOT ROUTED,0,0,0,0,0,False
+132409,Museum of New Zealand Te Papa Tongarewa,STUB: VULNERABLE,0,0,0,0,0,False
+132450,New Era IT Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132452,New Plymouth Schools,NOT ROUTED,0,0,0,0,0,False
+132456,"Modica Group Limited,",NOT ROUTED,0,0,0,0,0,False
+132457,46 Robins Road,NOT ROUTED,0,0,0,0,0,False
+132509,Solarix Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132534,Healthlink Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132583,ASI Solutions Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132687,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+132692,GlobiCom Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132695,Optimation New Zealand Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132697,Accelero Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132736,Two Degrees Mobile Limited,NOT ROUTED,0,0,0,0,0,False
+132709,New Zealand Genomics Limited,NOT ROUTED,0,0,0,0,0,False
+132712,Daifuku Oceania,STUB: VULNERABLE,0,0,0,0,0,False
+132722,Intellium Technology Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132723,Tararua District Council,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+132727,Strata Networks Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132744,The Virus Centre Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132745,Blast Internet Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132822,Fidelity Life Assurance Company Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132809,Feenix Communications Limited,NOT ROUTED,0,0,0,0,0,False
+132810,Telarus Pty Ltd,NOT ROUTED,0,0,0,0,0,False
+132840,Neos Systems Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132854,Wanganui District Council,NOT ROUTED,0,0,0,0,0,False
+132857,FULL FLAVOUR LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+132870,Xtreme Networks Limited,NOT ROUTED,0,0,0,0,0,False
+132875,National Pacs Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132881,OmniNet Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+132887,Counties Energy Limited,STUB: VULNERABLE,0,0,0,0,0,False
+132919,WebSlice Limited,NOT ROUTED,0,0,0,0,0,False
+132898,CHORUS NEW ZEALAND LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+132917,Thryv New Zealand,NOT ROUTED,0,0,0,0,0,False
+132918,Vetta Technologies Ltd,NOT ROUTED,0,0,0,0,0,False
+133035,CELLO GROUP LIMITED,NOT ROUTED,0,0,0,0,0,False
+133101,Power Wireless Ltd,NOT ROUTED,0,0,0,0,0,False
+133079,Northland Regional Council Redundant ISP,NOT ROUTED,0,0,0,0,0,False
+133090,Fusion Networks,STUB: VULNERABLE,0,0,0,0,0,False
+133096,MOTHERSHIP,STUB: VULNERABLE,0,0,0,0,0,False
+133132,H. W. RICHARDSON GROUP LIMITED,NOT ROUTED,0,0,0,0,0,False
+133108,Wanganui District Council,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+133154,Gisborne District Council,STUB: VULNERABLE,0,0,0,0,0,False
+133124,Spark Ventures,STUB: VULNERABLE,0,0,0,0,0,False
+133162,Accelero Limited,NOT ROUTED,0,0,0,0,0,False
+133188,MWH Sydney POP,STUB: VULNERABLE,0,0,0,0,0,False
+133214,Justinternet Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133218,Softsource Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133366,MWH Christchurch DC,NOT ROUTED,0,0,0,0,0,False
+133399,HI-TECH SOLUTIONS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+133401,Devoli-FREEDOMAU,NOT ROUTED,0,0,0,0,0,False
+133370,TODD ENERGY LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+133420,Network for Learning,NOT ROUTED,0,0,0,0,0,False
+133393,Naki Host Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133396,TEAMnetwork Systems Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+133404,WEBJET GROUP NZ LIMITED,NOT ROUTED,0,0,0,0,0,False
+133455,SKYCITY Entertainment Group Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+133427,Selwyn District Council,STUB: VULNERABLE,0,0,0,0,0,False
+133499,HostRoyale Technologies Pvt Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+133473,Spark New Zealand Trading Ltd,NOT ROUTED,0,0,0,0,0,False
+133474,MYNX INTERNET LIMITED,NOT ROUTED,0,0,0,0,0,False
+133532,ASN for .nz InternetNZ Registry Content,STUB: VULNERABLE,0,0,0,0,0,False
+133537,Downer New Zealand Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133578,DOERS NETWORKS LIMITED,NOT ROUTED,0,0,0,0,0,False
+133601,BIG IRON LIMITED,NOT ROUTED,0,0,0,0,0,False
+133604,MidCentral District Health Board,STUB: VULNERABLE,0,0,0,0,0,False
+133607,KiwiData,NOT ROUTED,0,0,0,0,0,False
+133608,Liverton Security Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133636,Fisheye Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133729,Equinox Limited,NOT ROUTED,0,0,0,0,0,False
+133745,InternetNZ,STUB: VULNERABLE,0,0,0,0,0,False
+133741,Waka Kotahi NZ Transport Agency,STUB: VULNERABLE,0,0,0,0,0,False
+133756,The Digital Lab 2007 Limited,NOT ROUTED,0,0,0,0,0,False
+133785,KeepItSafe New Zealand Limited,NOT ROUTED,0,0,0,0,0,False
+133789,Mount Campbell Networks Ltd,NOT ROUTED,0,0,0,0,0,False
+133857,Callaghan Innovation,STUB: VULNERABLE,0,0,0,0,0,False
+133870,Brand Developers Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133887,CyberHub Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+133906,Sand Dune Mail Ltd,NOT ROUTED,0,0,0,0,0,False
+133884,Airways Corporation of New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+133920,TSB Bank Limited,STUB: VULNERABLE,0,0,0,0,0,False
+133927,HAMPTON DOWNS GROUP LIMITED,NOT ROUTED,0,0,0,0,0,False
+133928,Manukau Institute of Technology and Unitec,STUB: VULNERABLE,0,0,0,0,0,False
+133915,Organization: Powerco NZ Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134062,Scorch Communications Limited,NOT ROUTED,0,0,0,0,0,False
+134102,Accelero Limited,NOT ROUTED,0,0,0,0,0,False
+134118,Beca Corporate Holdings Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134099,CASS - NZ Central Government,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+134110,MiIT Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134156,Cover Communications Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134131,Whakatane District Council,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+134192,CloudSquared,NOT ROUTED,0,0,0,0,0,False
+134224,Voyager Internet Limited,NOT ROUTED,0,0,0,0,0,False
+134227,WAND FAUCET-controlled multi-vendor production OpenFlow network,STUB: VULNERABLE,0,0,0,0,0,False
+134244,Orca Communications Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+134359,PURELINK LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+134372,L. EDWARDS & SON LIMITED t/a VisionLab,STUB: VULNERABLE,0,0,0,0,0,False
+134378,Alchemy Networks Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134389,BOMBORA TECHNOLOGIES Anycast system,NOT ROUTED,0,0,0,0,0,False
+134429,GREENFIELDS INTERNET (2019) LTD,STUB: VULNERABLE,0,0,0,0,0,False
+134444,Spark New Zealand Trading Ltd,NOT ROUTED,0,0,0,0,0,False
+134445,Nelson Marlborough Institute of Technology,NOT ROUTED,0,0,0,0,0,False
+134433,REDSHIELD SECURITY LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+134436,The Instillery Group Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134692,IAG New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+134730,EDMI NZ Limited,NOT ROUTED,0,0,0,0,0,False
+134744,Countrynet NZ Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134746,Z Energy Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+134818,Epsom Girls Grammar School,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+134845,Wellington International Airport Limited,STUB: VULNERABLE,0,0,0,0,0,False
+134955,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134956,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134957,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134958,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134959,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134960,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134961,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134954,Vital Data Ltd,NOT ROUTED,0,0,0,0,0,False
+134988,Gateway Teleport Ltd.,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+135021,TMG Cloudland Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135023,Maximum Control Limited,NOT ROUTED,0,0,0,0,0,False
+135047,NTT NEW ZEALAND LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+135087,Sweep Internet NZ Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135112,Sharenet Limited,NOT ROUTED,0,0,0,0,0,False
+135142,Enigma Solutions Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135154,Genesis Energy Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135157,Hilton Haulage Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135288,Auckland Museum Trust Board,STUB: VULNERABLE,0,0,0,0,0,False
+135328,Tangelo,STUB: VULNERABLE,0,0,0,0,0,False
+135344,Transactor Technologies Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135385,Gough Group Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135393,Kiwi VoIP,STUB: VULNERABLE,0,0,0,0,0,False
+135400,Contact Energy Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135403,Auckland Transport,STUB: VULNERABLE,0,0,0,0,0,False
+135428,Fire and Emergency New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+135431,EASTERN INSTITUTE OF TECHNOLOGY LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+135606,Warp Speed Computers Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135626,Electra Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135642,VetNZ Limited,STUB: VULNERABLE,0,0,0,0,0,False
+135898,Universal Communications Group NZ Limited,NOT ROUTED,0,0,0,0,0,False
+136024,Advantage Limited,NOT ROUTED,0,0,0,0,0,False
+136015,NETWORK SERVICE PROVIDERS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136157,AFFCO New Zealand Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+136249,KIWIWIFI LIMITED,NOT ROUTED,0,0,0,0,0,False
+136269,BPAC CLINICAL SOLUTIONS LP,STUB: VULNERABLE,0,0,0,0,0,False
+136409,Daifuku Infrastructure OOB,STUB: VULNERABLE,0,0,0,0,0,False
+136440,VALENTIA TECHNOLOGIES (NZ) LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136463,WheroNet Limited,STUB: VULNERABLE,0,0,0,0,0,False
+136488,Health Care of New Zealand Limited,NOT ROUTED,0,0,0,0,0,False
+136494,Smartcall Limited,NOT ROUTED,0,0,0,0,0,False
+136499,TMG Cloudland Limited,STUB: VULNERABLE,0,0,0,0,0,False
+136500,NorthCloud Limited,STUB: VULNERABLE,0,0,0,0,0,False
+136559,Omega Networks,STUB: VULNERABLE,0,0,0,0,0,False
+136595,EXCELLENT SOFTWARE LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136584,VoIP Line Telecom Pty. Ltd.,STUB: VULNERABLE,0,0,0,0,0,False
+136795,Nova Energy LTD,NOT ROUTED,0,0,0,0,0,False
+136797,Turbo I.T Limited,STUB: VULNERABLE,0,0,0,0,0,False
+136960,ARTHUR J. GALLAGHER & CO (NZ) LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136953,VOIP HQ LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136990,Inland Revenue Department,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+136964,NZ Safety Blackwoods,STUB: VULNERABLE,0,0,0,0,0,False
+136965,IT Live Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+136980,THE CO-OPERATIVE BANK LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+136984,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+137028,Latte Solutions Limited,NOT ROUTED,0,0,0,0,0,False
+137051,CYBERCX NEW ZEALAND LIMITED,NOT ROUTED,0,0,0,0,0,False
+137052,NZX Limited,STUB: VULNERABLE,0,0,0,0,0,False
+137217,BLUE STAR GROUP (NEW ZEALAND) LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+137262,InTune Technologies Limited,STUB: VULNERABLE,0,0,0,0,0,False
+137267,Sharp ICT,STUB: VULNERABLE,0,0,0,0,0,False
+137448,ASB BANK LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+137465,Simplyfree Limited,STUB: VULNERABLE,0,0,0,0,0,False
+137469,Signify Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+137471,New Zealand Defence Forces,STUB: VULNERABLE,0,0,0,0,0,False
+137472,Freightways Information Services Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+137495,Skyline Networks NZ Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+137879,Guardians of New Zealand Superannuation,NOT ROUTED,0,0,0,0,0,False
+137914,Asea Brown Boveri Ltd,NOT ROUTED,0,0,0,0,0,False
+137920,Suncorp Group New Zealand Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+137957,OMV NEW ZEALAND LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+138041,Telco2 Limited,STUB: VULNERABLE,0,0,0,0,0,False
+138187,AYONE COMPUTERS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+138189,Securecom Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+138348,Antarctica New Zealand,NOT ROUTED,0,0,0,0,0,False
+138360,Southern Cross Medical Care Society,STUB: VULNERABLE,0,0,0,0,0,False
+138355,Warner Telecommunication LTD,STUB: VULNERABLE,0,0,0,0,0,False
+138399,VADACOM LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+138410,"ITS, University of Waikato",NOT ROUTED,0,0,0,0,0,False
+138465,Kaelem Chandra,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+138686,AWACS Communications NZ Limited,NOT ROUTED,0,0,0,0,0,False
+138943,Connectnet Services Limited,STUB: VULNERABLE,0,0,0,0,0,False
+138973,Campbell Technology Limited,NOT ROUTED,0,0,0,0,0,False
+138976,NEW ZEALAND PHARMACEUTICALS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+138980,Mega Cloud Services Limited,NOT ROUTED,0,0,0,0,0,False
+139005,Vivid Computers Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+139046,Nextro LP,NOT ROUTED,0,0,0,0,0,False
+139020,CloudLink Communications,STUB: VULNERABLE,0,0,0,0,0,False
+139078,Glow Networks Ltd,NOT ROUTED,0,0,0,0,0,False
+139054,Auckland Data Centre Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139074,Prodigi Technology Services Limited - Community ISP,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+139200,Arthur D. Riley and Company Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139272,EASTERN INSTITUTE OF TECHNOLOGY LIMITED,NOT ROUTED,0,0,0,0,0,False
+139275,Watercare Services Limited,NOT ROUTED,0,0,0,0,0,False
+139271,Simpson Grierson Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139310,Mackenzie Agricultural Technologies,STUB: VULNERABLE,0,0,0,0,0,False
+139336,Freedom Internet Ltd.,STUB: VULNERABLE,0,0,0,0,0,False
+139359,New Solutions Group Limited,NOT ROUTED,0,0,0,0,0,False
+139580,RIMU HOSTING LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+139656,ANZ BANK NEW ZEALAND LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+139686,Free Range Cloud Hosting Inc,STUB: VULNERABLE,0,0,0,0,0,False
+139707,Radford Software Limited,NOT ROUTED,0,0,0,0,0,False
+139681,Dynamic Computer Services Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139694,Kiwibank Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139695,Kiwibank Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139744,Health New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+139748,Health New Zealand,STUB: VULNERABLE,0,0,0,0,0,False
+139827,Zeald IP Limited,NOT ROUTED,0,0,0,0,0,False
+139828,Ministry of Social Development,STUB: VULNERABLE,0,0,0,0,0,False
+139861,Cloud Torque Global Limited,STUB: VULNERABLE,0,0,0,0,0,False
+139906,InSPire Net Ltd,NOT ROUTED,0,0,0,0,0,False
+139876,COSCO SHIPPING LINES (NEW ZEALAND) LIMITED,NOT ROUTED,0,0,0,0,0,False
+140055,Timaru District Council,STUB: VULNERABLE,0,0,0,0,0,False
+140095,Morlock Networks,NOT ROUTED,0,0,0,0,0,False
+140089,Turners Automotive Group Limited,STUB: VULNERABLE,0,0,0,0,0,False
+140548,Reserve Bank of New Zealand,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+140602,Enable Services Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+140685,CHAPMAN TRIPP HOLDINGS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+140679,Our School Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+140680,NRG Automation Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+140844,Power Wireless Ltd,NOT ROUTED,0,0,0,0,0,False
+140851,Ryman Healthcare Limited,STUB: VULNERABLE,0,0,0,0,0,False
+140870,Accelerate Wireless Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+140872,Catalyst Cloud Limited,NOT ROUTED,0,0,0,0,0,False
+140874,Rapidweb Networks Limited,NOT ROUTED,0,0,0,0,0,False
+141007,GLG Trustees Limited,NOT ROUTED,0,0,0,0,0,False
+141040,CHELMER LIMITED,NOT ROUTED,0,0,0,0,0,False
+141183,Kiwibank Limited,STUB: VULNERABLE,0,0,0,0,0,False
+141186,Forsyth Barr Limited,STUB: VULNERABLE,0,0,0,0,0,False
+141226,Engage Technology Limited,STUB: VULNERABLE,0,0,0,0,0,False
+141228,Monitor New Zealand Limited,STUB: VULNERABLE,0,0,0,0,0,False
+141233,FULL FLAVOUR LIMITED,NOT ROUTED,0,0,0,0,0,False
+141382,Fulton Hogan Limited,NOT ROUTED,0,0,0,0,0,False
+141413,KAMAR Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+141693,Unix Co LTD,STUB: VULNERABLE,0,0,0,0,0,False
+141710,InSPire Net Ltd,NOT ROUTED,0,0,0,0,0,False
+141720,Blast Internet Ltd,NOT ROUTED,0,0,0,0,0,False
+141764,MMG Communications Limited,NOT ROUTED,0,0,0,0,0,False
+141769,iTCo Solutions Limited,STUB: VULNERABLE,0,0,0,0,0,False
+141775,Wireless Dynamics Limited,NOT ROUTED,0,0,0,0,0,False
+141779,OXYGEN IT LIMITED,NOT ROUTED,0,0,0,0,0,False
+142178,Earthlight Communications LTD,NOT ROUTED,0,0,0,0,0,False
+142197,LRAE Comms Group Ltd,NOT ROUTED,0,0,0,0,0,False
+142601,TILLERED LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+142602,Contact Energy Limited,STUB: VULNERABLE,0,0,0,0,0,False
+146999,Ara Institute of Canterbury,NOT ROUTED,0,0,0,0,0,False
+147012,Liverton Security,STUB: VULNERABLE,0,0,0,0,0,False
+147045,Mercury NZ Limited,NOT ROUTED,0,0,0,0,0,False
+147051,Ethanet Limited,NOT ROUTED,0,0,0,0,0,False
+147067,WEL Networks Ltd,NOT ROUTED,0,0,0,0,0,False
+149052,KiwiData,STUB: VULNERABLE,0,0,0,0,0,False
+149301,Askja Telecom Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+149310,Layer3 Limited,STUB: VULNERABLE,0,0,0,0,0,False
+149479,TANK. Webservices Limited,STUB: VULNERABLE,0,0,0,0,0,False
+149657,Internet Services Limited,NOT ROUTED,0,0,0,0,0,False
+149816,Kuwaha Internet Charitable Trust,NOT ROUTED,0,0,0,0,0,False
+149820,Epworth Corporation Limited,STUB: VULNERABLE,0,0,0,0,0,False
+150134,Whanganui District Health Board,STUB: VULNERABLE,0,0,0,0,0,False
+150154,CloudSquared,STUB: VULNERABLE,0,0,0,0,0,False
+150287,Tuatahi First Fibre Limited,STUB: VULNERABLE,0,0,0,0,0,False
+150409,Entity Communications Limited,STUB: VULNERABLE,0,0,0,0,0,False
+150454,Flatnet Networks,NOT ROUTED,0,0,0,0,0,False
+150723,Mega Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+150795,Braintrust Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+151191,Select Solutions Limited,STUB: VULNERABLE,0,0,0,0,0,False
+151208,Hero Internet Limited,NOT ROUTED,0,0,0,0,0,False
+151475,Caduceus Systems Limited,STUB: VULNERABLE,0,0,0,0,0,False
+151607,Christchurch International Airport Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+151612,HOSTPERL,STUB: VULNERABLE,0,0,0,0,0,False
+151625,Aorangi EFTPOS 2020 Ltd,NOT ROUTED,0,0,0,0,0,False
+151642,Netvine LTD,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+151645,Ministry of Justice,STUB: VULNERABLE,0,0,0,0,0,False
+151839,OJI FIBRE SOLUTIONS,STUB: VULNERABLE,0,0,0,0,0,False
+151956,Earthlink,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+152106,Turners and Growers Fresh Ltd,STUB: VULNERABLE,0,0,0,0,0,False
+152108,NATC Limited,STUB: VULNERABLE,0,0,0,0,0,False
+152180,1C Limited,STUB: VULNERABLE,0,0,0,0,0,False
+152653,Chorus New Zealand Limited,STUB: VULNERABLE,0,0,0,0,0,False
+152657,Department of Conservation,STUB: VULNERABLE,0,0,0,0,0,False
+152703,BAINZ,NOT ROUTED,0,0,0,0,0,False
+152851,RJOC Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+152887,Alarm Watch Limited,NOT ROUTED,0,0,0,0,0,False
+152880,Mega Limited,STUB: VULNERABLE,0,0,0,0,0,False
+152909,SaferCities,STUB: VULNERABLE,0,0,0,0,0,False
+153036,Tait Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+153180,Exaba Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153173,Information Technology Consultants Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153306,VOIP HQ LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+153312,BTIT Consulting Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153350,Orbit Broadband Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153389,Tasman District Council,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+153399,Tu Atea Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153850,Resolve Technology Limited,STUB: VULNERABLE,0,0,0,0,0,False
+153979,Maximum Control Limited,NOT ROUTED,0,0,0,0,0,False
+154275,Silver Fern Farms Limited,STUB: VULNERABLE,0,0,0,0,0,False
+154620,ARRAY HEALTH SOLUTIONS LIMITED,STUB: VULNERABLE,0,0,0,0,0,False
+154643,Magnificent Limited,STUB: VULNERABLE,0,0,0,0,0,False
+154796,Metaname,STUB: VULNERABLE,0,0,0,0,0,False
+154874,GREENFIELDS INTERNET (2019) LTD,NOT ROUTED,0,0,0,0,0,False
+198501,Jasper Hugo,NOT ROUTED,0,0,0,0,0,False
+199243,Alex Smith,STUB: VULNERABLE,0,0,0,0,0,False
+199334,RIGIL WEB TECHNOLOGIES LIMITED,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+201517,Tawhero Technology Limited,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+205810,COSMIC DUCK LIMITED,STUB: PASSIVE (Clean Pipe),0,0,0,0,0,False
+64073,Vetta Group,PARTIAL: VULNERABLE (Mixed),1675,28,17,50,111,True
+9790,Two Degrees Networks Limited,ACTIVE (Atlas Verified),111,7,7,27,27796,True
+45177,Devoli,REGRESSED,55,2,0,4,8050,True
+135069,Feenix Communications Limited,VULNERABLE (Atlas Verified),55,0,0,3,356,True
+55850,Mercury NZ Limited,REGRESSED,51,8,7,3,9729,True
+4648,Spark New Zealand,PARTIAL: VULNERABLE (Mixed),48,0,0,8,101,True
+38022,REANNZ National Research and Education Network,PARTIAL: VULNERABLE (Mixed),32,0,0,2,137,True
+23838,Solarix Networks Limited,VULNERABLE (Atlas Verified),22,0,0,1,72,True
+24324,Kordia Limited,VULNERABLE (Atlas Verified),14,2,1,0,103,True
+4049,CELLO GROUP LIMITED,PARTIAL: VULNERABLE (Mixed),12,2,2,0,171,True
+23655,2degrees Networks Limited,ACTIVE (Atlas Verified),11,6,2,0,418,True
+56030,Voyager Internet Ltd.,VULNERABLE (Atlas Verified),10,14,9,0,835,True
+4771,Spark New Zealand Trading Ltd.,VULNERABLE (Atlas Verified),6,6,0,0,31058,True
+17705,InSPire Net Ltd,INCONSISTENT,6,1,1,0,602,True
+151336,Verge,PARTIAL: VULNERABLE (Mixed),6,0,0,1,49,True
+9500,One New Zealand Group Limited,PARTIAL: VULNERABLE (Mixed),4,7,2,0,21561,True
+45267,Lightwire LTD,VULNERABLE (Atlas Verified),4,0,0,1,438,True
+138398,Prodigi Technology Services Limited,PARTIAL: VULNERABLE (Mixed),4,3,3,0,67,True
+58666,Vorco,PARTIAL: VULNERABLE (Mixed),3,1,1,0,65,True
+55785,ISP Limited,PARTIAL: VULNERABLE (Mixed),3,0,0,2,37,True
+9245,COMPASS NZ,PARTIAL: VULNERABLE (Mixed),1,1,1,0,186,True
+140220,Sky Network Television Ltd,STUB: VOLATILE,0,2,0,0,3373,True
+131583,WIZwireless Limited,STUB: VULNERABLE,0,1,0,0,972,True
+132255,PrimoWireless Ltd,STUB: VULNERABLE,0,1,0,0,205,True
+64095,Blue Reach Services Limited,STUB: VULNERABLE,0,1,1,0,122,True
+132588,Yrless Ltd,STUB: VOLATILE,0,1,0,0,96,True
+18199,Worldnet Services Limited,STUB: VULNERABLE,0,2,1,0,87,True
+45475,Amuri Net,INCONSISTENT,0,1,0,0,75,True
+24398,Auckland University of Technology,STUB: VULNERABLE,0,1,0,0,0,True
+38064,InternetNZ (.nz tld),STUB: VULNERABLE,0,1,1,0,0,True
+38299,REANNZ Corporate,STUB: VOLATILE,0,1,1,0,0,True
+45131,REANNZ Head Office,NOT ROUTED,0,1,1,0,0,True
+58631,Vista Group (NZ) Limited,STUB: VULNERABLE,0,1,1,0,0,True
+132003,Network Research Lab,NOT ROUTED,0,1,0,0,0,True
+133075,Telesmart Limited,STUB: VULNERABLE,0,1,1,0,0,True
+133950,Hoopla Hosting Limited,STUB: VULNERABLE,0,1,1,0,0,True
+134220,Lightwire LTD,STUB: VULNERABLE,0,1,1,0,0,True
+137257,Localhost Limited,STUB: VULNERABLE,0,1,0,0,0,True
+153375,Cover Communications Limited,STUB: VULNERABLE,0,1,0,0,0,True

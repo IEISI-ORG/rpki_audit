@@ -14,16 +14,16 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS9751   | STUB: PASSIVE (Clean Pipe)     | 0        | 0%     | Unknown
-    AS23657  | STUB: FORTUITOUS ROV           | 0        | 99%    | Unknown
+    AS9751   | STUB: PASSIVE (Clean Pipe)     | 0        | 0%     | AMERICAN SAMOA TELECOMMUNICATIONS AUTHOR
+    AS23657  | STUB: FORTUITOUS ROV           | 0        | 99%    | Blue Sky Communications
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to AS?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS174    | 2          | CORE: ACTIVE PROTECTOR         | Unknown
-    #2   | AS11404  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
-    #3   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
-    #4   | AS17993  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
-    #5   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #1   | AS174    | 2          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #2   | AS11404  | 1          | PARTIAL: VULNERABLE (Mixed)    | Astound (fka. Wave Broadband)
+    #3   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
+    #4   | AS17993  | 1          | PARTIAL: VULNERABLE (Mixed)    | Vodafone Samoa Limited
+    #5   | AS6939   | 1          | CORE: ACTIVE PROTECTOR         | Hurricane Electric LLC

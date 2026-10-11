@@ -3,47 +3,48 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: BT (Bhutan)
     ====================================================================================================
-    Total Networks:      28
-    Total Cone Gravity:  11
+    Total Networks:      43
+    Total Cone Gravity:  27
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     1 ( 3.6%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:        25 (89.3%) -> Exposes  100.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):     1 ( 2.3%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:        26 (60.5%) -> Exposes  100.0% of Traffic
 
     ====================================================================================================
      THE BT CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS17660  | REGRESSED                      | 9        | 0%     | Unknown
-    AS18024  | REGRESSED                      | 2        | 0%     | Unknown
-    AS151498 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS151955 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS151782 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS152480 | STUB: VULNERABLE               | 0        | 1%     | Unknown
-    AS152317 | STUB: VULNERABLE               | 0        | 0%     | Unknown
-    AS154825 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS153740 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS153779 | STUB: VULNERABLE               | 0        | 0%     | Unknown
-    AS23955  | STUB: VULNERABLE               | 0        | 90%    | Unknown
-    AS38004  | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS7615   | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS18025  | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS132232 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS135147 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS134715 | STUB: VULNERABLE               | 0        | 0%     | Unknown
-    AS132894 | STUB: VULNERABLE               | 0        | 0%     | Unknown
-    AS140695 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS140322 | STUB: VULNERABLE               | 0        | -      | Unknown
+    AS38740  | REGRESSED                      | 16       | -      | Tashi InfoComm Limited
+    AS17660  | REGRESSED                      | 9        | 0%     | DrukNet ISP
+    AS18024  | REGRESSED                      | 2        | 0%     | Bhutan Telecom Ltd
+    AS7615   | STUB: VULNERABLE               | 0        | -      | Bhutan Internet Exchange
+    AS17482  | NOT ROUTED                     | 0        | -      | Bhutan Internet Exchange
+    AS18025  | STUB: VULNERABLE               | 0        | -      | Bhutan Telecom Ltd
+    AS18205  | NOT ROUTED                     | 0        | -      | Bhutan Telecom Ltd
+    AS23955  | STUB: VULNERABLE               | 0        | 90%    | Tashi InfoComm Limited
+    AS38004  | STUB: VULNERABLE               | 0        | -      | FastLink Wireless ISP, DrukCom Pvt. Ente
+    AS59219  | NOT ROUTED                     | 0        | -      | Ministry of Information & Communications
+    AS132232 | STUB: VULNERABLE               | 0        | -      | Data Centre Services
+    AS132894 | STUB: VULNERABLE               | 0        | 0%     | Sigma Internet Service
+    AS134715 | STUB: VULNERABLE               | 0        | 0%     | Government Technology Agency
+    AS135147 | STUB: VULNERABLE               | 0        | -      | T Bank Limited
+    AS135666 | STUB: VULNERABLE               | 0        | -      | Government Data Center (DITT/MoIC)
+    AS136039 | STUB: VULNERABLE               | 0        | 1%     | NANO, Bhutan
+    AS137412 | STUB: VOLATILE                 | 0        | 99%    | Tashicell Domestic AS Thimphu Bhutan
+    AS137925 | NOT ROUTED                     | 0        | -      | GIC-Bhutan Reinsurance Co. Ltd.
+    AS137994 | NOT ROUTED                     | 0        | -      | Bhutan National Bank limited
+    AS138529 | REGRESSED                      | 0        | 42%    | DATANET WIFI
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to BT?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS38740  | 15         | PASSIVE (Clean Pipe)           | Unknown
-    #2   | AS17660  | 10         | REGRESSED                      | Unknown
-    #3   | AS18024  | 6          | REGRESSED                      | Unknown
-    #4   | AS6453   | 2          | CORE: ACTIVE PROTECTOR         | Unknown
-    #5   | AS136039 | 2          | STUB: VULNERABLE               | Unknown
-    #6   | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | Unknown
-    #7   | AS9498   | 1          | REGRESSED                      | Unknown
+    #1   | AS38740  | 15         | REGRESSED                      | Tashi InfoComm Limited
+    #2   | AS17660  | 10         | REGRESSED                      | DrukNet ISP
+    #3   | AS18024  | 6          | REGRESSED                      | Bhutan Telecom Ltd
+    #4   | AS6453   | 3          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
+    #5   | AS2914   | 2          | CORE: ACTIVE PROTECTOR         | NTT America, Inc.
+    #6   | AS136039 | 2          | STUB: VULNERABLE               | NANO, Bhutan
+    #7   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
+    #8   | AS9498   | 1          | REGRESSED                      | Bharti Airtel Ltd.

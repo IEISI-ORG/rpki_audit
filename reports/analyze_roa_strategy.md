@@ -8,42 +8,42 @@
     -----------------------------------------------------------------------------------------------
     ASN      | CC | Cone     | State                      | Signed%  | Name
     -----------------------------------------------------------------------------------------------
-    AS33891  | XX | 46961    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS48185  | BE | 30323    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS29632  | XX | 30002    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS56662  | PL | 10864    | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Unknown
-    AS16735  | BR | 2262     | NOT SIGNED (ROV LOCAL)     |   0.0%  | Unknown
-    AS1031   | US | 1202     | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Unknown
-    AS201054 | PL | 1167     | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Unknown
-    AS35598  | RU | 902      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS62255  | SI | 744      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS4635   | XX | 721      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS10429  | BR | 462      | NOT SIGNED (ROV LOCAL)     |   0.0%  | Unknown
-    AS24115  | XX | 387      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS7738   | BR | 352      | NOT SIGNED (ROV LOCAL)     |   0.0%  | Unknown
-    AS205794 | CN | 316      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Unknown
-    AS62081  | PL | 275      | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Unknown
+    AS33891  | DE | 46961    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Core-Backbone GmbH
+    AS48185  | BE | 30323    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | team.blue NV
+    AS29632  | DE | 30002    | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Netassist International EOOD
+    AS56662  | PL | 10864    | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Marcin Gondek
+    AS16735  | BR | 2262     | NOT SIGNED (ROV LOCAL)     |   0.0%  | Algar Telecom
+    AS1031   | US | 1202     | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | PEER 1031 LLC
+    AS201054 | PL | 1167     | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Stowarzyszenie e-Poludnie
+    AS35598  | RU | 902      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | INETCOM CARRIER LLC
+    AS62255  | SI | 744      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | BiMajLink d.o.o.
+    AS4635   | HK | 721      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | HKIX Route Servers
+    AS10429  | BR | 462      | NOT SIGNED (ROV LOCAL)     |   0.0%  | Vivo (Telefônica Brasil)
+    AS24115  | SG | 387      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | Equinix IX
+    AS7738   | BR | 352      | NOT SIGNED (ROV LOCAL)     |   0.0%  | V.tal (fka Telemar)
+    AS205794 | CN | 316      | NOT SIGNED (ROV PARTIAL)   |   0.0%  | JINZE YANG
+    AS62081  | PL | 275      | NOT SIGNED (ROV UPSTREAM)  |   0.0%  | Stowarzyszenie e-Poludnie
 
     ===============================================================================================
     2. SIGNED (NO ROV)
     -----------------------------------------------------------------------------------------------
     ASN      | CC | Cone     | Signed%  | Name
     -----------------------------------------------------------------------------------------------
-    AS6461   | US | 71946    | 100.0%  | Unknown
-    AS37721  | BF | 58312    | 100.0%  | Unknown
-    AS4837   | CN | 50577    |  99.4%  | Unknown
-    AS17639  | PH | 43147    |  97.7%  | Unknown
-    AS34927  | CH | 34226    | 100.0%  | Unknown
-    AS4657   | SG | 15296    |  99.9%  | Unknown
-    AS1836   | CH | 13023    |  99.9%  | Unknown
-    AS20766  | FR | 12332    |  96.7%  | Unknown
-    AS38001  | SG | 6112     | 100.0%  | Unknown
-    AS15830  | NL | 3668     | 100.0%  | Unknown
-    AS42708  | SE | 2899     | 100.0%  | Unknown
-    AS4755   | IN | 2547     | 100.0%  | Unknown
-    AS9304   | HK | 2178     | 100.0%  | Unknown
-    AS64073  | NZ | 1675     | 100.0%  | Unknown
-    AS53062  | BR | 1557     |  96.4%  | Unknown
+    AS6461   | US | 71946    | 100.0%  | Zayo Bandwidth
+    AS37721  | BF | 58312    | 100.0%  | Virtual Technologies & Solutions
+    AS4837   | CN | 50577    |  99.4%  | China Unicom Backbone
+    AS17639  | PH | 43147    |  97.7%  | Converge ICT Solutions Inc.
+    AS34927  | CH | 34226    | 100.0%  | iFog GmbH
+    AS4657   | SG | 15296    |  99.9%  | StarHub Ltd
+    AS1836   | CH | 13023    |  99.9%  | green.ch AG
+    AS20766  | FR | 12332    |  96.7%  | Association "Gitoyen"
+    AS38001  | SG | 6112     | 100.0%  | NewMedia Express Pte. Ltd.
+    AS15830  | NL | 3668     | 100.0%  | Equinix, Inc.
+    AS42708  | SE | 2899     | 100.0%  | Glesys AB
+    AS4755   | IN | 2547     | 100.0%  | TATA Communications (formerly VSNL)
+    AS9304   | HK | 2178     | 100.0%  | HGC Global Communications Limited
+    AS53062  | BR | 1557     |  96.4%  | ACESSOLINE TELECOMUNICACOES LTDA
+    AS8447   | AT | 1080     |  99.3%  | A1 Telekom Austria AG
 
     ===============================================================================================
     3. WEIGHTED OUTREACH TARGETS
@@ -55,30 +55,30 @@
     -----------------------------------------------------------------------------------------------
     ASN      | CC | Cone     | Opportunity        | Name
     -----------------------------------------------------------------------------------------------
-    AS6939   | US | 80275    | 21.66              | Unknown
-    AS3356   | US | 74030    | 21.50              | Unknown
-    AS1299   | SE | 71458    | 21.36              | Unknown
-    AS174    | US | 73849    | 21.32              | Unknown
-    AS3257   | US | 69123    | 21.27              | Unknown
-    AS6461   | US | 71946    | 21.22              | Unknown
-    AS2914   | US | 68933    | 21.17              | Unknown
-    AS4637   | HK | 67304    | 21.17              | Unknown
-    AS6762   | IT | 66665    | 21.14              | Unknown
-    AS6453   | US | 67808    | 21.12              | Unknown
-    AS5511   | FR | 62306    | 21.07              | Unknown
-    AS3491   | HK | 67288    | 21.06              | Unknown
-    AS12956  | ES | 62395    | 20.96              | Unknown
-    AS1273   | EU | 63250    | 20.94              | Unknown
-    AS6830   | NL | 62811    | 20.92              | Unknown
-    AS3320   | DE | 67344    | 20.88              | Unknown
-    AS4134   | CN | 52552    | 20.84              | Unknown
-    AS9002   | GB | 48162    | 20.76              | Unknown
-    AS701    | US | 68265    | 20.41              | Unknown
-    AS7713   | ID | 3441     | 20.01              | Unknown
-    AS4837   | CN | 50577    | 19.92              | Unknown
-    AS4809   | CN | 65220    | 19.51              | Unknown
-    AS7922   | US | 26233    | 19.44              | Unknown
-    AS34927  | CH | 34226    | 19.29              | Unknown
-    AS20485  | RU | 34039    | 19.27              | Unknown
+    AS6939   | US | 80275    | 21.66              | Hurricane Electric LLC
+    AS3356   | US | 74030    | 21.50              | Lumen (Level 3)
+    AS1299   | SE | 71458    | 21.36              | Arelion (fka. Telia Carrier)
+    AS174    | US | 73849    | 21.32              | Cogent Communications, LLC
+    AS3257   | US | 69123    | 21.27              | GTT Communications Inc.
+    AS6461   | US | 71946    | 21.22              | Zayo Bandwidth
+    AS2914   | US | 68933    | 21.17              | NTT America, Inc.
+    AS4637   | HK | 67304    | 21.17              | Telstra International Limited
+    AS6762   | IT | 66665    | 21.14              | Telecom Italia Sparkle (Seabone)
+    AS6453   | US | 67808    | 21.12              | TATA Communications (America) Inc
+    AS5511   | FR | 62306    | 21.07              | Orange S.A.
+    AS3491   | HK | 67288    | 21.06              | PCCW Global (HK) Ltd.
+    AS12956  | ES | 62395    | 20.96              | Telxius (Telefonica Global)
+    AS1273   | EU | 63250    | 20.94              | Vodafone Group PLC
+    AS6830   | NL | 62811    | 20.92              | Liberty Global Europe Holding B.V.
+    AS3320   | DE | 67344    | 20.88              | Deutsche Telekom AG
+    AS4134   | CN | 52552    | 20.84              | China Telecom Backbone
+    AS9002   | GB | 48162    | 20.76              | RETN Limited
+    AS701    | US | 68265    | 20.41              | Verizon Business
+    AS7713   | ID | 3441     | 20.01              | PT Telkom Indonesia Tbk
+    AS4837   | CN | 50577    | 19.92              | China Unicom Backbone
+    AS4809   | CN | 65220    | 19.51              | China Telecom Next Generation Carri
+    AS7922   | US | 26233    | 19.44              | Comcast Cable Communications, LLC
+    AS34927  | CH | 34226    | 19.29              | iFog GmbH
+    AS20485  | RU | 34039    | 19.27              | TransTeleCom JSC
 
     [+] Saved strategy to roa_strategy_weighted_v2.csv

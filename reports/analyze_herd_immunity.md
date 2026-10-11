@@ -13,7 +13,7 @@
       Progress: |████████████████████████████████████░░░░░░░░░░░░░░|
 
     [TRANSIT LAYER] (The 1000 largest legitimate transit networks)
-      Networks Secure:     177 / 1000  (17.7%)
+      Networks Secure:     184 / 1000  (18.4%)
       Traffic Protected:   71.5% (by Cone Weight)
       Progress: |███████████████████████████████████░░░░░░░░░░░░░░░|
 
@@ -23,31 +23,31 @@
     ------------------------------------------------------------------------------------
     Rank  | ASN      | CC |       Cone |  Excl% | Name
     ------------------------------------------------------------------------------------
-    #4    | AS6461   | US |     71,946 |    41% | Unknown
-    #20   | AS4134   | CN |     52,552 |    81% | Unknown
-    #21   | AS4837   | CN |     50,577 |    57% | Unknown
-    #23   | AS34927  | CH |     34,226 |    11% | Unknown
-    #24   | AS20485  | RU |     34,039 |    20% | Unknown
-    #25   | AS3216   | RU |     30,350 |    29% | Unknown
-    #28   | AS4657   | SG |     15,296 |     8% | Unknown
-    #33   | AS9498   | IN |      7,421 |    60% | Unknown
-    #38   | AS8359   | RU |      5,054 |    50% | Unknown
-    #44   | AS15830  | NL |      3,668 |    54% | Unknown
-    #45   | AS22652  | CA |      3,658 |    20% | Unknown
-    #46   | AS7713   | ID |      3,441 |    23% | Unknown
-    #50   | AS42708  | SE |      2,899 |    17% | Unknown
-    #51   | AS9808   | CN |      2,840 |    69% | Unknown
-    #52   | AS4755   | IN |      2,547 |    60% | Unknown
-    #56   | AS9304   | HK |      2,178 |    32% | Unknown
-    #59   | AS64073  | NZ |      1,675 |    16% | Unknown
-    #60   | AS53062  | BR |      1,557 |    60% | Unknown
-    #61   | AS9929   | CN |      1,508 |    67% | Unknown
-    #70   | AS8447   | AT |      1,080 |    59% | Unknown
-    #72   | AS58717  | BD |      1,014 |    80% | Unknown
-    #77   | AS4230   | BR |        880 |    37% | Unknown
-    #79   | AS12741  | PL |        763 |    71% | Unknown
-    #81   | AS3223   | GB |        738 |    21% | Unknown
-    #83   | AS61832  | BR |        703 |    26% | Unknown
+    #4    | AS6461   | US |     71,946 |    41% | Zayo Bandwidth
+    #20   | AS4134   | CN |     52,552 |    81% | China Telecom Backbone
+    #21   | AS4837   | CN |     50,577 |    57% | China Unicom Backbone
+    #23   | AS34927  | CH |     34,226 |    11% | iFog GmbH
+    #24   | AS20485  | RU |     34,039 |    20% | TransTeleCom JSC
+    #25   | AS3216   | RU |     30,350 |    29% | Vimpelcom PJSC
+    #28   | AS4657   | SG |     15,296 |     8% | StarHub Ltd
+    #33   | AS9498   | IN |      7,421 |    60% | Bharti Airtel Ltd.
+    #38   | AS8359   | RU |      5,054 |    50% | MTS PJSC
+    #44   | AS15830  | NL |      3,668 |    54% | Equinix, Inc.
+    #45   | AS22652  | CA |      3,658 |    20% | Videotron Ltee
+    #46   | AS7713   | ID |      3,441 |    23% | PT Telkom Indonesia Tbk
+    #50   | AS42708  | SE |      2,899 |    17% | Glesys AB
+    #51   | AS9808   | CN |      2,840 |    69% | China Mobile Backbone
+    #52   | AS4755   | IN |      2,547 |    60% | TATA Communications (formerly VSNL)
+    #56   | AS9304   | HK |      2,178 |    32% | HGC Global Communications Limited
+    #60   | AS53062  | BR |      1,557 |    60% | ACESSOLINE TELECOMUNICACOES LTDA
+    #61   | AS9929   | CN |      1,508 |    67% | China Unicom Industrial Internet Backbon
+    #70   | AS8447   | AT |      1,080 |    59% | A1 Telekom Austria AG
+    #72   | AS58717  | BD |      1,014 |    80% | Summit Communications Ltd
+    #77   | AS4230   | BR |        880 |    37% | Claro (Embratel)
+    #79   | AS12741  | PL |        763 |    71% | Netia SA
+    #81   | AS3223   | GB |        738 |    21% | Voxility LLP
+    #83   | AS61832  | BR |        703 |    26% | Giga+ Empresas
+    #85   | AS4800   | ID |        691 |    52% | PT Aplikanusa Lintasarta
     ------------------------------------------------------------------------------------
 
     CONCLUSION:

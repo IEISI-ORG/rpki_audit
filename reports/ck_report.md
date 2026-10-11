@@ -14,15 +14,15 @@
     ====================================================================================================
     ASN      | Verdict                        | Cone     | APNIC% | Name
     ----------------------------------------------------------------------------------------------------
-    AS152093 | STUB: VULNERABLE               | 0        | -      | Unknown
-    AS10131  | STUB: VULNERABLE               | 0        | 30%    | Unknown
+    AS10131  | STUB: VULNERABLE               | 0        | 30%    | Telecom Cook Islands
+    AS152093 | STUB: VULNERABLE               | 0        | -      | VakaNet Limited
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to CK?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS9507   | 1          | REGRESSED                      | Unknown
-    #2   | AS45177  | 1          | PARTIAL: VULNERABLE (Mixed)    | Unknown
-    #3   | AS12684  | 1          | REGRESSED                      | Unknown
-    #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Unknown
+    #1   | AS45177  | 1          | REGRESSED                      | Devoli
+    #2   | AS12684  | 1          | REGRESSED                      | SES ASTRA S.A.
+    #3   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #4   | AS9507   | 1          | PARTIAL: VULNERABLE (Mixed)    | NextHop Pty Ltd
