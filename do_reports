@@ -25,6 +25,10 @@ for cc in NP BT BD IN PK AU NZ CN JP ID BR CL CO PG FJ CK PF NU WS SB NC GU AS M
     python3 analyze_country_deep_dive_v2.py $cc | aha --black | tee reports/${cc,,}_report.html
 done
 
+echo "NZ PROJECT REPORT (probe gap feeds the project report's coverage section)"
+python3 analyze_probe_gap.py --cc NZ        | aha --black | tee reports/nz_probe_gap.html
+python3 analyze_nz_project_report.py        | aha --black | tee reports/nz_project_report.html
+
 FILES=reports/*.html
 for f in $FILES; do
     filename="${f%.*}"

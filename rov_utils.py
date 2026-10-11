@@ -625,6 +625,49 @@ def sync_apnic_timeseries(apnic_map: dict, meta: dict) -> dict:
           f"{len(candidates)-fetched-skipped_sparse} No data.")
     return result
 
+URL_CAIDA_AS_ORG = "https://publicdata.caida.org/datasets/as-organizations/"
+DIR_CAIDA = "data/caida"
+CAIDA_AS_ORG_TTL = 86400 * 30  # CAIDA publishes as-org2info monthly
+
+
+def load_as_orgs() -> dict[int, tuple[str, str]]:
+    """{asn: (org_id, org_name)} from CAIDA's latest as-org2info file.
+
+    ASNs sharing an org_id are siblings (one organisation, several ASes).
+    The topology pipeline does not merge siblings; this is for flagging them.
+    Downloads at most once per CAIDA_AS_ORG_TTL; on failure uses the newest
+    cached file, or returns {} if there is none.
+    """
+    os.makedirs(DIR_CAIDA, exist_ok=True)
+    cached = sorted(glob.glob(os.path.join(DIR_CAIDA, "*.as-org2info.jsonl.gz")))
+    if not cached or time.time() - os.path.getmtime(cached[-1]) > CAIDA_AS_ORG_TTL:
+        try:
+            resp = requests.get(URL_CAIDA_AS_ORG, headers=HEADERS, timeout=30)
+            resp.raise_for_status()
+            latest = sorted(re.findall(r'href="(\d{8}\.as-org2info\.jsonl\.gz)"', resp.text))[-1]
+            path = os.path.join(DIR_CAIDA, latest)
+            if not os.path.exists(path):
+                data = requests.get(URL_CAIDA_AS_ORG + latest, headers=HEADERS, timeout=120)
+                data.raise_for_status()
+                with open(path, "wb") as fh:
+                    fh.write(data.content)
+            os.utime(path)
+            cached = sorted(glob.glob(os.path.join(DIR_CAIDA, "*.as-org2info.jsonl.gz")))
+        except (requests.RequestException, IndexError, OSError) as e:
+            print(f"    - CAIDA AS-org fetch failed ({type(e).__name__}: {e}); using cache if any")
+    if not cached:
+        return {}
+    org_names, asn_org = {}, {}
+    with gzip.open(cached[-1], "rt") as fh:
+        for line in fh:
+            d = json.loads(line)
+            if d.get("type") == "Organization":
+                org_names[d["organizationId"]] = d.get("name", "")
+            elif d.get("type") == "ASN" and str(d.get("asn", "")).isdigit():
+                asn_org[int(d["asn"])] = d["organizationId"]
+    return {asn: (org, org_names.get(org, "")) for asn, org in asn_org.items()}
+
+
 def load_cc_to_rir() -> dict:
     """Load the country-code -> RIR mapping (data/cc_to_rir.json).
 

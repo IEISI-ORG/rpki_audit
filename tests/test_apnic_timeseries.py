@@ -103,5 +103,34 @@ class TestLegacyFormats(unittest.TestCase):
         self.assertFalse(rov_utils._ts_cache_is_dated([]))
 
 
+class TestNzTimeline(unittest.TestCase):
+    """State-change detection used by analyze_nz_project_report.py."""
+
+    @staticmethod
+    def _recent(rates: list[float]) -> list:
+        start = (date.today() - timedelta(days=len(rates))).isoformat()
+        return _series(start, rates)
+
+    def test_single_deployment_is_one_change(self):
+        import analyze_nz_project_report as nz
+        rows = self._recent([0.0] * 100 + [99.0] * 100)
+        changes = nz.timeline(rows, "US")
+        self.assertEqual(len(changes), 1)
+        self.assertEqual(changes[0][0], rows[100][0])
+        self.assertEqual(changes[0][1:], ("NOT FILTERING", "FILTERING"))
+
+    def test_one_day_dip_is_ignored(self):
+        import analyze_nz_project_report as nz
+        rows = self._recent([99.0] * 50 + [0.0] + [99.0] * 50)
+        self.assertEqual(nz.timeline(rows, "US"), [])
+
+    def test_low_sample_points_are_ignored(self):
+        import analyze_nz_project_report as nz
+        rows = self._recent([0.0] * 50 + [99.0] * 50)
+        for r in rows[50:]:
+            r[2] = 40  # below APNIC_REGRESSION_CURRENT_MIN_SAMPLES
+        self.assertEqual(nz.timeline(rows, "US"), [])
+
+
 if __name__ == "__main__":
     unittest.main()
