@@ -14,6 +14,9 @@ from io import StringIO, BytesIO
 
 # --- SHARED CONFIGURATION ---
 HEADERS = {'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) Chrome/120.0.0.0 Safari/537.36'}
+# bgp.tools asks API clients to identify themselves with a contact
+# (https://bgp.tools/kb/api) rather than send a browser User-Agent.
+BGPTOOLS_HEADERS = {'User-Agent': 'rpki_audit - https://github.com/IEISI-ORG/rpki_audit'}
 
 # Paths
 DIR_DATA = "data"
@@ -22,6 +25,10 @@ DIR_APNIC = "data/apnic"
 DIR_ATLAS = "data/atlas"
 DIR_APNIC_TS = "data/apnic/timeseries"
 DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
+# Last good copies of bgp.tools downloads, used when bgp.tools is unreachable.
+# Kept out of the tracked data/asns.csv so the weekly commit job doesn't pick
+# up a 5MB diff every run.
+DIR_BGPTOOLS_CACHE = "data/bgptools"
 FILE_ASPA_REAL_CACHE = "data/aspa_real.json"
 DIR_TAGS = "data/tags"
 FILE_CC_TO_RIR = "data/cc_to_rir.json"
@@ -206,7 +213,7 @@ HARDCODED_SECURE: set[int] = {13335, 14789}
 
 def ensure_dirs():
     """Ensure all required data directories exist."""
-    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS]:
+    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS, DIR_BGPTOOLS_CACHE]:
         os.makedirs(d, exist_ok=True)
 
 
@@ -247,7 +254,7 @@ def fetch_bgp_tools_tags(force: bool = False) -> dict[int, list[str]]:
         else:
             url = f"https://bgp.tools/tags/{tag}.csv"
             try:
-                resp = requests.get(url, headers=HEADERS, timeout=30)
+                resp = requests.get(url, headers=BGPTOOLS_HEADERS, timeout=30)
                 resp.raise_for_status()
                 raw_lines = resp.text.splitlines()
                 with open(cache_path, "w") as fh:
@@ -276,17 +283,32 @@ def fetch_bgp_tools_tags(force: bool = False) -> dict[int, list[str]]:
     )
     return dict(tag_map)
 
-def fetch_csv(url: str, name: str) -> pd.DataFrame:
-    """Fetch a CSV from a URL with standard headers."""
+def fetch_csv(url: str, name: str, headers: dict | None = None,
+              cache_paths: tuple[str, ...] = ()) -> pd.DataFrame:
+    """Fetch a CSV from a URL.
+
+    With cache_paths, a successful download is saved to cache_paths[0], and a
+    failed one falls back to the first existing path in cache_paths (logging
+    its age), so one upstream outage can't silently empty a data source.
+    """
     print(f"    - Fetching {name}...", end=" ", flush=True)
     try:
-        resp = requests.get(url, headers=HEADERS, timeout=30)
+        resp = requests.get(url, headers=headers or HEADERS, timeout=30)
         resp.raise_for_status()
         print(f"OK ({len(resp.content)//1024} KB)")
+        if cache_paths:
+            os.makedirs(os.path.dirname(cache_paths[0]), exist_ok=True)
+            with open(cache_paths[0], 'w') as fh:
+                fh.write(resp.text)
         return pd.read_csv(StringIO(resp.text))
     except Exception as e:
         print(f"FAIL ({e})")
-        return pd.DataFrame()
+    for path in cache_paths:
+        if os.path.exists(path):
+            age_days = (time.time() - os.path.getmtime(path)) / 86400
+            print(f"      -> using cached copy {path} ({age_days:.1f} days old)")
+            return pd.read_csv(path)
+    return pd.DataFrame()
 
 def fill_missing_cc_cymru(meta: dict) -> tuple[dict, int]:
     """Fallback: Uses Team Cymru Bulk Whois for ASNs that have no IP announcements."""
@@ -352,7 +374,10 @@ def load_metadata() -> tuple[dict, set]:
     """Load ASN names and countries from multiple sources."""
     print("[1] Loading Metadata & Geography...")
     meta = {}
-    df = fetch_csv(URL_ASNS_CSV, "BGP.Tools ASN Names")
+    # data/asns.csv is a tracked, older snapshot: last resort only.
+    df = fetch_csv(URL_ASNS_CSV, "BGP.Tools ASN Names", headers=BGPTOOLS_HEADERS,
+                   cache_paths=(os.path.join(DIR_BGPTOOLS_CACHE, "asns.csv"),
+                                os.path.join(DIR_DATA, "asns.csv")))
     if not df.empty:
         df.columns = [c.strip().lower() for c in df.columns]
         for _, row in df.iterrows():
@@ -732,7 +757,8 @@ def load_security_status() -> tuple[set, set, dict]:
     """Load ROV tags, Cloudflare safe list, and APNIC scores."""
     print("[2] Loading Security Data...")
     rov_set, cf_set = set(), set()
-    df_rov = fetch_csv(URL_ROV_TAGS, "BGP.Tools ROV Tags")
+    df_rov = fetch_csv(URL_ROV_TAGS, "BGP.Tools ROV Tags", headers=BGPTOOLS_HEADERS,
+                       cache_paths=(os.path.join(DIR_BGPTOOLS_CACHE, "rpkirov.csv"),))
     if not df_rov.empty:
         col = next((c for c in df_rov.columns if 'asn' in c.lower()), df_rov.columns[0])
         df_rov['x'] = df_rov[col].astype(str).str.upper().str.replace('AS','', regex=False)

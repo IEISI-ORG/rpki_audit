@@ -1,5 +1,27 @@
+import os
+import sys
+
 import pandas as pd
 import rov_utils
+
+# Fraction of the previous audit's row count below which a new audit is treated
+# as degraded input (e.g. bgp.tools asns.csv missing drops ~30% of ASNs).
+MIN_ROW_RATIO = 0.9
+
+
+def degraded_input_reasons(new_rows: int, rov_tags: int) -> list[str]:
+    """Return reasons the new audit looks degraded; empty list means OK to write."""
+    reasons = []
+    if rov_tags == 0:
+        reasons.append("0 bgp.tools ROV tags loaded (fetch failed and no cached copy)")
+    if os.path.exists(rov_utils.FILE_AUDIT_FINAL):
+        with open(rov_utils.FILE_AUDIT_FINAL) as fh:
+            old_rows = sum(1 for _ in fh) - 1
+        if old_rows > 0 and new_rows < MIN_ROW_RATIO * old_rows:
+            reasons.append(f"{new_rows:,} rows vs {old_rows:,} in the existing audit "
+                           f"(< {MIN_ROW_RATIO:.0%})")
+    return reasons
+
 
 def analyze():
     rov_utils.ensure_dirs()
@@ -99,6 +121,15 @@ def analyze():
         })
 
     df = pd.DataFrame(results)
+    problems = degraded_input_reasons(len(df), len(rov_set))
+    if problems:
+        # Keep the last good audit: a degraded file would flow into every
+        # report and the weekly snapshot commit (as happened 2026-10-11).
+        print("\n[!] REFUSING TO WRITE AUDIT — inputs look degraded:")
+        for p in problems:
+            print(f"    - {p}")
+        print(f"    Kept existing {rov_utils.FILE_AUDIT_FINAL}.")
+        sys.exit(1)
     df.sort_values(by='cone', ascending=False).to_csv(rov_utils.FILE_AUDIT_FINAL, index=False)
     
     print("\n" + "="*80)

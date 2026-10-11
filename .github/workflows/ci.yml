@@ -38,6 +38,11 @@ jobs:
         export PYTHONPATH=$PYTHONPATH:.
         python3 tests/test_policy_integrity.py
 
+    - name: Run Fetch Fallback Tests
+      run: |
+        export PYTHONPATH=$PYTHONPATH:.
+        python3 tests/test_fetch_fallback.py
+
   go-quality:
     name: Go Build & Lint
     runs-on: ubuntu-latest
