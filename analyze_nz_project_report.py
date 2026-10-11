@@ -125,6 +125,35 @@ def latest_point(raw: list, cc: str) -> tuple[str, float, int] | None:
     return pts[-1] if pts else None
 
 
+def probe_notes(asn: int, result: dict, orgs: dict) -> list[str]:
+    """Per-probe outcome counts plus sibling observations the aggregate verdict hides.
+
+    Siblings (same CAIDA organisation) are not part of the target for the
+    forensic method, so a probe routed through a sibling counts as off-path and
+    a filtering boundary at a sibling counts as "pre-target". Both are flagged.
+    """
+    details = result.get("probe_details", [])
+    if not details:
+        return ["no per-probe detail (result predates the current file format)"]
+    org = orgs.get(asn, (None, ""))[0]
+    siblings = {a for a, (o, _) in orgs.items() if org and o == org} - {asn}
+    counts: dict[str, int] = {}
+    for d in details:
+        counts[d["verdict"]] = counts.get(d["verdict"], 0) + 1
+    notes = ["; ".join(f"{n} x {v}" for v, n in sorted(counts.items()))]
+    for d in details:
+        via = [a for a in d.get("path_v") or [] if a in siblings]
+        if "Off-Path" in d["verdict"] and via:
+            notes.append(f"probe {d['probe_id']}: routed via sibling AS{via[0]}, counted off-path")
+        if d.get("boundary_asn") in siblings:
+            notes.append(f"probe {d['probe_id']}: invalid dropped at sibling AS{d['boundary_asn']} "
+                         f"({d['verdict']})")
+        if "Off-Path" in d["verdict"] and not (d.get("path_v") or [])[:-1]:
+            notes.append(f"probe {d['probe_id']}: no resolvable hop before the destination AS "
+                         "(probe's own AS not on the path)")
+    return notes
+
+
 def path_adjacency_check(asns: list[int], downstream: dict) -> tuple[int, int]:
     """(adjacencies with an inferred provider-customer link, total adjacencies)
     across the valid-path traceroutes of the given ASNs' Atlas results."""
@@ -185,6 +214,20 @@ def main() -> None:
               f"{atlas_label(load_atlas(asn, 6))}")
     print("\nAPNIC% and n: most recent daily reading with n >= "
           f"{rov_utils.APNIC_REGRESSION_CURRENT_MIN_SAMPLES} samples, test window excluded.")
+
+    # ── 2b. Atlas detail ───────────────────────────────────────────────────
+    header("2b. RIPE ATLAS DETAIL (per-probe outcomes for NZ networks with an Atlas result)")
+    for _, r in nz.iterrows():
+        asn = int(r["asn"])
+        for af in (4, 6):
+            res = load_atlas(asn, af)
+            if not res or not res.get("probe_details"):
+                continue
+            ids = " ".join(str(v) for v in (res.get("measurement_ids") or {}).values() if v)
+            print(f"AS{asn:<7} IPv{af} {str(r['name'])[:28]:<28} {res.get('verdict')} "
+                  f"({str(res.get('timestamp', ''))[:10]}) msm: {ids or '-'}")
+            for note in probe_notes(asn, res, orgs):
+                print(f"{'':>14}{note}")
 
     # ── 3. Case timeline ───────────────────────────────────────────────────
     header(f"3. ROV TIMELINE, LAST {TIMELINE_LOOKBACK_DAYS} DAYS (APNIC, test window masked)")
