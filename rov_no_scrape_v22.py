@@ -30,6 +30,7 @@ def analyze():
     meta, countries = rov_utils.load_metadata()
     rov_utils.sync_apnic_data(countries)
     rov_set, cf_set, apnic_map = rov_utils.load_security_status()
+    rovista_map = rov_utils.sync_rovista()
     atlas_secure, atlas_vulnerable, atlas_raw, atlas_stale = rov_utils.load_atlas_verdicts()
     ts_map = rov_utils.sync_apnic_timeseries(apnic_map, meta)
     
@@ -44,10 +45,17 @@ def analyze():
     # All active/known ASNs
     all_asns = set(meta.keys()) | set(cones.keys()) | set(upstreams.keys())
     
+    # APNIC and ROVista carry equal weight; a contradiction between them is DISPUTED
+    # and counts as no measurement evidence either way.
+    evidence = {
+        asn: rov_utils.measurement_evidence(apnic_map.get(asn, -1), rovista_map.get(asn, -1))
+        for asn in all_asns
+    }
+
     # Identify "Safe" ASNs (Passive)
     safe_asns = set()
     for asn in all_asns:
-        if (asn in rov_set) or (asn in cf_set) or (apnic_map.get(asn, -1) >= 95.0):
+        if (asn in rov_set) or (asn in cf_set) or evidence[asn] == "FILTERING":
             safe_asns.add(asn)
 
     # Active Overrides (Atlas & Volatility)
@@ -56,10 +64,13 @@ def analyze():
     # the Atlas result is likely a probe-path artefact (probe routed via a
     # different provider that doesn't do ROV) rather than evidence that the
     # target ASN itself doesn't filter.  APNIC carefully selects single-provider
-    # probes; our forensic test does not.
+    # probes; our forensic test does not.  ROVista >= 60% counts the same as
+    # APNIC, unless the two disagree.
     strong_current_rov = {
         asn for asn in atlas_vulnerable
-        if (asn in rov_set or asn in cf_set) and apnic_map.get(asn, -1) >= 60.0
+        if (asn in rov_set or asn in cf_set)
+        and evidence[asn] != "DISPUTED"
+        and max(apnic_map.get(asn, -1), rovista_map.get(asn, -1)) >= 60.0
     }
     safe_asns -= (atlas_vulnerable - strong_current_rov)
     safe_asns |= atlas_secure
@@ -74,6 +85,7 @@ def analyze():
         cone = cones.get(asn, 0)
         parents = list(upstreams.get(asn, []))
         score = apnic_map.get(asn, -1)
+        rovista_score = rovista_map.get(asn, -1)
         is_safe = asn in safe_asns
         
         ts = ts_map.get(asn)
@@ -104,16 +116,20 @@ def analyze():
                 and asn not in atlas_secure):
             verdict = "STUB: FORTUITOUS ROV"
 
-        # Inconsistent: network declared ROV intent (bgp.tools rov_set) but APNIC
-        # shows < 30% actual filtering.  Either partial deployment, stale declaration,
-        # or ROV misconfigured on a subset of links/routers.  Overrides all other
-        # verdicts — the contradiction is the signal regardless of topology.
-        if asn in rov_set and 0 <= score < 30:
+        # Disputed: APNIC and ROVista test the same thing and disagree (one >= 95%,
+        # the other < 30%).  Tier 1, hardcoded and conclusive-Atlas verdicts are kept.
+        verdict = rov_utils.apply_dispute(verdict, evidence[asn], asn, atlas_v)
+
+        # Inconsistent: network declared ROV intent (bgp.tools rov_set) but the
+        # measurements (APNIC/ROVista) show < 30% actual filtering.  Either partial
+        # deployment, stale declaration, or ROV misconfigured on a subset of
+        # links/routers.  The contradiction is the signal regardless of topology.
+        if asn in rov_set and evidence[asn] == "NOT_FILTERING":
             verdict = "INCONSISTENT"
 
         results.append({
             'asn': asn, 'name': name, 'cc': cc, 'cone': cone,
-            'verdict': verdict, 'apnic_score': score,
+            'verdict': verdict, 'apnic_score': score, 'rovista_score': rovista_score,
             'dirty_feeds': dirty_feeds, 'total_feeds': total_feeds,
             'atlas_result': atlas_v or '', 
             'apnic_stdev': apnic_stdev, 'apnic_min90': apnic_min90, 'apnic_max90': apnic_max90,

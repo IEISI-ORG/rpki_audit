@@ -179,6 +179,39 @@ overlaps the range. So the 7-day reading for 22 Aug is dropped too, and for spar
 networks on the 112-day window the effect lasts into December. Only the listed
 countries are masked.
 
+## ROVista: a second measurement, weighted the same as APNIC
+
+`rov_utils.sync_rovista()` pulls the public ROVista API (rovista.netsecurelab.org) in one
+call (`/rovista/api/overview?count=100000`), cached at `data/rovista/overview.json`,
+refreshed daily, with fallback to the cached copy on failure. Rows whose `lastUpdatedDate`
+is older than `ROVISTA_TTL_DAYS = 7` are dropped: about 9,600 listed ASes were last
+measured in 2024–2025 (AS681's last reading is 2025-03-03).
+
+**What it measures**: an IP-ID side channel on hosts inside the AS tests whether they can
+reach RPKI-invalid prefixes. Like APNIC, it **cannot tell local from upstream filtering**
+(a single-homed stub behind a filtering provider scores 100%). It reaches networks APNIC
+can't, because APNIC needs end users seeing ads: Akamai Prolexic, TransTeleCom, MegaFon and
+Comcast backbone ASes have ROVista scores and no APNIC score.
+
+**Weak spots** (checked 2026-10-13): in 2026 each AS is tested against only 1–2 invalid
+prefixes (Cloudflare `103.21.244.0/24` and `193.43.75.0/24`; the median in 2024 was 17),
+so scores are effectively binary. Per-AS target counts need one API call per AS and are
+not fetched.
+
+**Combination rule** (`rov_utils.measurement_evidence(apnic, rovista)`): both scores are
+read on the same 0–100 scale, with the same thresholds (`MEASURE_FILTERING_MIN = 95`,
+`MEASURE_NOT_FILTERING_MAX = 30`). It returns `FILTERING`, `NOT_FILTERING`, `NONE`
+(no data or only mid-range readings), or `DISPUTED` when one is ≥ 95 and the other < 30.
+A mid-range reading never contradicts the other source. Everything that used
+`apnic >= 95` / `apnic < 30` in `rov_no_scrape_v22.py` now uses this.
+
+**DISPUTED verdict** (`rov_utils.apply_dispute`): two tests of the same thing disagreeing
+is no consensus, so the verdict becomes `DISPUTED` (`classify_verdict` → `PARTIAL`) and
+the AS doesn't enter `safe_asns` on measurement evidence. Kept as they are: Tier 1 and
+hardcoded verdicts, and any AS with a conclusive fresh Atlas result (a third, direct test
+breaks the tie). Applied after REGRESSED and FORTUITOUS. First run: 1,630 DISPUTED ASes,
+e.g. Spark AS4648 (APNIC 1.75%, ROVista 100%), Bharti Airtel AS9498, Rostelecom AS12389.
+
 ## RIPE Atlas Forensic Methodology
 
 ### 7-day TTL on all results
@@ -213,6 +246,12 @@ These are aggregated across all probes in `analyze_results()` and stored as
 `non_rov_hops: [int]` in the result file. Over time, running Atlas tests across many
 targets builds a map of ASNs confirmed to be forwarding RPKI-invalid prefixes.
 
+⚠️ **Known false entries** (2026-10-13): 54 of the 517 ASNs in `non_rov_hops` are
+rated SECURE, including AS174, AS1299 and AS7018, which are well-known ROV deployers.
+The cause has not been investigated (candidates: IP-to-AS mapping of hops, or the AS
+that dropped the packet being recorded as a forwarder). Don't treat membership as proof
+until this is fixed. Only 203 of 801 result files carry the field.
+
 ### Off-path probe detection
 Before classifying a probe, `_classify_probe` checks whether the target ASN appears in
 `path_v`. If not, the probe routed around the target entirely (multi-homed customer using
@@ -226,7 +265,8 @@ Airtel or other providers, never traversing the target.
 ### Atlas override guard in `rov_no_scrape_v22.py`
 `atlas_vulnerable` is only allowed to downgrade a network's `safe_asns` status if
 current evidence is weak. If a network is **in both `rov_set` (bgp.tools ROV tag) AND
-has `apnic_score >= 60%`**, the Atlas result is treated as a potential probe-path
+has `apnic_score >= 60%` or `rovista_score >= 60%`** (and isn't DISPUTED), the Atlas
+result is treated as a potential probe-path
 artefact and the network stays in `safe_asns`. This protects well-evidenced secure
 networks from stale or mis-targeted Atlas results while still allowing Atlas to override
 networks with no independent corroboration.
@@ -269,7 +309,7 @@ the target.
 ### 1. Performance & Data Storage
 - **Packed Data**: 120k+ ASN records are consolidated into `data/as_data.jsonl.gz`.
 - **Ingestion**: ALWAYS use `rov_utils.load_all_asn_data()` for high-performance loading (<1s).
-- **TTL Policy**: All external data fetches enforce a **7-day TTL**: APNIC scores, APNIC timeseries, Atlas forensic results, bgp.tools tags.
+- **TTL Policy**: All external data fetches enforce a **7-day TTL**: APNIC scores, APNIC timeseries, Atlas forensic results, bgp.tools tags, ROVista rows (by `lastUpdatedDate`).
 - **Upstream outages**: `fetch_csv(..., cache_paths=...)` saves each good bgp.tools download (`asns.csv`, `rpkirov.csv`) to `data/bgptools/` and falls back to it on failure. `rov_no_scrape_v22.py` refuses to write the audit (exit 1) when 0 ROV tags loaded or the row count drops below 90% of the existing file. Added after the 2026-10-11 bgp.tools outage, which produced an 88k-row audit with every name "Unknown", and the cron job committed it.
 - **bgp.tools User-Agent**: requests to bgp.tools use `BGPTOOLS_HEADERS` (project name + repo URL), per their API rules. Other sources keep `HEADERS`.
 
@@ -277,7 +317,9 @@ the target.
 - **Centralized Logic**: Use `rov_utils.classify_verdict()` to bucket strings into `SECURE`, `VULNERABLE`, or `PARTIAL`.
 - **Primary Labels**: `REGRESSED`, `VOLATILE`, `UNRELIABLE`, `SECURE`, `PASSIVE`, `FORTUITOUS`.
 - **STUB: FORTUITOUS ROV**: A stub whose APNIC score is high (>=95%) but has no direct confirmation of local ROV (`rov_set`, `cf_set`, or Atlas "Target Filtered"). The protection is real (users are safe) but comes from the upstream's filtering, not the stub's own routers. Applied in `rov_no_scrape_v22.py` after `assign_verdict`. `classify_verdict()` maps this to `SECURE`. Stubs with direct evidence stay `STUB: ACTIVE LOCAL ROV`.
-- **INCONSISTENT**: Network is in bgp.tools `rov_set` (declared ROV intent) but APNIC shows `< 30%` actual filtering. Either partial deployment (ROV on some links/routers only), stale declaration, or misconfiguration. Overrides all other verdicts for `rov_set` members meeting the threshold. `classify_verdict()` maps this to `VULNERABLE`. ~48 networks currently affected (no Tier 1s). Key examples: AS7303 Telecom Argentina (8%), AS3292 TDC Denmark (0%), AS32 Stanford (1%).
+- **INCONSISTENT**: Network is in bgp.tools `rov_set` (declared ROV intent) but the measurements show `< 30%` actual filtering (`measurement_evidence(...) == "NOT_FILTERING"`: APNIC or ROVista < 30% and the other not ≥ 95%). Either partial deployment (ROV on some links/routers only), stale declaration, or misconfiguration. Overrides all other verdicts for `rov_set` members meeting the threshold. `classify_verdict()` maps this to `VULNERABLE`. 100 networks after ROVista was added (52 before), no Tier 1s. Key examples: AS7303 Telecom Argentina (8%), AS3292 TDC Denmark (0%), AS32 Stanford (1%), AS20764 RASCOM (ROVista 0%, no APNIC).
+- **DISPUTED**: APNIC and ROVista disagree (one ≥ 95%, the other < 30%). `classify_verdict()` maps it to `PARTIAL`. See the ROVista section.
+- **STUB: VOLATILE also means "safe behind a dirty feed"**: `assign_verdict` returns it for `is_safe` stubs with `dirty_feeds > 0`, not only for volatile timeseries. With ROVista, ~800 stubs land here: they measure as filtering although a provider doesn't filter, which is the case where the measurement most likely reflects local ROV.
 - **Infrastructure Blacklist**: Root Servers and RIRs (AS3333, AS4608, etc.) are marked as non-transit in `cone-calculator.go` (`isNonTransit` logic).
 - **REGRESSED override**: `rov_no_scrape_v22.py` overwrites the `assign_verdict()` result with `"REGRESSED"` when the 1-year APNIC timeseries shows a drop of > 30 points. This only fires when `regression=True` in `ts_map` **and `is_safe=False`** — a network with strong current ROV evidence (`rov_set`, `cf_set`, or APNIC >= 95%) stays at its earned verdict. Note: `rov_set`/`cf_set` members always remain `is_safe=True` even when volatile (the volatile guard at line 46 has an explicit `asn not in rov_set and asn not in cf_set` exception). APNIC regression for `atlas_secure` networks with `current=0%, hist_max=100%` is most often an inherited-filtering artifact — see the APNIC data quality note above.
 
@@ -309,6 +351,7 @@ the target.
 - `asn`: Autonomous System Number
 - `verdict`: Core safety status (REGRESSED, SECURE, VULNERABLE, VOLATILE, etc.)
 - `cone`: Customer cone size (Network Gravity)
+- `apnic_score` / `rovista_score`: measured filtering rate, 0–100; `-1` = no data (ROVista: none within 7 days).
 - `regression`: Boolean flag for historical RPKI drop (1-year lookback, >30pt drop).
 - `atlas_result`: RIPE Atlas forensic consensus verdict (7-outcome taxonomy, 7-day TTL).
 - `non_rov_hops`: ASNs on the invalid traceroute path — confirmed forwarding RPKI-invalid prefixes.

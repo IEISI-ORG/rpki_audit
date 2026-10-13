@@ -10,6 +10,7 @@ import re
 import concurrent.futures
 import pycountry
 from collections import defaultdict, Counter
+from datetime import date, timedelta
 from io import StringIO, BytesIO
 
 # --- SHARED CONFIGURATION ---
@@ -31,6 +32,17 @@ DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
 DIR_BGPTOOLS_CACHE = "data/bgptools"
 FILE_ASPA_REAL_CACHE = "data/aspa_real.json"
 DIR_TAGS = "data/tags"
+# ROVista (https://rovista.netsecurelab.org): per-AS ROV score from an IP-ID side
+# channel on hosts inside the AS.  Like APNIC it measures whether traffic from the
+# AS reaches RPKI-invalid prefixes, so upstream filtering also counts as filtering.
+DIR_ROVISTA = "data/rovista"
+FILE_ROVISTA = os.path.join(DIR_ROVISTA, "overview.json")
+URL_ROVISTA_OVERVIEW = "https://api.rovista.netsecurelab.org/rovista/api/overview?count=100000"
+ROVISTA_TTL_DAYS = 7          # rows whose lastUpdatedDate is older are discarded
+ROVISTA_REFRESH_SECS = 86400  # measures most days (gaps: 53 days Jun-Aug 2026); ~6MB fetch
+# Thresholds shared by APNIC and ROVista scores (0-100).
+MEASURE_FILTERING_MIN = 95.0
+MEASURE_NOT_FILTERING_MAX = 30.0
 FILE_CC_TO_RIR = "data/cc_to_rir.json"
 DIR_RRC = "output"          # parent dir; each collector writes to output/rrcNN/
 FILE_RELATIONSHIPS = "output/relationships.csv"   # legacy single-collector path
@@ -213,7 +225,8 @@ HARDCODED_SECURE: set[int] = {13335, 14789}
 
 def ensure_dirs():
     """Ensure all required data directories exist."""
-    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS, DIR_BGPTOOLS_CACHE]:
+    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS, DIR_BGPTOOLS_CACHE,
+              DIR_ROVISTA]:
         os.makedirs(d, exist_ok=True)
 
 
@@ -838,6 +851,76 @@ def fetch_real_aspa_deployment() -> dict:
 
     return result
 
+def parse_rovista_overview(payload: dict, today: date) -> dict[int, float]:
+    """Map ASN -> ROVista score (0-100), keeping rows updated within ROVISTA_TTL_DAYS.
+
+    About 9,600 ASes were last measured in 2024-2025 and are still listed;
+    the TTL drops them.
+    """
+    cutoff = (today - timedelta(days=ROVISTA_TTL_DAYS)).isoformat()
+    rows = payload.get("data") if isinstance(payload, dict) else None
+    if not isinstance(rows, list):
+        return {}
+    scores = {}
+    for r in rows:
+        try:
+            updated = r["lastUpdatedDate"]
+            if isinstance(updated, str) and updated >= cutoff:
+                scores[int(r["asn"])] = float(r["ratio"]) * 100.0
+        except (TypeError, ValueError, KeyError):
+            continue  # skip a malformed row, keep the rest
+    return scores
+
+
+def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
+                 force: bool = False) -> dict[int, float]:
+    """Fetch the ROVista overview (one bulk call), falling back to the cached copy."""
+    today = today or date.today()
+    fresh = (os.path.exists(cache_path)
+             and time.time() - os.path.getmtime(cache_path) < ROVISTA_REFRESH_SECS)
+    scores = None
+    if force or not fresh:
+        print("    - Fetching ROVista overview...", end=" ", flush=True)
+        try:
+            resp = requests.get(URL_ROVISTA_OVERVIEW, headers=HEADERS, timeout=120)
+            resp.raise_for_status()
+            payload = resp.json()
+            scores = parse_rovista_overview(payload, today)
+            if not scores:
+                # Parsed before caching, so a bad response never replaces a good copy.
+                raise ValueError("response has no usable fresh rows")
+            print(f"OK ({len(payload['data']):,} ASes)")
+        except (requests.RequestException, ValueError) as e:
+            print(f"FAIL ({e})")
+            scores = None
+        else:
+            try:
+                os.makedirs(os.path.dirname(cache_path), exist_ok=True)
+                tmp = cache_path + ".tmp"
+                with open(tmp, "w") as fh:
+                    json.dump(payload, fh)
+                os.replace(tmp, cache_path)  # atomic: no truncated cache after a crash
+            except OSError as e:
+                print(f"      -> could not write cache ({e})")
+    if scores is None:
+        scores = {}
+        if os.path.exists(cache_path):
+            if not fresh:
+                age_days = (time.time() - os.path.getmtime(cache_path)) / 86400
+                print(f"      -> using cached copy {cache_path} ({age_days:.1f} days old)")
+            try:
+                with open(cache_path) as fh:
+                    scores = parse_rovista_overview(json.load(fh), today)
+            except (OSError, ValueError) as e:
+                print(f"      -> cached copy unreadable ({e})")
+    print(f"    - ROVista: {len(scores):,} ASes measured in the last {ROVISTA_TTL_DAYS} days")
+    if not scores:
+        # ROVista has had outages (53 days in Jun-Aug 2026).  Not fatal, but every
+        # DISPUTED and ROVista-only verdict silently falls back to APNIC alone.
+        print("    [!] WARNING: no fresh ROVista data — this audit is APNIC-only")
+    return scores
+
+
 def load_security_status() -> tuple[set, set, dict]:
     """Load ROV tags, Cloudflare safe list, and APNIC scores."""
     print("[2] Loading Security Data...")
@@ -1040,11 +1123,48 @@ def classify_verdict(verdict: str) -> str:
         return "VULNERABLE"
     if any(x in v for x in ["ACTIVE", "PASSIVE", "PROTECTOR", "VOLATILE", "FORTUITOUS"]):
         return "SECURE"
-    if "PARTIAL" in v:
+    if "PARTIAL" in v or "DISPUTED" in v:
         return "PARTIAL"
     if any(x in v for x in ["VULNERABLE", "VULN"]):
         return "VULNERABLE"
     return "UNKNOWN"
+
+def _measurement_reading(score: float) -> str:
+    if score < 0:
+        return "NONE"
+    if score >= MEASURE_FILTERING_MIN:
+        return "FILTERING"
+    if score < MEASURE_NOT_FILTERING_MAX:
+        return "NOT_FILTERING"
+    return "NONE"
+
+
+def measurement_evidence(apnic: float, rovista: float) -> str:
+    """Combine APNIC and ROVista scores (0-100, -1 = no data), weighted equally.
+
+    Returns FILTERING, NOT_FILTERING, NONE (no data or only mid-range readings),
+    or DISPUTED when one says filtering and the other says not filtering.
+    """
+    readings = {_measurement_reading(apnic), _measurement_reading(rovista)} - {"NONE"}
+    if len(readings) == 2:
+        return "DISPUTED"
+    return readings.pop() if readings else "NONE"
+
+
+def apply_dispute(verdict: str, evidence: str, asn: int, atlas_v: str = "") -> str:
+    """Replace the verdict with DISPUTED when the two measurements disagree.
+
+    Kept as is: hardcoded and Tier 1 verdicts, and any AS with a conclusive
+    Atlas result, which tests the AS directly and so breaks the tie.
+    """
+    if evidence != "DISPUTED":
+        return verdict
+    if asn in HARDCODED_SECURE or asn in TIER_1_ASNS:
+        return verdict
+    if "VULNERABLE" in atlas_v or "SECURE" in atlas_v:
+        return verdict
+    return "DISPUTED"
+
 
 def cone_quality(asn: int, downstream: dict, providers_of: dict) -> tuple[int, float, float]:
     """
