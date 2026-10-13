@@ -2,13 +2,15 @@ import argparse
 import pandas as pd
 import os
 import json
-import yaml
-import time
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 import rov_utils
 import verify_forensic_path_v2 as forensic
 
 MAX_TARGETS_PER_RUN = 50
+# DISPUTED ASes (APNIC and ROVista disagree) are queued ahead of everything else:
+# a conclusive Atlas result settles them. Lower this to leave room for stale re-tests.
+DISPUTED_SLOTS = MAX_TARGETS_PER_RUN
+NO_PROBES_FILE = "no_probes.json"  # {asn: date last found without probes}
 DIR_ATLAS_V6 = os.path.join(rov_utils.DIR_ATLAS, "v6")  # outside load_atlas_verdicts' glob
 
 
@@ -48,57 +50,105 @@ def get_explicit_targets(asns: list[int] | None, cc: str | None, af: int, limit:
     return targets[:limit]
 
 
+def load_no_probes(path: str, today: date | None = None) -> set[int]:
+    """ASNs found without usable probes within ATLAS_TTL_DAYS. Corrupt or missing file: empty."""
+    today = today or date.today()
+    try:
+        with open(path) as f:
+            entries = json.load(f)
+        return {int(a) for a, d in entries.items()
+                if (today - date.fromisoformat(d)).days < rov_utils.ATLAS_TTL_DAYS}
+    except (OSError, ValueError, AttributeError, TypeError):
+        return set()
+
+
+def record_no_probes(path: str, asn: int, today: date | None = None) -> None:
+    """Remember that asn had no usable probes, so smart selection skips it for a while."""
+    today = today or date.today()
+    try:
+        with open(path) as f:
+            entries = json.load(f)
+        if not isinstance(entries, dict):
+            entries = {}
+    except (OSError, ValueError):
+        entries = {}
+    cutoff = today - timedelta(days=rov_utils.ATLAS_TTL_DAYS)
+    entries = {a: d for a, d in entries.items() if isinstance(d, str) and d > cutoff.isoformat()}
+    entries[str(asn)] = today.isoformat()
+    tmp = path + ".tmp"
+    try:
+        with open(tmp, "w") as f:
+            json.dump(entries, f, indent=1, sort_keys=True)
+        os.replace(tmp, path)
+    except OSError as e:
+        print(f"    [!] Could not record AS{asn} in {path}: {e}")
+
+
+def _priority(verdict: str, cone: int) -> float:
+    v = verdict.upper()
+    if "REGRESSED" in v or "UNPROTECTED" in v:
+        return 100 + (cone / 1000)
+    if "UNRELIABLE" in v or "VULNERABLE" in v:
+        return 50 + (cone / 1000)
+    if "UNVERIFIED" in v:
+        return 10 + (cone / 1000)
+    return 0
+
+
+def select_targets(df: pd.DataFrame, stale: set[int], is_fresh, skip: set[int],
+                   limit: int, disputed_slots: int = DISPUTED_SLOTS) -> list[int]:
+    """
+    Picks ASNs for re-verification, in this order:
+      1. DISPUTED, largest cone first, up to disputed_slots
+      2. Stale cached results (TTL expired)
+      3. REGRESSED or CORE: UNPROTECTED, then VULNERABLE / UNRELIABLE, then
+         Unverified transit, each by cone size
+    is_fresh(asn) is True when a result younger than ATLAS_TTL_DAYS exists;
+    those ASNs and the ones in skip (no usable probes recently) are left out.
+    """
+    cone = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
+    verdicts = df['verdict'].astype(str)
+    targets: list[int] = []
+
+    def add(asn: int, cap: int) -> None:
+        if len(targets) < cap and asn not in targets and asn not in skip:
+            targets.append(asn)
+
+    disputed = df.assign(cone=cone)[verdicts == "DISPUTED"].sort_values('cone', ascending=False)
+    for asn in disputed['asn'].astype(int):
+        if not is_fresh(asn):
+            add(asn, min(limit, disputed_slots))
+
+    for asn in sorted(stale):
+        add(asn, limit)
+
+    prio = pd.Series([_priority(v, c) for v, c in zip(verdicts, cone)], index=df.index)
+    ranked = df.assign(priority=prio)[prio > 0].sort_values('priority', ascending=False)
+    for asn in ranked['asn'].astype(int):
+        if len(targets) >= limit:
+            break
+        if not is_fresh(asn):
+            add(asn, limit)
+    return targets
+
+
 def get_smart_targets(limit=50) -> list[int]:
-    """
-    Selects ASNs for re-verification, in priority order:
-      1. Stale cached results (TTL expired) — always refresh these first
-      2. REGRESSED or CORE: UNPROTECTED with large cones
-      3. VULNERABLE / UNRELIABLE with large cones
-      4. Large Unverified transit
-    Only includes ASNs whose cached result has aged past ATLAS_TTL_DAYS OR
-    that have no cached result at all.
-    """
-    # Stale set from the audit loader (already past TTL)
+    """Smart selection for the IPv4 audit; see select_targets for the order."""
     _, _, _, stale_asns = rov_utils.load_atlas_verdicts()
+    skip = load_no_probes(os.path.join(rov_utils.DIR_ATLAS, NO_PROBES_FILE))
+    if skip:
+        print(f"[*] Skipping {len(skip)} ASNs found without usable probes in the last "
+              f"{rov_utils.ATLAS_TTL_DAYS} days.")
 
     if not os.path.exists(rov_utils.FILE_AUDIT_FINAL):
         print(f"[!] {rov_utils.FILE_AUDIT_FINAL} not found.")
-        return sorted(stale_asns)[:limit]
+        return [a for a in sorted(stale_asns) if a not in skip][:limit]
 
     df = rov_utils.load_audit_csv()
-    df['cone'] = pd.to_numeric(df['cone'], errors='coerce').fillna(0).astype(int)
-
-    def get_priority(row):
-        v = str(row['verdict']).upper()
-        cone = row['cone']
-        if "REGRESSED" in v or "UNPROTECTED" in v:
-            return 100 + (cone / 1000)
-        if "UNRELIABLE" in v or "VULNERABLE" in v:
-            return 50 + (cone / 1000)
-        if "UNVERIFIED" in v:
-            return 10 + (cone / 1000)
-        return 0
-
-    df['priority'] = df.apply(get_priority, axis=1)
-    candidates = df[df['priority'] > 0].sort_values('priority', ascending=False)
-
-    targets: list[int] = []
-    # Stale results always go first
-    for asn in stale_asns:
-        if len(targets) >= limit:
-            break
-        targets.append(asn)
-
-    for _, row in candidates.iterrows():
-        if len(targets) >= limit:
-            break
-        asn = int(row['asn'])
-        if asn in targets:
-            continue
-        if not is_fresh(os.path.join(rov_utils.DIR_ATLAS, f"as_{asn}.json")):
-            targets.append(asn)
-
-    return targets
+    return select_targets(
+        df, stale_asns,
+        is_fresh=lambda a: is_fresh(os.path.join(rov_utils.DIR_ATLAS, f"as_{a}.json")),
+        skip=skip, limit=limit)
 
 
 def find_best_probes_in_cone(target_asn: int, count: int = 5, af: int = 4) -> list[int]:
@@ -194,6 +244,7 @@ def main():
         probes = find_best_probes_in_cone(asn, count=5, af=args.af)
         if not probes:
             print(f"    [!] No usable probes found in cone of AS{asn}. Skipping.")
+            record_no_probes(os.path.join(out_dir, NO_PROBES_FILE), asn)
             continue
 
         print(f"    - {len(probes)} probes selected.")

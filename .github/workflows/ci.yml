@@ -44,6 +44,7 @@ jobs:
         python3 tests/test_fetch_fallback.py
         python3 tests/test_apnic_timeseries.py
         python3 tests/test_rovista.py
+        python3 tests/test_batch_targets.py
 
   go-quality:
     name: Go Build & Lint

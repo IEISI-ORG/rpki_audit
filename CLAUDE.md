@@ -305,6 +305,19 @@ through the target — its traceroute provides clean, unambiguous attribution. M
 customers are used as fallback but the off-path check will discard any that route around
 the target.
 
+### Target selection (`batch_verify_smart_v4.select_targets`)
+The 02:00 cron runs 50 targets a night in this order:
+1. **DISPUTED**, largest cone first, up to `DISPUTED_SLOTS` (currently all 50, Terry's
+   choice 2026-10-14). A conclusive result settles the dispute, so the AS leaves the list.
+   An inconclusive one (e.g. all probes off-path) keeps it DISPUTED, and it is retried
+   once the result is 7 days old.
+2. **Stale** results (older than `ATLAS_TTL_DAYS`).
+3. REGRESSED / CORE: UNPROTECTED, then VULNERABLE / UNRELIABLE, then Unverified, by cone.
+
+ASes with no usable probes are written to `data/atlas/no_probes.json` (`v6/` for
+`--af 6`) and skipped by smart selection for 7 days; `--asns` / `--cc` ignore the list.
+Tests: `tests/test_batch_targets.py`.
+
 ## Key Development Conventions
 ### 1. Performance & Data Storage
 - **Packed Data**: 120k+ ASN records are consolidated into `data/as_data.jsonl.gz`.
