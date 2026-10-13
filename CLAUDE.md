@@ -240,6 +240,23 @@ same test over IPv6 and writes to `data/atlas/v6/`. That directory is outside
 `--asns` / `--cc` select targets explicitly. The default smart selection ranks by cone
 size and never reaches small-cone countries such as NZ.
 
+### IX hops: resolve via PeeringDB, check the route-server looking glass
+An IX hop in a traceroute never shows **who** dropped or forwarded an invalid route. Route-server
+ROV, the participant's own import filter, and the origin not announcing on that session all
+produce the same traceroute. Before attributing anything to a network on an IX path:
+- **Resolve IX LAN hops via PeeringDB `netixlan`** (ip → ASN). Atlas gives no ASN, and IX LAN
+  prefixes are usually unannounced, so RIPEstat returns nothing (e.g. AKL-IX `43.243.21.0/24`).
+  PeeringDB flags such as `is_rs_peer` can be stale, so confirm against the looking glass.
+- **Check the IX route-server looking glass**, using Cloudflare's intentionally invalid beacon
+  (`103.21.244.0/24`, `2606:4700:7000::/48`) as the control. Where AS13335 has an RS session up
+  and its other routes are accepted, the beacon appears as accepted (no RS ROV) or filtered as
+  RPKI-invalid (RS ROV). If Cloudflare isn't on the RS, its absence means nothing.
+- Report only what is measured. E.g. One NZ AS9500 (2026-10-11): valid via Cloudflare's AKL-IX
+  port, invalid via another session → "VULNERABLE"; the reason the IX path isn't used is
+  undetermined. Not "filters on IX peering".
+- IX.nz route servers (AS63830, Alice-LG at `lg.ix.nz`, BIRD) drop RPKI-invalids (reject reason
+  `63830:64513:14`). BIRD applies IRR checks first, so an IRR rejection can mask an RPKI one.
+
 ### Probe selection (`batch_verify_smart_v4.py`)
 Probes are selected from the target's **customer cone** using `downstream_graph.json`
 (the phantom-pruned topology), not the stale packed ASN data. **Single-homed customers
