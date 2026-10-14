@@ -78,6 +78,11 @@ had 9 ASes outside CAIDA's inferred clique; on 2026-10-14 it was set to the 18 A
 complete mesh of observed links with no provider per CAIDA (`TESTED_TIER1` in
 `tests/test_gao_rexford.py` pins it; change it only with new evidence). CAIDA is used as a second
 opinion to test, not as ground truth. Remaining fixes are listed in TODO.md.
+`caida_export_test.py` tests CAIDA's labels (and signed ASPA) against observed exports in RIS
+paths, per address family (`reports/caida_vs_project.md`, 2026-10-14): CAIDA p2c labels are
+confirmed 98–99%; its p2p labels hold except Hurricane Electric over IPv6, where HE passes its
+peers' routes upward (it sends its full IPv6 table to peers). `bgp-extractor` mixes IPv4 and IPv6
+paths, which inflates HE's cone (TODO).
 
 ### Tests
 - `tests/test_gao_rexford.py` — Unit + integration tests for all of the above rules.  Run on every topology-related change.
