@@ -46,6 +46,8 @@ jobs:
         python3 tests/test_rovista.py
         python3 tests/test_batch_targets.py
         python3 tests/test_beacon_baseline.py
+        python3 tests/test_atlas_harvest.py
+        python3 tests/test_caida_crosscheck.py
 
   go-quality:
     name: Go Build & Lint

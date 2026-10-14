@@ -66,6 +66,17 @@ Applied in this priority order:
 ### Degree Semantics for Provider Inference
 The "degree" used in the ratio check is the **total unique neighbor count** in the undirected adjacency graph built from `relationships.csv`.  It is NOT the left-count or right-count — those are recorded but not used for provider inference (future improvement: using `right_count ≈ 0` as a Tier-1 signal).
 
+### Per-link rule and the CAIDA cross-check
+`build_topology_from_go.infer_link(as1, as2, degrees, link_regions)` is the single implementation
+of rules 1–6 above and returns `(provider, customer, rule)`; `build_topology()` calls it.
+`caida_crosscheck.py` labels every observed link with that rule (or `pruned`) and compares it with
+CAIDA's monthly AS relationships and customer cones (`data/caida/`), writing
+`reports/caida_crosscheck.md`. First run (2026-10-14, CAIDA 20261001): `ratio_4x` links agree with
+CAIDA 88%; `ratio_8x` 18%; `tier1` 75% (21% are CAIDA peerings); 67% of links dropped as `peer`
+are CAIDA transit; phantom pruning wipes whole providers (Angola Cables, EdgeUno). `TIER_1_ASNS`
+has 9 ASes outside CAIDA's inferred clique (1273, 4134, 4637, 4809, 4837, 6939, 7922, 9808, 9929).
+Fixes are listed in TODO.md and not yet applied.
+
 ### Tests
 - `tests/test_gao_rexford.py` — Unit + integration tests for all of the above rules.  Run on every topology-related change.
 - `tests/test_policy_integrity.py` — Tier 1 cone gravity + verdict classification.

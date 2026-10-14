@@ -1,7 +1,6 @@
 import json
 import os
 import csv
-import glob
 from collections import defaultdict
 import rov_utils
 
@@ -152,6 +151,48 @@ def _prune_ixp_phantoms(downstream_map: dict, tier1_set: set) -> tuple[int, int]
 
 
 # ---------------------------------------------------------------------------
+# Per-link inference rule
+# ---------------------------------------------------------------------------
+
+DROP_STAT = {"non_transit": "dropped_peer", "t1_t1": "dropped_t1", "peer": "dropped_peer",
+             "single_region": "dropped_single_region"}
+
+
+def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
+    """(provider, customer, rule) for one observed link; provider is None when dropped.
+
+    rule names the step that decided: non_transit, t1_t1, tier1, ratio_4x, ratio_8x,
+    peer or single_region. caida_crosscheck.py uses the rule to attribute disagreements.
+    """
+    # Rule 1: Non-transit exclusion
+    if as1 in IS_NON_TRANSIT or as2 in IS_NON_TRANSIT:
+        return None, None, "non_transit"
+
+    # Rule 2: Tier-1 affirmative override (always provider of non-T1)
+    t1_as1, t1_as2 = as1 in TIER_1_FIREWALL, as2 in TIER_1_FIREWALL
+    if t1_as1 and t1_as2:
+        return None, None, "t1_t1"
+    if t1_as1:
+        return as1, as2, "tier1"
+    if t1_as2:
+        return as2, as1, "tier1"
+
+    # Rule 3: Cross-regional degree-ratio
+    d1, d2 = degrees[as1], degrees[as2]
+    n_regions = len(link_regions.get(tuple(sorted((as1, as2))), set()))
+    confirmed = n_regions >= CONFIRM_REGIONS
+    ratio = RATIO if confirmed else SINGLE_REGION_RATIO
+    rule = "ratio_4x" if confirmed else "ratio_8x"
+    if d1 > d2 * ratio:
+        return as1, as2, rule
+    if d2 > d1 * ratio:
+        return as2, as1, rule
+    if not confirmed and (d1 > d2 * RATIO or d2 > d1 * RATIO):
+        return None, None, "single_region"
+    return None, None, "peer"
+
+
+# ---------------------------------------------------------------------------
 # Main topology builder
 # ---------------------------------------------------------------------------
 
@@ -193,40 +234,10 @@ def build_topology():
             processed.add(pair_key)
             stats['total'] += 1
 
-            d1, d2 = degrees[as1], degrees[as2]
-            provider = customer = None
-
-            # Rule 1: Non-transit exclusion
-            if as1 in IS_NON_TRANSIT or as2 in IS_NON_TRANSIT:
-                stats['dropped_peer'] += 1
+            provider, customer, rule = infer_link(as1, as2, degrees, link_regions)
+            if provider is None:
+                stats[DROP_STAT[rule]] += 1
                 continue
-
-            # Rule 2: Tier-1 affirmative override (always provider of non-T1)
-            t1_as1 = as1 in TIER_1_FIREWALL
-            t1_as2 = as2 in TIER_1_FIREWALL
-            if t1_as1 and t1_as2:
-                stats['dropped_t1'] += 1
-                continue
-            elif t1_as1:
-                provider, customer = as1, as2
-            elif t1_as2:
-                provider, customer = as2, as1
-
-            else:
-                # Rule 3: Cross-regional degree-ratio
-                n_regions = len(link_regions.get(pair_key, set()))
-                ratio = RATIO if n_regions >= CONFIRM_REGIONS else SINGLE_REGION_RATIO
-
-                if d1 > d2 * ratio:
-                    provider, customer = as1, as2
-                elif d2 > d1 * ratio:
-                    provider, customer = as2, as1
-                else:
-                    if n_regions < CONFIRM_REGIONS and (d1 > d2 * RATIO or d2 > d1 * RATIO):
-                        stats['dropped_single_region'] += 1
-                    else:
-                        stats['dropped_peer'] += 1
-                    continue
 
             downstream_map[provider].append(customer)
             stats['kept'] += 1
