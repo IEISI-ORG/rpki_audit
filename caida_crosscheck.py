@@ -6,16 +6,14 @@ Inputs: output/rrc*/relationships.csv (via build_topology_from_go.load_multi_col
 data/downstream_graph.json, rov_audit_v22_final.csv (Go cone sizes), and CAIDA's monthly
 serial-2 as-rel2 and serial-1 ppdc-ases files in data/caida/ (downloaded when missing).
 
-Each observed link is labelled with build_topology_from_go.infer_link's rule (tier1,
-ratio_4x, peer, single_region, t1_t1, non_transit), or "pruned" when the IXP
-phantom backstop removed it, and compared with CAIDA (same direction, reversed, peer,
-absent). Report: reports/caida_crosscheck.md.
+Each observed link is labelled with the rule build_topology_from_go.build_graph ends with
+(tier1, ratio_4x, restored, peer, single_region, t1_t1, non_transit, pruned,
+evidence_required) and compared with CAIDA (same direction, reversed, peer, absent). Report: reports/caida_crosscheck.md.
 
 Usage: python3 caida_crosscheck.py [--date YYYYMMDD]
 """
 import argparse
 import bz2
-import copy
 import json
 import os
 from collections import Counter, defaultdict, deque
@@ -90,21 +88,10 @@ def caida_lines(url: str) -> list[str]:
         return f.read().splitlines()
 
 
-def label_links(adj: dict, degrees: dict, link_regions: dict) -> tuple[dict, dict]:
-    """{pair: (provider, customer, rule)} for every observed link, and the pruned graph."""
-    labels, down = {}, defaultdict(list)
-    for a, nbrs in adj.items():
-        for b in nbrs:
-            pair = (min(a, b), max(a, b))
-            if pair in labels:
-                continue
-            p, c, rule = btg.infer_link(a, b, degrees, link_regions)
-            labels[pair] = (p, c, rule)
-            if p is not None:
-                down[p].append(c)
-    pruned = copy.deepcopy(down)
-    btg._prune_ixp_phantoms(pruned, btg.TIER_1_FIREWALL)
-    return labels, pruned
+def label_links(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None) -> tuple[dict, dict]:
+    """{pair: (provider, customer, rule)} for every observed link, and the final graph."""
+    down, labels = btg.build_graph(adj, degrees, link_regions, evidence)
+    return labels, down
 
 
 def main() -> None:
@@ -114,7 +101,7 @@ def main() -> None:
     rels = parse_as_rel2(caida_lines(URL_REL.format(d=args.date)))
     ppdc = parse_ppdc(caida_lines(URL_PPDC.format(d=args.date)))
     adj, degrees, link_regions = btg.load_multi_collector_relationships()
-    labels, final = label_links(adj, degrees, link_regions)
+    labels, final = label_links(adj, degrees, link_regions, btg.load_exports())
 
     saved = json.load(open(os.path.join(rov_utils.DIR_DATA, "downstream_graph.json")))
     saved_links = {(int(p), c) for p, cs in saved.items() for c in cs}
@@ -125,8 +112,6 @@ def main() -> None:
 
     matrix: dict = defaultdict(Counter)
     for pair, (p, c, rule) in labels.items():
-        if p is not None and (p, c) not in final_links:
-            rule = "pruned"
         matrix[rule][compare(p, c, rels, pair=pair)] += 1
     unseen = Counter(r[0] for k, r in rels.items() if k not in labels)
 
@@ -145,8 +130,9 @@ def write_report(date, rels, ppdc, labels, final, matrix, unseen, same_as_saved)
         n = sum(matrix[rule].values())
         lines.append(f"| {rule} | {n:,} | " + " | ".join(
             f"{matrix[rule][k]:,} ({100 * matrix[rule][k] / n:.0f}%)" for k in CLASSES) + " |")
-    lines += ["", "Our p2c rules (tier1, ratio_4x, pruned) should land in caida_same; "
-              "dropped rules (peer, single_region, t1_t1, non_transit) in caida_p2p or caida_absent.", ""]
+    lines += ["", "Kept p2c rules (tier1, ratio_4x, restored) should land in caida_same; dropped rules "
+              "(peer, single_region, t1_t1, non_transit) in caida_p2p or caida_absent. pruned and "
+              "evidence_required are p2c candidates we removed: caida_same there is a lost link.", ""]
 
     def row(asn):
         name = str(audit.name.get(asn, ""))[:28]

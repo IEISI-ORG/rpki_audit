@@ -68,7 +68,8 @@ The "degree" used in the ratio check is the **total unique neighbor count** in t
 
 ### Per-link rule and the CAIDA cross-check
 `build_topology_from_go.infer_link(as1, as2, degrees, link_regions)` is the single implementation
-of rules 1–6 above and returns `(provider, customer, rule)`; `build_topology()` calls it.
+of rules 1–6 above and returns `(provider, customer, rule)`. `build_graph()` applies it plus the
+export-evidence rules (see Multi-Collector below); `build_topology()` and `caida_crosscheck.py` both call it.
 `caida_crosscheck.py` labels every observed link with that rule (or `pruned`) and compares it with
 CAIDA's monthly AS relationships and customer cones (`data/caida/`), writing
 `reports/caida_crosscheck.md`. First run (2026-10-14, CAIDA 20261001): `ratio_4x` links agree with
@@ -118,7 +119,21 @@ phantom only appears in European-biased collectors.
   most of the IXP phantoms: without it, pruning removes ~300 links and no longer wipes out real
   providers (Angola Cables, EdgeUno, Durand). Details under the CAIDA topology item in TODO.md.
 - Tier-1 override is always applied regardless of collector count
-- `_prune_ixp_phantoms()` is applied as a backstop after the ratio rules
+- **Export evidence** (since 2026-10-14). `bgp-extractor` also writes `exports.csv`: per (X, C, AF),
+  the paths where X passed C's route on to another AS (`Beyond`) and where that AS was a Tier 1 and
+  X wasn't (`ToTier1`; by valley-free routing C is X's customer, or it's a leak).
+  `build_topology_from_go.build_graph()` uses it after `infer_link`:
+  - **restored**: a dropped `single_region`/`peer` link becomes p2c when Tier 1 exports show one
+    direction only and the provider has the larger degree. Every non-Tier-1 edge then points up
+    the degree order and nothing enters a Tier 1, so the graph stays loop-free (94% CAIDA-same).
+  - **pruned**: a non-Tier-1 provider's link that is never passed beyond the collector end of a
+    path. This per-link test replaced `_prune_ixp_phantoms` (which now only runs when no
+    `exports.csv` exists). 57% of the links it removes are links CAIDA has the other way round.
+  - **evidence_required**: a provider in `rov_utils.EVIDENCE_REQUIRED_ASNS` (HE AS6939) keeps a
+    customer only with an IPv4 Tier 1 export. HE passes its peers' routes upward in IPv6 only.
+  - Result: provider precision vs signed ASPA 83.7% → 89.7%, recall 53.2% → 54.4% (CAIDA:
+    90.2% / 63.7%). Go test: `go test bgp-extractor.go bgp-extractor_test.go constants.go`;
+    Python: `tests/test_topology_evidence.py`. `cone-calculator.go` (rrc00 only) does none of this.
 
 ### Valley-free and why it cannot detect this
 A path `[AS48362, AS57344, origin]` is genuinely valley-free (downhill all the way).
@@ -136,7 +151,8 @@ The degree-ratio heuristic in `build_topology_from_go.py` (and `cone-calculator.
 
 **Mitigation**: All report scripts must filter using `excl_pct >= rov_utils.CONE_QUALITY_THRESHOLD` (5%) for non-Tier-1 networks. The `analyze_herd_immunity_v2.py` script does this. **Tier 1s are exempt** — their Tier 2 customers legitimately multi-home.
 
-**Root fix needed** (TODO): Use the `Left_Count`/`Right_Count` columns from `output/asn_stats.csv` (produced by `bgp-extractor`) during topology building to detect IXP participants and demote those links to peering rather than provider→customer.
+**Partly fixed 2026-10-14**: the `ratio_8x` rule is gone and phantom links are pruned per link from
+`exports.csv` evidence (Multi-Collector section). Older idea: use the `Left_Count`/`Right_Count` columns from `output/asn_stats.csv` (produced by `bgp-extractor`) during topology building to detect IXP participants and demote those links to peering rather than provider→customer.
 
 ## APNIC Timeseries Data Quality
 

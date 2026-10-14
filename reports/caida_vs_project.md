@@ -8,6 +8,9 @@ CAIDA is treated as a second opinion to test, not as ground truth.
 **Update (later on 2026-10-14):** the `ratio_8x` rule has been removed. Single-region links are
 no longer transit, and phantom pruning now removes 312 links instead of 78,779. Provider precision
 against ASPA rose from 69.7% to 83.7%; `reports/caida_crosscheck.md` shows the current state.
+Then `bgp-extractor` gained per-link export evidence (`exports.csv`): links it confirms are restored,
+links only seen next to the collector are pruned, and HE needs an IPv4 Tier 1 export to be a
+provider. Precision is now 89.7% and recall 54.4% (CAIDA: 90.2% and 63.7%).
 Section 1 below describes the topology before that change.
 
 ## Summary

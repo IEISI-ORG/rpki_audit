@@ -194,6 +194,15 @@ TIER_1_ASNS: set[int] = {
 # WARNING: do NOT add CDN-tagged ASNs in bulk — some CDNs (e.g. OVH AS16276)
 # also sell BGP transit and must NOT be excluded.
 # Go equivalent: isNonTransit() in constants.go
+# Networks whose provider links need IPv4 export evidence (bgp-extractor exports.csv): such a
+# network is a provider of C only if it is seen passing C's IPv4 routes to a Tier 1. Hurricane
+# Electric sends its full IPv6 table to all peers (incl. remote IX sessions), so its peer links
+# look like transit and its degree makes the ratio rule call it their provider. Measured
+# 2026-10-14: its CAIDA-peer links pass the peer's routes upward in IPv6 (4,435 up, 2 down) but
+# not in IPv4 (3 up, 7,159 down). With this rule HE's customers fall 10,990 -> 1,998 (CAIDA
+# 2,255) and provider precision vs signed ASPA rises ~4 points. Not in cone-calculator.go.
+EVIDENCE_REQUIRED_ASNS: set[int] = {6939}
+
 NON_TRANSIT_ASNS: set[int] = {
     213241,  # TECHIT.BE — IXP Route Server
     13335,   # Cloudflare — CDN/Anycast (non-transit for topology)

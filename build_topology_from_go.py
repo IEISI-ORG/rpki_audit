@@ -1,7 +1,8 @@
+import csv
+import glob
 import json
 import os
-import csv
-from collections import defaultdict
+from collections import Counter, defaultdict
 import rov_utils
 
 # Single source of truth — defined in rov_utils.py
@@ -10,6 +11,14 @@ IS_NON_TRANSIT         = rov_utils.NON_TRANSIT_ASNS
 RATIO                  = rov_utils.PROVIDER_RATIO
 CONFIRM_REGIONS        = rov_utils.RRC_CONFIRM_REGIONS
 IXP_PRUNE_THRESHOLD    = rov_utils.CONE_QUALITY_THRESHOLD  # 5.0 %
+EVIDENCE_REQUIRED      = rov_utils.EVIDENCE_REQUIRED_ASNS
+
+# Export evidence bits per ordered pair (x, c), from bgp-extractor's exports.csv:
+# x passed the route it learned from c on to another AS (beyond the collector end of the path),
+# and that AS was a Tier 1 (x not), per address family.
+EV_BEYOND_4, EV_BEYOND_6, EV_T1_4, EV_T1_6 = 1, 2, 4, 8
+EV_BEYOND = EV_BEYOND_4 | EV_BEYOND_6
+EV_T1 = EV_T1_4 | EV_T1_6
 
 
 # ---------------------------------------------------------------------------
@@ -105,6 +114,26 @@ def load_multi_collector_relationships() -> tuple[dict, dict, dict]:
     return adj, degrees, link_regions
 
 
+def load_exports(base_dir: str = "output") -> dict | None:
+    """{(x, c): EV_* bits} from every <base_dir>/rrc*/exports.csv; None if there are none."""
+    files = sorted(glob.glob(os.path.join(base_dir, "rrc*", "exports.csv")))
+    if not files:
+        return None
+    ev: dict = defaultdict(int)
+    for path in files:
+        with open(path) as f:
+            reader = csv.reader(f)
+            next(reader, None)
+            for x, c, af, _paths, beyond, to_t1 in reader:
+                bits = 0
+                if int(beyond):
+                    bits |= EV_BEYOND_6 if af == "6" else EV_BEYOND_4
+                if int(to_t1):
+                    bits |= EV_T1_6 if af == "6" else EV_T1_4
+                ev[(int(x), int(c))] |= bits
+    return dict(ev)
+
+
 # ---------------------------------------------------------------------------
 # IXP phantom pruning
 # ---------------------------------------------------------------------------
@@ -153,10 +182,6 @@ def _prune_ixp_phantoms(downstream_map: dict, tier1_set: set) -> tuple[int, int]
 # Per-link inference rule
 # ---------------------------------------------------------------------------
 
-DROP_STAT = {"non_transit": "dropped_peer", "t1_t1": "dropped_t1", "peer": "dropped_peer",
-             "single_region": "dropped_single_region"}
-
-
 def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
     """(provider, customer, rule) for one observed link; provider is None when dropped.
 
@@ -191,6 +216,64 @@ def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
     return None, None, "peer"
 
 
+def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None) -> tuple:
+    """(downstream {provider: [customers]}, labels {pair: (provider, customer, rule)}).
+
+    With export evidence (bgp-extractor exports.csv), after infer_link:
+      restored           a dropped single_region / peer link becomes p2c when a Tier 1 export
+                         shows it in one direction only and the provider has the larger degree.
+                         Every non-Tier-1 p2c edge then points up the degree order and no edge
+                         enters a Tier 1, so the graph stays loop-free.
+      pruned             a p2c link with a non-Tier-1 provider that is never passed beyond the
+                         collector end of a path (only seen next to the collector: IX phantom).
+      evidence_required  provider in EVIDENCE_REQUIRED_ASNS without an IPv4 Tier 1 export.
+    Without evidence (old extractor output), falls back to _prune_ixp_phantoms; links it removes
+    are labelled pruned.
+    """
+    labels = {}
+    for a, nbrs in adj.items():
+        for b in nbrs:
+            pair = (min(a, b), max(a, b))
+            if pair not in labels:
+                labels[pair] = infer_link(a, b, degrees, link_regions)
+
+    if evidence is None:
+        down = defaultdict(list)
+        for p, c, _ in labels.values():
+            if p is not None:
+                down[p].append(c)
+        kept = {p: set(cs) for p, cs in down.items()}
+        _prune_ixp_phantoms(down, TIER_1_FIREWALL)
+        after = {p: set(cs) for p, cs in down.items()}
+        for pair, (p, c, rule) in labels.items():
+            if p is not None and c in kept.get(p, ()) and c not in after.get(p, ()):
+                labels[pair] = (p, c, "pruned")
+        return down, labels
+
+    for (a, b), (p, c, rule) in list(labels.items()):
+        if p is None and rule in ("single_region", "peer"):
+            ab, ba = evidence.get((a, b), 0) & EV_T1, evidence.get((b, a), 0) & EV_T1
+            if bool(ab) != bool(ba):
+                pr, cu = (a, b) if ab else (b, a)
+                if degrees[pr] > degrees[cu]:
+                    labels[(a, b)] = (pr, cu, "restored")
+
+    down = defaultdict(list)
+    for pair, (p, c, rule) in labels.items():
+        if p is None:
+            continue
+        if p not in TIER_1_FIREWALL:
+            ev = evidence.get((p, c), 0)
+            if not ev & EV_BEYOND:
+                labels[pair] = (p, c, "pruned")
+                continue
+            if p in EVIDENCE_REQUIRED and not ev & EV_T1_4:
+                labels[pair] = (p, c, "evidence_required")
+                continue
+        down[p].append(c)
+    return down, labels
+
+
 # ---------------------------------------------------------------------------
 # Main topology builder
 # ---------------------------------------------------------------------------
@@ -209,7 +292,8 @@ def build_topology():
       3. Cross-regional degree-ratio:
            ≥ CONFIRM_REGIONS regions see the link → use RATIO (4×)
            < CONFIRM_REGIONS regions            → never transit (dropped)
-      4. IXP phantom pruning  (excl_pct backstop)
+      4. Export evidence (build_graph): restore confirmed links, prune links only seen at the
+         collector end, EVIDENCE_REQUIRED_ASNS need IPv4 Tier 1 exports
     """
     print("[*] Building Topology from RIPE RIS (Multi-Collector)...")
 
@@ -219,39 +303,19 @@ def build_topology():
     if not adj:
         return
 
-    # Build directed graph
-    downstream_map = defaultdict(list)
-    stats = {'total': 0, 'kept': 0, 'dropped_peer': 0, 'dropped_t1': 0,
-             'dropped_single_region': 0}
-    processed = set()
+    evidence = load_exports()
+    if evidence is None:
+        print("    [!] No exports.csv from bgp-extractor (old binary?): falling back to "
+              "provider-level phantom pruning.")
+    else:
+        print(f"    - Export evidence: {len(evidence):,} directed links")
+    downstream_map, labels = build_graph(adj, degrees, link_regions, evidence)
 
-    for as1, neighbors in adj.items():
-        for as2 in neighbors:
-            pair_key = tuple(sorted((as1, as2)))
-            if pair_key in processed:
-                continue
-            processed.add(pair_key)
-            stats['total'] += 1
-
-            provider, customer, rule = infer_link(as1, as2, degrees, link_regions)
-            if provider is None:
-                stats[DROP_STAT[rule]] += 1
-                continue
-
-            downstream_map[provider].append(customer)
-            stats['kept'] += 1
-
-    print(f"    - Initial graph built.")
-    print(f"      Total Unique Links:       {stats['total']:,}")
-    print(f"      Kept (Transit):           {stats['kept']:,}")
-    print(f"      Dropped (Peering):        {stats['dropped_peer']:,}")
-    print(f"      Dropped (T1 Loops):       {stats['dropped_t1']:,}")
-    print(f"      Dropped (Single-Region):  {stats['dropped_single_region']:,}  ← IXP suspects")
-
-    # Rule 4: IXP phantom pruning backstop
-    print(f"    - Pruning IXP phantom providers (excl% < {IXP_PRUNE_THRESHOLD:.0f}%)...")
-    n_prov, n_links = _prune_ixp_phantoms(downstream_map, TIER_1_FIREWALL)
-    print(f"      Removed {n_prov} phantom providers, {n_links:,} phantom links.")
+    rules = Counter(rule for _, _, rule in labels.values())
+    kept = sum(len(cs) for cs in downstream_map.values())
+    print(f"    - Graph built: {len(labels):,} links, {kept:,} kept as transit.")
+    for rule, n in rules.most_common():
+        print(f"      {rule:<18} {n:>9,}")
 
     # Save
     with open(os.path.join(rov_utils.DIR_DATA, "downstream_graph.json"), 'w') as f:

@@ -52,6 +52,9 @@ echo "  Downloads complete."
 # 2. Extract relationships from each collector (parallel)
 # ----------------------------------------------------------
 echo "[2/4] Extracting BGP relationships..."
+# Rebuild the Go binaries if their sources changed (the binaries are not tracked in git).
+# build_topology_from_go.py falls back to provider-level pruning if exports.csv is missing.
+make build || echo "  [!] make build failed — using the existing binaries"
 pids=()
 for rrc in $RRCS; do
     dump="output/${rrc}-bview.gz"

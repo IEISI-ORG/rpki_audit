@@ -49,6 +49,7 @@ jobs:
         python3 tests/test_atlas_harvest.py
         python3 tests/test_caida_crosscheck.py
         python3 tests/test_caida_export.py
+        python3 tests/test_topology_evidence.py
 
   go-quality:
     name: Go Build & Lint
@@ -78,6 +79,10 @@ jobs:
         # aspa-path-protection.go doesn't use constants.go (no Tier-1/non-transit
         # classification needed for path-hop validation)
         go vet aspa-path-protection.go
+
+    - name: Go Tests
+      run: |
+        go test bgp-extractor.go bgp-extractor_test.go constants.go
 
     - name: Compile Binaries
       run: |

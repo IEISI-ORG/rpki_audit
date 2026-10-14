@@ -53,7 +53,7 @@ func main() {
 	}
 
 	// Process the BGP dump
-	stats, relationships := processBGPDump(*inputFile, *workers, *verbose)
+	stats, relationships, exports := processBGPDump(*inputFile, *workers, *verbose)
 
 	// Write outputs
 	if err := writeASNStats(filepath.Join(*outputDir, "asn_stats.csv"), stats); err != nil {
@@ -62,6 +62,10 @@ func main() {
 
 	if err := writeRelationships(filepath.Join(*outputDir, "relationships.csv"), relationships); err != nil {
 		log.Fatal("Failed to write relationships:", err)
+	}
+
+	if err := writeExports(filepath.Join(*outputDir, "exports.csv"), exports); err != nil {
+		log.Fatal("Failed to write exports:", err)
 	}
 
 	if err := writeTopASNs(filepath.Join(*outputDir, "top_asns.txt"), stats); err != nil {
@@ -75,7 +79,7 @@ func main() {
 	fmt.Printf("✓ Results written to: %s/\n", *outputDir)
 }
 
-func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASNStats, map[string]*ASRelationship) {
+func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASNStats, map[string]*ASRelationship, map[exportKey]*exportCount) {
 	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal("Failed to open input file:", err)
@@ -109,7 +113,8 @@ func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASN
 	doneChan := make(chan struct{})
 	stats := make(map[string]*ASNStats)
 	relationships := make(map[string]*ASRelationship)
-	go collectResults(resultsChan, stats, relationships, doneChan, verbose)
+	exports := make(map[exportKey]*exportCount)
+	go collectResults(resultsChan, stats, relationships, exports, doneChan, verbose)
 
 	// Read and distribute lines
 	scanner := bufio.NewScanner(reader)
@@ -140,22 +145,90 @@ func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASN
 		fmt.Fprintf(os.Stderr, "\rProcessed %d lines total\n", lineCount)
 	}
 
-	return stats, relationships
+	return stats, relationships, exports
 }
 
 type pathResult struct {
 	asPath []string
+	af     int
 }
 
 func worker(lines <-chan string, results chan<- *pathResult, wg *sync.WaitGroup) {
 	defer wg.Done()
 
 	for line := range lines {
-		asPath := parseASPath(line)
+		asPath, af := parseRoute(line)
 		if len(asPath) >= 2 {
-			results <- &pathResult{asPath: asPath}
+			results <- &pathResult{asPath: asPath, af: af}
 		}
 	}
+}
+
+// parseRoute returns the cleaned AS path and the address family (4 or 6) of a TABLE_DUMP2
+// line from `bgpdump -m`; the prefix is field 5.
+func parseRoute(line string) ([]string, int) {
+	path := parseASPath(line)
+	if path == nil {
+		return nil, 0
+	}
+	if strings.Contains(strings.Split(line, "|")[5], ":") {
+		return path, 6
+	}
+	return path, 4
+}
+
+// exportKey identifies one observed export: X passed the route it learned from C (its right
+// neighbour, toward the origin) on to the AS on its left, in one address family.
+type exportKey struct {
+	X, C string
+	AF   int
+}
+
+// exportCount counts paths per exportKey. Paths: the link X–C appears; Beyond: X passed C's
+// route on to another AS (the link is not only at the collector end of the path); ToTier1: that
+// AS is a Tier 1 and X is not, so by valley-free routing C is X's customer (or a route leak).
+type exportCount struct {
+	Paths, Beyond, ToTier1 int64
+}
+
+func recordExports(m map[exportKey]*exportCount, path []string, af int) {
+	for i := 0; i < len(path)-1; i++ {
+		k := exportKey{path[i], path[i+1], af}
+		c := m[k]
+		if c == nil {
+			c = &exportCount{}
+			m[k] = c
+		}
+		c.Paths++
+		if i > 0 {
+			c.Beyond++
+			if isTier1(path[i-1]) && !isTier1(path[i]) {
+				c.ToTier1++
+			}
+		}
+	}
+}
+
+func writeExports(filename string, m map[exportKey]*exportCount) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	writer := csv.NewWriter(file)
+	defer writer.Flush()
+	if err := writer.Write([]string{"X", "C", "AF", "Paths", "Beyond", "ToTier1"}); err != nil {
+		return err
+	}
+	for k, c := range m {
+		if err := writer.Write([]string{k.X, k.C, fmt.Sprintf("%d", k.AF),
+			fmt.Sprintf("%d", c.Paths), fmt.Sprintf("%d", c.Beyond), fmt.Sprintf("%d", c.ToTier1)}); err != nil {
+			return err
+		}
+	}
+	fmt.Printf("✓ Wrote %d export records to: %s\n", len(m), filename)
+	return nil
 }
 
 func parseASPath(line string) []string {
@@ -198,7 +271,8 @@ func parseASPath(line string) []string {
 }
 
 func collectResults(results <-chan *pathResult, stats map[string]*ASNStats,
-	relationships map[string]*ASRelationship, done chan<- struct{}, verbose bool) {
+	relationships map[string]*ASRelationship, exports map[exportKey]*exportCount,
+	done chan<- struct{}, verbose bool) {
 
 	count := int64(0)
 
@@ -208,6 +282,8 @@ func collectResults(results <-chan *pathResult, stats map[string]*ASNStats,
 		if verbose && count%10000 == 0 {
 			fmt.Fprintf(os.Stderr, "\rCollected %d paths...", count)
 		}
+
+		recordExports(exports, result.asPath, result.af)
 
 		// Process each AS in the path
 		for i, asn := range result.asPath {
