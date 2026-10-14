@@ -7,7 +7,7 @@ data/downstream_graph.json, rov_audit_v22_final.csv (Go cone sizes), and CAIDA's
 serial-2 as-rel2 and serial-1 ppdc-ases files in data/caida/ (downloaded when missing).
 
 Each observed link is labelled with build_topology_from_go.infer_link's rule (tier1,
-ratio_4x, ratio_8x, peer, single_region, t1_t1, non_transit), or "pruned" when the IXP
+ratio_4x, peer, single_region, t1_t1, non_transit), or "pruned" when the IXP
 phantom backstop removed it, and compared with CAIDA (same direction, reversed, peer,
 absent). Report: reports/caida_crosscheck.md.
 
@@ -145,7 +145,7 @@ def write_report(date, rels, ppdc, labels, final, matrix, unseen, same_as_saved)
         n = sum(matrix[rule].values())
         lines.append(f"| {rule} | {n:,} | " + " | ".join(
             f"{matrix[rule][k]:,} ({100 * matrix[rule][k] / n:.0f}%)" for k in CLASSES) + " |")
-    lines += ["", "Our p2c rules (tier1, ratio_4x, ratio_8x, pruned) should land in caida_same; "
+    lines += ["", "Our p2c rules (tier1, ratio_4x, pruned) should land in caida_same; "
               "dropped rules (peer, single_region, t1_t1, non_transit) in caida_p2p or caida_absent.", ""]
 
     def row(asn):

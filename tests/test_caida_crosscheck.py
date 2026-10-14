@@ -39,9 +39,18 @@ class TestInferLink(unittest.TestCase):
     def test_exactly_4x_is_peering(self):
         self.assertEqual(btg.infer_link(A, B, {A: 40, B: 10}, regions(2)), (None, None, "peer"))
 
-    def test_single_region_needs_8x(self):
-        self.assertEqual(btg.infer_link(B, A, {A: 81, B: 10}, regions(1)), (A, B, "ratio_8x"))
+    # A link seen from one region is never transit by degree ratio (2026-10-14: the old 8x
+    # rule agreed with CAIDA 18% of the time and with signed ASPA far less than ratio_4x).
+    def test_single_region_is_never_transit_by_ratio(self):
+        self.assertEqual(btg.infer_link(B, A, {A: 81, B: 10}, regions(1)), (None, None, "single_region"))
+        self.assertEqual(btg.infer_link(A, B, {A: 100000, B: 1}, regions(1)), (None, None, "single_region"))
         self.assertEqual(btg.infer_link(A, B, {A: 50, B: 10}, regions(1)), (None, None, "single_region"))
+
+    def test_single_region_below_4x_is_peer(self):
+        self.assertEqual(btg.infer_link(A, B, {A: 40, B: 10}, regions(1)), (None, None, "peer"))
+
+    def test_single_region_tier1_still_provider(self):
+        self.assertEqual(btg.infer_link(A, T1, {A: 5000, T1: 10}, regions(1)), (T1, A, "tier1"))
 
 
 class TestCaida(unittest.TestCase):

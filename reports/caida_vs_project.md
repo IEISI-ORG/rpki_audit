@@ -5,6 +5,11 @@ from RIPE RIS dumps of 2026-10-11 from five collectors: rrc00, rrc14, rrc19, rrc
 The signed ASPA records are `data/aspa_real.json`, dated 2026-10-07: 3,421 networks.
 CAIDA is treated as a second opinion to test, not as ground truth.
 
+**Update (later on 2026-10-14):** the `ratio_8x` rule has been removed. Single-region links are
+no longer transit, and phantom pruning now removes 312 links instead of 78,779. Provider precision
+against ASPA rose from 69.7% to 83.7%; `reports/caida_crosscheck.md` shows the current state.
+Section 1 below describes the topology before that change.
+
 ## Summary
 
 1. **Our topology and CAIDA's disagree most on the largest networks.**

@@ -112,7 +112,11 @@ phantom only appears in European-biased collectors.
 
 ### Consensus rules (`rov_utils.RRC_CONFIRM_REGIONS = 2`)
 - Link seen in ≥2 distinct regions → confirmed transit → use `PROVIDER_RATIO` (4×)
-- Link seen in only 1 region → suspect IXP peering → use `RRC_SINGLE_REGION_RATIO` (8×)
+- Link seen in only 1 region → suspect IXP peering → never transit by ratio (rule `single_region`, dropped).
+  The old 8× rule (`ratio_8x`) was removed 2026-10-14: it agreed with CAIDA 18% of the time, and
+  dropping it lifted provider precision against signed ASPA from 69.7% to 83.7%. It also created
+  most of the IXP phantoms: without it, pruning removes ~300 links and no longer wipes out real
+  providers (Angola Cables, EdgeUno, Durand). Details under the CAIDA topology item in TODO.md.
 - Tier-1 override is always applied regardless of collector count
 - `_prune_ixp_phantoms()` is applied as a backstop after the ratio rules
 

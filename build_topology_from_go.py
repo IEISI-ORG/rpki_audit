@@ -8,7 +8,6 @@ import rov_utils
 TIER_1_FIREWALL        = rov_utils.TIER_1_ASNS
 IS_NON_TRANSIT         = rov_utils.NON_TRANSIT_ASNS
 RATIO                  = rov_utils.PROVIDER_RATIO
-SINGLE_REGION_RATIO    = rov_utils.RRC_SINGLE_REGION_RATIO
 CONFIRM_REGIONS        = rov_utils.RRC_CONFIRM_REGIONS
 IXP_PRUNE_THRESHOLD    = rov_utils.CONE_QUALITY_THRESHOLD  # 5.0 %
 
@@ -161,7 +160,7 @@ DROP_STAT = {"non_transit": "dropped_peer", "t1_t1": "dropped_t1", "peer": "drop
 def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
     """(provider, customer, rule) for one observed link; provider is None when dropped.
 
-    rule names the step that decided: non_transit, t1_t1, tier1, ratio_4x, ratio_8x,
+    rule names the step that decided: non_transit, t1_t1, tier1, ratio_4x,
     peer or single_region. caida_crosscheck.py uses the rule to attribute disagreements.
     """
     # Rule 1: Non-transit exclusion
@@ -177,18 +176,18 @@ def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
     if t1_as2:
         return as2, as1, "tier1"
 
-    # Rule 3: Cross-regional degree-ratio
+    # Rule 3: Cross-regional degree-ratio. A link seen from fewer than CONFIRM_REGIONS
+    # regions is never transit by ratio: the 8x rule it used to get was mostly IX peering
+    # (18% CAIDA agreement; dropping it lifted provider precision vs ASPA 69.7% -> 83.7%).
     d1, d2 = degrees[as1], degrees[as2]
     n_regions = len(link_regions.get(tuple(sorted((as1, as2))), set()))
-    confirmed = n_regions >= CONFIRM_REGIONS
-    ratio = RATIO if confirmed else SINGLE_REGION_RATIO
-    rule = "ratio_4x" if confirmed else "ratio_8x"
-    if d1 > d2 * ratio:
-        return as1, as2, rule
-    if d2 > d1 * ratio:
-        return as2, as1, rule
-    if not confirmed and (d1 > d2 * RATIO or d2 > d1 * RATIO):
-        return None, None, "single_region"
+    lopsided = d1 > d2 * RATIO or d2 > d1 * RATIO
+    if n_regions < CONFIRM_REGIONS:
+        return None, None, "single_region" if lopsided else "peer"
+    if d1 > d2 * RATIO:
+        return as1, as2, "ratio_4x"
+    if d2 > d1 * RATIO:
+        return as2, as1, "ratio_4x"
     return None, None, "peer"
 
 
@@ -204,12 +203,12 @@ def build_topology():
     IXP route-server adjacencies (which are local to one IXP fabric) can be
     distinguished from genuine transit relationships (which appear globally).
 
-    Rule priority (identical to cone-calculator.go):
+    Rule priority (cone-calculator.go has rules 1, 2 and the 4× ratio, on rrc00 only):
       1. Non-transit exclusion  (RIRs, root servers, IXP route servers)
       2. Tier-1 affirmative override
       3. Cross-regional degree-ratio:
            ≥ CONFIRM_REGIONS regions see the link → use RATIO (4×)
-           < CONFIRM_REGIONS regions            → use SINGLE_REGION_RATIO (8×)
+           < CONFIRM_REGIONS regions            → never transit (dropped)
       4. IXP phantom pruning  (excl_pct backstop)
     """
     print("[*] Building Topology from RIPE RIS (Multi-Collector)...")

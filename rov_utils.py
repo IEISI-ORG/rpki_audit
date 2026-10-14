@@ -66,7 +66,8 @@ FILE_CONES = "final_as_rank.csv"
 # spread for cross-regional consensus.
 #
 # A provider-customer link confirmed in ≥2 distinct regions is treated as real
-# transit (4× ratio).  A link seen in only 1 region is suspect IXP peering (8×).
+# transit (4× ratio).  A link seen in only 1 region is suspect IXP peering and is
+# never inferred as transit by ratio (the 8× rule was dropped 2026-10-14).
 #
 # Add collectors here to increase coverage; remove to reduce download size.
 # Must stay in sync with RRCS= in do_data_gathering.
@@ -83,9 +84,6 @@ RRC_COLLECTORS: dict[str, dict] = {
 # 2 = must appear at both a European and at least one non-European collector.
 RRC_CONFIRM_REGIONS = 2
 
-# Stricter degree ratio applied to single-region links (suspect IXP peering).
-# Normal ratio is PROVIDER_RATIO (4×); single-region links need 8× evidence.
-RRC_SINGLE_REGION_RATIO = 8.0
 FILE_GRAPH = "data/downstream_graph.json"
 FILE_AUDIT_FINAL = "rov_audit_v22_final.csv"
 FILE_PACKED_ASN = "data/as_data.jsonl.gz"
