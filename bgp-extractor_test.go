@@ -64,3 +64,29 @@ func TestRecordExportsKeepsFamiliesApart(t *testing.T) {
 		t.Errorf("v4: got %+v, want Beyond 1 ToTier1 0", c)
 	}
 }
+
+// Path [64500 3356 64501 64502]: 3356 passed 64501's route on to 64500, and 64501 passed
+// 64502's route on to 3356. The collector-end AS (64500) passed nothing on, so no triple has it
+// as X; a repeated path adds nothing.
+func TestRecordTriples(t *testing.T) {
+	m := map[tripleKey]struct{}{}
+	recordTriples(m, []string{"64500", "3356", "64501", "64502"}, 4)
+	recordTriples(m, []string{"64500", "3356", "64501", "64502"}, 4)
+	recordTriples(m, []string{"64500", "3356", "64501", "64502"}, 6)
+	recordTriples(m, []string{"64500", "64502"}, 4)
+
+	want := []tripleKey{
+		{"64500", "3356", "64501", 4},
+		{"3356", "64501", "64502", 4},
+		{"64500", "3356", "64501", 6},
+		{"3356", "64501", "64502", 6},
+	}
+	if len(m) != len(want) {
+		t.Fatalf("got %d triples, want %d: %v", len(m), len(want), m)
+	}
+	for _, k := range want {
+		if _, ok := m[k]; !ok {
+			t.Errorf("missing %v", k)
+		}
+	}
+}

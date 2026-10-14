@@ -49,10 +49,11 @@ def analyze(csv_file):
         Total_Cone=('cone', 'sum')
     ).reset_index()
     
-    # Custom Sort: NOT ROUTED and Unverified at the bottom
+    # Custom Sort: NOT ROUTED, PROVIDER UNKNOWN and Unverified at the bottom
     def verdict_priority(v):
         v = str(v).upper()
         if "NOT ROUTED" in v: return 100
+        if "PROVIDER UNKNOWN" in v: return 99
         if "UNVERIFIED" in v: return 99
         return 0
 

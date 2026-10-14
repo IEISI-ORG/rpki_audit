@@ -53,7 +53,7 @@ func main() {
 	}
 
 	// Process the BGP dump
-	stats, relationships, exports := processBGPDump(*inputFile, *workers, *verbose)
+	stats, relationships, exports, triples := processBGPDump(*inputFile, *workers, *verbose)
 
 	// Write outputs
 	if err := writeASNStats(filepath.Join(*outputDir, "asn_stats.csv"), stats); err != nil {
@@ -68,6 +68,10 @@ func main() {
 		log.Fatal("Failed to write exports:", err)
 	}
 
+	if err := writeTriples(filepath.Join(*outputDir, "triples.csv"), triples); err != nil {
+		log.Fatal("Failed to write triples:", err)
+	}
+
 	if err := writeTopASNs(filepath.Join(*outputDir, "top_asns.txt"), stats); err != nil {
 		log.Fatal("Failed to write top ASNs:", err)
 	}
@@ -79,7 +83,7 @@ func main() {
 	fmt.Printf("✓ Results written to: %s/\n", *outputDir)
 }
 
-func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASNStats, map[string]*ASRelationship, map[exportKey]*exportCount) {
+func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASNStats, map[string]*ASRelationship, map[exportKey]*exportCount, map[tripleKey]struct{}) {
 	file, err := os.Open(filename)
 	if err != nil {
 		log.Fatal("Failed to open input file:", err)
@@ -114,7 +118,8 @@ func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASN
 	stats := make(map[string]*ASNStats)
 	relationships := make(map[string]*ASRelationship)
 	exports := make(map[exportKey]*exportCount)
-	go collectResults(resultsChan, stats, relationships, exports, doneChan, verbose)
+	triples := make(map[tripleKey]struct{})
+	go collectResults(resultsChan, stats, relationships, exports, triples, doneChan, verbose)
 
 	// Read and distribute lines
 	scanner := bufio.NewScanner(reader)
@@ -145,7 +150,7 @@ func processBGPDump(filename string, workers int, verbose bool) (map[string]*ASN
 		fmt.Fprintf(os.Stderr, "\rProcessed %d lines total\n", lineCount)
 	}
 
-	return stats, relationships, exports
+	return stats, relationships, exports, triples
 }
 
 type pathResult struct {
@@ -207,6 +212,41 @@ func recordExports(m map[exportKey]*exportCount, path []string, af int) {
 			}
 		}
 	}
+}
+
+// tripleKey is one observed hand-on: X passed the route it learned from C (its right neighbour)
+// on to Y (its left neighbour), in one address family. build_topology_from_go infers providers
+// top-down from these: if Y is X's provider or a Tier 1 peer, C is X's customer.
+type tripleKey struct {
+	Y, X, C string
+	AF      int
+}
+
+func recordTriples(m map[tripleKey]struct{}, path []string, af int) {
+	for i := 1; i < len(path)-1; i++ {
+		m[tripleKey{path[i-1], path[i], path[i+1], af}] = struct{}{}
+	}
+}
+
+func writeTriples(filename string, m map[tripleKey]struct{}) error {
+	file, err := os.Create(filename)
+	if err != nil {
+		return err
+	}
+	defer file.Close()
+
+	writer := csv.NewWriter(file)
+	defer writer.Flush()
+	if err := writer.Write([]string{"AF", "Y", "X", "C"}); err != nil {
+		return err
+	}
+	for k := range m {
+		if err := writer.Write([]string{fmt.Sprintf("%d", k.AF), k.Y, k.X, k.C}); err != nil {
+			return err
+		}
+	}
+	fmt.Printf("✓ Wrote %d triples to: %s\n", len(m), filename)
+	return nil
 }
 
 func writeExports(filename string, m map[exportKey]*exportCount) error {
@@ -272,7 +312,7 @@ func parseASPath(line string) []string {
 
 func collectResults(results <-chan *pathResult, stats map[string]*ASNStats,
 	relationships map[string]*ASRelationship, exports map[exportKey]*exportCount,
-	done chan<- struct{}, verbose bool) {
+	triples map[tripleKey]struct{}, done chan<- struct{}, verbose bool) {
 
 	count := int64(0)
 
@@ -284,6 +324,7 @@ func collectResults(results <-chan *pathResult, stats map[string]*ASNStats,
 		}
 
 		recordExports(exports, result.asPath, result.af)
+		recordTriples(triples, result.asPath, result.af)
 
 		// Process each AS in the path
 		for i, asn := range result.asPath {

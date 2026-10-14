@@ -12,6 +12,8 @@ RATIO                  = rov_utils.PROVIDER_RATIO
 CONFIRM_REGIONS        = rov_utils.RRC_CONFIRM_REGIONS
 IXP_PRUNE_THRESHOLD    = rov_utils.CONE_QUALITY_THRESHOLD  # 5.0 %
 EVIDENCE_REQUIRED      = rov_utils.EVIDENCE_REQUIRED_ASNS
+UP_RANK_MAX_RATIO      = rov_utils.PATH_UP_RANK_MAX_RATIO
+TOP_DOWN_MAX_PASSES    = 10
 
 # Export evidence bits per ordered pair (x, c), from bgp-extractor's exports.csv:
 # x passed the route it learned from c on to another AS (beyond the collector end of the path),
@@ -134,6 +136,99 @@ def load_exports(base_dir: str = "output") -> dict | None:
     return dict(ev)
 
 
+def load_triples(base_dir: str = "output") -> dict | None:
+    """{x: {(y, c, af)}} from every <base_dir>/rrc*/triples.csv (x passed the route it learned
+    from c on to y); None if there are none."""
+    files = sorted(glob.glob(os.path.join(base_dir, "rrc*", "triples.csv")))
+    if not files:
+        return None
+    tr: dict = defaultdict(set)
+    for path in files:
+        with open(path) as f:
+            next(f, None)
+            for line in f:
+                af, y, x, c = line.rstrip("\n").split(",")
+                tr[int(x)].add((int(y), int(c), int(af)))
+    return dict(tr)
+
+
+# ---------------------------------------------------------------------------
+# Path-based (top-down) inference
+# ---------------------------------------------------------------------------
+
+def transit_degrees(triples: dict) -> dict:
+    """{x: number of distinct neighbours on either side of x where x is mid-path}."""
+    return {x: len({y for y, _, _ in ts} | {c for _, c, _ in ts}) for x, ts in triples.items()}
+
+
+def rank_positions(nodes, td: dict, degrees: dict) -> dict:
+    """{asn: position}, top first: Tier 1s, then transit degree, degree, ASN."""
+    order = sorted(nodes, key=lambda a: (a not in TIER_1_FIREWALL, -td.get(a, 0), -degrees.get(a, 0), a))
+    return {a: i for i, a in enumerate(order)}
+
+
+def _reaches(down: dict, src: int, dst: int) -> bool:
+    """True when dst is in src's customer cone (so dst -> src would close a loop)."""
+    seen, stack = {src}, [src]
+    while stack:
+        for n in down.get(stack.pop(), ()):
+            if n == dst:
+                return True
+            if n not in seen:
+                seen.add(n)
+                stack.append(n)
+    return False
+
+
+def infer_top_down(triples: dict, pos: dict, td: dict) -> dict:
+    """{provider: {customers}} from path triples, AS Rank style.
+
+    x provides c when x passed c's route on to an AS y that is x's provider or a Tier 1: valley-free
+    routing only exports customer routes up and across, and a Tier 1 is never a customer, so it
+    is x's provider or peer. Tier 1s and non-transit ASes are never customers; an
+    EVIDENCE_REQUIRED_ASNS member counts IPv4 triples only.
+    Pass 0 visits ASes in rank order and accepts only c ranked below x: x's providers rank above
+    x, so they are known when x is visited, and the graph is loop-free by construction. Later
+    passes repeat until nothing changes, also accepting c ranked above x when c's transit degree
+    is at most UP_RANK_MAX_RATIO times x's; every edge after pass 0 is checked for loops.
+    """
+    provs: dict = defaultdict(set)
+    down: dict = defaultdict(set)
+    order = sorted(pos, key=pos.get)
+    last = len(pos)
+    rejected = set()
+    for npass in range(TOP_DOWN_MAX_PASSES):
+        added = 0
+        for x in order:
+            if x in IS_NON_TRANSIT or x not in triples:
+                continue
+            px = provs.get(x, ())
+            for y, c, af in triples[x]:
+                if c in TIER_1_FIREWALL or c in IS_NON_TRANSIT or c == x or c in down.get(x, ()):
+                    continue
+                if x in EVIDENCE_REQUIRED and af != 4:
+                    continue
+                if y not in TIER_1_FIREWALL and y not in px:
+                    continue
+                up = pos.get(c, last) < pos[x]
+                if npass == 0:
+                    if up:
+                        continue
+                elif (x, c) in rejected:
+                    continue
+                elif up and td.get(c, 0) > UP_RANK_MAX_RATIO * max(td.get(x, 0), 1):
+                    continue
+                elif _reaches(down, c, x):
+                    rejected.add((x, c))
+                    continue
+                provs[c].add(x)
+                down[x].add(c)
+                added += 1
+        if not added:
+            break
+    return down
+
+
 # ---------------------------------------------------------------------------
 # IXP phantom pruning
 # ---------------------------------------------------------------------------
@@ -216,7 +311,8 @@ def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
     return None, None, "peer"
 
 
-def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None) -> tuple:
+def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None,
+                triples: dict | None = None) -> tuple:
     """(downstream {provider: [customers]}, labels {pair: (provider, customer, rule)}).
 
     With export evidence (bgp-extractor exports.csv), after infer_link:
@@ -229,6 +325,15 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
       evidence_required  provider in EVIDENCE_REQUIRED_ASNS without an IPv4 Tier 1 export.
     Without evidence (old extractor output), falls back to _prune_ixp_phantoms; links it removes
     are labelled pruned.
+
+    With path triples (bgp-extractor triples.csv), the result of the above is only a fallback:
+      path         p2c from infer_top_down. Replaces the Tier 1 override and the degree ratio.
+      ratio_4x / restored
+                   kept only for an AS that path evidence gives no provider, when the provider
+                   ranks above it and the link closes no loop.
+      tier1        kept when the customer is a stub (never seen mid-path), AS Rank step 9:
+                   97% CAIDA-same on the 11 Oct dumps. A stub has no customers, so no cone nests.
+      unconfirmed  any other link the rules above would have made p2c.
     """
     labels = {}
     for a, nbrs in adj.items():
@@ -248,30 +353,52 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
         for pair, (p, c, rule) in labels.items():
             if p is not None and c in kept.get(p, ()) and c not in after.get(p, ()):
                 labels[pair] = (p, c, "pruned")
+        if triples is None:
+            return down, labels
+    else:
+        for (a, b), (p, c, rule) in list(labels.items()):
+            if p is None and rule in ("single_region", "peer"):
+                ab, ba = evidence.get((a, b), 0) & EV_T1, evidence.get((b, a), 0) & EV_T1
+                if bool(ab) != bool(ba):
+                    pr, cu = (a, b) if ab else (b, a)
+                    if degrees[pr] > degrees[cu]:
+                        labels[(a, b)] = (pr, cu, "restored")
+
+        down = defaultdict(list)
+        for pair, (p, c, rule) in labels.items():
+            if p is None:
+                continue
+            if p not in TIER_1_FIREWALL:
+                ev = evidence.get((p, c), 0)
+                if not ev & EV_BEYOND:
+                    labels[pair] = (p, c, "pruned")
+                    continue
+                if p in EVIDENCE_REQUIRED and not ev & EV_T1_4:
+                    labels[pair] = (p, c, "evidence_required")
+                    continue
+            down[p].append(c)
+    if triples is None:
         return down, labels
 
-    for (a, b), (p, c, rule) in list(labels.items()):
-        if p is None and rule in ("single_region", "peer"):
-            ab, ba = evidence.get((a, b), 0) & EV_T1, evidence.get((b, a), 0) & EV_T1
-            if bool(ab) != bool(ba):
-                pr, cu = (a, b) if ab else (b, a)
-                if degrees[pr] > degrees[cu]:
-                    labels[(a, b)] = (pr, cu, "restored")
-
-    down = defaultdict(list)
-    for pair, (p, c, rule) in labels.items():
-        if p is None:
+    td = transit_degrees(triples)
+    pos = rank_positions(set(adj) | set(triples), td, degrees)
+    edges = infer_top_down(triples, pos, td)
+    has_provider = {c for cs in edges.values() for c in cs}
+    last = len(pos)
+    for p, cs in edges.items():
+        for c in cs:
+            labels[(min(p, c), max(p, c))] = (p, c, "path")
+    for pair, (p, c, rule) in sorted(labels.items()):
+        if p is None or rule in ("path", "pruned", "evidence_required"):
             continue
-        if p not in TIER_1_FIREWALL:
-            ev = evidence.get((p, c), 0)
-            if not ev & EV_BEYOND:
-                labels[pair] = (p, c, "pruned")
-                continue
-            if p in EVIDENCE_REQUIRED and not ev & EV_T1_4:
-                labels[pair] = (p, c, "evidence_required")
-                continue
-        down[p].append(c)
-    return down, labels
+        providerless = (rule in ("ratio_4x", "restored") and c not in has_provider
+                        and pos.get(p, last) < pos.get(c, last))
+        tier1_stub = rule == "tier1" and td.get(c, 0) == 0
+        if (providerless or tier1_stub) and not _reaches(edges, c, p):
+            edges[p].add(c)
+        else:
+            labels[pair] = (None, None, "unconfirmed")
+    return defaultdict(list, {p: sorted(cs) for p, cs in edges.items() if cs}), labels
 
 
 # ---------------------------------------------------------------------------
@@ -294,6 +421,8 @@ def build_topology():
            < CONFIRM_REGIONS regions            → never transit (dropped)
       4. Export evidence (build_graph): restore confirmed links, prune links only seen at the
          collector end, EVIDENCE_REQUIRED_ASNS need IPv4 Tier 1 exports
+    With path triples (triples.csv), rules 2-4 only give providers to ASes that the top-down
+    path inference (infer_top_down) leaves without one; see build_graph.
     """
     print("[*] Building Topology from RIPE RIS (Multi-Collector)...")
 
@@ -309,7 +438,13 @@ def build_topology():
               "provider-level phantom pruning.")
     else:
         print(f"    - Export evidence: {len(evidence):,} directed links")
-    downstream_map, labels = build_graph(adj, degrees, link_regions, evidence)
+    triples = load_triples()
+    if triples is None:
+        print("    [!] No triples.csv from bgp-extractor (old binary?): using the degree rules "
+              "(Tier 1 override, degree ratio) without path inference.")
+    else:
+        print(f"    - Path triples: {sum(map(len, triples.values())):,} for {len(triples):,} ASes")
+    downstream_map, labels = build_graph(adj, degrees, link_regions, evidence, triples)
 
     rules = Counter(rule for _, _, rule in labels.values())
     kept = sum(len(cs) for cs in downstream_map.values())

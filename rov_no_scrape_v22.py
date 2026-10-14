@@ -36,6 +36,7 @@ def analyze():
     
     # 2. Topology
     cones, downstream, upstreams = rov_utils.load_topology()
+    bgp_asns = rov_utils.load_bgp_asns()
     if not cones or not upstreams:
         print("[!] Warning: Topology files missing. Run 'do_data_gathering' and 'build_topology_from_go.py' first.")
 
@@ -96,7 +97,7 @@ def analyze():
         atlas_v = atlas_raw.get(asn, "")
         
         verdict = rov_utils.assign_verdict(
-            asn, is_safe, cone, parents, dirty_feeds, volatile, atlas_v
+            asn, is_safe, cone, parents, dirty_feeds, volatile, atlas_v, in_bgp=asn in bgp_asns
         )
         
         # Highlight Regression in Verdict - simplified label as requested

@@ -50,6 +50,7 @@ jobs:
         python3 tests/test_caida_crosscheck.py
         python3 tests/test_caida_export.py
         python3 tests/test_topology_evidence.py
+        python3 tests/test_verdicts.py
 
   go-quality:
     name: Go Build & Lint

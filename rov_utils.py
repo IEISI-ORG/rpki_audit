@@ -203,6 +203,14 @@ TIER_1_ASNS: set[int] = {
 # 2,255) and provider precision vs signed ASPA rises ~4 points. Not in cone-calculator.go.
 EVIDENCE_REQUIRED_ASNS: set[int] = {6939}
 
+# Path inference (build_topology_from_go.infer_top_down) accepts an edge X -> C where C ranks
+# above X (RIS sees more transit neighbours for C) only if C's transit degree is at most this
+# many times X's, and the edge closes no provider loop. Tested 2026-10-15 against signed ASPA and
+# CAIDA: no cap gives recall 61.4 but cones of ~20,000 for Spark, 2degrees and Feenix (up-rank
+# edges with a ratio > 10 are 43% CAIDA-same, 40% CAIDA peering); 2 gives recall 58.6 (strict
+# rank order: 56.6) with NZ cones near CAIDA's, and restores e.g. One NZ AS9500 -> AS4768.
+PATH_UP_RANK_MAX_RATIO = 2
+
 NON_TRANSIT_ASNS: set[int] = {
     213241,  # TECHIT.BE — IXP Route Server
     13335,   # Cloudflare — CDN/Anycast (non-transit for topology)
@@ -958,6 +966,20 @@ def load_security_status() -> tuple[set, set, dict]:
     print(f"    - Security Data: {len(rov_set)} ROV Tags, {len(cf_set)} CF-Safe, {len(apnic_map)} APNIC scores")
     return rov_set, cf_set, apnic_map
 
+def load_bgp_asns(base_dir: str = "output") -> set:
+    """ASNs seen in any RIS path: the ASN column of bgp-extractor's <base_dir>/rrc*/asn_stats.csv.
+    Empty when there are none (then assign_verdict falls back to NOT ROUTED)."""
+    asns = set()
+    for path in glob.glob(os.path.join(base_dir, "rrc*", "asn_stats.csv")):
+        with open(path) as f:
+            next(f, None)
+            for line in f:
+                asn = line.split(",", 1)[0]
+                if asn.isdigit():
+                    asns.add(int(asn))
+    return asns
+
+
 def load_topology() -> tuple[dict, dict, dict]:
     """Load topology from Go output and build_topology JSON."""
     cones = {}
@@ -1293,8 +1315,13 @@ def classify_signing_rov_state(signed_pct: float, verdict: str) -> str:
         "UPSTREAM": "FULL ROV COVERAGE",
     }[rov]
 
-def assign_verdict(asn: int, is_safe: bool, cone: int, parents: list, dirty_feeds: int, volatile: bool, atlas_v: str = "") -> str:
-    """Standardized logic for assigning safety verdicts."""
+def assign_verdict(asn: int, is_safe: bool, cone: int, parents: list, dirty_feeds: int, volatile: bool,
+                   atlas_v: str = "", in_bgp: bool = False) -> str:
+    """Standardized logic for assigning safety verdicts.
+
+    in_bgp: the AS appears in RIS paths (load_bgp_asns). With no inferred provider and no cone
+    it is PROVIDER UNKNOWN (In BGP) rather than NOT ROUTED.
+    """
     if asn in HARDCODED_SECURE:
         return "ACTIVE LOCAL ROV (Hardcoded)"
     if asn in TIER_1_ASNS:
@@ -1303,7 +1330,9 @@ def assign_verdict(asn: int, is_safe: bool, cone: int, parents: list, dirty_feed
         if 'VULNERABLE' in atlas_v: return "VULNERABLE (Atlas Verified)"
         if 'SECURE' in atlas_v: return "ACTIVE (Atlas Verified)"
     if not parents:
-        return "Unverified (Transit/Peer?)" if cone > 0 else "NOT ROUTED"
+        if cone > 0:
+            return "Unverified (Transit/Peer?)"
+        return "PROVIDER UNKNOWN (In BGP)" if in_bgp else "NOT ROUTED"
     total_feeds = len(parents)
     if cone == 0: # STUB
         if dirty_feeds == 0:

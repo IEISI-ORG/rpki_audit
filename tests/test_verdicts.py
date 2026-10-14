@@ -25,6 +25,24 @@ class TestVerdicts(unittest.TestCase):
         v = rov_utils.assign_verdict(1234, False, 0, [], 0, False)
         self.assertEqual(v, "NOT ROUTED")
         
+    def test_in_bgp_without_inferred_provider_is_provider_unknown(self):
+        # Seen in RIS paths, but the topology gives it no provider: routed, not NOT ROUTED
+        v = rov_utils.assign_verdict(1234, False, 0, [], 0, False, in_bgp=True)
+        self.assertEqual(v, "PROVIDER UNKNOWN (In BGP)")
+        self.assertEqual(rov_utils.classify_verdict(v), "UNKNOWN")
+
+    def test_load_bgp_asns_reads_every_collector(self):
+        import os
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            for rrc, asns in (("rrc00", ["6939", "64500"]), ("rrc23", ["64501"])):
+                os.makedirs(os.path.join(d, rrc))
+                with open(os.path.join(d, rrc, "asn_stats.csv"), "w") as f:
+                    f.write("ASN,Left_Count,Right_Count,Total_Neighbors,Total_Paths\n")
+                    f.write("".join(f"{a},1,1,2,5\n" for a in asns))
+            self.assertEqual(rov_utils.load_bgp_asns(d), {6939, 64500, 64501})
+            self.assertEqual(rov_utils.load_bgp_asns(os.path.join(d, "none")), set())
+
     def test_unverified_transit(self):
         # Has cone but no parents
         v = rov_utils.assign_verdict(1234, False, 10, [], 0, False)

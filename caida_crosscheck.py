@@ -7,8 +7,13 @@ data/downstream_graph.json, rov_audit_v22_final.csv (Go cone sizes), and CAIDA's
 serial-2 as-rel2 and serial-1 ppdc-ases files in data/caida/ (downloaded when missing).
 
 Each observed link is labelled with the rule build_topology_from_go.build_graph ends with
-(tier1, ratio_4x, restored, peer, single_region, t1_t1, non_transit, pruned,
-evidence_required) and compared with CAIDA (same direction, reversed, peer, absent). Report: reports/caida_crosscheck.md.
+(path, ratio_4x, restored, unconfirmed, peer, single_region, t1_t1, non_transit, pruned,
+evidence_required; tier1 when there are no path triples) and compared with CAIDA (same
+direction, reversed, peer, absent). Report: reports/caida_crosscheck.md.
+
+Cones: our graph cone is the transitive closure of our p2c links. CAIDA's ppdc cone counts only
+customers observed below the provider in paths, so it is much smaller than a closure; the
+"CAIDA closure" column (closure of CAIDA's own p2c labels) is the like-for-like comparison.
 
 Usage: python3 caida_crosscheck.py [--date YYYYMMDD]
 """
@@ -88,9 +93,10 @@ def caida_lines(url: str) -> list[str]:
         return f.read().splitlines()
 
 
-def label_links(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None) -> tuple[dict, dict]:
+def label_links(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None,
+                triples: dict | None = None) -> tuple[dict, dict]:
     """{pair: (provider, customer, rule)} for every observed link, and the final graph."""
-    down, labels = btg.build_graph(adj, degrees, link_regions, evidence)
+    down, labels = btg.build_graph(adj, degrees, link_regions, evidence, triples)
     return labels, down
 
 
@@ -101,7 +107,7 @@ def main() -> None:
     rels = parse_as_rel2(caida_lines(URL_REL.format(d=args.date)))
     ppdc = parse_ppdc(caida_lines(URL_PPDC.format(d=args.date)))
     adj, degrees, link_regions = btg.load_multi_collector_relationships()
-    labels, final = label_links(adj, degrees, link_regions, btg.load_exports())
+    labels, final = label_links(adj, degrees, link_regions, btg.load_exports(), btg.load_triples())
 
     saved = json.load(open(os.path.join(rov_utils.DIR_DATA, "downstream_graph.json")))
     saved_links = {(int(p), c) for p, cs in saved.items() for c in cs}
@@ -130,16 +136,22 @@ def write_report(date, rels, ppdc, labels, final, matrix, unseen, same_as_saved)
         n = sum(matrix[rule].values())
         lines.append(f"| {rule} | {n:,} | " + " | ".join(
             f"{matrix[rule][k]:,} ({100 * matrix[rule][k] / n:.0f}%)" for k in CLASSES) + " |")
-    lines += ["", "Kept p2c rules (tier1, ratio_4x, restored) should land in caida_same; dropped rules "
-              "(peer, single_region, t1_t1, non_transit) in caida_p2p or caida_absent. pruned and "
-              "evidence_required are p2c candidates we removed: caida_same there is a lost link.", ""]
+    lines += ["", "Kept p2c rules (path; ratio_4x and restored as fallback, or tier1 without path "
+              "triples) should land in caida_same; dropped rules (peer, single_region, t1_t1, "
+              "non_transit) in caida_p2p or caida_absent. unconfirmed, pruned and evidence_required "
+              "are p2c candidates we removed: caida_same there is a lost link.", ""]
+
+    caida_down = defaultdict(list)
+    for (a, b), (r, p) in rels.items():
+        if r == "p2c":
+            caida_down[p].append(b if p == a else a)
 
     def row(asn):
         name = str(audit.name.get(asn, ""))[:28]
         return (f"| {asn} | {name} | {audit.cc.get(asn, '')} | {audit.cone.get(asn, '')} | "
-                f"{cone_size(asn, final) - 1} | {ppdc.get(asn, 1) - 1} |")
-    head = ["| AS | name | cc | audit cone (Go, rrc00) | our graph cone | CAIDA cone |",
-            "|---|---|---|---|---|---|"]
+                f"{cone_size(asn, final) - 1} | {cone_size(asn, caida_down) - 1} | {ppdc.get(asn, 1) - 1} |")
+    head = ["| AS | name | cc | audit cone (Go, rrc00) | our graph cone | CAIDA closure | CAIDA cone (ppdc) |",
+            "|---|---|---|---|---|---|---|"]
     top = sorted(ppdc, key=lambda a: -ppdc[a])[:25]
     lines += ["## Cone sizes: CAIDA's 25 largest", ""] + head + [row(a) for a in top]
     nz = [a for a in audit.index if audit.cc.get(a) == "NZ" and ppdc.get(a, 1) > 1]

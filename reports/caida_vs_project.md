@@ -13,6 +13,16 @@ links only seen next to the collector are pruned, and HE needs an IPv4 Tier 1 ex
 provider. Precision is now 89.7% and recall 54.4% (CAIDA: 90.2% and 63.7%).
 Section 1 below describes the topology before that change.
 
+**Update (2026-10-15):** providers now come from path inference (AS Rank style, from
+`bgp-extractor`'s `triples.csv`): X is a provider of C when X passes C's route to its own
+provider or to a Tier 1. The Tier 1 override and the degree ratio only fill gaps. Precision
+against ASPA is 94.5% and recall 59.9%; 92% of the inferred links match CAIDA.
+**Correction to the cone comparisons below:** our cone is the transitive closure of our links,
+while CAIDA's published (ppdc) cone counts only customers seen below the provider in paths. The
+closure of CAIDA's own labels is larger than ours: Deutsche Telekom 59,652 (ppdc 4,312; ours now
+46,042), NTT 63,009 (ours 56,131). So "1.3 to 16 times CAIDA's" compared different measures.
+`reports/caida_crosscheck.md` now lists both CAIDA columns.
+
 ## Summary
 
 1. **Our topology and CAIDA's disagree most on the largest networks.**

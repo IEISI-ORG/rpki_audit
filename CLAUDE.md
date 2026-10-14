@@ -51,7 +51,10 @@ A "valley" = downhill segment followed by an uphill segment = routing policy vio
 Tier 1s appear near the **peak** (center) of valley-free paths.  
 Stubs appear at the **edges** (leftmost = near collector, rightmost = origin).
 
-### Topology Inference Rules (must be identical in cone-calculator.go AND build_topology_from_go.py)
+### Topology Inference Rules (degree rules: cone-calculator.go, and the fallback in build_topology_from_go.py)
+Since 2026-10-15 `build_topology_from_go.py` infers providers from paths first (see **Path
+inference** under Multi-Collector below). The rules here only give providers to ASes the path
+inference leaves without one. `cone-calculator.go` still applies them directly.
 Applied in this priority order:
 
 1. **Non-transit ASNs** (RIRs, root servers, IXP route servers listed in `isNonTransit`/`IS_NON_TRANSIT`) → skip (no cone relationship)
@@ -69,7 +72,8 @@ The "degree" used in the ratio check is the **total unique neighbor count** in t
 ### Per-link rule and the CAIDA cross-check
 `build_topology_from_go.infer_link(as1, as2, degrees, link_regions)` is the single implementation
 of rules 1–6 above and returns `(provider, customer, rule)`. `build_graph()` applies it plus the
-export-evidence rules (see Multi-Collector below); `build_topology()` and `caida_crosscheck.py` both call it.
+export-evidence rules and the path inference (see Multi-Collector below); `build_topology()` and
+`caida_crosscheck.py` both call it.
 `caida_crosscheck.py` labels every observed link with that rule (or `pruned`) and compares it with
 CAIDA's monthly AS relationships and customer cones (`data/caida/`), writing
 `reports/caida_crosscheck.md`. First run (2026-10-14, CAIDA 20261001): `ratio_4x` links agree with
@@ -134,6 +138,36 @@ phantom only appears in European-biased collectors.
   - Result: provider precision vs signed ASPA 83.7% → 89.7%, recall 53.2% → 54.4% (CAIDA:
     90.2% / 63.7%). Go test: `go test bgp-extractor.go bgp-extractor_test.go constants.go`;
     Python: `tests/test_topology_evidence.py`. `cone-calculator.go` (rrc00 only) does none of this.
+- **Path inference** (since 2026-10-15, AS Rank style). `bgp-extractor` also writes `triples.csv`
+  (`AF,Y,X,C`: X passed the route it learned from C on to Y, every path position, distinct).
+  `build_graph(..., triples)` runs `infer_top_down`. X provides C when X passed C's route to one
+  of X's known providers or to a Tier 1 (a Tier 1 is never a customer, so it is X's provider or
+  peer; valley-free routing exports only customer routes up and across). ASes are ranked (Tier 1s,
+  then transit degree, degree, ASN). Pass 0 visits them top-down and accepts only C ranked below X,
+  so X's providers are known when X is visited and the graph is loop-free by construction. Later
+  passes repeat until nothing changes and also accept C ranked above X when C's transit degree is
+  at most `rov_utils.PATH_UP_RANK_MAX_RATIO` (2) times X's; every edge after pass 0 is
+  loop-checked. This catches a provider that RIS sees less of than its customer (One NZ AS9500 →
+  AS4768). Tier 1s and non-transit ASes are never customers; `EVIDENCE_REQUIRED_ASNS` count IPv4
+  triples only. This replaces the Tier 1 override and the degree ratio.
+  - Rules on the 11 Oct dumps: `path` 158,311 links (92% CAIDA-same, 0.3% CAIDA peering); the
+    step-2 `ratio_4x` / `restored` labels kept only for an AS with no `path` provider, when the
+    provider ranks above it and no loop forms (1,726 links, 70% CAIDA-same); `tier1` kept when the
+    customer is a stub, i.e. never seen mid-path (AS Rank step 9; 1,245 links, 97% CAIDA-same; a
+    stub has no customers, so no cone nests); every other former p2c link is `unconfirmed`
+    (10,542; 47% are CAIDA p2c in some direction: the recall gap; ratio → stub links there are
+    only 64% CAIDA-same, so they are not kept).
+  - Result vs step 2: ASPA precision 90.0% → 94.5%, recall 54.3% → 59.9% (CAIDA 90.2 / 63.7);
+    CAIDA agreement 89.5% → 92.1%. Direct customer counts are close to CAIDA's (Lumen 6,179 vs
+    6,508; NTT 1,374 vs 1,444; HE 1,999 vs 2,255; Spark 44 vs 46; REANNZ 32 vs 33).
+  - Rejected in the harness: the degree ratio as a general fallback (precision 91%), IPv4 triples
+    only (10,665 ASes without a provider), no rank order and no loop check (loops of 1,808 ASes),
+    up-rank edges without the ratio cap (recall 61.4 but NZ cones of ~20,000).
+  - No `triples.csv` (old binary) → step-2 behaviour (degree rules + export evidence).
+- **Cone sizes**: our graph cone is the transitive closure of p2c links. CAIDA's published ppdc cone
+  counts only customers seen below the provider in paths, so it is far smaller than a closure (DT:
+  closure of CAIDA's own labels 59,652, ppdc 4,312). Compare against the closure;
+  `caida_crosscheck.py` reports both.
 
 ### Valley-free and why it cannot detect this
 A path `[AS48362, AS57344, origin]` is genuinely valley-free (downhill all the way).
@@ -151,8 +185,9 @@ The degree-ratio heuristic in `build_topology_from_go.py` (and `cone-calculator.
 
 **Mitigation**: All report scripts must filter using `excl_pct >= rov_utils.CONE_QUALITY_THRESHOLD` (5%) for non-Tier-1 networks. The `analyze_herd_immunity_v2.py` script does this. **Tier 1s are exempt** — their Tier 2 customers legitimately multi-home.
 
-**Partly fixed 2026-10-14**: the `ratio_8x` rule is gone and phantom links are pruned per link from
-`exports.csv` evidence (Multi-Collector section). Older idea: use the `Left_Count`/`Right_Count` columns from `output/asn_stats.csv` (produced by `bgp-extractor`) during topology building to detect IXP participants and demote those links to peering rather than provider→customer.
+**Partly fixed 2026-10-14/15**: the `ratio_8x` rule is gone, phantom links are pruned per link from
+`exports.csv` evidence, and providers come from path inference (Multi-Collector section). The
+`excl_pct` filter still applies to the audit's `cone` column, which comes from `cone-calculator.go`. Older idea: use the `Left_Count`/`Right_Count` columns from `output/asn_stats.csv` (produced by `bgp-extractor`) during topology building to detect IXP participants and demote those links to peering rather than provider→customer.
 
 ## APNIC Timeseries Data Quality
 
@@ -383,6 +418,7 @@ Tests: `tests/test_batch_targets.py`.
 - **Centralized Logic**: Use `rov_utils.classify_verdict()` to bucket strings into `SECURE`, `VULNERABLE`, or `PARTIAL`.
 - **Primary Labels**: `REGRESSED`, `VOLATILE`, `UNRELIABLE`, `SECURE`, `PASSIVE`, `FORTUITOUS`.
 - **STUB: FORTUITOUS ROV**: A stub whose APNIC score is high (>=95%) but has no direct confirmation of local ROV (`rov_set`, `cf_set`, or Atlas "Target Filtered"). The protection is real (users are safe) but comes from the upstream's filtering, not the stub's own routers. Applied in `rov_no_scrape_v22.py` after `assign_verdict`. `classify_verdict()` maps this to `SECURE`. Stubs with direct evidence stay `STUB: ACTIVE LOCAL ROV`.
+- **PROVIDER UNKNOWN (In BGP)** (since 2026-10-15): no inferred provider and no cone, but the AS appears in RIS paths (`rov_utils.load_bgp_asns()`, the ASNs in `output/rrc*/asn_stats.csv`). These were labelled NOT ROUTED. NOT ROUTED now means absent from every RIS path (or no extractor output). `classify_verdict()` maps it to `UNKNOWN`.
 - **INCONSISTENT**: Network is in bgp.tools `rov_set` (declared ROV intent) but the measurements show `< 30%` actual filtering (`verdict_evidence(...) == "NOT_FILTERING"`: APNIC < 30%). Either partial deployment (ROV on some links/routers only), stale declaration, or misconfiguration. Overrides all other verdicts for `rov_set` members meeting the threshold. `classify_verdict()` maps this to `VULNERABLE`. 52 networks before ROVista, 100 while it counted (2026-10-13/14), no Tier 1s. Key examples: AS7303 Telecom Argentina (8%), AS3292 TDC Denmark (0%), AS32 Stanford (1%).
 - **Transit networks that filter**: `assign_verdict` checks `is_safe` before dirty feeds for transit networks (since 2026-10-14), so a filtering transit network is `ACTIVE LOCAL ROV` (or `VOLATILE`) whatever its upstreams do. `PARTIAL: VULNERABLE (Mixed)` now means a transit network that doesn't filter and has some dirty upstream feeds. Stubs keep the old order (`STUB: VOLATILE` = safe behind a dirty feed).
 - **DISPUTED**: only produced when `ROVISTA_IN_VERDICTS` is on (APNIC and ROVista disagree, one ≥ 95%, the other < 30%). `classify_verdict()` maps it to `PARTIAL`. See the ROVista section.
