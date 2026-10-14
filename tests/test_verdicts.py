@@ -57,5 +57,27 @@ class TestVerdicts(unittest.TestCase):
         v = rov_utils.assign_verdict(1234, True, 10, [3356], 0, True)
         self.assertEqual(v, "VOLATILE")
 
+    # A transit network that filters protects its customers whatever its upstreams do,
+    # so dirty feeds don't make it PARTIAL (2026-10-14: HE, Comcast, Vodafone).
+    def test_filtering_transit_with_some_dirty_feeds(self):
+        v = rov_utils.assign_verdict(1234, True, 10, [3356, 5], 1, False)
+        self.assertEqual(v, "ACTIVE LOCAL ROV")
+
+    def test_filtering_transit_with_all_dirty_feeds(self):
+        v = rov_utils.assign_verdict(1234, True, 10, [5, 6], 2, False)
+        self.assertEqual(v, "ACTIVE LOCAL ROV")
+
+    def test_filtering_transit_volatile_with_dirty_feeds(self):
+        v = rov_utils.assign_verdict(1234, True, 10, [3356, 5], 1, True)
+        self.assertEqual(v, "VOLATILE")
+
+    def test_non_filtering_transit_all_dirty(self):
+        v = rov_utils.assign_verdict(1234, False, 10, [5, 6], 2, False)
+        self.assertEqual(v, "VULNERABLE")
+
+    def test_stubs_unchanged_safe_behind_dirty_feed(self):
+        v = rov_utils.assign_verdict(1234, True, 0, [5], 1, False)
+        self.assertEqual(v, "STUB: VOLATILE")
+
 if __name__ == '__main__':
     unittest.main()

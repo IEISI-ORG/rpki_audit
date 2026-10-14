@@ -1308,14 +1308,13 @@ def assign_verdict(asn: int, is_safe: bool, cone: int, parents: list, dirty_feed
         else:
             return "STUB: UNRELIABLE" if volatile else "STUB: VULNERABLE"
     else: # TRANSIT
-        if dirty_feeds == 0:
-            if not is_safe:
-                return "PASSIVE (Clean Pipe)"
+        # A filtering transit network protects its customers whatever its upstreams do,
+        # so is_safe is checked before dirty feeds (2026-10-14).
+        if is_safe:
             return "VOLATILE" if volatile else "ACTIVE LOCAL ROV"
-        elif dirty_feeds < total_feeds:
+        if dirty_feeds == 0:
+            return "PASSIVE (Clean Pipe)"
+        if dirty_feeds < total_feeds:
             return "PARTIAL: VULNERABLE (Mixed)"
-        elif is_safe:
-            return "VOLATILE" 
-        else:
-            return "UNRELIABLE" if volatile else "VULNERABLE"
+        return "UNRELIABLE" if volatile else "VULNERABLE"
     return "Unknown"
