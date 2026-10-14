@@ -18,6 +18,20 @@ A high-performance toolkit for auditing global RPKI adoption (ROV and ROA) using
 - **Forensic Test**: `python3 verify_forensic_smart.py <ASN>` (Customer-cone perspective test).
 - **Forensic Batch**: `python3 batch_verify_smart_v4.py` (Re-verify stale/high-priority targets).
 
+### Heavy jobs: one at a time, with a memory cap
+`lab` has 30 GiB RAM, 30 GiB swap and no memory limits. On 2026-10-15 parallel jobs from this repo filled both and the
+hardware watchdog reset the host (see `~/sysadm/2026-10-15-lab-watchdog-reset-memory-exhaustion.md`).
+- **Never run big jobs in parallel.** Big = the five `bgpdump | bgp-extractor` extractions, `cone-calculator`,
+  `run_audit`/`rov_no_scrape_v22.analyze()` (and scratch wrappers such as `run_audit_graph.py`), `do_data_gathering`,
+  `caida_crosscheck.py`. Run the extractors one collector after another, and never start an audit while an extractor or
+  another audit is running.
+- **Cap every big job**: `systemd-run --user --scope -p MemoryMax=16G -p MemoryHigh=12G python3 ...` (or `ulimit -v`).
+  Measure with `/usr/bin/time -v` and note the peak RSS in the plan file. `build_topology_from_go.py` peaks at ~1.1 GiB;
+  a full audit on the step-2 graph reached ~15 GiB.
+- **Do not abandon a background job.** If a wait loop times out, keep waiting with `Monitor` or kill the job. The
+  07:33 audit on 2026-10-15 was left running after its wait loop expired and was the likely runaway.
+- Check headroom before starting: `free -g` should show at least 20 GiB available and 0 swap used.
+
 ## BGP Topology Semantics (READ THIS BEFORE TOUCHING TOPOLOGY CODE)
 
 ### AS-Path Direction in RIPE RIS TABLE_DUMP2 Dumps
