@@ -45,6 +45,7 @@ jobs:
         python3 tests/test_apnic_timeseries.py
         python3 tests/test_rovista.py
         python3 tests/test_batch_targets.py
+        python3 tests/test_beacon_baseline.py
 
   go-quality:
     name: Go Build & Lint

@@ -297,6 +297,19 @@ produce the same traceroute. Before attributing anything to a network on an IX p
 - IX.nz route servers (AS63830, Alice-LG at `lg.ix.nz`, BIRD) drop RPKI-invalids (reject reason
   `63830:64513:14`). BIRD applies IRR checks first, so an IRR rejection can mask an RPKI one.
 
+### Country beacon baseline (`nz_beacon_baseline.py`)
+Every connected Atlas probe in a country (`--cc`, default NZ; IPv4 and IPv6) pings and
+ICMP-traceroutes two valid/invalid pairs: Cloudflare's isbgpsafeyet.com pair and the RIPE NCC
+RIS beacons (AS12654: `93.175.146.1` valid, `93.175.147.1` invalid; `2001:7fb:fd02::1` /
+`2001:7fb:fd03::1`). Raw results, `probes.csv` and `ases.csv` go to
+`data/atlas/baseline/<cc>_<date>/` (outside the audit's glob), the summary to
+`reports/<cc>_beacon_baseline.md`. `--reanalyse <dir>` rebuilds outputs without credits.
+- Cloudflare announces its invalid prefix directly to its peers, so the cf test mostly
+  measures the network's Cloudflare session.
+- Only ~52 of 327 RIS peers carry the RIS invalid prefix (mostly via AS8455), so failing to
+  reach it usually means no upstream offered it, not local ROV.
+- Stop ASNs are where a trace went silent. Per the IX section above, that isn't attribution.
+
 ### Probe selection (`batch_verify_smart_v4.py`)
 Probes are selected from the target's **customer cone** using `downstream_graph.json`
 (the phantom-pruned topology), not the stale packed ASN data. **Single-homed customers
