@@ -60,6 +60,30 @@ class TestMeasurementEvidence(unittest.TestCase):
         self.assertEqual(self.ev(50.0, 50.0), "NONE")
 
 
+class TestRovistaInformationalOnly(unittest.TestCase):
+    """A6 (2026-10-14): ROVista 100% readings matched Atlas for 6 of 34 ASes, so verdicts
+    use APNIC alone; rovista_score stays in the CSV for reference."""
+
+    def test_switch_is_off(self):
+        self.assertFalse(rov_utils.ROVISTA_IN_VERDICTS)
+
+    def test_verdict_evidence_ignores_rovista(self):
+        self.assertEqual(rov_utils.verdict_evidence(99.0, 0.0), "FILTERING")
+        self.assertEqual(rov_utils.verdict_evidence(MISSING, 100.0), "NONE")
+        self.assertEqual(rov_utils.verdict_evidence(0.0, 100.0), "NOT_FILTERING")
+        self.assertEqual(rov_utils.verdict_evidence(50.0, 0.0), "NONE")
+
+    def test_verdict_score_is_apnic(self):
+        self.assertEqual(rov_utils.verdict_score(40.0, 100.0), 40.0)
+        self.assertEqual(rov_utils.verdict_score(MISSING, 100.0), MISSING)
+
+    def test_switch_on_restores_combined_rule(self):
+        with mock.patch.object(rov_utils, "ROVISTA_IN_VERDICTS", True):
+            self.assertEqual(rov_utils.verdict_evidence(99.0, 0.0), "DISPUTED")
+            self.assertEqual(rov_utils.verdict_evidence(MISSING, 100.0), "FILTERING")
+            self.assertEqual(rov_utils.verdict_score(40.0, 100.0), 100.0)
+
+
 class TestDisputedVerdict(unittest.TestCase):
     STUB_VERDICT = "STUB: ACTIVE LOCAL ROV"
 

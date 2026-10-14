@@ -45,10 +45,10 @@ def analyze():
     # All active/known ASNs
     all_asns = set(meta.keys()) | set(cones.keys()) | set(upstreams.keys())
     
-    # APNIC and ROVista carry equal weight; a contradiction between them is DISPUTED
-    # and counts as no measurement evidence either way.
+    # Measurement evidence from APNIC; ROVista only if rov_utils.ROVISTA_IN_VERDICTS
+    # (off since 2026-10-14, see the ROVista section in CLAUDE.md).
     evidence = {
-        asn: rov_utils.measurement_evidence(apnic_map.get(asn, -1), rovista_map.get(asn, -1))
+        asn: rov_utils.verdict_evidence(apnic_map.get(asn, -1), rovista_map.get(asn, -1))
         for asn in all_asns
     }
 
@@ -70,7 +70,7 @@ def analyze():
         asn for asn in atlas_vulnerable
         if (asn in rov_set or asn in cf_set)
         and evidence[asn] != "DISPUTED"
-        and max(apnic_map.get(asn, -1), rovista_map.get(asn, -1)) >= 60.0
+        and rov_utils.verdict_score(apnic_map.get(asn, -1), rovista_map.get(asn, -1)) >= 60.0
     }
     safe_asns -= (atlas_vulnerable - strong_current_rov)
     safe_asns |= atlas_secure

@@ -43,6 +43,10 @@ ROVISTA_REFRESH_SECS = 86400  # measures most days (gaps: 53 days Jun-Aug 2026);
 # Thresholds shared by APNIC and ROVista scores (0-100).
 MEASURE_FILTERING_MIN = 95.0
 MEASURE_NOT_FILTERING_MAX = 30.0
+# ROVista is informational only: checked against on-path Atlas results (<= 90 days, 2026-10-14)
+# its 100% readings were right for 6 of 34 ASes (APNIC: 73 of 74 readings right). Verdicts use
+# APNIC alone; rovista_score stays in the audit CSV. True restores the equal-weight rule.
+ROVISTA_IN_VERDICTS = False
 FILE_CC_TO_RIR = "data/cc_to_rir.json"
 DIR_RRC = "output"          # parent dir; each collector writes to output/rrcNN/
 FILE_RELATIONSHIPS = "output/relationships.csv"   # legacy single-collector path
@@ -1149,6 +1153,16 @@ def measurement_evidence(apnic: float, rovista: float) -> str:
     if len(readings) == 2:
         return "DISPUTED"
     return readings.pop() if readings else "NONE"
+
+
+def verdict_evidence(apnic: float, rovista: float) -> str:
+    """Measurement evidence the audit's verdicts use (ROVista only if ROVISTA_IN_VERDICTS)."""
+    return measurement_evidence(apnic, rovista if ROVISTA_IN_VERDICTS else -1.0)
+
+
+def verdict_score(apnic: float, rovista: float) -> float:
+    """Score the Atlas override guard compares with 60% (ROVista only if ROVISTA_IN_VERDICTS)."""
+    return max(apnic, rovista) if ROVISTA_IN_VERDICTS else apnic
 
 
 def apply_dispute(verdict: str, evidence: str, asn: int, atlas_v: str = "") -> str:
