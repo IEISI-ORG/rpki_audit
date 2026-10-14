@@ -6,14 +6,14 @@ Observed links: 288,954. CAIDA links: 657,444 (8,351 p2c and 397,898 p2p of them
 
 | our rule | links | caida_same | caida_reversed | caida_p2p | caida_p2c | caida_absent |
 |---|---|---|---|---|---|---|
-| ratio_4x | 111,720 | 98,222 (88%) | 971 (1%) | 1,811 (2%) | 0 (0%) | 10,716 (10%) |
-| pruned | 78,754 | 4,443 (6%) | 154 (0%) | 57,390 (73%) | 0 (0%) | 16,767 (21%) |
-| tier1 | 40,944 | 30,703 (75%) | 14 (0%) | 8,581 (21%) | 0 (0%) | 1,646 (4%) |
-| peer | 29,889 | 0 (0%) | 0 (0%) | 6,341 (21%) | 20,081 (67%) | 3,467 (12%) |
-| ratio_8x | 17,243 | 3,165 (18%) | 36 (0%) | 11,184 (65%) | 0 (0%) | 2,858 (17%) |
-| single_region | 6,302 | 0 (0%) | 0 (0%) | 4,444 (71%) | 777 (12%) | 1,081 (17%) |
+| ratio_4x | 123,534 | 101,207 (82%) | 974 (1%) | 9,376 (8%) | 0 (0%) | 11,977 (10%) |
+| pruned | 78,779 | 4,444 (6%) | 155 (0%) | 57,410 (73%) | 0 (0%) | 16,770 (21%) |
+| peer | 30,187 | 0 (0%) | 0 (0%) | 6,491 (22%) | 20,220 (67%) | 3,476 (12%) |
+| tier1 | 28,751 | 27,597 (96%) | 0 (0%) | 791 (3%) | 0 (0%) | 363 (1%) |
+| ratio_8x | 17,367 | 3,186 (18%) | 36 (0%) | 11,277 (65%) | 0 (0%) | 2,868 (17%) |
+| single_region | 6,350 | 0 (0%) | 0 (0%) | 4,483 (71%) | 783 (12%) | 1,084 (17%) |
 | non_transit | 3,879 | 0 (0%) | 0 (0%) | 1,341 (35%) | 1,317 (34%) | 1,221 (31%) |
-| t1_t1 | 223 | 0 (0%) | 0 (0%) | 184 (83%) | 36 (16%) | 3 (1%) |
+| t1_t1 | 107 | 0 (0%) | 0 (0%) | 107 (100%) | 0 (0%) | 0 (0%) |
 
 Our p2c rules (tier1, ratio_4x, ratio_8x, pruned) should land in caida_same; dropped rules (peer, single_region, t1_t1, non_transit) in caida_p2p or caida_absent.
 
@@ -21,30 +21,30 @@ Our p2c rules (tier1, ratio_4x, ratio_8x, pruned) should land in caida_same; dro
 
 | AS | name | cc | audit cone (Go, rrc00) | our graph cone | CAIDA cone |
 |---|---|---|---|---|---|
-| 3356 | Lumen (Level 3) | US | 74030 | 67581 | 55625 |
-| 3257 | GTT Communications Inc. | US | 69123 | 61214 | 43747 |
-| 1299 | Arelion (fka. Telia Carrier) | SE | 71458 | 63896 | 42057 |
-| 174 | Cogent Communications, LLC | US | 73849 | 61948 | 40963 |
-| 2914 | NTT America, Inc. | US | 68933 | 57951 | 23297 |
-| 6453 | TATA Communications (America | US | 67808 | 56416 | 23123 |
-| 6939 | Hurricane Electric LLC | US | 80275 | 72203 | 22110 |
-| 6461 | Zayo Bandwidth | US | 71946 | 58122 | 21393 |
-| 6762 | Telecom Italia Sparkle (Seab | IT | 66665 | 57397 | 18942 |
-| 3491 | PCCW Global (HK) Ltd. | HK | 67288 | 54548 | 17476 |
-| 9002 | RETN Limited | GB | 48162 | 45590 | 12024 |
+| 3356 | Lumen (Level 3) | US | 74030 | 72973 | 55625 |
+| 3257 | GTT Communications Inc. | US | 69123 | 69560 | 43747 |
+| 1299 | Arelion (fka. Telia Carrier) | SE | 71458 | 70224 | 42057 |
+| 174 | Cogent Communications, LLC | US | 73849 | 62596 | 40963 |
+| 2914 | NTT America, Inc. | US | 68933 | 69002 | 23297 |
+| 6453 | TATA Communications (America | US | 67808 | 69195 | 23123 |
+| 6939 | Hurricane Electric LLC | US | 80275 | 68421 | 22110 |
+| 6461 | Zayo Bandwidth | US | 71946 | 70624 | 21393 |
+| 6762 | Telecom Italia Sparkle (Seab | IT | 66665 | 69067 | 18942 |
+| 3491 | PCCW Global (HK) Ltd. | HK | 67288 | 68748 | 17476 |
+| 9002 | RETN Limited | GB | 48162 | 46628 | 12024 |
 | 6797 | GlobalConnect AB | SE | 4 | 0 | 10687 |
-| 1273 | Vodafone Group PLC | EU | 63250 | 50268 | 8209 |
-| 5511 | Orange S.A. | FR | 62306 | 54349 | 7620 |
-| 12956 | Telxius (Telefonica Global) | ES | 62395 | 50888 | 7603 |
-| 4637 | Telstra International Limite | HK | 67304 | 57550 | 6807 |
+| 1273 | Vodafone Group PLC | EU | 63250 | 399 | 8209 |
+| 5511 | Orange S.A. | FR | 62306 | 68866 | 7620 |
+| 12956 | Telxius (Telefonica Global) | ES | 62395 | 68886 | 7603 |
+| 4637 | Telstra International Limite | HK | 67304 | 3639 | 6807 |
 | 1031 | PEER 1031 LLC | US | 1202 | 1120 | 4692 |
 | 13786 | Seaborn (Seabras USA, LLC) | US | 967 | 869 | 4638 |
-| 12389 | Rostelecom PJSC | RU | 15093 | 6948 | 4619 |
+| 12389 | Rostelecom PJSC | RU | 15093 | 7404 | 4619 |
 | 37468 | Angola Cables | AO | 793 | 0 | 4396 |
-| 3320 | Deutsche Telekom AG | DE | 67344 | 48426 | 4312 |
+| 3320 | Deutsche Telekom AG | DE | 67344 | 68757 | 4312 |
 | 7195 | EdgeUno | CO | 1805 | 0 | 4108 |
-| 7473 | Singapore Telecommunications | SG | 290 | 260 | 4024 |
-| 9498 | Bharti Airtel Ltd. | IN | 7421 | 6643 | 3968 |
+| 7473 | Singapore Telecommunications | SG | 290 | 269 | 4024 |
+| 9498 | Bharti Airtel Ltd. | IN | 7421 | 6651 | 3968 |
 | 22356 | Durand do Brasil Ltda | BR | 88 | 0 | 3925 |
 
 ## Cone sizes: NZ (CAIDA cone > 0)

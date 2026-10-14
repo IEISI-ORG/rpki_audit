@@ -11,7 +11,7 @@ def test_tier1_gravity():
 
     df = rov_utils.load_audit_csv()
     # Check a few major Tier 1s that should NEVER have zero cones
-    major_t1s = [3356, 174, 2914, 1299, 701, 6939, 5511]
+    major_t1s = [3356, 174, 2914, 1299, 701, 3257, 5511]
     
     failed = False
     for asn in major_t1s:

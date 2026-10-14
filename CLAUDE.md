@@ -74,8 +74,10 @@ CAIDA's monthly AS relationships and customer cones (`data/caida/`), writing
 `reports/caida_crosscheck.md`. First run (2026-10-14, CAIDA 20261001): `ratio_4x` links agree with
 CAIDA 88%; `ratio_8x` 18%; `tier1` 75% (21% are CAIDA peerings); 67% of links dropped as `peer`
 are CAIDA transit; phantom pruning wipes whole providers (Angola Cables, EdgeUno). `TIER_1_ASNS`
-has 9 ASes outside CAIDA's inferred clique (1273, 4134, 4637, 4809, 4837, 6939, 7922, 9808, 9929).
-Fixes are listed in TODO.md and not yet applied.
+had 9 ASes outside CAIDA's inferred clique; on 2026-10-14 it was set to the 18 ASes that form a
+complete mesh of observed links with no provider per CAIDA (`TESTED_TIER1` in
+`tests/test_gao_rexford.py` pins it; change it only with new evidence). CAIDA is used as a second
+opinion to test, not as ground truth. Remaining fixes are listed in TODO.md.
 
 ### Tests
 - `tests/test_gao_rexford.py` — Unit + integration tests for all of the above rules.  Run on every topology-related change.

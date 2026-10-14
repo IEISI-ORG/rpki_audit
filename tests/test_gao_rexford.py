@@ -47,6 +47,7 @@ Applied in this priority order:
 
 import sys
 import os
+import re
 import json
 from collections import defaultdict, deque
 
@@ -525,25 +526,40 @@ def test_cone_sizes_monotone(cone_file: str = rov_utils.FILE_CONES):
 #  REGRESSION GUARD: Constant Sync                                             #
 # =========================================================================== #
 
+def _go_tier1_asns() -> set[int]:
+    """ASNs in the isTier1() switch of constants.go, read from the file itself."""
+    src = open(os.path.join(os.path.dirname(__file__), "..", "constants.go")).read()
+    body = src[src.index("func isTier1("):]
+    body = body[:body.index("return true")]
+    return {int(a) for a in re.findall(r'"(\d+)"', body)}
+
+
 def test_tier1_lists_are_in_sync():
     """
-    rov_utils.TIER_1_ASNS is the Python source of truth.
-    constants.go isTier1() is the Go source of truth.
-    They must be identical. Update both together, then re-run this test.
+    rov_utils.TIER_1_ASNS (Python) and constants.go isTier1() (Go) must be identical.
+    Update both together, then re-run this test.
     """
-    # Mirror of constants.go isTier1() switch cases.
-    # When you update constants.go, update this too — the test will catch drift.
-    go_tier1 = {
-        3356, 1299, 174, 2914, 3257, 6762, 6939, 6453, 3491,
-        701, 6461, 5511, 6830, 4637, 7018, 3320, 12956, 1273, 7922,
-        209, 4134, 4809, 4837, 9929, 9808,
-    }
-    drift = go_tier1.symmetric_difference(TIER_1_ASNS)
+    drift = _go_tier1_asns().symmetric_difference(TIER_1_ASNS)
     assert not drift, (
         f"Tier 1 drift between constants.go and rov_utils.py: {drift}\n"
         "Edit BOTH constants.go (isTier1) AND rov_utils.py (TIER_1_ASNS)."
     )
     print(f"  [PASS] Tier 1 lists in sync ({len(TIER_1_ASNS)} ASNs)")
+
+
+# Tested 2026-10-14: these 18 form a complete mesh of observed links (our 5 RIS collectors
+# plus CAIDA's 20261001 links), and CAIDA infers no provider for any of them. Every other
+# former entry (1273, 4134, 4637, 4809, 4837, 6939, 7922, 9808, 9929) lacks links to clique
+# members and buys transit from them per CAIDA. Matches CAIDA's 20261001 inferred clique.
+TESTED_TIER1 = {174, 209, 286, 701, 1299, 2828, 2914, 3257, 3320, 3356, 3491, 5511,
+                6453, 6461, 6762, 6830, 7018, 12956}
+
+
+def test_tier1_list_is_the_tested_clique():
+    """Changing the Tier 1 list needs new evidence (re-run the mesh test and caida_crosscheck.py)."""
+    assert TIER_1_ASNS == TESTED_TIER1, (
+        f"Tier 1 list differs from the tested clique: {TIER_1_ASNS ^ TESTED_TIER1}")
+    print(f"  [PASS] Tier 1 list is the tested clique ({len(TESTED_TIER1)} ASNs)")
 
 
 def test_non_transit_lists_are_in_sync():
@@ -654,6 +670,7 @@ if __name__ == "__main__":
             test_tier1_lists_are_in_sync,
             test_non_transit_lists_are_in_sync,
             test_non_transit_no_wrong_asns,
+            test_tier1_list_is_the_tested_clique,
             test_correct_root_server_asns_present,
         ]),
         ("Integration (requires data/)", [

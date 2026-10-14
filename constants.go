@@ -17,36 +17,29 @@ package main
 const PROVIDER_RATIO = 4.0
 
 // isTier1 returns true for networks that are never a customer of anyone else.
-// Verified 2026-04-26: all entries have zero providers in downstream_graph.json.
-// Removed AS1239 (Sprint/Cogent legacy, 0 direct customers).
-// Removed AS2828 (Verizon Business/MCI legacy, 0 direct customers).
+// 2026-10-14: the 18 ASes that form a complete mesh of observed links (5 RIS collectors +
+// CAIDA 20261001) with no provider per CAIDA; equals CAIDA's inferred clique.
+// Must match rov_utils.TIER_1_ASNS (tests/test_gao_rexford.py checks).
 func isTier1(asn string) bool {
 	switch asn {
-	case "3356", // Lumen / Level 3
+	case "174", // Cogent Communications
+		"209",   // Lumen (ex-Qwest)
+		"286",   // GTT (ex-KPN International)
+		"701",   // Verizon Business
 		"1299",  // Arelion (fka Telia Carrier)
-		"174",   // Cogent Communications
+		"2828",  // Verizon (ex-XO)
 		"2914",  // NTT America
 		"3257",  // GTT Communications
-		"6762",  // Telecom Italia Sparkle (Seabone)
-		"6939",  // Hurricane Electric
-		"6453",  // TATA Communications
-		"3491",  // PCCW Global
-		"701",   // Verizon Business
-		"6461",  // Zayo Bandwidth
-		"5511",  // Orange S.A.
-		"6830",  // Liberty Global
-		"4637",  // Telstra Global
-		"7018",  // AT&T
 		"3320",  // Deutsche Telekom
-		"12956", // Telxius (Telefonica Global)
-		"1273",  // Vodafone Group
-		"7922",  // Comcast
-		"209",   // Lumen (ex-Qwest)
-		"4134",  // China Telecom Backbone
-		"4809",  // China Telecom Next Generation
-		"4837",  // China Unicom Backbone
-		"9929",  // China Unicom Industrial Internet
-		"9808":  // China Mobile Backbone
+		"3356",  // Lumen / Level 3
+		"3491",  // PCCW Global
+		"5511",  // Orange S.A.
+		"6453",  // TATA Communications
+		"6461",  // Zayo Bandwidth
+		"6762",  // Telecom Italia Sparkle (Seabone)
+		"6830",  // Liberty Global
+		"7018",  // AT&T
+		"12956": // Telxius (Telefonica Global)
 		return true
 	}
 	return false
