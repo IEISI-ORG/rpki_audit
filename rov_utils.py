@@ -211,6 +211,13 @@ EVIDENCE_REQUIRED_ASNS: set[int] = {6939}
 # rank order: 56.6) with NZ cones near CAIDA's, and restores e.g. One NZ AS9500 -> AS4768.
 PATH_UP_RANK_MAX_RATIO = 2
 
+# A ratio_4x link to a stub (never seen mid-path) that path inference doesn't confirm is kept when at
+# least this many of the 5 collector regions see it (item 4, 2026-10-15). Real transit to a stub is
+# seen worldwide; a peering link at one exchange is local. Measured on the 11 Oct dumps: >= 3 regions
+# 2,969 links, signed ASPA 132 confirmed / 7 denied, CAIDA 82.5% same / 2.9% peering; exactly 2
+# regions 2,417 links, ASPA 33 / 87, CAIDA 43% peering. Kept links are labelled ratio_stub.
+STUB_RATIO_MIN_REGIONS = 3
+
 # AS13335 (Cloudflare) was listed here until 2026-10-15. It sells transit (Magic Transit, BYOIP):
 # RIS shows it passing on 6,597 prefixes from 1,025 origins, and ~380 ASes (Windcave, MoE, TVNZ)
 # are seen only behind it. See reports/cloudflare_transit_rov.md.

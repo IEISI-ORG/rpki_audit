@@ -139,7 +139,7 @@ class TestTopDown(unittest.TestCase):
     """build_graph with path triples: x provides c when x passed c's route to its provider,
     or a Tier 1 passed it to another Tier 1."""
 
-    def build(self, links, rows, degrees=None, regions_n=None, evidence=None):
+    def build(self, links, rows, degrees=None, regions_n=None, evidence=None, never_providers=frozenset()):
         degrees = degrees or {}
         for a, b in links:
             degrees.setdefault(a, 10)
@@ -147,7 +147,7 @@ class TestTopDown(unittest.TestCase):
         regions_n = regions_n or {p: 2 for p in links}
         evidence = evidence if evidence is not None else {}
         down, labels = btg.build_graph(graph(links), degrees, regions(regions_n), evidence,
-                                       triples(rows))
+                                       triples(rows), never_providers=never_providers)
         return {p: set(cs) for p, cs in down.items() if cs}, labels
 
     def test_tier1_provides_only_what_it_passes_to_another_tier1(self):
@@ -208,6 +208,41 @@ class TestTopDown(unittest.TestCase):
         down, labels = self.build([(T1, cf), (cf, 131168)], [(T1, cf, 131168, 4)])
         self.assertEqual(down, {cf: {131168}})
         self.assertEqual(labels[(cf, 131168)], (cf, 131168, "path"))
+
+    # Item 4 (2026-10-15): a ratio_4x link to a stub without path evidence is kept when >= 3
+    # collector regions see it (signed ASPA 132 confirmed / 7 denied; 2 regions: 33 / 87).
+    RATIO_STUB_LINKS = [(T1, T1B), (T1, A), (T1, D), (A, D)]
+    RATIO_STUB_ROWS = [(T1B, T1, A, 4), (T1B, T1, D, 4)]   # D: a stub with path provider T1
+
+    def ratio_stub_case(self, regions_ad, **kw):
+        regions_n = {p: 3 for p in self.RATIO_STUB_LINKS}
+        regions_n[(A, D)] = regions_ad
+        return self.build(self.RATIO_STUB_LINKS, self.RATIO_STUB_ROWS, degrees={A: 50, D: 10},
+                          regions_n=regions_n, evidence={(A, D): B4}, **kw)
+
+    def test_ratio_link_to_stub_seen_in_three_regions_is_kept(self):
+        self.assertEqual(rov_utils.STUB_RATIO_MIN_REGIONS, 3)
+        down, labels = self.ratio_stub_case(3)
+        self.assertEqual(down, {T1: {A, D}, A: {D}})
+        self.assertEqual(labels[(A, D)], (A, D, "ratio_stub"))
+
+    def test_ratio_link_to_stub_seen_in_two_regions_is_dropped(self):
+        down, labels = self.ratio_stub_case(2)
+        self.assertEqual(down, {T1: {A, D}})
+        self.assertEqual(labels[(A, D)], (None, None, "unconfirmed"))
+
+    def test_ratio_link_to_a_transit_network_is_not_kept_by_this_rule(self):
+        # D passes E's route on (transit degree > 0), so the stub rule doesn't apply
+        links = self.RATIO_STUB_LINKS + [(D, E)]
+        rows = self.RATIO_STUB_ROWS + [(T1, D, E, 4)]
+        down, labels = self.build(links, rows, degrees={A: 50, D: 10},
+                                  regions_n={p: 5 for p in links}, evidence={(A, D): B4})
+        self.assertEqual(labels[(A, D)], (None, None, "unconfirmed"))
+
+    def test_ixp_asn_is_never_a_ratio_stub_provider(self):
+        down, labels = self.ratio_stub_case(5, never_providers={A})
+        self.assertEqual(down, {T1: {A, D}})
+        self.assertEqual(labels[(A, D)], (None, None, "unconfirmed"))
 
     def test_customer_ranked_above_its_provider_is_accepted_when_no_loop(self):
         # One NZ / AS4768 shape: B passes C's route to its provider T1, but RIS sees C with more

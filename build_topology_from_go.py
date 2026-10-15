@@ -14,6 +14,7 @@ IXP_PRUNE_THRESHOLD    = rov_utils.CONE_QUALITY_THRESHOLD  # 5.0 %
 EVIDENCE_REQUIRED      = rov_utils.EVIDENCE_REQUIRED_ASNS
 UP_RANK_MAX_RATIO      = rov_utils.PATH_UP_RANK_MAX_RATIO
 TOP_DOWN_MAX_PASSES    = 10
+STUB_RATIO_MIN_REGIONS = rov_utils.STUB_RATIO_MIN_REGIONS
 
 # Export evidence bits per ordered pair (x, c), from bgp-extractor's exports.csv:
 # x passed the route it learned from c on to another AS (beyond the collector end of the path),
@@ -312,7 +313,7 @@ def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
 
 
 def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None,
-                triples: dict | None = None) -> tuple:
+                triples: dict | None = None, never_providers: set = frozenset()) -> tuple:
     """(downstream {provider: [customers]}, labels {pair: (provider, customer, rule)}).
 
     With export evidence (bgp-extractor exports.csv), after infer_link:
@@ -333,6 +334,8 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
                    ranks above it and the link closes no loop.
       tier1        kept when the customer is a stub (never seen mid-path), AS Rank step 9:
                    97% CAIDA-same on the 11 Oct dumps. A stub has no customers, so no cone nests.
+      ratio_stub   a ratio_4x link to a stub seen from >= STUB_RATIO_MIN_REGIONS collector regions
+                   (item 4: signed ASPA 132/7), unless the provider is in never_providers (IXP ASNs).
       unconfirmed  any other link the rules above would have made p2c.
     """
     labels = {}
@@ -394,8 +397,12 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
         providerless = (rule in ("ratio_4x", "restored") and c not in has_provider
                         and pos.get(p, last) < pos.get(c, last))
         tier1_stub = rule == "tier1" and td.get(c, 0) == 0
-        if (providerless or tier1_stub) and not _reaches(edges, c, p):
+        ratio_stub = (rule == "ratio_4x" and td.get(c, 0) == 0 and p not in never_providers
+                      and len(link_regions.get(pair, ())) >= STUB_RATIO_MIN_REGIONS)
+        if (providerless or tier1_stub or ratio_stub) and not _reaches(edges, c, p):
             edges[p].add(c)
+            if ratio_stub and not providerless:
+                labels[pair] = (p, c, "ratio_stub")
         else:
             labels[pair] = (None, None, "unconfirmed")
     return defaultdict(list, {p: sorted(cs) for p, cs in edges.items() if cs}), labels

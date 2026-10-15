@@ -169,9 +169,11 @@ phantom only appears in European-biased collectors.
     step-2 `ratio_4x` / `restored` labels kept only for an AS with no `path` provider, when the
     provider ranks above it and no loop forms (1,726 links, 70% CAIDA-same); `tier1` kept when the
     customer is a stub, i.e. never seen mid-path (AS Rank step 9; 1,245 links, 97% CAIDA-same; a
-    stub has no customers, so no cone nests); every other former p2c link is `unconfirmed`
-    (10,542; 47% are CAIDA p2c in some direction: the recall gap; ratio → stub links there are
-    only 64% CAIDA-same, so they are not kept).
+    stub has no customers, so no cone nests); `ratio_stub` (item 4, 2026-10-16): a `ratio_4x` link to
+    a stub without path evidence, kept when >= 3 of the 5 collector regions see it
+    (`rov_utils.STUB_RATIO_MIN_REGIONS`; 2,969 links, signed ASPA 132 confirmed / 7 denied, CAIDA 82.5%
+    same; links seen in exactly 2 regions: ASPA 33 / 87, 43% CAIDA peering, not kept; notes in
+    `plan/item4_ratio_stub_notes.md`); every other former p2c link is `unconfirmed` (7,585).
   - Result vs step 2: ASPA precision 90.0% → 94.5%, recall 54.3% → 59.9% (CAIDA 90.2 / 63.7);
     CAIDA agreement 89.5% → 92.1%. Direct customer counts are close to CAIDA's (Lumen 6,179 vs
     6,508; NTT 1,374 vs 1,444; HE 1,999 vs 2,255; Spark 44 vs 46; REANNZ 32 vs 33).
