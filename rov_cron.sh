@@ -103,6 +103,8 @@ run_harvest() {
     log "[harvest] Starting Atlas harvest (max 500)..."
     cd "$SCRIPT_DIR"
     ( ulimit -v 4000000; $PYTHON atlas_harvest.py --max 500 ) >> "$LOG_DIR/harvest.log" 2>&1
+    # Per-AS evidence from current traces (7-day window, ~6 s, ~0.4 GB) -> reports/atlas_harvest_analysis.md
+    ( ulimit -v 4000000; $PYTHON analyze_harvest.py ) >> "$LOG_DIR/harvest.log" 2>&1 || log "[harvest] analysis failed"
     log "[harvest] Done."
 }
 

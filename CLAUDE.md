@@ -397,6 +397,14 @@ produce the same traceroute. Before attributing anything to a network on an IX p
 - IX.nz route servers (AS63830, Alice-LG at `lg.ix.nz`, BIRD) drop RPKI-invalids (reject reason
   `63830:64513:14`). BIRD applies IRR checks first, so an IRR rejection can mask an RPKI one.
 
+### Public measurements (`atlas_harvest.py`, `analyze_harvest.py`)
+`rov_cron.sh harvest` (daily 04:30) downloads at most 500 third-party Atlas measurements to the beacons
+(100 MB response cap, 4 GB `ulimit -v`; the uncapped first run held a 4.3 GB response on 2026-10-15)
+into `data/atlas/harvest/`, then `analyze_harvest.py` lists the ASes on traces that reached Cloudflare's
+invalid host in the last `ATLAS_TTL_DAYS` (`reports/atlas_harvest_analysis.md`). Hop IPs are mapped with
+iptoasn.com (`data/atlas/ip2asn/`), probe home ASNs from the RIPE probe archive (`data/atlas/probes/`).
+A single hop between two other ASes doesn't count (border-router address). Not used in verdicts.
+
 ### Country beacon baseline (`nz_beacon_baseline.py`)
 Every connected Atlas probe in a country (`--cc`, default NZ; IPv4 and IPv6) pings and
 ICMP-traceroutes two valid/invalid pairs: Cloudflare's isbgpsafeyet.com pair and the RIPE NCC
