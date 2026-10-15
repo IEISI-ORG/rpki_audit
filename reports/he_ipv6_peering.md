@@ -6,9 +6,9 @@ Generated 2026-10-16 by `he_ipv6_analysis.py` from the RIPE RIS dumps of 11 Oct 
 
 - **HE is mid-path in 35.2% of IPv6 paths** seen by RIS (6,073,410 of 17,231,333), against 15.2% of IPv4 paths. No other network passes on more than 11.1% of IPv6 paths.
 - **HE passes its peers' IPv6 routes to its other peers.** In IPv6 it passed the routes of 4,670 of the 4,672 CAIDA peers seen behind it to a non-customer (another peer, a provider or a Tier 1); in IPv4, 5 of 7,512. Valley-free routing passes a peer's routes to customers only, so in IPv6 HE acts as transit for its peers.
-- **Many networks reach the IPv6 Internet mostly through HE.** For 2,976 ASes, HE passed on at least half of their observed IPv6 paths (1,397 of them HE peers); in IPv4, 1,733 (74 peers). 345 ASes are passed on by HE alone in IPv6; 243 of these have another network passing their routes in IPv4.
-- **ROV:** the audit rates HE `ACTIVE LOCAL ROV` (decided by apnic, APNIC 100.0%). Peers that take HE's IPv6 table get HE's filtering on the routes they use from it. The audit's topology does not show this (see Consequences).
-- **ASPA:** 171 of the 1,397 HE peers that rely on HE for at least half of their IPv6 paths publish ASPA; 147 list HE as a provider and **24 leave it out**. ASPA-validating networks would drop their paths that run through HE.
+- **For many networks, most IPv6 paths toward them run through HE.** For 2,976 ASes, at least half of the RIS IPv6 paths toward them (their own prefixes and, for transit networks, their customers') run through HE (1,397 of them HE peers); in IPv4, 1,733 (74 peers). 345 ASes are passed on by HE alone in IPv6; 243 of these have another network passing their routes in IPv4.
+- **ROV:** the audit rates HE `ACTIVE LOCAL ROV` (decided by apnic, APNIC 100.0%). HE sends its full IPv6 table to its peers (operator knowledge, not measured here), so peers that use it get HE's filtering on those routes. The audit's topology does not show this (see Consequences).
+- **ASPA:** 171 of the 1,397 HE peers with at least half of the IPv6 paths toward them through HE publish ASPA; 147 list HE as a provider and **24 leave it out**. A validating network that receives one of these routes from HE as a peer (or as its customer) finds it Invalid and drops it; HE's own customers would see it as Unknown.
 
 ## 1. Share of paths each network passes on
 
@@ -43,11 +43,11 @@ Per AS: CAIDA peers whose routes it passed to a CAIDA peer or provider of its ow
 | 1257 Tele2 Sverige AB (SE) | 79 / 79 | 131 / 131 |
 | 5405 Inter.link GmbH (DE) | 39 / 39 | 209 / 216 |
 
-The networks after HE pass on every CAIDA peer's route in IPv4 as well, which points to CAIDA labelling some of their customers as peers rather than to an IPv6-only policy; none comes near HE's scale.
+The networks after HE pass on all or nearly all CAIDA peers' routes in IPv4 as well, which points to CAIDA labelling some of their customers as peers rather than to an IPv6-only policy; none comes near HE's scale.
 
-## 3. Networks whose paths go mostly through HE
+## 3. Networks whose inbound paths run mostly through HE
 
-Share of an AS's paths that HE passed on, out of all paths where its route was passed beyond its neighbour (paths where HE is the collector's own peer are left out: HE peers with RIS directly). By the AS's CAIDA relationship with HE:
+Share of the RIS paths toward an AS that HE passed on, out of all paths where a route the AS announced (its own or a customer's) was passed beyond its neighbour. This is how the rest of the Internet reaches the AS, not how it reaches the Internet. Paths where HE is the collector's own peer are left out (HE peers with RIS directly (paths where HE is the collector's own peer are left out: HE peers with RIS directly). By the AS's CAIDA relationship with HE:
 
 | | IPv4 | | | IPv6 | | |
 |---|---|---|---|---|---|---|
@@ -56,13 +56,13 @@ Share of an AS's paths that HE passed on, out of all paths where its route was p
 | >= 90% via HE | 466 | 17 | 1 | 510 | 345 | 182 |
 | only HE passes it on | 213 | 11 | 1 | 201 | 64 | 80 |
 
-CAIDA lists 2,255 HE customers and 7,808 HE peers. In IPv4, HE carries most paths only for its customers. In IPv6, its peers join them: they get IPv6 transit from HE over their peering sessions.
+CAIDA lists 2,255 HE customers and 7,808 HE peers. In IPv4, HE carries most paths only for its customers. In IPv6, its peers join them: HE gives their IPv6 routes transit over their peering sessions.
 
 ## 4. Consequences for this audit
 
 - **Topology.** `HE` is in `EVIDENCE_REQUIRED_ASNS`: path inference counts only its IPv4 triples, and a degree-rule customer needs an IPv4 Tier 1 export. Our graph gives HE 1,999 direct customers (CAIDA 2,255). Counting IPv6 triples would add HE's peers as customers and push its cone toward the whole Internet, as it was when HE was a Tier 1 (cone 80,275).
-- **ROV.** The audit's dirty-feed logic follows the IPv4 graph. A network that uses HE for IPv6 gets HE's filtered feed on those routes, which the audit doesn't credit; and a network whose other providers don't filter is less exposed in IPv6 than its verdict says. This is inferred from how HE's routes are exported: RIS shows the routes HE passes on, not which routes each peer installs from HE.
-- **ASPA.** One ASPA record covers IPv4 and IPv6. The 24 peers below rely on HE for at least half of their IPv6 paths but leave HE out of their record. Validating networks that receive their routes from HE (a peer) check the hop to HE and drop those paths. Listing HE fixes IPv6 but also authorises HE to pass their IPv4 routes upward.
+- **ROV.** The audit's dirty-feed logic follows the IPv4 graph. HE sends its full IPv6 table to its peers (operator knowledge); a peer that uses it gets HE's filtered feed on those routes, which the audit doesn't credit, and if its other providers don't filter it is less exposed in IPv6 than its verdict says. Not measured here: RIS shows how routes toward a network run, not which routes the network installs from HE.
+- **ASPA.** One ASPA record covers IPv4 and IPv6. The 24 peers below have at least half of the IPv6 paths toward them through HE but leave HE out of their record. A validating network that receives their routes from HE as a peer or customer runs upstream verification, finds the hop to HE unauthorised and drops the route; HE's customers run downstream verification and get Unknown. Listing HE fixes IPv6 but also authorises HE to pass their IPv4 routes upward.
 
 | AS | name | IPv6 share via HE | ASPA providers |
 |---|---|---|---|

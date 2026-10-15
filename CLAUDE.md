@@ -105,10 +105,12 @@ peers' routes upward (it sends its full IPv6 table to peers). `bgp-extractor` mi
 paths, which inflates HE's cone (TODO).
 `he_ipv6_analysis.py` measures that policy at scale from `exports.csv`/`triples.csv` (no new extraction;
 `reports/he_ipv6_peering.md`, 2026-10-16): HE is mid-path in 35.2% of IPv6 RIS paths (IPv4 15.2%), passes
-4,670 of 4,672 CAIDA peers' IPv6 routes to non-customers (IPv4: 5 of 7,512), and carries >= 50% of the
-IPv6 paths of 2,976 ASes, 1,397 of them its IPv4 peers. 24 of those peers publish ASPA without HE, so
-validating networks would drop their paths through HE. The audit's graph and dirty-feed logic are IPv4
-only for HE (`EVIDENCE_REQUIRED_ASNS`), so HE's filtered IPv6 feed to its peers is not credited.
+4,670 of 4,672 CAIDA peers' IPv6 routes to non-customers (IPv4: 5 of 7,512), and >= 50% of the RIS IPv6
+paths toward 2,976 ASes run through it, 1,397 of them its IPv4 peers (inbound to them: RIS shows how routes
+toward a network run, not what it installs). 24 of those peers publish ASPA without HE, so a validating
+network receiving their routes from HE as a peer or customer drops them (HE's customers get Unknown). The
+audit's graph and dirty-feed logic are IPv4 only for HE (`EVIDENCE_REQUIRED_ASNS`), so HE's filtered IPv6
+feed to its peers (operator knowledge: full table to peers) is not credited.
 
 ### Tests
 - `tests/test_gao_rexford.py` — Unit + integration tests for all of the above rules.  Run on every topology-related change.

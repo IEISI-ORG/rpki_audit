@@ -309,6 +309,12 @@ class TestIxpAsnsNonTransit(unittest.TestCase):
     def test_as0_ixp_asns_are_non_transit(self):
         self.assertEqual(self.AS0_IXP_ASNS - rov_utils.NON_TRANSIT_ASNS, set())
 
+    def test_ixp_asn_with_smaller_degree_keeps_its_peer_label(self):
+        # Tier 1 evidence points A -> B, but A (IXP ASN) has the smaller degree: never restored anyway
+        down, labels = btg.build_graph(graph([(A, B)]), {A: 10, B: 50}, regions({(A, B): 1}),
+                                       {(A, B): B4 | T4}, never_providers={A})
+        self.assertEqual(labels[(A, B)], (None, None, "single_region"))
+
 class TestNeverProvidersFile(unittest.TestCase):
     def test_round_trip_with_analyze_harvest(self):
         import analyze_harvest

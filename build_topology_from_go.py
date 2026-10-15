@@ -378,10 +378,8 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
                 ab, ba = evidence.get((a, b), 0) & EV_T1, evidence.get((b, a), 0) & EV_T1
                 if bool(ab) != bool(ba):
                     pr, cu = (a, b) if ab else (b, a)
-                    if pr in never_providers:
-                        labels[(a, b)] = (None, None, "ixp_asn")
-                    elif degrees[pr] > degrees[cu]:
-                        labels[(a, b)] = (pr, cu, "restored")
+                    if degrees[pr] > degrees[cu]:
+                        labels[(a, b)] = (None, None, "ixp_asn") if pr in never_providers else (pr, cu, "restored")
 
         down = defaultdict(list)
         for pair, (p, c, rule) in labels.items():
@@ -471,7 +469,8 @@ def build_topology():
     if never_providers:
         print(f"    - IXP ASNs (never providers): {len(never_providers)}")
     else:
-        print(f"    [!] No IXP ASN list ({FILE_IXP_ASNS}); run analyze_harvest.py.")
+        print(f"    [!] No IXP ASNs loaded from {FILE_IXP_ASNS} (missing, unreadable or empty); "
+              "run analyze_harvest.py.")
     downstream_map, labels = build_graph(adj, degrees, link_regions, evidence, triples, never_providers)
 
     rules = Counter(rule for _, _, rule in labels.values())
