@@ -87,6 +87,8 @@ RRC_COLLECTORS: dict[str, dict] = {
 RRC_CONFIRM_REGIONS = 2
 
 FILE_GRAPH = "data/downstream_graph.json"
+# IPv6-only topology (build_topology_from_go.py, 2026-10-16): the audit's v6_* columns.
+FILE_GRAPH_V6 = "data/downstream_graph_v6.json"
 FILE_AUDIT_FINAL = "rov_audit_v22_final.csv"
 FILE_PACKED_ASN = "data/as_data.jsonl.gz"
 
@@ -1036,17 +1038,23 @@ def load_topology() -> tuple[dict, dict, dict]:
             for _, row in df.iterrows():
                 cones[int(row[asn_col])] = int(row[cone_col])
         print(f"OK ({len(cones)} ASNs)")
+    downstream, upstreams = load_graph(FILE_GRAPH)
+    return cones, downstream, upstreams
+
+
+def load_graph(path: str) -> tuple[dict, dict]:
+    """(downstream {provider: [customers]}, upstreams {customer: {providers}}); empty if missing."""
     downstream = {}
-    if os.path.exists(FILE_GRAPH):
-        print(f"    - Loading Graph from {FILE_GRAPH}...", end=" ", flush=True)
-        with open(FILE_GRAPH, 'r') as f:
+    if os.path.exists(path):
+        print(f"    - Loading Graph from {path}...", end=" ", flush=True)
+        with open(path, 'r') as f:
             downstream = {int(k): v for k, v in json.load(f).items()}
-        print(f"OK")
+        print("OK")
     upstreams = defaultdict(set)
     for p, customers in downstream.items():
         for c in customers:
             upstreams[int(c)].add(int(p))
-    return cones, downstream, upstreams
+    return downstream, upstreams
 
 ATLAS_TTL_DAYS = 7  # Results older than this are discarded and re-queued
 
@@ -1277,6 +1285,28 @@ def evidence_overrides(verdict: str, *, status: str, decided_by: str, tagged: bo
     if tagged and status == "NOT_FILTERING" and decided_by in ("atlas", "apnic"):
         verdict = "INCONSISTENT"
     return verdict
+
+
+def audit_verdict(asn: int, parents, *, safe_asns: set, cone: int, volatile: bool, atlas_v: str,
+                  in_bgp: bool, evidence: str, status: str, decided_by: str, regression: bool,
+                  rov_set: set, cf_set: set, atlas_secure: set) -> tuple[str, int]:
+    """(verdict, dirty_feeds) for one network and one provider set: assign_verdict, then
+    STUB: FORTUITOUS ROV, dispute and evidence_overrides. rov_no_scrape_v22 calls it with the main
+    graph's providers (verdict) and the IPv6 graph's (v6_verdict, 2026-10-16), so both families are
+    judged the same way. A provider counts as clean when it is in safe_asns (filtering_status)."""
+    parents = list(parents)
+    is_safe = asn in safe_asns
+    dirty_feeds = sum(1 for p in parents if p not in safe_asns)
+    verdict = assign_verdict(asn, is_safe, cone, parents, dirty_feeds, volatile, atlas_v, in_bgp=in_bgp)
+    # Fortuitous ROV: a stub that measures as filtering behind clean providers, with no direct
+    # evidence (rov_set, cf_set, Atlas "Target Filtered") that its own routers drop invalids.
+    if (verdict == "STUB: ACTIVE LOCAL ROV" and asn not in rov_set and asn not in cf_set
+            and asn not in atlas_secure):
+        verdict = "STUB: FORTUITOUS ROV"
+    verdict = apply_dispute(verdict, evidence, asn, atlas_v)
+    verdict = evidence_overrides(verdict, status=status, decided_by=decided_by,
+                                 tagged=asn in rov_set, regression=regression)
+    return verdict, dirty_feeds
 
 
 def apply_dispute(verdict: str, evidence: str, asn: int, atlas_v: str = "") -> str:

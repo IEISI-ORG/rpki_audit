@@ -138,9 +138,36 @@ def load_exports(base_dir: str = "output") -> dict | None:
     return dict(ev)
 
 
-def load_triples(base_dir: str = "output") -> dict | None:
+def load_exports_v6(base_dir: str = "output") -> tuple | None:
+    """IPv6 graph inputs from the AF=6 rows of every <base_dir>/rrc*/exports.csv (each adjacency in an
+    IPv6 path is a row): (adj, degrees, link_regions, evidence with IPv6 bits only); None if no files."""
+    files = [(rrc, os.path.join(base_dir, rrc, "exports.csv")) for rrc in rov_utils.RRC_COLLECTORS]
+    files = [(rrc, path) for rrc, path in files if os.path.exists(path)]
+    if not files:
+        return None
+    adj: dict = defaultdict(set)
+    link_regions: dict = defaultdict(set)
+    ev: dict = defaultdict(int)
+    for rrc, path in files:
+        region = rov_utils.RRC_COLLECTORS[rrc]["region"]
+        with open(path) as f:
+            reader = csv.reader(f)
+            next(reader, None)
+            for x, c, af, _paths, beyond, to_t1 in reader:
+                if af != "6":
+                    continue
+                x, c = int(x), int(c)
+                adj[x].add(c)
+                adj[c].add(x)
+                link_regions[(min(x, c), max(x, c))].add(region)
+                ev[(x, c)] |= (EV_BEYOND_6 if int(beyond) else 0) | (EV_T1_6 if int(to_t1) else 0)
+    degrees = {a: len(n) for a, n in adj.items()}
+    return dict(adj), degrees, dict(link_regions), dict(ev)
+
+
+def load_triples(base_dir: str = "output", af: int | None = None) -> dict | None:
     """{x: {(y, c, af)}} from every <base_dir>/rrc*/triples.csv (x passed the route it learned
-    from c on to y); None if there are none."""
+    from c on to y), one address family when af is given; None if there are none."""
     files = sorted(glob.glob(os.path.join(base_dir, "rrc*", "triples.csv")))
     if not files:
         return None
@@ -149,8 +176,9 @@ def load_triples(base_dir: str = "output") -> dict | None:
         with open(path) as f:
             next(f, None)
             for line in f:
-                af, y, x, c = line.rstrip("\n").split(",")
-                tr[int(x)].add((int(y), int(c), int(af)))
+                fam, y, x, c = line.rstrip("\n").split(",")
+                if af is None or int(fam) == af:
+                    tr[int(x)].add((int(y), int(c), int(fam)))
     return dict(tr)
 
 
@@ -190,13 +218,14 @@ def _reaches(down: dict, src: int, dst: int) -> bool:
     return False
 
 
-def infer_top_down(triples: dict, pos: dict, td: dict, never_providers: set = frozenset()) -> dict:
+def infer_top_down(triples: dict, pos: dict, td: dict, never_providers: set = frozenset(),
+                   evidence_required: set = EVIDENCE_REQUIRED) -> dict:
     """{provider: {customers}} from path triples, AS Rank style.
 
     x provides c when x passed c's route on to an AS y that is x's provider or a Tier 1: valley-free
     routing only exports customer routes up and across, and a Tier 1 is never a customer, so it
     is x's provider or peer. Tier 1s and non-transit ASes are never customers; an
-    EVIDENCE_REQUIRED_ASNS member counts IPv4 triples only.
+    evidence_required member (default EVIDENCE_REQUIRED_ASNS) counts IPv4 triples only.
     Pass 0 visits ASes in rank order and accepts only c ranked below x: x's providers rank above
     x, so they are known when x is visited, and the graph is loop-free by construction. Later
     passes repeat until nothing changes, also accepting c ranked above x when c's transit degree
@@ -217,7 +246,7 @@ def infer_top_down(triples: dict, pos: dict, td: dict, never_providers: set = fr
             for y, c, af in triples[x]:
                 if c in TIER_1_FIREWALL or c in IS_NON_TRANSIT or c == x or c in down.get(x, ()):
                     continue
-                if x in EVIDENCE_REQUIRED and af != 4:
+                if x in evidence_required and af != 4:
                     continue
                 if y not in TIER_1_FIREWALL and y not in px:
                     continue
@@ -323,7 +352,8 @@ def infer_link(as1: int, as2: int, degrees: dict, link_regions: dict) -> tuple:
 
 
 def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None,
-                triples: dict | None = None, never_providers: set = frozenset()) -> tuple:
+                triples: dict | None = None, never_providers: set = frozenset(),
+                evidence_required: set = EVIDENCE_REQUIRED) -> tuple:
     """(downstream {provider: [customers]}, labels {pair: (provider, customer, rule)}).
 
     With export evidence (bgp-extractor exports.csv), after infer_link:
@@ -333,7 +363,8 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
                          enters a Tier 1, so the graph stays loop-free.
       pruned             a p2c link with a non-Tier-1 provider that is never passed beyond the
                          collector end of a path (only seen next to the collector: IX phantom).
-      evidence_required  provider in EVIDENCE_REQUIRED_ASNS without an IPv4 Tier 1 export.
+      evidence_required  provider in evidence_required (default EVIDENCE_REQUIRED_ASNS) without an
+                         IPv4 Tier 1 export. The IPv6 graph passes an empty set.
     Without evidence (old extractor output), falls back to _prune_ixp_phantoms; links it removes
     are labelled pruned.
 
@@ -390,7 +421,7 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
                 if not ev & EV_BEYOND:
                     labels[pair] = (p, c, "pruned")
                     continue
-                if p in EVIDENCE_REQUIRED and not ev & EV_T1_4:
+                if p in evidence_required and not ev & EV_T1_4:
                     labels[pair] = (p, c, "evidence_required")
                     continue
             down[p].append(c)
@@ -399,7 +430,7 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
 
     td = transit_degrees(triples)
     pos = rank_positions(set(adj) | set(triples), td, degrees)
-    edges = infer_top_down(triples, pos, td, never_providers)
+    edges = infer_top_down(triples, pos, td, never_providers, evidence_required)
     has_provider = {c for cs in edges.values() for c in cs}
     last = len(pos)
     for p, cs in edges.items():
@@ -425,6 +456,27 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
 # ---------------------------------------------------------------------------
 # Main topology builder
 # ---------------------------------------------------------------------------
+
+def build_v6_graph(never_providers: set) -> None:
+    """IPv6-only graph (rov_utils.FILE_GRAPH_V6) for the audit's v6_* columns (2026-10-16).
+
+    Same rules as the main graph on IPv6 evidence only (exports.csv / triples.csv AF=6 rows), with no
+    evidence_required ASes: HE passes its peers' IPv6 routes upward because it gives them IPv6
+    transit (reports/he_ipv6_peering.md), so in IPv6 those links are p2c."""
+    inputs = load_exports_v6()
+    triples = load_triples(af=6)
+    if inputs is None or triples is None:
+        print("    [!] No exports.csv / triples.csv: IPv6 graph not built.")
+        return
+    adj, degrees, link_regions, evidence = inputs
+    down, labels = build_graph(adj, degrees, link_regions, evidence, triples, never_providers,
+                               evidence_required=frozenset())
+    kept = sum(len(cs) for cs in down.values())
+    print(f"    - IPv6 graph: {len(degrees):,} ASNs, {len(labels):,} links, {kept:,} kept as transit "
+          f"(path {sum(1 for _, _, r in labels.values() if r == 'path'):,}).")
+    with open(rov_utils.FILE_GRAPH_V6, "w") as f:
+        json.dump(down, f)
+
 
 def build_topology():
     """
@@ -482,6 +534,7 @@ def build_topology():
     # Save
     with open(os.path.join(rov_utils.DIR_DATA, "downstream_graph.json"), 'w') as f:
         json.dump(downstream_map, f)
+    build_v6_graph(never_providers)
 
     new_asns = 0
     for asn in degrees:

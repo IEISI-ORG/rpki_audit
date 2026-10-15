@@ -91,6 +91,38 @@ CAIDA lists 2,255 HE customers and 7,808 HE peers. In IPv4, HE carries most path
 | 58507 | Wireline (AU) | 56% | 174, 2914, 7474 |
 | 198704 | Unknown (PL) | 52% | 6778, 20804 |
 
+## 5. IPv6 verdicts in the audit
+
+`build_topology_from_go.py` also builds an IPv6-only graph (`data/downstream_graph_v6.json`: the same rules on IPv6 evidence, with HE allowed to provide in IPv6), and the audit judges each network a second time with its IPv6 providers (`v6_verdict`, `v6_dirty_feeds`, `v6_total_feeds`). The main verdict is unchanged. Each network's own filtering status is the same in both.
+
+37,913 networks have an IPv6 verdict. 1,726 are SECURE in IPv6 but not in the main verdict; for **564 of them HE is an IPv6 provider the main graph doesn't have** (HE's filtering credited). 148 are worse in IPv6 (SECURE to anything else, or PARTIAL to VULNERABLE): a filtering provider is missing from their IPv6 paths, or a non-filtering one appears only there. SECURE here is `classify_verdict`'s class, which includes PASSIVE (protected by filtering providers).
+
+| main verdict class | IPv6 verdict class | networks |
+|---|---|---|
+| VULNERABLE | SECURE | 1,352 |
+| PARTIAL | SECURE | 316 |
+| PARTIAL | VULNERABLE | 113 |
+| VULNERABLE | PARTIAL | 73 |
+| UNKNOWN | SECURE | 58 |
+| SECURE | VULNERABLE | 21 |
+| UNKNOWN | VULNERABLE | 14 |
+| SECURE | PARTIAL | 12 |
+| VULNERABLE | UNKNOWN | 3 |
+| SECURE | UNKNOWN | 2 |
+| UNKNOWN | PARTIAL | 1 |
+
+HE-credited networks by verdict change:
+
+| verdict | v6_verdict | networks |
+|---|---|---|
+| STUB: VULNERABLE | STUB: PASSIVE (Clean Pipe) | 381 |
+| PARTIAL: VULNERABLE (Mixed) | PASSIVE (Clean Pipe) | 92 |
+| PROVIDER UNKNOWN (In BGP) | STUB: PASSIVE (Clean Pipe) | 45 |
+| VULNERABLE | PASSIVE (Clean Pipe) | 25 |
+| STUB: UNRELIABLE | STUB: PASSIVE (Clean Pipe) | 11 |
+
+NZ: 132857 FULL FLAVOUR LIMITED, 136797 Turbo I.T Limited.
+
 ## Method and limits
 
 - RIS sees paths from its collector peers only, so shares describe those views, not traffic.

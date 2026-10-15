@@ -16,7 +16,8 @@ from the existing extractor output (no new BGP extraction):
 Inputs:  output/rrc*/exports.csv (X,C,AF,Paths,Beyond,ToTier1: RIB entries per link),
          output/rrc*/triples.csv (AF,Y,X,C: X passed C's route to Y, distinct, any path position),
          data/caida/<date>.as-rel2.txt.bz2 (labels inferred from IPv4 paths), data/aspa_real.json,
-         data/downstream_graph.json, data/asn_meta.json, rov_audit_v22_final.csv
+         data/downstream_graph.json, data/downstream_graph_v6.json, data/asn_meta.json,
+         rov_audit_v22_final.csv (verdict, v6_verdict)
 Output:  reports/he_ipv6_peering.md
 
 Usage: python3 he_ipv6_analysis.py
@@ -100,6 +101,23 @@ def aspa_gap(shares: dict, rels: dict, aspa: dict, he: int, threshold: float) ->
                   and c in aspa and he not in aspa[c])
 
 
+def verdict_shift(rows, up4: dict, up6: dict, he: int) -> tuple[Counter, list]:
+    """(Counter {(class of verdict, class of v6_verdict)}, rows HE is credited for) over audit rows
+    with a v6_verdict. Credited: the IPv6 verdict is SECURE, the main one isn't, and HE is an IPv6
+    provider that the main graph doesn't have."""
+    shift, credited = Counter(), []
+    for r in rows:
+        if not r.get("v6_verdict"):
+            continue
+        c4, c6 = rov_utils.classify_verdict(r["verdict"]), rov_utils.classify_verdict(r["v6_verdict"])
+        if c4 != c6:
+            shift[(c4, c6)] += 1
+        a = int(r["asn"])
+        if c6 == "SECURE" and c4 != "SECURE" and he in up6.get(a, ()) and he not in up4.get(a, ()):
+            credited.append(r)
+    return shift, credited
+
+
 # --- I/O --------------------------------------------------------------------------
 def read_exports(base_dir: str = DIR_OUTPUT):
     for path in sorted(glob.glob(os.path.join(base_dir, "rrc*", "exports.csv"))):
@@ -135,9 +153,41 @@ def main() -> None:
     aspa = {int(k): set(v) for k, v in json.load(open(os.path.join(rov_utils.DIR_DATA, "aspa_real.json"))).items()}
     meta = json.load(open(os.path.join(rov_utils.DIR_DATA, "asn_meta.json")))
     graph = json.load(open(os.path.join(rov_utils.DIR_DATA, "downstream_graph.json")))
-    audit = next((r for r in csv.DictReader(open(rov_utils.FILE_AUDIT_FINAL)) if r["asn"] == str(HE)), {})
-    write_report(rels, totals, stats, shares, aspa, meta, graph, audit)
+    rows = list(csv.DictReader(open(rov_utils.FILE_AUDIT_FINAL)))
+    audit = next((r for r in rows if r["asn"] == str(HE)), {})
+    _, up4 = rov_utils.load_graph(rov_utils.FILE_GRAPH)
+    _, up6 = rov_utils.load_graph(rov_utils.FILE_GRAPH_V6)
+    write_report(rels, totals, stats, shares, aspa, meta, graph, audit, verdict_shift(rows, up4, up6, HE), rows)
     print(f"[+] {FILE_REPORT} ({time.time() - t0:.0f}s)")
+
+
+def v6_verdict_section(shift: tuple, rows) -> list:
+    moves, credited = shift
+    n6 = sum(1 for r in rows if r.get("v6_verdict"))
+    better = sum(n for (a, b), n in moves.items() if b == "SECURE")
+    worse = sum(n for (a, b), n in moves.items() if a == "SECURE" or (a, b) == ("PARTIAL", "VULNERABLE"))
+    L = ["## 5. IPv6 verdicts in the audit", "",
+         "`build_topology_from_go.py` also builds an IPv6-only graph (`data/downstream_graph_v6.json`: the same "
+         "rules on IPv6 evidence, with HE allowed to provide in IPv6), and the audit judges each network a "
+         "second time with its IPv6 providers (`v6_verdict`, `v6_dirty_feeds`, `v6_total_feeds`). The main "
+         "verdict is unchanged. Each network's own filtering status is the same in both.", "",
+         f"{n6:,} networks have an IPv6 verdict. {better:,} are SECURE in IPv6 but not in the main verdict; "
+         f"for **{len(credited):,} of them HE is an IPv6 provider the main graph doesn't have** (HE's filtering "
+         f"credited). {worse:,} are worse in IPv6 (SECURE to anything else, or PARTIAL to VULNERABLE): a "
+         "filtering provider is missing from their IPv6 paths, or a non-filtering one appears only there. "
+         "SECURE here is `classify_verdict`'s class, which includes PASSIVE (protected by filtering "
+         "providers).", "",
+         "| main verdict class | IPv6 verdict class | networks |", "|---|---|---|"]
+    for (a, b), n in moves.most_common():
+        L.append(f"| {a} | {b} | {n:,} |")
+    top = Counter((r["verdict"], r["v6_verdict"]) for r in credited).most_common(5)
+    L += ["", "HE-credited networks by verdict change:", "",
+          "| verdict | v6_verdict | networks |", "|---|---|---|"]
+    L += [f"| {a} | {b} | {n:,} |" for (a, b), n in top]
+    nz = [r for r in credited if r.get("cc") == "NZ"]
+    if nz:
+        L += ["", "NZ: " + ", ".join(f"{r['asn']} {r['name'][:30]}" for r in nz) + "."]
+    return L + [""]
 
 
 def name(meta: dict, asn: int) -> str:
@@ -149,7 +199,7 @@ def pct(a: float, b: float) -> str:
     return f"{100 * a / b:.1f}%" if b else "-"
 
 
-def write_report(rels, totals, stats, shares, aspa, meta, graph, audit) -> None:
+def write_report(rels, totals, stats, shares, aspa, meta, graph, audit, shift=None, rows=()) -> None:
     roles = ("HE customer", "HE peer", "no CAIDA link")
     caida_cust = sum(1 for (a, b), (r, p) in rels.items() if r == "p2c" and p == HE)
     caida_peers = sum(1 for (a, b), (r, p) in rels.items() if r == "p2p" and HE in (a, b))
@@ -260,6 +310,8 @@ def write_report(rels, totals, stats, shares, aspa, meta, graph, audit) -> None:
                      f"{', '.join(map(str, provs[:6])) or 'AS0'}{' …' if len(provs) > 6 else ''} |")
         L.append("")
 
+    if shift is not None:
+        L += v6_verdict_section(shift, rows)
     L += ["## Method and limits", "",
           "- RIS sees paths from its collector peers only, so shares describe those views, not traffic.",
           "- CAIDA's labels come from IPv4 paths; where a network has a real IPv6 transit contract with HE "

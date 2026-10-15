@@ -36,6 +36,11 @@ def analyze():
     
     # 2. Topology
     cones, downstream, upstreams = rov_utils.load_topology()
+    # IPv6-only graph (2026-10-16): HE gives its peers IPv6 transit, so a network's IPv6 providers can
+    # differ from the main graph's. Judged with the same pipeline into the v6_* columns; the main
+    # verdict is unchanged (Terry's choice). Blank for ASes not in the IPv6 graph.
+    downstream_v6, upstreams_v6 = rov_utils.load_graph(rov_utils.FILE_GRAPH_V6)
+    v6_asns = set(upstreams_v6) | set(downstream_v6)
     bgp_asns = rov_utils.load_bgp_asns()
     if not cones or not upstreams:
         print("[!] Warning: Topology files missing. Run 'do_data_gathering' and 'build_topology_from_go.py' first.")
@@ -72,39 +77,24 @@ def analyze():
         parents = list(upstreams.get(asn, []))
         score = apnic_map.get(asn, -1)
         rovista_score = rovista_map.get(asn, -1)
-        is_safe = asn in safe_asns
-        
         ts = ts_map.get(asn)
         apnic_stdev, apnic_min90, apnic_max90, volatile, regression = (ts[0], ts[1], ts[2], ts[3], ts[4]) if ts else (-1.0, -1.0, -1.0, False, False)
 
-        dirty_feeds = sum(1 for p in parents if p not in safe_asns)
         total_feeds = len(parents)
         atlas_v = atlas_raw.get(asn, "")
-        
-        verdict = rov_utils.assign_verdict(
-            asn, is_safe, cone, parents, dirty_feeds, volatile, atlas_v, in_bgp=asn in bgp_asns
-        )
-        
-        # Fortuitous ROV: stub's APNIC score is consistent with filtering by its
-        # upstream, not by the stub itself.  We have no direct evidence (rov_set,
-        # cf_set, or Atlas "Target Filtered") that the stub's own routers drop
-        # RPKI-invalid routes.  The protection is real but not locally confirmed.
-        if (verdict == "STUB: ACTIVE LOCAL ROV"
-                and asn not in rov_set
-                and asn not in cf_set
-                and asn not in atlas_secure):
-            verdict = "STUB: FORTUITOUS ROV"
-
-        # Disputed: APNIC and ROVista test the same thing and disagree (one >= 95%,
-        # the other < 30%).  Tier 1, hardcoded and conclusive-Atlas verdicts are kept.
-        verdict = rov_utils.apply_dispute(verdict, evidence[asn], asn, atlas_v)
-
-        # REGRESSED (dropped over 1 year, not filtering now) and, last, INCONSISTENT (tagged, but
-        # Atlas or the measurement says it doesn't filter: partial deployment, stale declaration
-        # or misconfiguration). Both come from the ladder; a tag shields from neither.
         st, decided_by = status[asn]
-        verdict = rov_utils.evidence_overrides(verdict, status=st, decided_by=decided_by,
-                                               tagged=asn in rov_set, regression=regression)
+        ctx = dict(safe_asns=safe_asns, cone=cone, volatile=volatile, atlas_v=atlas_v,
+                   in_bgp=asn in bgp_asns, evidence=evidence[asn], status=st, decided_by=decided_by,
+                   regression=regression, rov_set=rov_set, cf_set=cf_set, atlas_secure=atlas_secure)
+        # assign_verdict, then STUB: FORTUITOUS ROV, DISPUTED, and last REGRESSED / INCONSISTENT
+        # from the evidence ladder (a tag shields from neither); see rov_utils.audit_verdict.
+        verdict, dirty_feeds = rov_utils.audit_verdict(asn, parents, **ctx)
+        if asn in v6_asns:
+            parents_v6 = upstreams_v6.get(asn, set())
+            v6_verdict, v6_dirty = rov_utils.audit_verdict(asn, parents_v6, **ctx)
+            v6_total = len(parents_v6)
+        else:
+            v6_verdict, v6_dirty, v6_total = "", "", ""
 
         results.append({
             'asn': asn, 'name': name, 'cc': cc, 'cone': cone,
@@ -112,7 +102,8 @@ def analyze():
             'dirty_feeds': dirty_feeds, 'total_feeds': total_feeds,
             'atlas_result': atlas_v or '', 
             'apnic_stdev': apnic_stdev, 'apnic_min90': apnic_min90, 'apnic_max90': apnic_max90,
-            'regression': regression
+            'regression': regression,
+            'v6_dirty_feeds': v6_dirty, 'v6_total_feeds': v6_total, 'v6_verdict': v6_verdict,
         })
 
     df = pd.DataFrame(results)

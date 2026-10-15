@@ -187,6 +187,17 @@ phantom only appears in European-biased collectors.
     `build_graph(..., never_providers)` labels any link one of them would provide `ixp_asn` and
     `infer_top_down` skips them. No file → empty set and a warning. On 2026-10-16: 60 ASNs, no link
     changed (26 are NON_TRANSIT, the other 34 had no customers); it guards later data.
+- **IPv6 graph** (2026-10-16, Terry: separate IPv6 columns). `build_topology()` also writes
+  `data/downstream_graph_v6.json` (`rov_utils.FILE_GRAPH_V6`): `build_graph` on the AF=6 rows of `exports.csv`
+  (`load_exports_v6`: adjacency, regions, IPv6 evidence bits) and `triples.csv` (`load_triples(af=6)`), with
+  `evidence_required=frozenset()` because HE gives its peers IPv6 transit (`reports/he_ipv6_peering.md`).
+  11 Oct dumps: 38,311 ASes, 66,908 p2c links, HE 5,136 IPv6 customers (main graph 1,999); signed ASPA on
+  IPv6 ASes 94.7% / 55.5% (main graph 94.9% / 60.0%). The main graph is unchanged (still mixed families,
+  HE IPv4-only). The audit judges each network a second time with its IPv6 providers through the same
+  pipeline (`rov_utils.audit_verdict`): `v6_verdict`, `v6_dirty_feeds`, `v6_total_feeds`, blank outside the
+  IPv6 graph. Filtering status is per AS (Atlas tests are IPv4; router ROV policy covers both families).
+  First run: 37,913 IPv6 verdicts; 1,726 SECURE-class in IPv6 only, 564 of them with HE as an IPv6-only
+  provider; 148 worse in IPv6. Build 32 s / 1.33 GiB with both graphs; audit 8.5 min / 5.2 GiB.
   - Result vs step 2: ASPA precision 90.0% → 94.5%, recall 54.3% → 59.9% (CAIDA 90.2 / 63.7);
     CAIDA agreement 89.5% → 92.1%. Direct customer counts are close to CAIDA's (Lumen 6,179 vs
     6,508; NTT 1,374 vs 1,444; HE 1,999 vs 2,255; Spark 44 vs 46; REANNZ 32 vs 33).
@@ -508,3 +519,4 @@ Tests: `tests/test_batch_targets.py`.
 - `regression`: Boolean flag for historical RPKI drop (1-year lookback, >30pt drop).
 - `atlas_result`: RIPE Atlas forensic consensus verdict (7-outcome taxonomy, 7-day TTL).
 - `non_rov_hops`: ASNs on the invalid traceroute path — confirmed forwarding RPKI-invalid prefixes.
+- `v6_verdict` / `v6_dirty_feeds` / `v6_total_feeds`: the same verdict from the IPv6 graph's providers (blank when the AS isn't in it).

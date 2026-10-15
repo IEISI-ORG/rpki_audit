@@ -1,8 +1,8 @@
 # TODO List
 
 - [ ] HE AS6939 IPv6 peering (`reports/he_ipv6_peering.md`, 2026-10-16). HE gives its peers IPv6 transit: >= 50% of the RIS
-  IPv6 paths toward 1,397 of its IPv4 peers run through it. Open: (a) per-family topology, so a network using HE for IPv6 is credited with
-  HE's filtering for IPv6 (needs an IPv6 graph; `bgp-extractor` already tags each triple with AF); (b) the 24 peers whose ASPA
+  IPv6 paths toward 1,397 of its IPv4 peers run through it. Open: (a) [done 2026-10-16: `data/downstream_graph_v6.json` and the audit's `v6_verdict`; 564
+  networks credited] per-family topology so HE's IPv6 filtering is credited; next: show `v6_verdict` in the country reports; (b) the 24 peers whose ASPA
   omits HE while most IPv6 paths toward them run through it — candidates for an operator notice (Terry's call); (c) CAIDA labels
   for 212024, 394256, 64073, 401753, 58057, 1257 look wrong (every peer's route passed upward in both families).
 - [x] Investigate volatile changes where an ASN regresses in RPKI/ROV status. 

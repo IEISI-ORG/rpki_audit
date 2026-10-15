@@ -8,7 +8,7 @@ import unittest
 
 import he_ipv6_analysis as h
 
-HE, T1, P, Q, CU, Y = 6939, 3356, 64500, 64501, 64502, 64503
+HE, T1, T1B, P, Q, CU, Y = 6939, 3356, 1299, 64500, 64501, 64502, 64503
 # CAIDA as-rel2 shape: {(min, max): ("p2c", provider) | ("p2p", None)}
 RELS = {(min(HE, P), max(HE, P)): ("p2p", None), (min(HE, Q), max(HE, Q)): ("p2p", None),
         (min(HE, CU), max(HE, CU)): ("p2c", HE), (min(HE, Y), max(HE, Y)): ("p2c", HE)}
@@ -71,6 +71,19 @@ class TestAspaGap(unittest.TestCase):
 
     def test_no_record_is_no_gap(self):
         self.assertEqual(h.aspa_gap({P: 1.0}, RELS, {}, HE, 0.5), [])
+
+
+class TestVerdictShift(unittest.TestCase):
+    def test_classes_and_he_credit(self):
+        rows = [{"asn": str(P), "verdict": "STUB: VULNERABLE", "v6_verdict": "STUB: PASSIVE (Clean Pipe)"},
+                {"asn": str(Q), "verdict": "STUB: VULNERABLE", "v6_verdict": "STUB: PASSIVE (Clean Pipe)"},
+                {"asn": str(CU), "verdict": "STUB: PASSIVE (Clean Pipe)", "v6_verdict": "STUB: VULNERABLE"},
+                {"asn": str(Y), "verdict": "STUB: VULNERABLE", "v6_verdict": ""}]
+        up4 = {P: {T1}, Q: {T1}, CU: {HE}}
+        up6 = {P: {HE}, Q: {T1B}, CU: {HE, T1}}
+        shift, credited = h.verdict_shift(rows, up4, up6, HE)
+        self.assertEqual(shift, {("VULNERABLE", "SECURE"): 2, ("SECURE", "VULNERABLE"): 1})
+        self.assertEqual([r["asn"] for r in credited], [str(P)])   # Q improved without HE
 
 
 if __name__ == "__main__":

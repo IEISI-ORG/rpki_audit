@@ -51,6 +51,27 @@ class TestLoadExports(unittest.TestCase):
             self.assertIsNone(btg.load_exports(d))
 
 
+
+class TestLoadExportsV6(unittest.TestCase):
+    """IPv6 graph inputs: only AF=6 rows of exports.csv (every adjacency in a path is a row)."""
+
+    def test_ipv6_links_regions_and_bits_only(self):
+        with tempfile.TemporaryDirectory() as d:
+            for rrc, rows in (("rrc00", ["64500,64501,6,5,5,2", "64502,64503,4,7,7,7"]),
+                              ("rrc23", ["64500,64501,6,1,0,0", "64501,64504,6,3,3,0"])):
+                os.makedirs(os.path.join(d, rrc))
+                with open(os.path.join(d, rrc, "exports.csv"), "w") as f:
+                    f.write("X,C,AF,Paths,Beyond,ToTier1\n" + "\n".join(rows) + "\n")
+            adj, degrees, link_regions, ev = btg.load_exports_v6(d)
+        self.assertEqual(adj, {A: {B}, B: {A, E}, E: {B}})
+        self.assertEqual(degrees, {A: 1, B: 2, E: 1})
+        self.assertEqual(link_regions[(A, B)], {"EU", "APAC"})
+        self.assertEqual(ev, {(A, B): B6 | T6, (B, E): B6})
+
+    def test_no_files_returns_none(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertIsNone(btg.load_exports_v6(d))
+
 class TestBuildGraph(unittest.TestCase):
     def build(self, links, degrees, regions_n, evidence):
         down, labels = btg.build_graph(graph(links), degrees, regions(regions_n), evidence)
@@ -133,6 +154,13 @@ class TestLoadTriples(unittest.TestCase):
     def test_no_files_returns_none(self):
         with tempfile.TemporaryDirectory() as d:
             self.assertIsNone(btg.load_triples(d))
+
+    def test_one_address_family(self):
+        with tempfile.TemporaryDirectory() as d:
+            os.makedirs(os.path.join(d, "rrc00"))
+            with open(os.path.join(d, "rrc00", "triples.csv"), "w") as f:
+                f.write("AF,Y,X,C\n4,1299,3356,64500\n6,1299,3356,64501\n")
+            self.assertEqual(btg.load_triples(d, af=6), {T1: {(T1B, B, 6)}})
 
 
 class TestTopDown(unittest.TestCase):
@@ -285,6 +313,16 @@ class TestTopDown(unittest.TestCase):
         rows = [(T1B, T1, HE, 4), (T1, HE, A, 6), (T1, HE, B, 4)]
         down, _ = self.build(links, rows)
         self.assertEqual(down, {T1: {HE}, HE: {B}})
+
+    def test_evidence_required_is_a_parameter(self):
+        # The IPv6 graph lifts HE's IPv4-only rule: its IPv6 triples then make B its customer
+        rows, links = [(T1, HE, B, 6)], [(T1, HE), (HE, B)]
+        down, _ = self.build(links, rows)
+        self.assertEqual(down, {})
+        degrees = {T1: 10, HE: 10, B: 10}
+        down, _ = btg.build_graph(graph(links), degrees, regions({p: 2 for p in links}), {},
+                                  triples(rows), evidence_required=frozenset())
+        self.assertEqual({p: set(cs) for p, cs in down.items() if cs}, {HE: {B}})
 
     def test_ratio_fallback_only_for_ases_without_a_path_provider(self):
         # D and E have no path evidence; A-D and A-E are ratio_4x by degree. E already has
