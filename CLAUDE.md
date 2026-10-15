@@ -293,7 +293,7 @@ reach the invalid beacon through them. Its NZ series haven't changed since 2022 
 2degrees, Devoli and Mercury changing in Aug–Sep 2026. Details under the ROVista item in TODO.md.
 
 **Current rule**: `rov_utils.ROVISTA_IN_VERDICTS = False`. The engine calls
-`verdict_evidence()` and `verdict_score()`, which ignore ROVista while the switch is off, so
+`verdict_evidence()`, which ignores ROVista while the switch is off, so
 measurement evidence comes from APNIC alone (`>= 95` filtering, `< 30` not). `rovista_score`
 stays in the audit CSV for reference. No DISPUTED verdicts are produced. Turning the switch
 on restores the equal-weight rule of 1ec8545: `measurement_evidence()` combines both scores
@@ -350,14 +350,26 @@ This was the root cause of false VULNERABLE verdicts for NTT (AS2914), PCCW (AS3
 and Vodafone (AS1273): all Atlas probes were routing directly to Cloudflare via Bharti
 Airtel or other providers, never traversing the target.
 
-### Atlas override guard in `rov_no_scrape_v22.py`
-`atlas_vulnerable` is only allowed to downgrade a network's `safe_asns` status if
-current evidence is weak. If a network is **in both `rov_set` (bgp.tools ROV tag) AND
-has `apnic_score >= 60%`** (`verdict_score()`; ROVista counts only if `ROVISTA_IN_VERDICTS`), the Atlas
-result is treated as a potential probe-path
-artefact and the network stays in `safe_asns`. This protects well-evidenced secure
-networks from stale or mis-targeted Atlas results while still allowing Atlas to override
-networks with no independent corroboration.
+### Evidence hierarchy (`rov_utils.filtering_status`, since 2026-10-15)
+One ladder decides whether a network filters; the first rung that applies wins:
+1. **policy**: `HARDCODED_SECURE` (Cloudflare 13335, 14789) → filtering.
+2. **atlas**: a result <= 7 days. Any VULNERABLE verdict or "SECURE (Upstream Filtered)" → not filtering;
+   any other SECURE verdict → filtering. MIXED / INCONCLUSIVE decide nothing.
+3. **apnic**: `verdict_evidence()` >= 95 → filtering, < 30 → not filtering, unless the series is volatile
+   from noise (a regression is a measured drop and still counts).
+4. **declared**: bgp.tools ROV tag (`rov_set`) or isbgpsafeyet (`cf_set`) → filtering.
+5. **none**: unknown, which counts as a dirty feed for customers.
+
+`safe_asns` (customers' dirty feeds) and each network's `is_safe` both come from it. The audit CSV's
+`decided_by` column names the rung. A tag no longer shields a network from Atlas, volatility or
+REGRESSED. The old guard (tag + APNIC >= 60% overrode an Atlas VULNERABLE result as a "probe-path
+artefact") is gone. `rov_utils.evidence_overrides()` then applies REGRESSED (regression and not
+filtering now) and, last, INCONSISTENT (tagged, but atlas or apnic says not filtering). Decided by Terry
+2026-10-15 (design: `plan/evidence_hierarchy_design.md`); tests: `tests/test_evidence_hierarchy.py`.
+First run: SECURE 21,750 → 17,103. Declared networks (bgp.tools tag or isbgpsafeyet) whose measurements have fallen moved, e.g.
+Rostelecom, Korea Telecom, Turk Telekom, SK Broadband, OVH and Verizon/Frontier (APNIC ~0-10%), and
+AT&T AS7018 (isbgpsafeyet "safe", so REGRESSED rather than INCONSISTENT; APNIC 62% → 6% in 90 days; a fresh Atlas probe on 2026-10-15 reached the invalid beacon via
+6269 → 7018 → 13335, one on-path probe).
 
 ### Measurement provenance and IPv6
 Each result file stores `measurement_ids` (`ping_valid`, `ping_invalid`, `trace_valid`,
@@ -433,12 +445,12 @@ Tests: `tests/test_batch_targets.py`.
 - **Primary Labels**: `REGRESSED`, `VOLATILE`, `UNRELIABLE`, `SECURE`, `PASSIVE`, `FORTUITOUS`.
 - **STUB: FORTUITOUS ROV**: A stub whose APNIC score is high (>=95%) but has no direct confirmation of local ROV (`rov_set`, `cf_set`, or Atlas "Target Filtered"). The protection is real (users are safe) but comes from the upstream's filtering, not the stub's own routers. Applied in `rov_no_scrape_v22.py` after `assign_verdict`. `classify_verdict()` maps this to `SECURE`. Stubs with direct evidence stay `STUB: ACTIVE LOCAL ROV`.
 - **PROVIDER UNKNOWN (In BGP)** (since 2026-10-15): no inferred provider and no cone, but the AS appears in RIS paths (`rov_utils.load_bgp_asns()`, the ASNs in `output/rrc*/asn_stats.csv`). These were labelled NOT ROUTED. NOT ROUTED now means absent from every RIS path (or no extractor output). `classify_verdict()` maps it to `UNKNOWN`.
-- **INCONSISTENT**: Network is in bgp.tools `rov_set` (declared ROV intent) but the measurements show `< 30%` actual filtering (`verdict_evidence(...) == "NOT_FILTERING"`: APNIC < 30%). Either partial deployment (ROV on some links/routers only), stale declaration, or misconfiguration. Overrides all other verdicts for `rov_set` members meeting the threshold. `classify_verdict()` maps this to `VULNERABLE`. 52 networks before ROVista, 100 while it counted (2026-10-13/14), no Tier 1s. Key examples: AS7303 Telecom Argentina (8%), AS3292 TDC Denmark (0%), AS32 Stanford (1%).
+- **INCONSISTENT**: tagged in bgp.tools `rov_set` (declared ROV intent) while the deciding rung of the evidence hierarchy, Atlas or APNIC (< 30%), says it doesn't filter. Since 2026-10-15 Atlas can also make a network INCONSISTENT, and an INCONSISTENT network counts as a dirty feed for its customers (China Telecom AS4134 joined the tag list on 2026-10-15 at APNIC 0.24%; 127 stubs behind it had moved to PASSIVE). Either partial deployment, stale declaration, or misconfiguration. Applied last. `classify_verdict()` maps this to `VULNERABLE`. Examples: AS7303 Telecom Argentina (8%), AS3292 TDC Denmark (0%), AS32 Stanford (1%), PLDT AS9299.
 - **Transit networks that filter**: `assign_verdict` checks `is_safe` before dirty feeds for transit networks (since 2026-10-14), so a filtering transit network is `ACTIVE LOCAL ROV` (or `VOLATILE`) whatever its upstreams do. `PARTIAL: VULNERABLE (Mixed)` now means a transit network that doesn't filter and has some dirty upstream feeds. Stubs keep the old order (`STUB: VOLATILE` = safe behind a dirty feed).
 - **DISPUTED**: only produced when `ROVISTA_IN_VERDICTS` is on (APNIC and ROVista disagree, one ≥ 95%, the other < 30%). `classify_verdict()` maps it to `PARTIAL`. See the ROVista section.
 - **STUB: VOLATILE also means "safe behind a dirty feed"**: `assign_verdict` returns it for `is_safe` stubs with `dirty_feeds > 0`, not only for volatile timeseries. While ROVista counted, ~800 stubs landed here: they measure as filtering although a provider doesn't filter, which is the case where the measurement most likely reflects local ROV.
 - **Infrastructure Blacklist**: Root Servers and RIRs (AS3333, AS4608, etc.) are marked as non-transit in `cone-calculator.go` (`isNonTransit` logic). Cloudflare AS13335 is **not** non-transit (since 2026-10-15): it sells transit (Magic Transit, BYOIP) to ~1,000 ASes; it stays in `HARDCODED_SECURE`. Evidence: `reports/cloudflare_transit_rov.md`.
-- **REGRESSED override**: `rov_no_scrape_v22.py` overwrites the `assign_verdict()` result with `"REGRESSED"` when the 1-year APNIC timeseries shows a drop of > 30 points. This only fires when `regression=True` in `ts_map` **and `is_safe=False`** — a network with strong current ROV evidence (`rov_set`, `cf_set`, or APNIC >= 95%) stays at its earned verdict. Note: `rov_set`/`cf_set` members always remain `is_safe=True` even when volatile (the volatile guard at line 46 has an explicit `asn not in rov_set and asn not in cf_set` exception). APNIC regression for `atlas_secure` networks with `current=0%, hist_max=100%` is most often an inherited-filtering artifact — see the APNIC data quality note above.
+- **REGRESSED override**: `rov_utils.evidence_overrides()` labels a network REGRESSED when the 1-year APNIC timeseries shows a drop of > 30 points (`regression=True` in `ts_map`) and the evidence hierarchy doesn't say it filters now. Since 2026-10-15 a bgp.tools tag no longer shields it (before, `rov_set`/`cf_set` members were always `is_safe`). INCONSISTENT is applied after it, so a tagged regressed network shows INCONSISTENT. APNIC regression for networks with `current=0%, hist_max=100%` can be an inherited-filtering artifact: see the APNIC data quality note above.
 
 ### 3. CI & Quality
 - **Linter**: Python code is linted with `ruff`.

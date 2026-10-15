@@ -53,32 +53,17 @@ def analyze():
         for asn in all_asns
     }
 
-    # Identify "Safe" ASNs (Passive)
-    safe_asns = set()
+    # One ladder decides whether each network filters (rov_utils.filtering_status, 2026-10-15):
+    # policy > Atlas > measurement > declared (tag, isbgpsafeyet) > unknown. Customers' dirty-feed
+    # counts and each network's own label both read it; UNKNOWN counts as dirty.
+    status = {}
     for asn in all_asns:
-        if (asn in rov_set) or (asn in cf_set) or evidence[asn] == "FILTERING":
-            safe_asns.add(asn)
-
-    # Active Overrides (Atlas & Volatility)
-    # Atlas VULNERABLE can only downgrade networks with weak current evidence.
-    # If a network is confirmed by both bgp.tools ROV tag AND APNIC score >= 60%,
-    # the Atlas result is likely a probe-path artefact (probe routed via a
-    # different provider that doesn't do ROV) rather than evidence that the
-    # target ASN itself doesn't filter.  APNIC carefully selects single-provider
-    # probes; our forensic test does not.  ROVista >= 60% counts the same as
-    # APNIC, unless the two disagree.
-    strong_current_rov = {
-        asn for asn in atlas_vulnerable
-        if (asn in rov_set or asn in cf_set)
-        and evidence[asn] != "DISPUTED"
-        and rov_utils.verdict_score(apnic_map.get(asn, -1), rovista_map.get(asn, -1)) >= 60.0
-    }
-    safe_asns -= (atlas_vulnerable - strong_current_rov)
-    safe_asns |= atlas_secure
-    
-    for asn, (sd, mn, mx, volatile, regression) in ts_map.items():
-        if volatile and asn in safe_asns and asn not in rov_set and asn not in cf_set:
-            safe_asns.discard(asn)
+        ts = ts_map.get(asn)
+        status[asn] = rov_utils.filtering_status(
+            asn, atlas_secure=atlas_secure, atlas_vulnerable=atlas_vulnerable,
+            evidence=evidence[asn], volatile=bool(ts and ts[3]), regression=bool(ts and ts[4]),
+            rov_set=rov_set, cf_set=cf_set)
+    safe_asns = {asn for asn, (st, _) in status.items() if st == "FILTERING"}
 
     for asn in all_asns:
         name = meta.get(asn, {}).get('name', 'Unknown')
@@ -100,13 +85,6 @@ def analyze():
             asn, is_safe, cone, parents, dirty_feeds, volatile, atlas_v, in_bgp=asn in bgp_asns
         )
         
-        # Highlight Regression in Verdict - simplified label as requested
-        # Guard: is_safe=True means the network has strong current ROV evidence
-        # (rov_set/cf_set members stay is_safe=True even when volatile, per line 46).
-        # CLAUSE.md: REGRESSED does not fire for networks currently classified as safe.
-        if regression and not is_safe:
-            verdict = "REGRESSED"
-
         # Fortuitous ROV: stub's APNIC score is consistent with filtering by its
         # upstream, not by the stub itself.  We have no direct evidence (rov_set,
         # cf_set, or Atlas "Target Filtered") that the stub's own routers drop
@@ -121,16 +99,16 @@ def analyze():
         # the other < 30%).  Tier 1, hardcoded and conclusive-Atlas verdicts are kept.
         verdict = rov_utils.apply_dispute(verdict, evidence[asn], asn, atlas_v)
 
-        # Inconsistent: network declared ROV intent (bgp.tools rov_set) but the
-        # measurements (APNIC/ROVista) show < 30% actual filtering.  Either partial
-        # deployment, stale declaration, or ROV misconfigured on a subset of
-        # links/routers.  The contradiction is the signal regardless of topology.
-        if asn in rov_set and evidence[asn] == "NOT_FILTERING":
-            verdict = "INCONSISTENT"
+        # REGRESSED (dropped over 1 year, not filtering now) and, last, INCONSISTENT (tagged, but
+        # Atlas or the measurement says it doesn't filter: partial deployment, stale declaration
+        # or misconfiguration). Both come from the ladder; a tag shields from neither.
+        st, decided_by = status[asn]
+        verdict = rov_utils.evidence_overrides(verdict, status=st, decided_by=decided_by,
+                                               tagged=asn in rov_set, regression=regression)
 
         results.append({
             'asn': asn, 'name': name, 'cc': cc, 'cone': cone,
-            'verdict': verdict, 'apnic_score': score, 'rovista_score': rovista_score,
+            'verdict': verdict, 'decided_by': decided_by, 'apnic_score': score, 'rovista_score': rovista_score,
             'dirty_feeds': dirty_feeds, 'total_feeds': total_feeds,
             'atlas_result': atlas_v or '', 
             'apnic_stdev': apnic_stdev, 'apnic_min90': apnic_min90, 'apnic_max90': apnic_max90,

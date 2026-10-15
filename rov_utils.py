@@ -1199,8 +1199,46 @@ def verdict_evidence(apnic: float, rovista: float) -> str:
 
 
 def verdict_score(apnic: float, rovista: float) -> float:
-    """Score the Atlas override guard compares with 60% (ROVista only if ROVISTA_IN_VERDICTS)."""
+    """APNIC score, or the higher of APNIC and ROVista if ROVISTA_IN_VERDICTS. The audit stopped using
+    it on 2026-10-15 (the Atlas override guard it fed was replaced by filtering_status)."""
     return max(apnic, rovista) if ROVISTA_IN_VERDICTS else apnic
+
+
+def filtering_status(asn: int, *, atlas_secure: set, atlas_vulnerable: set, evidence: str,
+                     volatile: bool, regression: bool, rov_set: set, cf_set: set) -> tuple[str, str]:
+    """(status, decided_by) for one network: does it filter RPKI-invalid routes? (2026-10-15)
+
+    The first rung that applies decides: our policy (HARDCODED_SECURE) > Atlas (results <= 7 days)
+    > measurement (verdict_evidence: APNIC >= 95 filtering, < 30 not) > declared (bgp.tools tag,
+    isbgpsafeyet list) > unknown. status: FILTERING, NOT_FILTERING or UNKNOWN; decided_by:
+    policy, atlas, apnic, declared or none. A volatile series is inconclusive unless the volatility
+    is a regression (a measured drop, not noise), so a declaration never outranks a measured drop.
+    """
+    if asn in HARDCODED_SECURE:
+        return "FILTERING", "policy"
+    if asn in atlas_vulnerable:
+        return "NOT_FILTERING", "atlas"
+    if asn in atlas_secure:
+        return "FILTERING", "atlas"
+    if evidence in ("FILTERING", "NOT_FILTERING") and not (volatile and not regression):
+        return evidence, "apnic"
+    if asn in rov_set or asn in cf_set:
+        return "FILTERING", "declared"
+    return "UNKNOWN", "none"
+
+
+def evidence_overrides(verdict: str, *, status: str, decided_by: str, tagged: bool,
+                       regression: bool) -> str:
+    """REGRESSED and INCONSISTENT from filtering_status(); call after the other label steps.
+
+    REGRESSED: the 1-year APNIC series dropped and the network isn't filtering now (a tag no longer
+    shields it). INCONSISTENT (last): tagged, but Atlas or the measurement says it doesn't filter.
+    """
+    if regression and status != "FILTERING":
+        verdict = "REGRESSED"
+    if tagged and status == "NOT_FILTERING" and decided_by in ("atlas", "apnic"):
+        verdict = "INCONSISTENT"
+    return verdict
 
 
 def apply_dispute(verdict: str, evidence: str, asn: int, atlas_v: str = "") -> str:
