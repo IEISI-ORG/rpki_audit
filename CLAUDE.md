@@ -95,7 +95,8 @@ CAIDA 88%; `ratio_8x` 18%; `tier1` 75% (21% are CAIDA peerings); 67% of links dr
 are CAIDA transit; phantom pruning wipes whole providers (Angola Cables, EdgeUno). `TIER_1_ASNS`
 had 9 ASes outside CAIDA's inferred clique; on 2026-10-14 it was set to the 18 ASes that form a
 complete mesh of observed links with no provider per CAIDA (`TESTED_TIER1` in
-`tests/test_gao_rexford.py` pins it; change it only with new evidence). CAIDA is used as a second
+`tests/test_gao_rexford.py` pins it; change it only with new evidence). Corroboration: six of them publish AS0
+ASPA records (no providers): 174, 1299, 3257, 3320, 6830, 7018 (checked 2026-10-15). CAIDA is used as a second
 opinion to test, not as ground truth. Remaining fixes are listed in TODO.md.
 `caida_export_test.py` tests CAIDA's labels (and signed ASPA) against observed exports in RIS
 paths, per address family (`reports/caida_vs_project.md`, 2026-10-14): CAIDA p2c labels are
@@ -403,7 +404,7 @@ produce the same traceroute. Before attributing anything to a network on an IX p
 into `data/atlas/harvest/`, then `analyze_harvest.py` lists the ASes on traces that reached Cloudflare's
 invalid host in the last `ATLAS_TTL_DAYS` (`reports/atlas_harvest_analysis.md`). Hop IPs are mapped with
 iptoasn.com (`data/atlas/ip2asn/`), probe home ASNs from the RIPE probe archive (`data/atlas/probes/`).
-A single hop between two other ASes doesn't count (border-router address). IX LAN hops go to the participant holding the address (PeeringDB `netixlan`, files in `data/atlas/peeringdb/`), and PeeringDB route-server networks never count. AS0 ASPA is not an exclusion signal: six Tier 1s publish AS0 (174, 1299, 3257, 3320, 6830, 7018). Not used in verdicts.
+Counting rules need more than one data point (Terry, 2026-10-15): the probe's own AS counts only with a hop of its own on the trace (a destination-only trace named Swisscom, which in-network Atlas tests showed filtering); a single hop between two other ASes doesn't count (border-router address); IX LAN hops go to the participant holding the address (PeeringDB `netixlan`, files in `data/atlas/peeringdb/`); an ASN is a route server, and never a forwarder, only with two of three signals (PeeringDB "Route Server" type, AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on that LAN; iptoasn alone maps IX LANs numbered out of Cogent's 38/8 to Cogent) and only if it doesn't carry traffic in RIS (`asn_stats.csv`: mid-path for >= 3 neighbours; real route servers appear mid-path only for 1-2 members with non-transparent sessions, e.g. AMS-IX 6777): 35 ASNs. Tier 1s are never route servers: six publish AS0 (174, 1299, 3257, 3320, 6830, 7018), which supports their Tier 1 status. Check on 2026-10-15: the 7 current IPv4 forwarders were all VULNERABLE in in-network Atlas tests (2Connect 20845 was missed). Not used in verdicts.
 
 ### Country beacon baseline (`nz_beacon_baseline.py`)
 Every connected Atlas probe in a country (`--cc`, default NZ; IPv4 and IPv6) pings and

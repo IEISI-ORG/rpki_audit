@@ -88,18 +88,69 @@ class IxMap:
         return False, None
 
 
-def load_ix(directory: str = DIR_PEERINGDB) -> tuple["IxMap | None", set]:
-    """IxMap and the ASNs of PeeringDB route-server networks; (None, set()) without the files."""
+def load_ix(directory: str = DIR_PEERINGDB) -> tuple["IxMap | None", set, list, list]:
+    """IxMap, PeeringDB route-server ASNs, ixpfx rows and netixlan rows; empty without the files."""
     try:
         pfx = json.load(open(os.path.join(directory, "ixpfx.json")))["data"]
         nix = json.load(open(os.path.join(directory, "netixlan.json")))["data"]
     except (OSError, ValueError, KeyError):
-        return None, set()
+        return None, set(), [], []
     try:
         rs = {r["asn"] for r in json.load(open(os.path.join(directory, "net_route_servers.json")))["data"]}
     except (OSError, ValueError, KeyError):
         rs = set()
-    return IxMap(pfx, nix), rs
+    return IxMap(pfx, nix), rs, pfx, nix
+
+
+def ix_announcers(prefixes: list[dict], netixlan: list[dict], lookup: IpAsn) -> set:
+    """ASNs announcing an IX LAN prefix that PeeringDB also lists on that same IX LAN. iptoasn alone
+    can't tell an IX's own announcement from a covering aggregate: IX LANs numbered out of Cogent's
+    38/8 map to Cogent, which is on none of them (2026-10-15)."""
+    members: dict = defaultdict(set)
+    for n in netixlan:
+        members[n.get("ixlan_id")].add(n.get("asn"))
+    out = set()
+    for p in prefixes:
+        try:
+            asn = lookup.asn(str(ipaddress.ip_network(p["prefix"], strict=False).network_address))
+        except (KeyError, ValueError):
+            continue
+        if asn and asn in members.get(p.get("ixlan_id"), ()):
+            out.add(asn)
+    return out
+
+
+def route_server_asns(peeringdb_rs: set, as0: set, ix_announcers: set, tier1: set = frozenset(),
+                      mid_path: set = frozenset()) -> set:
+    """ASNs with at least two of three route-server signals: PeeringDB "Route Server" type (self-
+    declared), an AS0 ASPA record (no providers) and announcing an IX LAN prefix while being on that LAN
+    (ix_announcers). One signal alone isn't enough (Terry, 2026-10-15). Excluded whatever the signals:
+    Tier 1s (for them AS0 is evidence of being a Tier 1) and ASNs seen mid-path in BGP (a route server
+    is transparent, RFC 7947; one seen passing routes to >= 3 networks is carrying traffic)."""
+    signals = Counter()
+    for s in (peeringdb_rs, as0, ix_announcers):
+        signals.update(set(s))
+    return {asn for asn, n in signals.items() if n >= 2} - set(tier1) - set(mid_path)
+
+
+MID_PATH_MIN_LEFT = 3
+
+
+def load_mid_path(base_dir: str = "output", min_left: int = MID_PATH_MIN_LEFT) -> set:
+    """ASNs that carry traffic in BGP: in some RIS dump (bgp-extractor asn_stats.csv) they have a
+    neighbour on the origin side (Right_Count > 0, so they passed routes on) and at least min_left
+    neighbours on the collector side. Real route servers turn up mid-path only for 1-2 members with
+    non-transparent sessions (AMS-IX 6777: 2; France-IX Paris, NIX.CZ, SGIX: 1); Cogent: 107."""
+    out = set()
+    for path in glob.glob(os.path.join(base_dir, "rrc*", "asn_stats.csv")):
+        with open(path) as f:
+            next(f, None)
+            for line in f:
+                p = line.split(",")
+                if len(p) >= 3 and p[0].isdigit() and p[1].isdigit() and p[2].strip().isdigit() \
+                        and int(p[2]) > 0 and int(p[1]) >= min_left:
+                    out.add(int(p[0]))
+    return out
 
 
 def load_ip2asn(path: str = FILE_IP2ASN) -> IpAsn:
@@ -165,13 +216,15 @@ def credible_forwarders(runs: list[tuple[int, int]], probe_asn: int | None,
                         exclude: set = frozenset()) -> set[int]:
     """ASes a trace that reached the invalid host shows forwarding the invalid route.
 
-    The probe's own AS always counts (its users reached the host). Another AS counts when it has
-    >= 2 hops, or hands the trace straight to the beacon origin. A single hop between two other
+    The probe's own AS counts when the trace shows a hop inside it (its users reached the host); a
+    trace where only the destination answered names nobody (Swisscom, 2026-10-10: in-network Atlas
+    tests then showed it dropping the invalid route). Another AS counts when it has >= 2 hops, or
+    hands the trace straight to the beacon origin. A single hop between two other
     ASes is usually that AS's address on a border router (third-party address), not transit
     through it: e.g. 2026-01-04, 399078 -> one 3356-numbered hop -> 26042 -> 13335. exclude:
     ASes that can't be forwarders (PeeringDB route-server networks, NON_TRANSIT_ASNS).
     """
-    out = {probe_asn} if probe_asn else set()
+    out = set()
     for i, (asn, hops) in enumerate(runs):
         nxt = runs[i + 1][0] if i + 1 < len(runs) else None
         if hops >= 2 or nxt == BEACON_ORIGIN or asn == probe_asn:
@@ -183,7 +236,12 @@ def main() -> None:
     t0 = time.time()
     lookup = load_ip2asn()
     probe_asns = load_probe_asns()
-    ix, route_servers = load_ix()
+    ix, peeringdb_rs, ix_pfx, ix_members = load_ix()
+    raw_aspa = json.load(open(os.path.join(rov_utils.DIR_DATA, "aspa_real.json")))
+    as0 = {int(k) for k, v in raw_aspa.items() if not set(v) - {0}}
+    announcers = ix_announcers(ix_pfx, ix_members, lookup)
+    route_servers = route_server_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS),
+                                      load_mid_path())
     exclude = route_servers | set(rov_utils.NON_TRANSIT_ASNS)
     index = json.load(open(os.path.join(DIR_HARVEST, "index.json")))
     recent_from = time.time() - RECENT_DAYS * 86400
@@ -244,9 +302,13 @@ def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = F
              "there is no off-path check. An AS counts as a forwarder only if it is the probe's own AS, has >= 2 "
              "hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a "
              f"border-router address). Probe home ASNs known for {n_probe_meta:,} probes.", "",
-             ("IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan), and "
-              f"{n_rs:,} PeeringDB route-server networks never count as forwarders. AS0 ASPA records are not used "
-              "to exclude: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global publish AS0 too."
+             ("IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). "
+              f"{n_rs:,} ASNs never count as forwarders because at least two of three route-server signals agree "
+              "(PeeringDB 'Route Server' type, AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on "
+              "that LAN; one alone isn't enough), and the ASN doesn't carry traffic in RIS (a route server is "
+              "transparent: mid-path for at most 2 members with non-transparent sessions). "
+              "AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global "
+              "publish it, which supports their Tier 1 status."
               if have_ix else "PeeringDB files missing: IX LAN hops are not resolved."), "",
              f"Only traces from the last {RECENT_DAYS} days count, the same freshness rule as the audit's own Atlas "
              "results. The first harvest is mostly older campaigns (IPv6: 7,423 of 7,499 traces in June 2026; IPv4: "

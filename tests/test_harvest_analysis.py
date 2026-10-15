@@ -50,9 +50,14 @@ class TestAsPath(unittest.TestCase):
         self.assertEqual(runs, [(64500, 2), (15169, 1), (13335, 1)])
 
     def test_credible_forwarders(self):
-        # probe's own AS always; an AS with >= 2 hops; an AS handing the trace straight to the beacon
-        self.assertEqual(ah.credible_forwarders([(64500, 2), (15169, 1), (13335, 1)], probe_asn=64999),
-                         {64999, 64500, 15169})
+        # probe's AS with a hop of its own; an AS with >= 2 hops; an AS handing the trace to the beacon
+        self.assertEqual(ah.credible_forwarders([(64999, 1), (64500, 2), (15169, 1), (13335, 1)],
+                                                probe_asn=64999), {64999, 64500, 15169})
+
+    def test_probe_as_needs_a_hop_of_its_own(self):
+        # Swisscom shape (2026-10-10): only the destination answered; in-network Atlas tests on
+        # 2026-10-15 showed Swisscom dropping the invalid route. One data point isn't enough.
+        self.assertEqual(ah.credible_forwarders([(13335, 1)], probe_asn=3303), set())
 
     def test_single_border_hop_between_two_ases_is_not_a_forwarder(self):
         # Lumen shape (2026-01-04): 399078 -> one 3356-numbered hop -> 26042 -> 13335
@@ -67,6 +72,48 @@ class TestAsPath(unittest.TestCase):
         # PeeringDB route-server networks: their ASN announces the IX LAN, so they appear on paths
         runs = [(64500, 2), (6895, 1), (13335, 1)]
         self.assertEqual(ah.credible_forwarders(runs, probe_asn=None, exclude={6895}), {64500})
+
+
+class TestIxAnnouncers(unittest.TestCase):
+    def test_announcer_must_be_on_that_ix_lan(self):
+        ip = ah.ipaddress.ip_address
+        t = ah.IpAsn([(int(ip("38.10.0.0")), int(ip("38.10.0.255")), 174),         # left over from 38/8
+                      (int(ip("185.1.1.0")), int(ip("185.1.1.255")), 64600)])      # the IX's own ASN
+        pfx = [{"prefix": "38.10.0.0/24", "ixlan_id": 1}, {"prefix": "185.1.1.0/24", "ixlan_id": 2}]
+        nix = [{"ixlan_id": 1, "asn": 49378}, {"ixlan_id": 2, "asn": 64600}, {"ixlan_id": 2, "asn": 13335}]
+        # 2026-10-15: IX LANs numbered out of Cogent's 38/8 mapped to Cogent, a member of none of them
+        self.assertEqual(ah.ix_announcers(pfx, nix, t), {64600})
+
+
+class TestRouteServers(unittest.TestCase):
+    """A route server needs two of three signals (Terry, 2026-10-15: more than one data point)."""
+
+    def test_two_signals_needed(self):
+        rs = ah.route_server_asns(peeringdb_rs={1, 2, 3}, as0={2, 3, 4}, ix_announcers={3, 4, 5})
+        self.assertEqual(rs, {2, 3, 4})
+
+    def test_seen_mid_path_is_not_a_route_server(self):
+        # a route server is transparent (RFC 7947): its ASN never sits mid-path in BGP
+        rs = ah.route_server_asns(peeringdb_rs={1, 2}, as0={1, 2}, ix_announcers=set(), mid_path={2})
+        self.assertEqual(rs, {1})
+
+    def test_mid_path_from_asn_stats(self):
+        import os
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            # 64600: origin only (no right neighbour). 6777 (AMS-IX RS): mid-path for 2 members using
+            # non-transparent sessions. 174: transit for hundreds of networks.
+            for rrc, rows in (("rrc00", ["64600,40,0,40,90", "6777,2,4,6,64", "174,107,6495,6602,9000"]),
+                              ("rrc23", ["6777,1,3,4,5"])):
+                os.makedirs(os.path.join(d, rrc))
+                with open(os.path.join(d, rrc, "asn_stats.csv"), "w") as f:
+                    f.write("ASN,Left_Count,Right_Count,Total_Neighbors,Total_Paths\n" + "\n".join(rows) + "\n")
+            self.assertEqual(ah.load_mid_path(d), {174})
+
+    def test_tier1_with_as0_is_not_a_route_server(self):
+        # Cogent publishes AS0 and announces an IX LAN prefix: for a Tier 1, AS0 supports Tier 1
+        self.assertEqual(ah.route_server_asns(peeringdb_rs=set(), as0={174, 1299}, ix_announcers={174},
+                                              tier1={174, 1299}), set())
 
 
 class TestIxHops(unittest.TestCase):
