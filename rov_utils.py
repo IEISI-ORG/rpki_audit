@@ -24,6 +24,8 @@ DIR_DATA = "data"
 DIR_PARSED = "data/parsed"
 DIR_APNIC = "data/apnic"
 DIR_ATLAS = "data/atlas"
+# IXP ASNs (analyze_harvest.ixp_asns, two signals): never providers in the topology (item 2).
+FILE_IXP_ASNS = "data/atlas/ixp_asns.json"
 DIR_APNIC_TS = "data/apnic/timeseries"
 DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
 # Last good copies of bgp.tools downloads, used when bgp.tools is unreachable.

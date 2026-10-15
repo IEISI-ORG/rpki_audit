@@ -7,7 +7,7 @@ data/downstream_graph.json, rov_audit_v22_final.csv (Go cone sizes), and CAIDA's
 serial-2 as-rel2 and serial-1 ppdc-ases files in data/caida/ (downloaded when missing).
 
 Each observed link is labelled with the rule build_topology_from_go.build_graph ends with
-(path, ratio_4x, restored, ratio_stub, unconfirmed, peer, single_region, t1_t1, non_transit, pruned,
+(path, ratio_4x, restored, ratio_stub, unconfirmed, peer, single_region, t1_t1, non_transit, ixp_asn, pruned,
 evidence_required; tier1 when there are no path triples) and compared with CAIDA (same
 direction, reversed, peer, absent). Report: reports/caida_crosscheck.md.
 
@@ -96,7 +96,7 @@ def caida_lines(url: str) -> list[str]:
 def label_links(adj: dict, degrees: dict, link_regions: dict, evidence: dict | None,
                 triples: dict | None = None) -> tuple[dict, dict]:
     """{pair: (provider, customer, rule)} for every observed link, and the final graph."""
-    down, labels = btg.build_graph(adj, degrees, link_regions, evidence, triples)
+    down, labels = btg.build_graph(adj, degrees, link_regions, evidence, triples, btg.load_never_providers())
     return labels, down
 
 
@@ -138,7 +138,7 @@ def write_report(date, rels, ppdc, labels, final, matrix, unseen, same_as_saved)
             f"{matrix[rule][k]:,} ({100 * matrix[rule][k] / n:.0f}%)" for k in CLASSES) + " |")
     lines += ["", "Kept p2c rules (path; ratio_4x, restored and ratio_stub as fallback, or tier1 without "
               "path triples) should land in caida_same; dropped rules (peer, single_region, t1_t1, "
-              "non_transit) in caida_p2p or caida_absent. unconfirmed, pruned and evidence_required "
+              "non_transit, ixp_asn) in caida_p2p or caida_absent. unconfirmed, pruned and evidence_required "
               "are p2c candidates we removed: caida_same there is a lost link.", ""]
 
     caida_down = defaultdict(list)

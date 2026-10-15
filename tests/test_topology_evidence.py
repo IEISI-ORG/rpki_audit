@@ -242,7 +242,23 @@ class TestTopDown(unittest.TestCase):
     def test_ixp_asn_is_never_a_ratio_stub_provider(self):
         down, labels = self.ratio_stub_case(5, never_providers={A})
         self.assertEqual(down, {T1: {A, D}})
-        self.assertEqual(labels[(A, D)], (None, None, "unconfirmed"))
+        self.assertEqual(labels[(A, D)], (None, None, "ixp_asn"))
+
+    # Item 2 (2026-10-16): an IXP ASN (analyze_harvest.ixp_asns, two signals) is never a provider,
+    # whatever rule would make it one.
+    def test_ixp_asn_is_never_a_path_provider(self):
+        down, labels = self.build([(T1, A), (A, B), (T1, T1B)], [(T1B, T1, A, 4), (T1, A, B, 4)],
+                                  never_providers={A})
+        self.assertEqual(down, {T1: {A}})
+        self.assertNotEqual(labels[(A, B)][2], "path")
+
+    def test_ixp_asn_is_never_a_tier1_or_restored_provider(self):
+        # Without triples: A would be B's provider by the degree ratio
+        down, labels = btg.build_graph(graph([(A, B)]), {A: 50, B: 10}, regions({(A, B): 3}),
+                                       {(A, B): B4 | T4}, never_providers={A})
+        self.assertEqual({p: set(cs) for p, cs in down.items() if cs}, {})
+        self.assertEqual(labels[(A, B)], (None, None, "ixp_asn"))
+
 
     def test_customer_ranked_above_its_provider_is_accepted_when_no_loop(self):
         # One NZ / AS4768 shape: B passes C's route to its provider T1, but RIS sees C with more
@@ -292,6 +308,21 @@ class TestIxpAsnsNonTransit(unittest.TestCase):
 
     def test_as0_ixp_asns_are_non_transit(self):
         self.assertEqual(self.AS0_IXP_ASNS - rov_utils.NON_TRANSIT_ASNS, set())
+
+class TestNeverProvidersFile(unittest.TestCase):
+    def test_round_trip_with_analyze_harvest(self):
+        import analyze_harvest
+        with tempfile.TemporaryDirectory() as d:
+            path = os.path.join(d, "ixp_asns.json")
+            analyze_harvest.save_ixp_asns({6777, 24115}, path)
+            self.assertEqual(btg.load_never_providers(path), {6777, 24115})
+
+    def test_missing_or_bad_file_is_empty(self):
+        with tempfile.TemporaryDirectory() as d:
+            self.assertEqual(btg.load_never_providers(os.path.join(d, "none.json")), set())
+            bad = os.path.join(d, "bad.json")
+            open(bad, "w").write("{")
+            self.assertEqual(btg.load_never_providers(bad), set())
 
 
 if __name__ == "__main__":

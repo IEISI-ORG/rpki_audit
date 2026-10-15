@@ -10,6 +10,7 @@ with the iptoasn.com table; each probe's own ASN comes from the RIPE Atlas probe
 Inputs:  data/atlas/harvest/, data/atlas/ip2asn/ip2asn-combined.tsv.gz,
          data/atlas/probes/<YYYYMMDD>.json.bz2, rov_audit_v22_final.csv
 Outputs: data/atlas/harvest_evidence.csv (per AS and address family),
+         data/atlas/ixp_asns.json (IXP ASNs, read by build_topology_from_go.py),
          reports/atlas_harvest_analysis.md
 
 Usage: python3 analyze_harvest.py
@@ -143,6 +144,14 @@ def ixp_asns(peeringdb_rs: set, as0: set, ix_announcers: set, tier1: set = froze
         if n >= 2 and (asn in a0 or asn in ann or asn in ixf):
             out.add(asn)
     return out - set(tier1) - set(mid_path) - set(with_providers)
+
+
+def save_ixp_asns(asns: set, path: str = rov_utils.FILE_IXP_ASNS) -> None:
+    """Save the IXP ASN list for build_topology_from_go.load_never_providers."""
+    tmp = path + ".tmp"
+    with open(tmp, "w") as fh:
+        json.dump({"date": time.strftime("%Y-%m-%d"), "asns": sorted(asns)}, fh)
+    os.replace(tmp, path)
 
 
 def load_ixf_ixp(directory: str = DIR_IXF) -> set:
@@ -299,6 +308,7 @@ def main() -> None:
     announcers = ix_announcers(ix_pfx, ix_members, lookup)
     ixps = ixp_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS), load_mid_path(),
                     load_exchange_owned(), asns_with_providers(aspa, upstreams), load_ixf_ixp())
+    save_ixp_asns(ixps)
     exclude = ixps | set(rov_utils.NON_TRANSIT_ASNS)
     index = json.load(open(os.path.join(DIR_HARVEST, "index.json")))
     recent_from = time.time() - RECENT_DAYS * 86400

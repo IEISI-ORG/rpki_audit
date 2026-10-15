@@ -8,6 +8,7 @@ import rov_utils
 # Single source of truth — defined in rov_utils.py
 TIER_1_FIREWALL        = rov_utils.TIER_1_ASNS
 IS_NON_TRANSIT         = rov_utils.NON_TRANSIT_ASNS
+FILE_IXP_ASNS          = rov_utils.FILE_IXP_ASNS
 RATIO                  = rov_utils.PROVIDER_RATIO
 CONFIRM_REGIONS        = rov_utils.RRC_CONFIRM_REGIONS
 IXP_PRUNE_THRESHOLD    = rov_utils.CONE_QUALITY_THRESHOLD  # 5.0 %
@@ -157,6 +158,14 @@ def load_triples(base_dir: str = "output") -> dict | None:
 # Path-based (top-down) inference
 # ---------------------------------------------------------------------------
 
+def load_never_providers(path: str = FILE_IXP_ASNS) -> set:
+    """IXP ASNs saved by analyze_harvest.save_ixp_asns; empty when the file is missing or bad."""
+    try:
+        return {int(a) for a in json.load(open(path))["asns"]}
+    except (OSError, ValueError, KeyError, TypeError):
+        return set()
+
+
 def transit_degrees(triples: dict) -> dict:
     """{x: number of distinct neighbours on either side of x where x is mid-path}."""
     return {x: len({y for y, _, _ in ts} | {c for _, c, _ in ts}) for x, ts in triples.items()}
@@ -181,7 +190,7 @@ def _reaches(down: dict, src: int, dst: int) -> bool:
     return False
 
 
-def infer_top_down(triples: dict, pos: dict, td: dict) -> dict:
+def infer_top_down(triples: dict, pos: dict, td: dict, never_providers: set = frozenset()) -> dict:
     """{provider: {customers}} from path triples, AS Rank style.
 
     x provides c when x passed c's route on to an AS y that is x's provider or a Tier 1: valley-free
@@ -192,6 +201,7 @@ def infer_top_down(triples: dict, pos: dict, td: dict) -> dict:
     x, so they are known when x is visited, and the graph is loop-free by construction. Later
     passes repeat until nothing changes, also accepting c ranked above x when c's transit degree
     is at most UP_RANK_MAX_RATIO times x's; every edge after pass 0 is checked for loops.
+    ASes in never_providers (IXP ASNs) are never x.
     """
     provs: dict = defaultdict(set)
     down: dict = defaultdict(set)
@@ -201,7 +211,7 @@ def infer_top_down(triples: dict, pos: dict, td: dict) -> dict:
     for npass in range(TOP_DOWN_MAX_PASSES):
         added = 0
         for x in order:
-            if x in IS_NON_TRANSIT or x not in triples:
+            if x in IS_NON_TRANSIT or x in never_providers or x not in triples:
                 continue
             px = provs.get(x, ())
             for y, c, af in triples[x]:
@@ -335,8 +345,10 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
       tier1        kept when the customer is a stub (never seen mid-path), AS Rank step 9:
                    97% CAIDA-same on the 11 Oct dumps. A stub has no customers, so no cone nests.
       ratio_stub   a ratio_4x link to a stub seen from >= STUB_RATIO_MIN_REGIONS collector regions
-                   (item 4: signed ASPA 132/7), unless the provider is in never_providers (IXP ASNs).
+                   (item 4: signed ASPA 132/7).
       unconfirmed  any other link the rules above would have made p2c.
+    ixp_asn        any rule above would make an AS in never_providers (IXP ASNs, analyze_harvest.py)
+                   the provider (item 2, 2026-10-16). Its links are route-server sessions.
     """
     labels = {}
     for a, nbrs in adj.items():
@@ -344,6 +356,8 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
             pair = (min(a, b), max(a, b))
             if pair not in labels:
                 labels[pair] = infer_link(a, b, degrees, link_regions)
+                if labels[pair][0] in never_providers:
+                    labels[pair] = (None, None, "ixp_asn")
 
     if evidence is None:
         down = defaultdict(list)
@@ -364,7 +378,9 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
                 ab, ba = evidence.get((a, b), 0) & EV_T1, evidence.get((b, a), 0) & EV_T1
                 if bool(ab) != bool(ba):
                     pr, cu = (a, b) if ab else (b, a)
-                    if degrees[pr] > degrees[cu]:
+                    if pr in never_providers:
+                        labels[(a, b)] = (None, None, "ixp_asn")
+                    elif degrees[pr] > degrees[cu]:
                         labels[(a, b)] = (pr, cu, "restored")
 
         down = defaultdict(list)
@@ -385,7 +401,7 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
 
     td = transit_degrees(triples)
     pos = rank_positions(set(adj) | set(triples), td, degrees)
-    edges = infer_top_down(triples, pos, td)
+    edges = infer_top_down(triples, pos, td, never_providers)
     has_provider = {c for cs in edges.values() for c in cs}
     last = len(pos)
     for p, cs in edges.items():
@@ -397,7 +413,7 @@ def build_graph(adj: dict, degrees: dict, link_regions: dict, evidence: dict | N
         providerless = (rule in ("ratio_4x", "restored") and c not in has_provider
                         and pos.get(p, last) < pos.get(c, last))
         tier1_stub = rule == "tier1" and td.get(c, 0) == 0
-        ratio_stub = (rule == "ratio_4x" and td.get(c, 0) == 0 and p not in never_providers
+        ratio_stub = (rule == "ratio_4x" and td.get(c, 0) == 0
                       and len(link_regions.get(pair, ())) >= STUB_RATIO_MIN_REGIONS)
         if (providerless or tier1_stub or ratio_stub) and not _reaches(edges, c, p):
             edges[p].add(c)
@@ -451,7 +467,12 @@ def build_topology():
               "(Tier 1 override, degree ratio) without path inference.")
     else:
         print(f"    - Path triples: {sum(map(len, triples.values())):,} for {len(triples):,} ASes")
-    downstream_map, labels = build_graph(adj, degrees, link_regions, evidence, triples)
+    never_providers = load_never_providers()
+    if never_providers:
+        print(f"    - IXP ASNs (never providers): {len(never_providers)}")
+    else:
+        print(f"    [!] No IXP ASN list ({FILE_IXP_ASNS}); run analyze_harvest.py.")
+    downstream_map, labels = build_graph(adj, degrees, link_regions, evidence, triples, never_providers)
 
     rules = Counter(rule for _, _, rule in labels.values())
     kept = sum(len(cs) for cs in downstream_map.values())

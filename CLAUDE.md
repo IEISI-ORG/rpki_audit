@@ -174,6 +174,11 @@ phantom only appears in European-biased collectors.
     (`rov_utils.STUB_RATIO_MIN_REGIONS`; 2,969 links, signed ASPA 132 confirmed / 7 denied, CAIDA 82.5%
     same; links seen in exactly 2 regions: ASPA 33 / 87, 43% CAIDA peering, not kept; notes in
     `plan/item4_ratio_stub_notes.md`); every other former p2c link is `unconfirmed` (7,585).
+  - **IXP ASNs are never providers** (item 2, 2026-10-16): `analyze_harvest.py` saves its IXP ASN list
+    (two signals, see Public measurements) to `data/atlas/ixp_asns.json` (`rov_utils.FILE_IXP_ASNS`);
+    `build_graph(..., never_providers)` labels any link one of them would provide `ixp_asn` and
+    `infer_top_down` skips them. No file → empty set and a warning. On 2026-10-16: 60 ASNs, no link
+    changed (26 are NON_TRANSIT, the other 34 had no customers); it guards later data.
   - Result vs step 2: ASPA precision 90.0% → 94.5%, recall 54.3% → 59.9% (CAIDA 90.2 / 63.7);
     CAIDA agreement 89.5% → 92.1%. Direct customer counts are close to CAIDA's (Lumen 6,179 vs
     6,508; NTT 1,374 vs 1,444; HE 1,999 vs 2,255; Spark 44 vs 46; REANNZ 32 vs 33).
