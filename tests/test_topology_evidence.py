@@ -248,5 +248,16 @@ class TestTopDown(unittest.TestCase):
         self.assertEqual(labels[(A, E)], (None, None, "unconfirmed"))
 
 
+
+class TestIxpAsnsNonTransit(unittest.TestCase):
+    # 2026-10-15: IXP ASNs: PeeringDB info_type "Route Server" and an AS0 ASPA record (two signals)
+    AS0_IXP_ASNS = {6777, 32801, 41441, 42064, 43100, 44596, 46210, 47184, 47200, 47627, 49624, 51706,
+                         53679, 55518, 57328, 58171, 59552, 60247, 62228, 197032, 201376, 212557, 212674,
+                         213874, 215405, 218511, 219524}
+
+    def test_as0_ixp_asns_are_non_transit(self):
+        self.assertEqual(self.AS0_IXP_ASNS - rov_utils.NON_TRANSIT_ASNS, set())
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -89,7 +89,8 @@ class IxMap:
 
 
 def load_ix(directory: str = DIR_PEERINGDB) -> tuple["IxMap | None", set, list, list]:
-    """IxMap, PeeringDB route-server ASNs, ixpfx rows and netixlan rows; empty without the files."""
+    """IxMap, ASNs with PeeringDB info_type "Route Server", ixpfx rows and netixlan rows; empty without
+    the files."""
     try:
         pfx = json.load(open(os.path.join(directory, "ixpfx.json")))["data"]
         nix = json.load(open(os.path.join(directory, "netixlan.json")))["data"]
@@ -120,13 +121,13 @@ def ix_announcers(prefixes: list[dict], netixlan: list[dict], lookup: IpAsn) -> 
     return out
 
 
-def route_server_asns(peeringdb_rs: set, as0: set, ix_announcers: set, tier1: set = frozenset(),
-                      mid_path: set = frozenset()) -> set:
-    """ASNs with at least two of three route-server signals: PeeringDB "Route Server" type (self-
-    declared), an AS0 ASPA record (no providers) and announcing an IX LAN prefix while being on that LAN
+def ixp_asns(peeringdb_rs: set, as0: set, ix_announcers: set, tier1: set = frozenset(),
+             mid_path: set = frozenset()) -> set:
+    """IXP ASNs: at least two of three signals, PeeringDB info_type "Route Server" (self-declared), an
+    AS0 ASPA record (no providers) and announcing an IX LAN prefix while being on that LAN
     (ix_announcers). One signal alone isn't enough (Terry, 2026-10-15). Excluded whatever the signals:
-    Tier 1s (for them AS0 is evidence of being a Tier 1) and ASNs seen mid-path in BGP (a route server
-    is transparent, RFC 7947; one seen passing routes to >= 3 networks is carrying traffic)."""
+    Tier 1s (for them AS0 is evidence of being a Tier 1) and ASNs that carry traffic in BGP (an IXP's
+    route servers are transparent, RFC 7947; an ASN passing routes to >= 3 networks is transit)."""
     signals = Counter()
     for s in (peeringdb_rs, as0, ix_announcers):
         signals.update(set(s))
@@ -139,8 +140,8 @@ MID_PATH_MIN_LEFT = 3
 def load_mid_path(base_dir: str = "output", min_left: int = MID_PATH_MIN_LEFT) -> set:
     """ASNs that carry traffic in BGP: in some RIS dump (bgp-extractor asn_stats.csv) they have a
     neighbour on the origin side (Right_Count > 0, so they passed routes on) and at least min_left
-    neighbours on the collector side. Real route servers turn up mid-path only for 1-2 members with
-    non-transparent sessions (AMS-IX 6777: 2; France-IX Paris, NIX.CZ, SGIX: 1); Cogent: 107."""
+    neighbours on the collector side. IXP ASNs turn up mid-path only for 1-2 members with
+    non-transparent route-server sessions (AMS-IX 6777: 2; France-IX Paris, NIX.CZ, SGIX: 1); Cogent: 107."""
     out = set()
     for path in glob.glob(os.path.join(base_dir, "rrc*", "asn_stats.csv")):
         with open(path) as f:
@@ -222,7 +223,7 @@ def credible_forwarders(runs: list[tuple[int, int]], probe_asn: int | None,
     hands the trace straight to the beacon origin. A single hop between two other
     ASes is usually that AS's address on a border router (third-party address), not transit
     through it: e.g. 2026-01-04, 399078 -> one 3356-numbered hop -> 26042 -> 13335. exclude:
-    ASes that can't be forwarders (PeeringDB route-server networks, NON_TRANSIT_ASNS).
+    ASes that can't be forwarders (IXP ASNs, NON_TRANSIT_ASNS).
     """
     out = set()
     for i, (asn, hops) in enumerate(runs):
@@ -240,9 +241,8 @@ def main() -> None:
     raw_aspa = json.load(open(os.path.join(rov_utils.DIR_DATA, "aspa_real.json")))
     as0 = {int(k) for k, v in raw_aspa.items() if not set(v) - {0}}
     announcers = ix_announcers(ix_pfx, ix_members, lookup)
-    route_servers = route_server_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS),
-                                      load_mid_path())
-    exclude = route_servers | set(rov_utils.NON_TRANSIT_ASNS)
+    ixps = ixp_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS), load_mid_path())
+    exclude = ixps | set(rov_utils.NON_TRANSIT_ASNS)
     index = json.load(open(os.path.join(DIR_HARVEST, "index.json")))
     recent_from = time.time() - RECENT_DAYS * 86400
     ev = defaultdict(lambda: {"probes": set(), "traces": 0, "last": 0, "recent_probes": set()})
@@ -275,11 +275,11 @@ def main() -> None:
         for (asn, af), e in sorted(ev.items()):
             w.writerow([asn, af, len(e["probes"]), e["traces"],
                         time.strftime("%Y-%m-%d", time.gmtime(e["last"])), len(e["recent_probes"])])
-    write_report(ev, totals, len(probe_asns), ix is not None, len(route_servers))
+    write_report(ev, totals, len(probe_asns), ix is not None, len(ixps))
     print(f"[+] {FILE_EVIDENCE}, {FILE_REPORT} ({time.time() - t0:.0f}s)")
 
 
-def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = False, n_rs: int = 0) -> None:
+def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = False, n_ixp: int = 0) -> None:
     audit = {int(r["asn"]): r for r in csv.DictReader(open(rov_utils.FILE_AUDIT_FINAL))}
     recent4 = {asn: e for (asn, af), e in ev.items() if af == 4 and e["recent_probes"]}
     n_recent = {af: sum(1 for (a, f), e in ev.items() if f == af and e["recent_probes"]) for af in (4, 6)}
@@ -303,10 +303,10 @@ def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = F
              "hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a "
              f"border-router address). Probe home ASNs known for {n_probe_meta:,} probes.", "",
              ("IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). "
-              f"{n_rs:,} ASNs never count as forwarders because at least two of three route-server signals agree "
-              "(PeeringDB 'Route Server' type, AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on "
-              "that LAN; one alone isn't enough), and the ASN doesn't carry traffic in RIS (a route server is "
-              "transparent: mid-path for at most 2 members with non-transparent sessions). "
+              f"{n_ixp:,} IXP ASNs never count as forwarders: at least two of three signals agree (PeeringDB "
+              "info_type 'Route Server', AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on that "
+              "LAN; one alone isn't enough), and the ASN doesn't carry traffic in RIS (an IXP's route servers are "
+              "transparent; its ASN is mid-path for at most 2 members with non-transparent sessions). "
               "AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global "
               "publish it, which supports their Tier 1 status."
               if have_ix else "PeeringDB files missing: IX LAN hops are not resolved."), "",

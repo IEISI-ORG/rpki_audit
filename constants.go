@@ -46,7 +46,7 @@ func isTier1(asn string) bool {
 }
 
 // isNonTransit returns true for ASNs that must be excluded from provider-customer
-// inference. This includes DNS root servers, RIRs, and IXP route servers.
+// inference. This includes DNS root servers, RIRs, and IXP ASNs.
 //
 // Root server ASNs sourced from bgp.tools icrit tag (verified 2026-04-26).
 // Do NOT add CDN-tagged ASNs in bulk — some CDNs (e.g. OVH AS16276) also sell transit.
@@ -72,6 +72,34 @@ func isNonTransit(asn string) bool {
 		"20144",  // ICANN — L-Root
 		"7500",   // WIDE Project — M-Root
 		"112",    // AS112 Project — RFC 7534 blackhole for private PTR
+		// IXP ASNs (2026-10-15): PeeringDB info_type "Route Server" + AS0 ASPA record
+		"6777",   // AMS-IX Route Servers
+		"32801",  // IndyIX Route Servers
+		"41441",  // SPEED-IX Route Servers
+		"42064",  // France-IX Marseille Route Servers
+		"43100",  // France-IX Lyon/AURA Route Servers
+		"44596",  // Community-IX.ch Route Servers
+		"46210",  // YXEIX Route Servers
+		"47184",  // France-IX Toulouse Route Servers
+		"47200",  // NIX.CZ Route Servers
+		"47627",  // NIX.SK Route Servers
+		"49624",  // LU-CIX Route Servers
+		"51706",  // France-IX Paris Route Servers
+		"53679",  // MICE Route Servers
+		"55518",  // SGIX Route Servers
+		"57328",  // DD-IX Route Servers
+		"58171",  // Rheintal IX Route Servers
+		"59552",  // SON-IX Route Servers
+		"60247",  // LabIX Route Servers
+		"62228",  // France-IX Lille Route Servers
+		"197032", // TREX Route Servers
+		"201376", // AuvernIX Route Exchange (mid-path for 3 neighbours on 80 RIS paths; kept: AS0 + PeeringDB type)
+		"212557", // France-IX Bordeaux Route Servers
+		"212674", // KA-NIX Route Servers
+		"213874", // NSIX Route Servers
+		"215405", // Free-IX Greece: Routeservers
+		"218511", // Clue-IX Route Server
+		"219524", // France-IX Paris Essentiel Route Servers
 		"23456",  // AS_TRANS — RFC 6793 (4-byte ASN transition)
 		"0":      // RFC 7607 reserved
 		return true

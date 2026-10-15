@@ -100,3 +100,12 @@ func TestCloudflareIsTransit(t *testing.T) {
 		t.Fatal("RIPE NCC AS3333 must stay non-transit")
 	}
 }
+
+// IXP ASNs (PeeringDB info_type "Route Server") that publish AS0 ASPA (2026-10-15), e.g. AMS-IX, NIX.CZ.
+func TestAS0IxpAsnsAreNonTransit(t *testing.T) {
+	for _, asn := range []string{"6777", "47200", "51706", "55518", "219524"} {
+		if !isNonTransit(asn) {
+			t.Errorf("AS%s must be non-transit", asn)
+		}
+	}
+}

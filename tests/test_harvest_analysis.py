@@ -69,7 +69,7 @@ class TestAsPath(unittest.TestCase):
 
 
     def test_excluded_ases_are_not_forwarders(self):
-        # PeeringDB route-server networks: their ASN announces the IX LAN, so they appear on paths
+        # IXP ASNs: they announce the IX LAN, so they appear on paths
         runs = [(64500, 2), (6895, 1), (13335, 1)]
         self.assertEqual(ah.credible_forwarders(runs, probe_asn=None, exclude={6895}), {64500})
 
@@ -85,16 +85,16 @@ class TestIxAnnouncers(unittest.TestCase):
         self.assertEqual(ah.ix_announcers(pfx, nix, t), {64600})
 
 
-class TestRouteServers(unittest.TestCase):
-    """A route server needs two of three signals (Terry, 2026-10-15: more than one data point)."""
+class TestIxpAsns(unittest.TestCase):
+    """An IXP ASN needs two of three signals (Terry, 2026-10-15: more than one data point)."""
 
     def test_two_signals_needed(self):
-        rs = ah.route_server_asns(peeringdb_rs={1, 2, 3}, as0={2, 3, 4}, ix_announcers={3, 4, 5})
+        rs = ah.ixp_asns(peeringdb_rs={1, 2, 3}, as0={2, 3, 4}, ix_announcers={3, 4, 5})
         self.assertEqual(rs, {2, 3, 4})
 
-    def test_seen_mid_path_is_not_a_route_server(self):
-        # a route server is transparent (RFC 7947): its ASN never sits mid-path in BGP
-        rs = ah.route_server_asns(peeringdb_rs={1, 2}, as0={1, 2}, ix_announcers=set(), mid_path={2})
+    def test_seen_mid_path_is_not_an_ixp_asn(self):
+        # an IXP's route servers are transparent (RFC 7947): its ASN doesn't carry traffic in BGP
+        rs = ah.ixp_asns(peeringdb_rs={1, 2}, as0={1, 2}, ix_announcers=set(), mid_path={2})
         self.assertEqual(rs, {1})
 
     def test_mid_path_from_asn_stats(self):
@@ -110,9 +110,9 @@ class TestRouteServers(unittest.TestCase):
                     f.write("ASN,Left_Count,Right_Count,Total_Neighbors,Total_Paths\n" + "\n".join(rows) + "\n")
             self.assertEqual(ah.load_mid_path(d), {174})
 
-    def test_tier1_with_as0_is_not_a_route_server(self):
+    def test_tier1_with_as0_is_not_an_ixp_asn(self):
         # Cogent publishes AS0 and announces an IX LAN prefix: for a Tier 1, AS0 supports Tier 1
-        self.assertEqual(ah.route_server_asns(peeringdb_rs=set(), as0={174, 1299}, ix_announcers={174},
+        self.assertEqual(ah.ixp_asns(peeringdb_rs=set(), as0={174, 1299}, ix_announcers={174},
                                               tier1={174, 1299}), set())
 
 
