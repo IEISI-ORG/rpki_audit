@@ -42,5 +42,30 @@ class TestPlan(unittest.TestCase):
         self.assertEqual(plan, [])
 
 
+    def test_daily_limit_new_measurements_first(self):
+        self.assertEqual(ah.MAX_PER_RUN, 500)
+        ms = [msm(1, "a", "Ongoing")] + [msm(i, "b") for i in range(2, 8)]
+        plan = ah.plan_downloads(ms, have=set(), limit=3)
+        self.assertEqual([m["id"] for m, _ in plan], [2, 3, 4])
+
+    def test_skipped_measurements_not_retried(self):
+        plan = ah.plan_downloads([msm(1, "a"), msm(2, "b")], have=set(), skip={1})
+        self.assertEqual([m["id"] for m, _ in plan], [2])
+
+
+class TestReadCapped(unittest.TestCase):
+    """2026-10-15: one-off measurement 185673939 (1 probe) returned ~4.3 GB, read whole into memory."""
+
+    def test_under_cap(self):
+        self.assertEqual(ah.read_capped([b"[1,", b"2]"], cap=10), b"[1,2]")
+
+    def test_over_cap_raises(self):
+        with self.assertRaises(ah.ResponseTooLarge):
+            ah.read_capped(iter([b"x" * 6, b"y" * 6]), cap=10)
+
+    def test_default_cap(self):
+        self.assertEqual(ah.MAX_RESPONSE_BYTES, 100_000_000)
+
+
 if __name__ == "__main__":
     unittest.main()

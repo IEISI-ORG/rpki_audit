@@ -16,11 +16,15 @@
 #   # Commit + push report outputs: weekly Sunday 08:00 (waits for full/reports)
 #   0 8 * * 0 /home/terry/rpki_audit/rov_cron.sh commit >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
+#   # Public Atlas measurements to the beacons: daily 04:30, at most 500 per run
+#   30 4 * * * /home/terry/rpki_audit/rov_cron.sh harvest >> /home/terry/rpki_audit/logs/cron.log 2>&1
+#
 # Modes:
 #   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
 #   commit   — git commit changed report outputs, then push to origin (weekly, Sunday)
+#   harvest  — atlas_harvest.py --max 500 (daily; waits for atlas/full/reports; 4 GB limit)
 #
 # Lock files prevent overlapping runs of the same mode.
 # ============================================================
@@ -75,7 +79,7 @@ wait_for_lock() {
     local f="$LOCK_DIR/${name}.lock"
     [ -e "$f" ] || return 0
     if ! flock -w 21600 "$f" true; then
-        log "[commit] Timed out waiting for $name to finish; committing anyway."
+        log "[$MODE] Timed out waiting for $name to finish; continuing anyway."
     fi
 }
 
@@ -87,6 +91,19 @@ run_atlas() {
     cd "$SCRIPT_DIR"
     $PYTHON batch_verify_smart_v4.py --limit 50
     log "[atlas] Done."
+}
+
+# -----------------------------------------------------------
+# Stage: Atlas harvest (public measurements, no credits)
+# At most 500 measurements a run. Memory capped with ulimit -v (systemd-run --user
+# needs a user session bus, which cron may not have): on 2026-10-15 the unlimited
+# first run held a 4.3 GB response and contributed to the host's memory exhaustion.
+# -----------------------------------------------------------
+run_harvest() {
+    log "[harvest] Starting Atlas harvest (max 500)..."
+    cd "$SCRIPT_DIR"
+    ( ulimit -v 4000000; $PYTHON atlas_harvest.py --max 500 ) >> "$LOG_DIR/harvest.log" 2>&1
+    log "[harvest] Done."
 }
 
 # -----------------------------------------------------------
@@ -202,6 +219,7 @@ case "$MODE" in
     reports)
         acquire_lock reports
         trap release_lock EXIT
+        wait_for_lock harvest
         run_reports
         ;;
     full)
@@ -221,13 +239,22 @@ case "$MODE" in
         run_commit
         run_push
         ;;
+    harvest)
+        acquire_lock harvest
+        trap release_lock EXIT
+        wait_for_lock atlas
+        wait_for_lock full
+        wait_for_lock reports
+        run_harvest
+        ;;
     *)
-        echo "Usage: $0 {atlas|reports|full|commit}"
+        echo "Usage: $0 {atlas|reports|full|commit|harvest}"
         echo ""
         echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
         echo "  commit   — Commit changed report outputs and push (weekly, Sunday)"
+        echo "  harvest  — Public Atlas beacon measurements, max 500 (daily)"
         exit 1
         ;;
 esac
