@@ -59,5 +59,41 @@ class TestSafeUrl(unittest.TestCase):
             self.assertFalse(f.safe_url(u, resolve=r), u)
 
 
+
+class TestConnectionLevelCheck(unittest.TestCase):
+    """The check runs where urllib3 connects, on the host it parsed and the addresses it uses:
+    no parser differential, no second DNS lookup, no environment proxies."""
+
+    @staticmethod
+    def resolver(addresses):
+        return lambda host, port, type=0: [(2, 1, 6, "", (a, port)) for a in addresses]
+
+    def test_public_addresses(self):
+        infos = f.public_addresses("ix.example", 443, resolve=self.resolver(["193.0.6.139"]))
+        self.assertEqual([i[4][0] for i in infos], ["193.0.6.139"])
+        for bad in (["127.0.0.1"], ["193.0.6.139", "10.1.2.3"], ["169.254.169.254"], []):
+            with self.assertRaises(f.UnsafeUrl):
+                f.public_addresses("ix.example", 443, resolve=self.resolver(bad))
+
+    def test_session_uses_public_only_connections_and_no_proxies(self):
+        s = f.make_session()
+        self.assertFalse(s.trust_env)
+        pools = s.get_adapter("https://ix.example/").poolmanager.pool_classes_by_scheme
+        self.assertIs(pools["https"].ConnectionCls, f.PublicHTTPSConnection)
+        self.assertIs(pools["http"].ConnectionCls, f.PublicHTTPConnection)
+
+    def test_request_to_loopback_is_refused_before_connecting(self):
+        # urllib3 parses these hosts as loopback; the connection refuses them (no socket opened)
+        for u in ("http://127.0.0.1:9/x", "http://user@127.0.0.1:9/", "http://[::1]:9/", "http://localhost:9/"):
+            with self.assertRaises(Exception) as cm:
+                f.make_session().get(u, timeout=5, allow_redirects=False)
+            self.assertIn("refused", str(cm.exception), u)
+
+    def test_differential_url_refused_by_prefilter(self):
+        # urlparse reads this host as 127.0.0.1, urllib3 as 193.0.6.139: get() refuses it outright
+        with self.assertRaises(f.UnsafeUrl):
+            f.get("http://193.0.6.139\\@127.0.0.1:9/", cap=10)
+
+
 if __name__ == "__main__":
     unittest.main()

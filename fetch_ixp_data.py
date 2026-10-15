@@ -5,9 +5,10 @@ PeeringDB objects (data/atlas/peeringdb/) and the exchanges' public IX-F member 
 
 A PeeringDB file is replaced only by a valid, non-empty download, so a failed or rate-limited
 refresh keeps last month's data. Each IX-F export is read in chunks with a 50 MB cap. Export URLs
-come from third-party PeeringDB records, so every URL and redirect must be http(s) to a host that
-resolves only to public addresses (safe_url), or it is skipped: no requests to this host's own
-services or private networks (SSRF).
+come from third-party PeeringDB records (SSRF risk). Requests go through make_session(): its
+connections resolve the host urllib3 actually parsed, refuse it unless every address is public,
+and connect to the address they checked (no second DNS lookup, no parser differential), with
+environment proxies off. Redirects (at most 3) are followed by hand through the same session.
 
 Usage: python3 fetch_ixp_data.py   (run monthly by rov_cron.sh ixp)
 """
@@ -20,6 +21,10 @@ import time
 from urllib.parse import urljoin, urlparse
 
 import requests
+import urllib3.connection
+import urllib3.connectionpool
+from requests.adapters import HTTPAdapter
+from urllib3.exceptions import NewConnectionError
 
 import rov_utils
 from atlas_harvest import ResponseTooLarge, read_capped
@@ -72,6 +77,68 @@ class UnsafeUrl(ValueError):
     pass
 
 
+def public_addresses(host: str, port: int, resolve=socket.getaddrinfo) -> list:
+    """getaddrinfo results for host, or UnsafeUrl unless every address is global and not multicast."""
+    try:
+        infos = resolve(host, port, type=socket.SOCK_STREAM)
+        addrs = [ipaddress.ip_address(str(i[4][0]).split("%")[0]) for i in infos]
+    except (OSError, ValueError, UnicodeError) as e:
+        raise UnsafeUrl(f"refused {host}: {e}") from e
+    if not addrs or not all(a.is_global and not a.is_multicast for a in addrs):
+        raise UnsafeUrl(f"refused {host}: non-public address in {sorted(map(str, addrs))}")
+    return infos
+
+
+class _PublicOnly:
+    """urllib3 connection that checks the addresses it is about to use, then connects to them."""
+
+    def _new_conn(self):
+        try:
+            infos = public_addresses(self._dns_host, self.port)
+        except UnsafeUrl as e:
+            raise NewConnectionError(self, str(e)) from e
+        timeout = self.timeout if isinstance(self.timeout, (int, float)) else None
+        last = None
+        for family, kind, proto, _, addr in infos:
+            sock = socket.socket(family, kind, proto)
+            try:
+                sock.settimeout(timeout)
+                sock.connect(addr)
+                return sock
+            except OSError as e:
+                sock.close()
+                last = e
+        raise NewConnectionError(self, f"failed to connect to {self.host}: {last}")
+
+
+class PublicHTTPConnection(_PublicOnly, urllib3.connection.HTTPConnection):
+    pass
+
+
+class PublicHTTPSConnection(_PublicOnly, urllib3.connection.HTTPSConnection):
+    pass
+
+
+class _PublicHTTPPool(urllib3.connectionpool.HTTPConnectionPool):
+    ConnectionCls = PublicHTTPConnection
+
+
+class _PublicHTTPSPool(urllib3.connectionpool.HTTPSConnectionPool):
+    ConnectionCls = PublicHTTPSConnection
+
+
+def make_session() -> requests.Session:
+    """requests session whose connections only reach public addresses; environment proxies off."""
+    s = requests.Session()
+    s.trust_env = False
+    adapter = HTTPAdapter()
+    adapter.poolmanager.pool_classes_by_scheme = {"http": _PublicHTTPPool, "https": _PublicHTTPSPool}
+    s.mount("http://", adapter)
+    s.mount("https://", adapter)
+    s.headers.update(HEADERS)
+    return s
+
+
 def safe_url(url: str, resolve=socket.getaddrinfo) -> bool:
     """http(s) URL whose host resolves only to public (global, non-multicast) addresses."""
     try:
@@ -85,12 +152,14 @@ def safe_url(url: str, resolve=socket.getaddrinfo) -> bool:
     return bool(addrs) and all(a.is_global and not a.is_multicast for a in addrs)
 
 
-def get(url: str, cap: int, timeout: int = 120) -> bytes:
-    """Fetch with a byte cap, checking the URL and every redirect with safe_url."""
+def get(url: str, cap: int, timeout: int = 120, session: requests.Session | None = None) -> bytes:
+    """Fetch with a byte cap through a public-only session; redirects followed by hand (at most 3).
+    safe_url is only a cheap pre-filter; the connection itself enforces public addresses."""
+    session = session or make_session()
     for _ in range(MAX_REDIRECTS + 1):
         if not safe_url(url):
             raise UnsafeUrl(f"refused: {url}")
-        with requests.get(url, timeout=timeout, stream=True, headers=HEADERS, allow_redirects=False) as r:
+        with session.get(url, timeout=timeout, stream=True, allow_redirects=False) as r:
             if r.is_redirect and r.headers.get("Location"):
                 url = urljoin(url, r.headers["Location"])
                 continue
