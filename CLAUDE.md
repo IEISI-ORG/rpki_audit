@@ -198,6 +198,8 @@ phantom only appears in European-biased collectors.
   IPv6 graph. Filtering status is per AS (Atlas tests are IPv4; router ROV policy covers both families).
   First run: 37,913 IPv6 verdicts; 1,726 SECURE-class in IPv6 only, 564 of them with HE as an IPv6-only
   provider; 148 worse in IPv6. Build 32 s / 1.33 GiB with both graphs; audit 8.5 min / 5.2 GiB.
+  The country reports (`analyze_country_deep_dive_v2.py`) show an IPv6 summary over the networks seen in
+  IPv6, an IPv6 verdict column in the top-20 table and an "IPv6 DIFFERENCES" section (class changes).
   - Result vs step 2: ASPA precision 90.0% → 94.5%, recall 54.3% → 59.9% (CAIDA 90.2 / 63.7);
     CAIDA agreement 89.5% → 92.1%. Direct customer counts are close to CAIDA's (Lumen 6,179 vs
     6,508; NTT 1,374 vs 1,444; HE 1,999 vs 2,255; Spark 44 vs 46; REANNZ 32 vs 33).
