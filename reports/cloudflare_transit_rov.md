@@ -102,7 +102,8 @@ invalid beacon is its own deliberately invalid prefix, and APNIC sees few end us
 - Audit: PROVIDER UNKNOWN 744 → 368; 372 ASes move to STUB: PASSIVE (Clean Pipe), among them
   Windcave, Ministry of Education, TVNZ, Northpower and Inland Revenue. Per section 5, PASSIVE is right
   for customers on Magic Transit Egress and too generous for ingress-only ones. BGP can't tell them
-  apart.
+  apart. **Decision (Terry, 2026-10-15):** PASSIVE is accepted as reasonable, because at least a
+  Magic Transit customer's inbound traffic arrives through Cloudflare's filtering.
 - `cone-calculator` (degree rules, rrc00 only) now gives Cloudflare an audit cone of 18,878 (was 0).
   That tool still uses the old degree ratio, so the figure is likely inflated by Cloudflare's peering
   degree (TODO: bring cone-calculator in line with the path inference).
