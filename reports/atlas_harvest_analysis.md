@@ -2,7 +2,7 @@
 
 Generated 2026-10-15 by `analyze_harvest.py` from `atlas_harvest.py` output (third-party measurements, no credits). A trace that reaches the invalid host means the ASes on its path forwarded the invalid route then; most receive it straight from Cloudflare, so this tests that session. Traces that stop attribute nothing. Invalid side only: there is no paired valid trace, so there is no off-path check. An AS counts as a forwarder only if it is the probe's own AS, has >= 2 hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a border-router address). Probe home ASNs known for 52,384 probes.
 
-IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). 35 IXP ASNs never count as forwarders: at least two of three signals agree (PeeringDB info_type 'Route Server', AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on that LAN; one alone isn't enough), and the ASN doesn't carry traffic in RIS (an IXP's route servers are transparent; its ASN is mid-path for at most 2 members with non-transparent sessions). AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global publish it, which supports their Tier 1 status.
+IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). 33 IXP ASNs never count as forwarders: at least two independent signals agree, one of them from outside PeeringDB (PeeringDB info_type 'Route Server'; an AS0 ASPA record; the exchange operator's own network: owned by the exchange's PeeringDB organisation or announcing its IX LAN), the ASN has no providers (an exchange's cache-fill or operator ASN buys transit), and it doesn't carry traffic in RIS (an IXP's route servers are transparent; its ASN is mid-path for at most 2 members with non-transparent sessions). AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global publish it, which supports their Tier 1 status.
 
 Only traces from the last 7 days count, the same freshness rule as the audit's own Atlas results. The first harvest is mostly older campaigns (IPv6: 7,423 of 7,499 traces in June 2026; IPv4: mostly January 2026), so little of it is current; the daily harvest adds new public measurements.
 
@@ -11,7 +11,7 @@ Only traces from the last 7 days count, the same freshness rule as the audit's o
 | traces (any age) | 16,353 | 7,499 |
 | reached the invalid host (any age) | 8,956 | 3,141 |
 | reached it, last 7 days | 23 | 0 |
-| ASes seen forwarding (any age) | 2,893 | 1,389 |
+| ASes seen forwarding (any age) | 2,893 | 1,390 |
 | ASes seen forwarding, last 7 days | 7 | 0 |
 
 ## IPv4: audit says SECURE, but current traces show the AS forwarding

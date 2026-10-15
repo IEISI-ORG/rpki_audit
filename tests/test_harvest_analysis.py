@@ -92,6 +92,45 @@ class TestIxpAsns(unittest.TestCase):
         rs = ah.ixp_asns(peeringdb_rs={1, 2, 3}, as0={2, 3, 4}, ix_announcers={3, 4, 5})
         self.assertEqual(rs, {2, 3, 4})
 
+    def test_two_peeringdb_fields_alone_are_not_enough(self):
+        # "Route Server" type and exchange ownership are both entered by PeeringDB admins
+        rs = ah.ixp_asns(peeringdb_rs={1}, as0=set(), ix_announcers=set(), exchange_owned={1})
+        self.assertEqual(rs, set())
+
+    def test_exchange_owned_with_as0_counts(self):
+        # e.g. an exchange's own ASN that publishes AS0 but isn't typed "Route Server"
+        rs = ah.ixp_asns(peeringdb_rs=set(), as0={2}, ix_announcers=set(), exchange_owned={2})
+        self.assertEqual(rs, {2})
+
+    def test_load_exchange_owned(self):
+        import json
+        import os
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            json.dump({"data": [{"asn": 6777, "org_id": 1}, {"asn": 174, "org_id": 2}]},
+                      open(os.path.join(d, "net_all.json"), "w"))
+            json.dump({"data": [{"id": 26, "org_id": 1}]}, open(os.path.join(d, "ix_org.json"), "w"))
+            self.assertEqual(ah.load_exchange_owned(d), {6777})
+            self.assertEqual(ah.load_exchange_owned(os.path.join(d, "missing")), set())
+
+    def test_asn_with_providers_is_not_an_ixp_asn(self):
+        # an exchange's cache-fill or operator ASN buys transit (Terry, 2026-10-15); an IXP's
+        # route-server ASN has no providers
+        rs = ah.ixp_asns(peeringdb_rs=set(), as0=set(), ix_announcers={3, 4}, exchange_owned={3, 4},
+                         with_providers={3})
+        self.assertEqual(rs, set())   # 4: owned + announces is one fact (it numbers the LAN), see below
+
+    def test_owned_and_announcing_is_one_signal(self):
+        # the operator numbering the IX LAN from its own space makes both true at once
+        self.assertEqual(ah.ixp_asns(peeringdb_rs=set(), as0=set(), ix_announcers={4}, exchange_owned={4}), set())
+        self.assertEqual(ah.ixp_asns(peeringdb_rs={4}, as0=set(), ix_announcers={4}, exchange_owned={4}), {4})
+
+    def test_providers_from_aspa_and_graph(self):
+        aspa = {10: {0}, 11: {174}, 12: {0}}
+        graph_providers = {12: {3356}, 13: {1299}}
+        # 11: ASPA lists a provider; 13: inferred provider, no AS0; 12: inferred, but signed AS0 wins
+        self.assertEqual(ah.asns_with_providers(aspa, graph_providers), {11, 13})
+
     def test_seen_mid_path_is_not_an_ixp_asn(self):
         # an IXP's route servers are transparent (RFC 7947): its ASN doesn't carry traffic in BGP
         rs = ah.ixp_asns(peeringdb_rs={1, 2}, as0={1, 2}, ix_announcers=set(), mid_path={2})

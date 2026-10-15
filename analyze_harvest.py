@@ -122,16 +122,45 @@ def ix_announcers(prefixes: list[dict], netixlan: list[dict], lookup: IpAsn) -> 
 
 
 def ixp_asns(peeringdb_rs: set, as0: set, ix_announcers: set, tier1: set = frozenset(),
-             mid_path: set = frozenset()) -> set:
-    """IXP ASNs: at least two of three signals, PeeringDB info_type "Route Server" (self-declared), an
-    AS0 ASPA record (no providers) and announcing an IX LAN prefix while being on that LAN
-    (ix_announcers). One signal alone isn't enough (Terry, 2026-10-15). Excluded whatever the signals:
-    Tier 1s (for them AS0 is evidence of being a Tier 1) and ASNs that carry traffic in BGP (an IXP's
-    route servers are transparent, RFC 7947; an ASN passing routes to >= 3 networks is transit)."""
-    signals = Counter()
-    for s in (peeringdb_rs, as0, ix_announcers):
-        signals.update(set(s))
-    return {asn for asn, n in signals.items() if n >= 2} - set(tier1) - set(mid_path)
+             mid_path: set = frozenset(), exchange_owned: set = frozenset(),
+             with_providers: set = frozenset()) -> set:
+    """IXP ASNs: at least two independent signals, at least one from outside PeeringDB.
+
+    Signals: PeeringDB info_type "Route Server" (self-declared); an AS0 ASPA record (no providers,
+    signed by the operator); the operator's own network: owned by an exchange's PeeringDB
+    organisation, or announcing an IX LAN prefix while listed on that LAN (one signal: an operator
+    numbering the LAN from its own space makes both true). Outside PeeringDB: AS0, announcing.
+    One signal alone isn't enough (Terry, 2026-10-15). Excluded whatever the signals: Tier 1s (AS0 is
+    evidence of being a Tier 1), ASNs that carry traffic in BGP (an IXP's route servers are
+    transparent, RFC 7947) and ASNs with providers (an exchange's cache-fill or operator ASN buys
+    transit; asns_with_providers)."""
+    rs, a0, ann, own = set(peeringdb_rs), set(as0), set(ix_announcers), set(exchange_owned)
+    out = set()
+    for asn in rs | a0 | ann | own:
+        n = (asn in rs) + (asn in a0) + (asn in ann or asn in own)
+        if n >= 2 and (asn in a0 or asn in ann):
+            out.add(asn)
+    return out - set(tier1) - set(mid_path) - set(with_providers)
+
+
+def asns_with_providers(aspa: dict, graph_providers: dict) -> set:
+    """ASNs with a provider: listed in their own ASPA record, or inferred in our graph unless they
+    signed AS0 (the operator's signed record outranks our inference)."""
+    as0 = {a for a, ps in aspa.items() if not set(ps) - {0}}
+    listed = {a for a, ps in aspa.items() if set(ps) - {0}}
+    inferred = {a for a, ps in graph_providers.items() if ps} - as0
+    return listed | inferred
+
+
+def load_exchange_owned(directory: str = DIR_PEERINGDB) -> set:
+    """ASNs of PeeringDB networks owned by the same organisation as an exchange (net.org_id in
+    ix.org_id; files net_all.json and ix_org.json). Empty without the files."""
+    try:
+        nets = json.load(open(os.path.join(directory, "net_all.json")))["data"]
+        orgs = {x["org_id"] for x in json.load(open(os.path.join(directory, "ix_org.json")))["data"]}
+    except (OSError, ValueError, KeyError):
+        return set()
+    return {n["asn"] for n in nets if n.get("org_id") in orgs}
 
 
 MID_PATH_MIN_LEFT = 3
@@ -239,9 +268,12 @@ def main() -> None:
     probe_asns = load_probe_asns()
     ix, peeringdb_rs, ix_pfx, ix_members = load_ix()
     raw_aspa = json.load(open(os.path.join(rov_utils.DIR_DATA, "aspa_real.json")))
-    as0 = {int(k) for k, v in raw_aspa.items() if not set(v) - {0}}
+    aspa = {int(k): set(v) for k, v in raw_aspa.items()}
+    as0 = {a for a, v in aspa.items() if not v - {0}}
+    _, _, upstreams = rov_utils.load_topology()
     announcers = ix_announcers(ix_pfx, ix_members, lookup)
-    ixps = ixp_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS), load_mid_path())
+    ixps = ixp_asns(peeringdb_rs, as0, announcers, set(rov_utils.TIER_1_ASNS), load_mid_path(),
+                    load_exchange_owned(), asns_with_providers(aspa, upstreams))
     exclude = ixps | set(rov_utils.NON_TRANSIT_ASNS)
     index = json.load(open(os.path.join(DIR_HARVEST, "index.json")))
     recent_from = time.time() - RECENT_DAYS * 86400
@@ -303,9 +335,10 @@ def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = F
              "hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a "
              f"border-router address). Probe home ASNs known for {n_probe_meta:,} probes.", "",
              ("IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). "
-              f"{n_ixp:,} IXP ASNs never count as forwarders: at least two of three signals agree (PeeringDB "
-              "info_type 'Route Server', AS0 ASPA, announcing an IX LAN prefix while PeeringDB lists it on that "
-              "LAN; one alone isn't enough), and the ASN doesn't carry traffic in RIS (an IXP's route servers are "
+              f"{n_ixp:,} IXP ASNs never count as forwarders: at least two independent signals agree, one of them "
+              "from outside PeeringDB (PeeringDB info_type 'Route Server'; an AS0 ASPA record; the exchange operator's "
+              "own network: owned by the exchange's PeeringDB organisation or announcing its IX LAN), the ASN has no "
+              "providers (an exchange's cache-fill or operator ASN buys transit), and it doesn't carry traffic in RIS (an IXP's route servers are "
               "transparent; its ASN is mid-path for at most 2 members with non-transparent sessions). "
               "AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global "
               "publish it, which supports their Tier 1 status."
