@@ -403,7 +403,7 @@ produce the same traceroute. Before attributing anything to a network on an IX p
 into `data/atlas/harvest/`, then `analyze_harvest.py` lists the ASes on traces that reached Cloudflare's
 invalid host in the last `ATLAS_TTL_DAYS` (`reports/atlas_harvest_analysis.md`). Hop IPs are mapped with
 iptoasn.com (`data/atlas/ip2asn/`), probe home ASNs from the RIPE probe archive (`data/atlas/probes/`).
-A single hop between two other ASes doesn't count (border-router address). Not used in verdicts.
+A single hop between two other ASes doesn't count (border-router address). IX LAN hops go to the participant holding the address (PeeringDB `netixlan`, files in `data/atlas/peeringdb/`), and PeeringDB route-server networks never count. AS0 ASPA is not an exclusion signal: six Tier 1s publish AS0 (174, 1299, 3257, 3320, 6830, 7018). Not used in verdicts.
 
 ### Country beacon baseline (`nz_beacon_baseline.py`)
 Every connected Atlas probe in a country (`--cc`, default NZ; IPv4 and IPv6) pings and

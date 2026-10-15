@@ -63,5 +63,26 @@ class TestAsPath(unittest.TestCase):
         self.assertEqual(ah.credible_forwarders([(13335, 3)], probe_asn=None), set())
 
 
+    def test_excluded_ases_are_not_forwarders(self):
+        # PeeringDB route-server networks: their ASN announces the IX LAN, so they appear on paths
+        runs = [(64500, 2), (6895, 1), (13335, 1)]
+        self.assertEqual(ah.credible_forwarders(runs, probe_asn=None, exclude={6895}), {64500})
+
+
+class TestIxHops(unittest.TestCase):
+    IX = ah.IxMap([{"prefix": "198.32.118.0/24"}, {"prefix": "2001:504:f::/64"}],
+                  [{"asn": 8075, "ipaddr4": "198.32.118.91", "ipaddr6": "2001:504:f::8075:2"}])
+
+    def test_participant_owns_the_ix_address(self):
+        self.assertEqual(self.IX.lookup("198.32.118.91"), (True, 8075))
+        self.assertEqual(self.IX.lookup("2001:504:f::8075:2"), (True, 8075))
+        self.assertEqual(self.IX.lookup("198.32.118.7"), (True, None))
+        self.assertEqual(self.IX.lookup("8.8.8.8"), (False, None))
+
+    def test_ix_hop_attributed_to_participant_or_dropped(self):
+        runs = ah.as_runs(["1.1.1.5", "198.32.118.91", "198.32.118.7", "8.8.8.8"], LOOKUP, ix=self.IX)
+        self.assertEqual(runs, [(64500, 1), (8075, 1), (15169, 1)])
+
+
 if __name__ == "__main__":
     unittest.main()

@@ -34,6 +34,7 @@ RECENT_DAYS = rov_utils.ATLAS_TTL_DAYS
 DIR_HARVEST = os.path.join(rov_utils.DIR_ATLAS, "harvest")
 FILE_IP2ASN = os.path.join(rov_utils.DIR_ATLAS, "ip2asn", "ip2asn-combined.tsv.gz")
 GLOB_PROBES = os.path.join(rov_utils.DIR_ATLAS, "probes", "*.json.bz2")
+DIR_PEERINGDB = os.path.join(rov_utils.DIR_ATLAS, "peeringdb")
 FILE_EVIDENCE = os.path.join(rov_utils.DIR_ATLAS, "harvest_evidence.csv")
 FILE_REPORT = os.path.join("reports", "atlas_harvest_analysis.md")
 
@@ -56,6 +57,49 @@ class IpAsn:
         if i >= 0 and t[i][0] <= int(addr) <= t[i][1]:
             return t[i][2]
         return None
+
+
+class IxMap:
+    """IX LAN prefixes (PeeringDB ixpfx) and who holds each address on them (netixlan)."""
+
+    def __init__(self, prefixes: list[dict], netixlan: list[dict]):
+        ranges = {4: [], 6: []}
+        for p in prefixes:
+            try:
+                net = ipaddress.ip_network(p["prefix"], strict=False)
+            except (KeyError, ValueError):
+                continue
+            ranges[net.version].append((int(net.network_address), int(net.broadcast_address)))
+        self.ranges = {af: sorted(r) for af, r in ranges.items()}
+        self.starts = {af: [a for a, _ in r] for af, r in self.ranges.items()}
+        self.owner = {}
+        for n in netixlan:
+            for key in ("ipaddr4", "ipaddr6"):
+                if n.get(key):
+                    self.owner[str(ipaddress.ip_address(n[key]))] = n["asn"]
+
+    def lookup(self, ip: str) -> tuple[bool, int | None]:
+        """(on an IX LAN, participant ASN or None)."""
+        addr = ipaddress.ip_address(ip)
+        r, starts, x = self.ranges[addr.version], self.starts[addr.version], int(addr)
+        i = bisect.bisect_right(starts, x) - 1
+        if i >= 0 and r[i][0] <= x <= r[i][1]:
+            return True, self.owner.get(str(addr))
+        return False, None
+
+
+def load_ix(directory: str = DIR_PEERINGDB) -> tuple["IxMap | None", set]:
+    """IxMap and the ASNs of PeeringDB route-server networks; (None, set()) without the files."""
+    try:
+        pfx = json.load(open(os.path.join(directory, "ixpfx.json")))["data"]
+        nix = json.load(open(os.path.join(directory, "netixlan.json")))["data"]
+    except (OSError, ValueError, KeyError):
+        return None, set()
+    try:
+        rs = {r["asn"] for r in json.load(open(os.path.join(directory, "net_route_servers.json")))["data"]}
+    except (OSError, ValueError, KeyError):
+        rs = set()
+    return IxMap(pfx, nix), rs
 
 
 def load_ip2asn(path: str = FILE_IP2ASN) -> IpAsn:
@@ -100,11 +144,14 @@ def reached(trace: dict) -> bool:
     return trace.get("dst_addr") in hop_ips(trace)
 
 
-def as_runs(ips: list[str], lookup: IpAsn) -> list[tuple[int, int]]:
-    """[(asn, hops)] along the trace: consecutive hops in the same AS merged, unmapped hops skipped."""
+def as_runs(ips: list[str], lookup: IpAsn, ix: "IxMap | None" = None) -> list[tuple[int, int]]:
+    """[(asn, hops)] along the trace: consecutive hops in the same AS merged, unmapped hops skipped.
+    A hop on an IX LAN belongs to the participant holding that address (PeeringDB netixlan), not to
+    whoever announces the LAN prefix; with no known holder it is skipped."""
     runs: list[list[int]] = []
     for ip in ips:
-        asn = lookup.asn(ip)
+        on_ix, holder = ix.lookup(ip) if ix else (False, None)
+        asn = holder if on_ix else lookup.asn(ip)
         if not asn:
             continue
         if runs and runs[-1][0] == asn:
@@ -114,26 +161,30 @@ def as_runs(ips: list[str], lookup: IpAsn) -> list[tuple[int, int]]:
     return [(a, n) for a, n in runs]
 
 
-def credible_forwarders(runs: list[tuple[int, int]], probe_asn: int | None) -> set[int]:
+def credible_forwarders(runs: list[tuple[int, int]], probe_asn: int | None,
+                        exclude: set = frozenset()) -> set[int]:
     """ASes a trace that reached the invalid host shows forwarding the invalid route.
 
     The probe's own AS always counts (its users reached the host). Another AS counts when it has
     >= 2 hops, or hands the trace straight to the beacon origin. A single hop between two other
     ASes is usually that AS's address on a border router (third-party address), not transit
-    through it: e.g. 2026-01-04, 399078 -> one 3356-numbered hop -> 26042 -> 13335.
+    through it: e.g. 2026-01-04, 399078 -> one 3356-numbered hop -> 26042 -> 13335. exclude:
+    ASes that can't be forwarders (PeeringDB route-server networks, NON_TRANSIT_ASNS).
     """
     out = {probe_asn} if probe_asn else set()
     for i, (asn, hops) in enumerate(runs):
         nxt = runs[i + 1][0] if i + 1 < len(runs) else None
         if hops >= 2 or nxt == BEACON_ORIGIN or asn == probe_asn:
             out.add(asn)
-    return out - {BEACON_ORIGIN, 0}
+    return out - {BEACON_ORIGIN, 0} - set(exclude)
 
 
 def main() -> None:
     t0 = time.time()
     lookup = load_ip2asn()
     probe_asns = load_probe_asns()
+    ix, route_servers = load_ix()
+    exclude = route_servers | set(rov_utils.NON_TRANSIT_ASNS)
     index = json.load(open(os.path.join(DIR_HARVEST, "index.json")))
     recent_from = time.time() - RECENT_DAYS * 86400
     ev = defaultdict(lambda: {"probes": set(), "traces": 0, "last": 0, "recent_probes": set()})
@@ -153,7 +204,7 @@ def main() -> None:
             if ts >= recent_from:
                 totals[(af, "recent reached")] += 1
             probe_asn = probe_asns.get(t.get("prb_id"), {}).get(af)
-            for asn in credible_forwarders(as_runs(hop_ips(t), lookup), probe_asn):
+            for asn in credible_forwarders(as_runs(hop_ips(t), lookup, ix), probe_asn, exclude):
                 e = ev[(asn, af)]
                 e["probes"].add(t.get("prb_id"))
                 e["traces"] += 1
@@ -166,11 +217,11 @@ def main() -> None:
         for (asn, af), e in sorted(ev.items()):
             w.writerow([asn, af, len(e["probes"]), e["traces"],
                         time.strftime("%Y-%m-%d", time.gmtime(e["last"])), len(e["recent_probes"])])
-    write_report(ev, totals, len(probe_asns))
+    write_report(ev, totals, len(probe_asns), ix is not None, len(route_servers))
     print(f"[+] {FILE_EVIDENCE}, {FILE_REPORT} ({time.time() - t0:.0f}s)")
 
 
-def write_report(ev: dict, totals: Counter, n_probe_meta: int) -> None:
+def write_report(ev: dict, totals: Counter, n_probe_meta: int, have_ix: bool = False, n_rs: int = 0) -> None:
     audit = {int(r["asn"]): r for r in csv.DictReader(open(rov_utils.FILE_AUDIT_FINAL))}
     recent4 = {asn: e for (asn, af), e in ev.items() if af == 4 and e["recent_probes"]}
     n_recent = {af: sum(1 for (a, f), e in ev.items() if f == af and e["recent_probes"]) for af in (4, 6)}
@@ -193,6 +244,10 @@ def write_report(ev: dict, totals: Counter, n_probe_meta: int) -> None:
              "there is no off-path check. An AS counts as a forwarder only if it is the probe's own AS, has >= 2 "
              "hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a "
              f"border-router address). Probe home ASNs known for {n_probe_meta:,} probes.", "",
+             ("IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan), and "
+              f"{n_rs:,} PeeringDB route-server networks never count as forwarders. AS0 ASPA records are not used "
+              "to exclude: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global publish AS0 too."
+              if have_ix else "PeeringDB files missing: IX LAN hops are not resolved."), "",
              f"Only traces from the last {RECENT_DAYS} days count, the same freshness rule as the audit's own Atlas "
              "results. The first harvest is mostly older campaigns (IPv6: 7,423 of 7,499 traces in June 2026; IPv4: "
              "mostly January 2026), so little of it is current; the daily harvest adds new public measurements.", "",
