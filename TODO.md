@@ -1,5 +1,10 @@
 # TODO List
 
+- [ ] HE AS6939 IPv6 peering (`reports/he_ipv6_peering.md`, 2026-10-16). HE gives its peers IPv6 transit: it carries >= 50% of
+  the IPv6 paths of 1,397 of its IPv4 peers. Open: (a) per-family topology, so a network using HE for IPv6 is credited with
+  HE's filtering for IPv6 (needs an IPv6 graph; `bgp-extractor` already tags each triple with AF); (b) the 24 peers whose ASPA
+  omits HE while most of their IPv6 paths run through it — candidates for an operator notice (Terry's call); (c) CAIDA labels
+  for 212024, 394256, 64073, 401753, 58057, 1257 look wrong (every peer's route passed upward in both families).
 - [x] Investigate volatile changes where an ASN regresses in RPKI/ROV status. 
     - [x] Example: AS45355 regression detected and implemented in pipeline.
     - [x] Regression detection now uses full historical max from APNIC.
