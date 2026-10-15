@@ -579,7 +579,7 @@ def test_non_transit_lists_are_in_sync():
     # was never updated to match, leaving a phantom drift against two lists that
     # were, in fact, already back in sync with each other.
     go_non_transit_py_subset = {
-        213241, 13335, 3333, 4608, 4777,
+        213241, 3333, 4608, 4777,
         394353, 2149, 10886, 21556, 3557, 5927, 1508, 29216, 26415, 25152, 20144, 7500,
         112,
     }

@@ -199,6 +199,16 @@ class TestTopDown(unittest.TestCase):
         down, _ = self.build([(T1, HE), (HE, B)], [(T1, HE, B, 4)])
         self.assertEqual(down, {HE: {B}})
 
+    def test_cloudflare_is_a_provider(self):
+        # Magic Transit / BYOIP shape (Windcave AS131168): RIS sees the customer only behind
+        # Cloudflare, which passes its route to Tier 1s. reports/cloudflare_transit_rov.md
+        cf = 13335
+        self.assertNotIn(cf, rov_utils.NON_TRANSIT_ASNS)
+        self.assertIn(cf, rov_utils.HARDCODED_SECURE)
+        down, labels = self.build([(T1, cf), (cf, 131168)], [(T1, cf, 131168, 4)])
+        self.assertEqual(down, {cf: {131168}})
+        self.assertEqual(labels[(cf, 131168)], (cf, 131168, "path"))
+
     def test_customer_ranked_above_its_provider_is_accepted_when_no_loop(self):
         # One NZ / AS4768 shape: B passes C's route to its provider T1, but RIS sees C with more
         # transit neighbours than B, so C ranks above B. C's transit degree (3) is within

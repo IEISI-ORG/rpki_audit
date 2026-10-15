@@ -90,3 +90,13 @@ func TestRecordTriples(t *testing.T) {
 		}
 	}
 }
+
+// Cloudflare sells transit (Magic Transit, BYOIP); see reports/cloudflare_transit_rov.md.
+func TestCloudflareIsTransit(t *testing.T) {
+	if isNonTransit("13335") {
+		t.Fatal("AS13335 must not be non-transit")
+	}
+	if !isNonTransit("3333") {
+		t.Fatal("RIPE NCC AS3333 must stay non-transit")
+	}
+}

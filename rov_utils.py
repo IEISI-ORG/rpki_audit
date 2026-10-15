@@ -211,9 +211,11 @@ EVIDENCE_REQUIRED_ASNS: set[int] = {6939}
 # rank order: 56.6) with NZ cones near CAIDA's, and restores e.g. One NZ AS9500 -> AS4768.
 PATH_UP_RANK_MAX_RATIO = 2
 
+# AS13335 (Cloudflare) was listed here until 2026-10-15. It sells transit (Magic Transit, BYOIP):
+# RIS shows it passing on 6,597 prefixes from 1,025 origins, and ~380 ASes (Windcave, MoE, TVNZ)
+# are seen only behind it. See reports/cloudflare_transit_rov.md.
 NON_TRANSIT_ASNS: set[int] = {
     213241,  # TECHIT.BE — IXP Route Server
-    13335,   # Cloudflare — CDN/Anycast (non-transit for topology)
     3333,    # RIPE NCC
     4608,    # APNIC (refuses ROV to avoid member lockout)
     4777,    # APNIC (refuses ROV to avoid member lockout)
@@ -235,8 +237,12 @@ NON_TRANSIT_ASNS: set[int] = {
 # Minimum degree ratio for provider-customer inference (must match PROVIDER_RATIO in constants.go).
 PROVIDER_RATIO: float = 4.0
 
-# AS13335 (Cloudflare) deliberately accepts RPKI-invalid routes on test infrastructure
-# so researchers can verify their ROV posture. Hardcoding prevents false VULNERABLE verdicts.
+# AS13335 (Cloudflare) drops RPKI-invalid routes ("fully deployed Origin Validation on all our BGP
+# sessions with our peers", Cloudflare blog 2020-04-17; isbgpsafeyet: "signed + filtering"). Of the
+# 6,597 prefixes it carries for other origins in RIS (rrc00 2026-10-11), 3 are RPKI-invalid (0.05%;
+# reports/cloudflare_transit_rov.md). Our measurements can't test it: the Atlas invalid beacon is
+# Cloudflare's own deliberately invalid prefix, so every invalid trace ends at 13335, and APNIC sees
+# few end users there. Hardcoding prevents false VULNERABLE verdicts.
 # AS14789 (Cloudflare, Inc.) is the same phenomenon on a second, much smaller
 # Cloudflare-operated ASN (cone 1,197 vs AS13335's massive anycast footprint —
 # consistent with a dedicated test/canary deployment, not primary production
