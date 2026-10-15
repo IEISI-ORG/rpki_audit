@@ -131,6 +131,32 @@ class TestIxpAsns(unittest.TestCase):
         # 11: ASPA lists a provider; 13: inferred provider, no AS0; 12: inferred, but signed AS0 wins
         self.assertEqual(ah.asns_with_providers(aspa, graph_providers), {11, 13})
 
+    def test_ixf_export_is_an_outside_signal(self):
+        # JINX shape: "Route Server" type + exchange-owned, marked member_type "ixp" in the IX-F export
+        self.assertEqual(ah.ixp_asns(peeringdb_rs={37700}, as0=set(), ix_announcers=set(),
+                                     exchange_owned={37700}, ixf_ixp={37700}), {37700})
+        # the export mark alone isn't enough
+        self.assertEqual(ah.ixp_asns(peeringdb_rs=set(), as0=set(), ix_announcers=set(), ixf_ixp={5}), set())
+
+    def test_ixf_management_asn_with_providers_rejected(self):
+        # DE-CIX Management 51531: marked "ixp", exchange-owned, but buys transit
+        self.assertEqual(ah.ixp_asns(peeringdb_rs=set(), as0=set(), ix_announcers=set(), exchange_owned={51531},
+                                     ixf_ixp={51531}, with_providers={51531}), set())
+
+    def test_load_ixf_ixp(self):
+        import json
+        import os
+        import tempfile
+        with tempfile.TemporaryDirectory() as d:
+            json.dump({"version": "1.0", "member_list": [{"asnum": 37700, "member_type": "ixp"},
+                                                         {"asnum": 174, "member_type": "peering"},
+                                                         {"asnum": "x", "member_type": "ixp"}]},
+                      open(os.path.join(d, "a.json"), "w"))
+            open(os.path.join(d, "broken.json"), "w").write("{not json")
+            json.dump({"https://ix.example/x.json": {"file": "a.json"}, "https://bad": {"error": "x"}},
+                      open(os.path.join(d, "index.json"), "w"))
+            self.assertEqual(ah.load_ixf_ixp(d), {37700})
+
     def test_seen_mid_path_is_not_an_ixp_asn(self):
         # an IXP's route servers are transparent (RFC 7947): its ASN doesn't carry traffic in BGP
         rs = ah.ixp_asns(peeringdb_rs={1, 2}, as0={1, 2}, ix_announcers=set(), mid_path={2})

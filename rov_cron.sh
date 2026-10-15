@@ -19,12 +19,16 @@
 #   # Public Atlas measurements to the beacons: daily 04:30, at most 500 per run
 #   30 4 * * * /home/terry/rpki_audit/rov_cron.sh harvest >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
+#   # IXP data (PeeringDB + IX-F member exports): monthly, 1st at 05:15
+#   15 5 1 * * /home/terry/rpki_audit/rov_cron.sh ixp >> /home/terry/rpki_audit/logs/cron.log 2>&1
+#
 # Modes:
 #   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
 #   commit   — git commit changed report outputs, then push to origin (weekly, Sunday)
 #   harvest  — atlas_harvest.py --max 500 (daily; waits for atlas/full/reports; 4 GB limit)
+#   ixp      — fetch_ixp_data.py: PeeringDB + IX-F exports (monthly; waits for the others; 2 GB limit)
 #
 # Lock files prevent overlapping runs of the same mode.
 # ============================================================
@@ -106,6 +110,17 @@ run_harvest() {
     # Per-AS evidence from current traces (7-day window, ~6 s, ~0.4 GB) -> reports/atlas_harvest_analysis.md
     ( ulimit -v 4000000; $PYTHON analyze_harvest.py ) >> "$LOG_DIR/harvest.log" 2>&1 || log "[harvest] analysis failed"
     log "[harvest] Done."
+}
+
+# -----------------------------------------------------------
+# Stage: IXP data (monthly). PeeringDB objects and the exchanges' IX-F member exports that
+# analyze_harvest.py uses to recognise IXP ASNs. Light (network-bound), capped anyway.
+# -----------------------------------------------------------
+run_ixp() {
+    log "[ixp] Refreshing PeeringDB + IX-F exports..."
+    cd "$SCRIPT_DIR"
+    ( ulimit -v 2000000; $PYTHON fetch_ixp_data.py ) >> "$LOG_DIR/ixp.log" 2>&1 || log "[ixp] refresh failed"
+    log "[ixp] Done."
 }
 
 # -----------------------------------------------------------
@@ -249,14 +264,24 @@ case "$MODE" in
         wait_for_lock reports
         run_harvest
         ;;
+    ixp)
+        acquire_lock ixp
+        trap release_lock EXIT
+        wait_for_lock atlas
+        wait_for_lock full
+        wait_for_lock harvest
+        wait_for_lock reports
+        run_ixp
+        ;;
     *)
-        echo "Usage: $0 {atlas|reports|full|commit|harvest}"
+        echo "Usage: $0 {atlas|reports|full|commit|harvest|ixp}"
         echo ""
         echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
         echo "  commit   — Commit changed report outputs and push (weekly, Sunday)"
         echo "  harvest  — Public Atlas beacon measurements, max 500 (daily)"
+        echo "  ixp      — PeeringDB + IX-F exports for IXP ASNs (monthly)"
         exit 1
         ;;
 esac
