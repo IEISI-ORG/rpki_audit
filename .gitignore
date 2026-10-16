@@ -33,10 +33,9 @@ __pycache__/
 # locks
 .locks/
 
-# cron.log and its rotated archives (see rov_cron.sh run_commit) — pure
-# operational logging, not a research artifact, kept locally only
-logs/cron.log
-logs/cron.log.*
+# cron.log and its rotated archives (see rov_cron.sh run_commit), harvest.log,
+# verdict_counts.csv: operational logging, not research artifacts, kept locally only
+logs/
 
 # Claude Code session state — local only, never commit
 .claude/
