@@ -1,10 +1,10 @@
-        - Loading Cones from final_as_rank.csv... OK (87459 ASNs)
+        - Loading Cones from final_as_rank.csv... OK (87712 ASNs)
         - Loading Graph from data/downstream_graph.json... OK
 
     ====================================================================================================
-     NEW ZEALAND ROUTING SECURITY — PROJECT REPORT (2026-10-11)
+     NEW ZEALAND ROUTING SECURITY — PROJECT REPORT (2026-10-18)
     ====================================================================================================
-    Audit file:        rov_audit_v22_final.csv (written 2026-10-11)
+    Audit file:        rov_audit_v22_final.csv (written 2026-10-18)
     NZ networks:       701
     APNIC excluded:    2026-08-05 to 2026-08-18 (APNIC Labs test window lifted non-filtering NZ/AU networks); a daily reading is dropped
                        when its rolling window overlaps these dates.
@@ -12,50 +12,53 @@
     ====================================================================================================
      1. VERDICTS
     ====================================================================================================
-    PARTIAL        19 networks ( 2.7%) | 82.2% of NZ cone gravity
-    SECURE         59 networks ( 8.4%) |  5.5% of NZ cone gravity
-    UNKNOWN       293 networks (41.8%) |  1.4% of NZ cone gravity
-    VULNERABLE    330 networks (47.1%) | 10.9% of NZ cone gravity
+    PARTIAL         7 networks ( 1.0%) |  2.2% of NZ cone gravity
+    SECURE         75 networks (10.7%) | 84.7% of NZ cone gravity
+    UNKNOWN       272 networks (38.8%) |  0.0% of NZ cone gravity
+    VULNERABLE    347 networks (49.5%) | 13.1% of NZ cone gravity
 
     By verdict label:
-      STUB: VULNERABLE                      315
-      NOT ROUTED                            292
-      STUB: PASSIVE (Clean Pipe)             50
-      PARTIAL: VULNERABLE (Mixed)            19
-      STUB: VOLATILE                          7
+      STUB: VULNERABLE                      326
+      NOT ROUTED                            272
+      STUB: PASSIVE (Clean Pipe)             56
+      VULNERABLE                              9
+      STUB: VOLATILE                          8
+      PARTIAL: VULNERABLE (Mixed)             7
       VULNERABLE (Atlas Verified)             6
       STUB: UNRELIABLE                        4
+      PASSIVE (Clean Pipe)                    4
       ACTIVE (Atlas Verified)                 2
-      REGRESSED                               2
-      INCONSISTENT                            2
-      Unverified (Transit/Peer?)              1
-      VULNERABLE                              1
+      ACTIVE LOCAL ROV                        2
+      STUB: ACTIVE LOCAL ROV                  2
+      REGRESSED                               1
+      INCONSISTENT                            1
+      STUB: FORTUITOUS ROV                    1
 
     ====================================================================================================
      2. NZ TOP 20 NETWORKS BY CUSTOMER CONE
     ====================================================================================================
     ASN       | Name                       | Verdict                     |  Cone | APNIC% |      n | Atlas v4                 | Atlas v6
     --------------------------------------------------------------------------------------------------------------------------------------------
-    AS64073   | Vetta Group                | PARTIAL: VULNERABLE (Mixed) |  1675 |      0 |    111 | INCONCLUSIVE             | INCONCLUSIVE
-    AS9790    | Two Degrees Networks Limit | ACTIVE (Atlas Verified)     |   111 |    100 | 27,796 | SECURE (Verified Activ   | INCONCLUSIVE
+    AS64073   | Vetta Group                | PASSIVE (Clean Pipe)        |  1667 |      0 |    111 | INCONCLUSIVE             | INCONCLUSIVE
+    AS9790    | Two Degrees Networks Limit | ACTIVE (Atlas Verified)     |   112 |    100 | 27,796 | SECURE (Verified Activ   | INCONCLUSIVE
     AS135069  | Feenix Communications Limi | VULNERABLE (Atlas Verified) |    55 |      0 |    356 | VULNERABLE               | VULNERABLE
-    AS45177   | Devoli                     | REGRESSED                   |    55 |      0 |  8,050 | VULNERABLE               | INCONCLUSIVE
-    AS55850   | Mercury NZ Limited         | REGRESSED                   |    51 |      0 |  9,729 | VULNERABLE               | VULNERABLE
-    AS4648    | Spark New Zealand          | PARTIAL: VULNERABLE (Mixed) |    48 |      1 |    101 | INCONCLUSIVE             | -
+    AS55850   | Mercury NZ Limited         | INCONSISTENT                |    51 |      0 |  9,729 | VULNERABLE               | VULNERABLE
+    AS45177   | Devoli                     | REGRESSED                   |    49 |      0 |  8,050 | VULNERABLE               | INCONCLUSIVE
+    AS4648    | Spark New Zealand          | PASSIVE (Clean Pipe)        |    48 |      1 |    101 | INCONCLUSIVE             | -
     AS38022   | REANNZ National Research a | PARTIAL: VULNERABLE (Mixed) |    32 |     80 |    132 | INCONCLUSIVE             | INCONCLUSIVE
-    AS4768    | One New Zealand Group Limi | Unverified (Transit/Peer?)  |    31 |      2 |    104 | INCONCLUSIVE (Bypassed (stale) | -
+    AS4768    | One New Zealand Group Limi | VULNERABLE                  |    31 |      2 |    104 | INCONCLUSIVE (Bypassed (stale) | -
     AS23838   | Solarix Networks Limited   | VULNERABLE (Atlas Verified) |    22 |      0 |    100 | VULNERABLE               | -
     AS18400   | Xtreme Networks Limited    | VULNERABLE                  |    16 |      0 |    102 | -                        | -
     AS24324   | Kordia Limited             | VULNERABLE (Atlas Verified) |    14 |      0 |    103 | VULNERABLE               | VULNERABLE
-    AS4049    | CELLO GROUP LIMITED        | PARTIAL: VULNERABLE (Mixed) |    12 |      1 |    171 | INCONCLUSIVE (Divergen   | VULNERABLE
+    AS4049    | CELLO GROUP LIMITED        | VULNERABLE                  |    13 |      1 |    171 | INCONCLUSIVE (Divergen   | VULNERABLE
     AS23655   | 2degrees Networks Limited  | ACTIVE (Atlas Verified)     |    11 |     98 |    418 | SECURE (Verified Activ   | SECURE (Verified Activ
     AS56030   | Voyager Internet Ltd.      | VULNERABLE (Atlas Verified) |    10 |      0 |    835 | VULNERABLE               | VULNERABLE
-    AS151336  | Verge                      | PARTIAL: VULNERABLE (Mixed) |     6 |      0 |    107 | INCONCLUSIVE             | -
-    AS17705   | InSPire Net Ltd            | INCONSISTENT                |     6 |     74 |    602 | INCONCLUSIVE             | INCONCLUSIVE
+    AS151336  | Verge                      | VULNERABLE                  |     6 |      0 |    107 | INCONCLUSIVE             | -
+    AS17705   | InSPire Net Ltd            | ACTIVE LOCAL ROV            |     6 |     74 |    602 | INCONCLUSIVE             | INCONCLUSIVE
     AS4771    | Spark New Zealand Trading  | VULNERABLE (Atlas Verified) |     6 |      0 | 31,058 | VULNERABLE               | -
-    AS24183   | DTS LTD                    | PARTIAL: VULNERABLE (Mixed) |     4 |     98 |    122 | -                        | -
+    AS24183   | DTS LTD                    | ACTIVE LOCAL ROV            |     4 |     98 |    122 | -                        | -
     AS45267   | Lightwire LTD              | VULNERABLE (Atlas Verified) |     4 |      0 |    438 | VULNERABLE               | INCONCLUSIVE
-    AS9500    | One New Zealand Group Limi | PARTIAL: VULNERABLE (Mixed) |     4 |      0 | 21,561 | INCONCLUSIVE             | VULNERABLE
+    AS138398  | Prodigi Technology Service | PARTIAL: VULNERABLE (Mixed) |     4 |      0 |    105 | -                        | -
 
     APNIC% and n: most recent daily reading with n >= 100 samples, test window excluded.
 
@@ -77,14 +80,14 @@
                   2 x INCONCLUSIVE (Off-Path); 1 x VULNERABLE
     AS135069  IPv6 Feenix Communications Limite VULNERABLE (2026-10-11) msm: 221364341 221364342 221364343 221364344
                   1 x INCONCLUSIVE (Off-Path); 1 x VULNERABLE
-    AS45177   IPv4 Devoli                       VULNERABLE (2026-10-11) msm: 221355101 221355102 221355103 221355104
-                  4 x INCONCLUSIVE (Off-Path); 1 x VULNERABLE
-    AS45177   IPv6 Devoli                       INCONCLUSIVE (2026-10-11) msm: 221362002 221362003 221362004 221362005
-                  2 x INCONCLUSIVE (Off-Path); 1 x SECURE (Pre-Target Filtered)
     AS55850   IPv4 Mercury NZ Limited           VULNERABLE (2026-10-11) msm: 221355646 221355648 221355649 221355651
                   2 x INCONCLUSIVE (Off-Path); 2 x VULNERABLE
     AS55850   IPv6 Mercury NZ Limited           VULNERABLE (2026-10-11) msm: 221362344 221362345 221362346 221362347
                   1 x INCONCLUSIVE (Off-Path); 3 x VULNERABLE
+    AS45177   IPv4 Devoli                       VULNERABLE (2026-10-11) msm: 221355101 221355102 221355103 221355104
+                  4 x INCONCLUSIVE (Off-Path); 1 x VULNERABLE
+    AS45177   IPv6 Devoli                       INCONCLUSIVE (2026-10-11) msm: 221362002 221362003 221362004 221362005
+                  2 x INCONCLUSIVE (Off-Path); 1 x SECURE (Pre-Target Filtered)
     AS4648    IPv4 Spark New Zealand            INCONCLUSIVE (2026-10-11) msm: 221356500 221356501 221356502 221356505
                   4 x INCONCLUSIVE (Off-Path)
                   probe 11172: routed via sibling AS4771, counted off-path
@@ -182,15 +185,15 @@
     ====================================================================================================
     RIPE Atlas (from reports/nz_probe_gap.csv):
       probe inside network (IPv4 / IPv6): 32 / 21 of 701
-      testable via a direct customer:     7
-      not testable over IPv4:             662
+      testable via a direct customer:     10
+      not testable over IPv4:             659
 
     APNIC Labs:
       any APNIC score:                    46 of 701
       reading with n>=100 in last 30 days: 40 of 701
       APNIC samples come from ad impressions, so networks with few end users
       (research, enterprise, wholesale transit) get few or no readings.
-      Largest networks with no APNIC score: AS38022 REANNZ National Rese, AS23838 Solarix Networks Lim, AS18400 Xtreme Networks Limi, AS151336 Verge, AS24183 DTS LTD, AS138398 Prodigi Technology S, AS17492 Vector Communication, AS58666 Vorco, AS55785 ISP Limited, AS18015 Fastcom Limited
+      Largest networks with no APNIC score: AS38022 REANNZ National Rese, AS23838 Solarix Networks Lim, AS18400 Xtreme Networks Limi, AS151336 Verge, AS138398 Prodigi Technology S, AS58666 Vorco, AS55785 ISP Limited, AS17492 Vector Communication, AS18119 ACSData, AS18015 Fastcom Limited
 
     ====================================================================================================
      5. METHOD LIMITS
@@ -200,14 +203,14 @@
       VETTA TRADING LIMITED                    AS64073, AS132918
       Two Degrees Mobile Limited               AS4610, AS9503, AS9790, AS9889, AS17474, AS17656 (+27 more)
       Feenix Communications Limited            AS132809, AS135069
-      Devoli LTD                               AS9727, AS45177, AS56171, AS58443, AS132048, AS132391 (+3 more)
       Spark Ventures                           AS2569, AS2570, AS4648, AS4771, AS4834, AS9325 (+12 more)
       Mercury NZ Limited                       AS9876, AS55850, AS55926, AS132333, AS132375, AS132687 (+2 more)
+      Devoli LTD                               AS9727, AS45177, AS56171, AS58443, AS132048, AS132391 (+3 more)
       One New Zealand Group Limited            AS4763, AS4768, AS4830, AS7657, AS7714, AS9327 (+15 more)
       Research and Education Advanced Network  AS38018, AS38022, AS38299, AS38300, AS38492, AS38711 (+11 more)
 
     Inferred topology: of 102 AS adjacencies on NZ Atlas valid-path traceroutes,
-    17 (17%) match an inferred provider-customer link. The rest are peering, IXP
+    16 (16%) match an inferred provider-customer link. The rest are peering, IXP
     or links the valley-free inference missed; customer cones are built only from inferred links.
 
     IPv6: forensic tests can now run over IPv6 (batch_verify_smart_v4.py --af 6);

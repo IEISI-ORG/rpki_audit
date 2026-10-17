@@ -1,3326 +1,1932 @@
 asn,count,cone,name
-16839,29,0,"SERVICENOW, INC."
-54113,26,58,"Fastly, Inc."
-20940,25,256,Akamai International B.V.
-55256,25,28,Netskope Inc
-13445,25,4,Cisco Webex LLC
-45102,25,2,"Alibaba (US) Technology Co., Ltd."
-30103,24,1,"Zoom Video Communications, Inc"
-714,24,1,Apple Inc.
-15169,23,33,Google LLC
-15695,23,21,Expereo International BV
-8075,23,10,Microsoft Corporation
-53766,23,1,Arista VeloCloud
-12222,23,0,"Akamai Technologies, Inc."
+14789,218,1347,"Cloudflare, Inc."
+54994,94,268,Meteverse Limited
+3573,93,115,Accenture LLP
+139341,79,296,WeChat/QQ CDN
+63293,76,102,Meta (CDN Network)
+21433,75,36,Accenture UK Limited
+24429,70,269,Alibaba Cloud
+139057,62,93,Legend Dynasty Pte. Ltd.
+262663,60,177,METROFLEX TELECOMUNICACOES LTDA
+271493,60,67,SPEED NET PEDRA
+20940,55,251,Akamai International B.V.
+54113,55,59,"Fastly, Inc."
+136907,55,20,Huawei Cloud
+55256,53,28,Netskope Inc
+13150,52,18,CATO NETWORKS LTD
+12654,51,38,RIPE NCC - RIS
+396986,45,24,"Bytedance, Inc. (TikTok)"
+14593,40,51,SpaceX Starlink
+31898,38,95,Oracle Cloud
+23154,37,5,Sanmina-SCI Corporation
+45102,35,2,"Alibaba (US) Technology Co., Ltd."
+138915,34,94,Kaopu Cloud HK Limited
+136258,34,11,"BrainStorm Network, Inc"
+205563,34,4,Marc Gomez
+36040,34,4,Google (Global Cache)
+40934,34,2,Fortinet Inc.
+42473,33,81,Anexia Cloud Solutions GmbH
+35928,33,1,"BECKMAN COULTER, INC."
+19551,32,279,Incapsula Inc
+54253,32,0,Oracle Corporation
+72,31,2,Schlumberger Limited
+16839,31,0,"SERVICENOW, INC."
+205080,31,0,SITA
+30012,30,8,"Universal Music Group, INC."
+15695,29,21,Expereo International BV
+28590,29,13,Directnet Prestacao de Servicos Ltda.
+10798,29,5,The Standard Bank of South Africa (Proprietary) Limited
+21859,28,1287,Zenlayer Inc
+212085,28,6,Alexander Bruegmann
+12222,28,0,"Akamai Technologies, Inc."
+268314,27,75,SUPORTI TELECOM
+199524,26,231,Gcore S.A.
+36224,26,4,HCL AMERICA INC
+30103,26,1,"Zoom Video Communications, Inc"
+132203,26,1,Tencent
+22379,26,0,Manifold Services Inc
+19637,26,0,Avago Technologies U.S. Inc.
+262727,25,7,AtualNet Provedor de Internet Ltda
+57629,25,3,LLC IVI.RU
+36692,24,3,"Cisco OpenDNS, LLC"
+272218,24,3,Luiz Henrique Rocha Maciel
+11179,24,0,"Aryaka Networks, Inc."
+43009,23,1,Infobip Limited
 200596,23,0,Adyen N.V.
-1547,22,5,Interdnestrcom SZAO
-2906,22,2,Netflix Streaming Services Inc.
-32590,22,0,Valve Corporation
-7473,21,290,Singapore Telecommunications Ltd
-24429,21,262,Alibaba Cloud
-3573,21,125,Accenture LLP
-31898,21,91,Oracle Cloud
+263320,22,6,Sansara Telecom
+25818,22,5,CMC NETWORK (PTY) LTD
+5091,22,1,"Stripe, Inc."
+200107,22,1,Kaspersky Lab Switzerland GmbH
+54201,22,0,We Link Networks LLC
+47583,22,0,Hostinger International Limited
+15084,22,0,Concentrix CVG Corporation
 398465,21,28,Rackdog LLC
-36351,21,11,IBM Cloud
-32934,21,8,"Facebook, Inc."
-39063,21,2,Leitwert GmbH
-23344,21,1,"Disney Worldwide Services, Inc."
-35928,21,1,"BECKMAN COULTER, INC."
-57976,21,1,"Blizzard Entertainment, Inc"
+10122,21,20,NETSTAR (SG) PTE. LTD.
+3360,21,6,DXC US Latin America Corporation
+39855,21,1,Mod Mission Critical LLC
+32590,21,0,Valve Corporation
 10361,21,0,"Bloomberg, LP"
-19679,21,0,"Dropbox, Inc."
-16509,20,143,"Amazon.com, Inc."
-4651,20,59,The Communications Authority of Thailand (CAT)
-7342,20,44,VeriSign Infrastructure & Operations
-33353,20,9,Sony Interactive Entertainment LLC
-206264,20,5,Amarutu Technology Ltd
-6507,20,2,"Riot Games, Inc"
-48237,20,1,"Etihad Etisalat, a joint stock company"
-19637,20,0,Avago Technologies U.S. Inc.
-14630,20,0,"Invesco Group Services, Inc."
-53813,20,0,"ZSCALER, INC."
-23764,19,974,China Telecom Global
-60068,19,678,Datacamp Limited (CDN77 / DataPacket)
-6774,19,57,BICS (Belgacom)
-24875,19,54,NovoServe B.V.
-42,19,27,"WoodyNet, Inc."
-10122,19,20,NETSTAR (SG) PTE. LTD.
-13150,19,18,CATO NETWORKS LTD
-45489,19,16,Sri Lanka Telecom PLC
-22697,19,2,Roblox
-132203,19,1,Tencent
-44444,19,1,Forcepoint UK Limited
-23576,19,1,NAVER Cloud Corp.
-9269,19,0,Hong Kong Broadband Network Ltd.
-2497,18,461,Internet Initiative Japan Inc.
-57344,18,193,Telehouse EAD
-702,18,180,Verizon Business - EMEA
-5400,18,66,British Telecommunications (International) 
-45430,18,51,SBN-IIG/AWN-IIG transit provider
-14593,18,51,SpaceX Starlink
-38040,18,20,TOT Public Company Limited
-8781,18,20,Ooredoo Q.S.C.
-63199,18,18,"CDS Global Cloud Co., Ltd"
-11019,18,10,"HAProxy Technologies, Inc."
-14127,18,4,Iland Internet Solutions Corporation
-16552,18,3,Tiggee LLC
-36692,18,3,"Cisco OpenDNS, LLC"
-14061,18,3,DigitalOcean LLC
-5091,18,1,"Stripe, Inc."
-64049,18,1,Reliance Jio Infocomm Pte. Ltd.
+263508,20,2,SIMNET TELECOMUNICACOES LTDA
+21245,20,0,MEDIANOVA INTERNET HIZMETLERI VE TICARET ANONIM SIRKETI
+54119,20,0,"WhiteSky Communications, LLC."
+10780,20,0,"Pure Storage, INC."
+60068,19,672,Datacamp Limited (CDN77 / DataPacket)
+36236,19,202,"NetActuate, Inc"
+63199,19,22,"CDS Global Cloud Co., Ltd"
+273443,19,4,Canal ISP - Soluções em Tecnologia LTDA
+197000,19,1,RIPE NCC - Anycast DNS
+394977,19,1,"TAKE-TWO INTERACTIVE SOFTWARE, INC."
+7862,19,0,Chevron Corporation
+14630,19,0,"Invesco Group Services, Inc."
+20249,19,0,Jefferies LLC
+45430,18,61,SBN-IIG/AWN-IIG transit provider
+208414,18,10,"WEDOS Internet, a.s."
+136897,18,10,Enjoyvc Cloud Group Limited.
+61625,18,6,Grupo We Dev LTDA
+152179,18,3,GLOBAL COMMUNICATION NETWORK LIMITED
+16921,18,2,"Inteliglobe USA, Inc."
+206804,18,1,Realcloud OU
+42385,18,1,"Join-stock company ""Internet Exchange""MSK-IX"""
+26383,18,1,Baxet Group Inc.
 62044,18,1,Zscaler Switzerland GmbH
-12888,18,0,Amadeus GmbH
-11179,18,0,"Aryaka Networks, Inc."
-3303,17,6551,Swisscom (Schweiz) AG
-4766,17,1028,Korea Telecom
-139341,17,284,WeChat/QQ CDN
-54994,17,256,Meteverse Limited
-10099,17,92,China Unicom Global
-24940,17,41,Hetzner Online GmbH
-396986,17,24,"Bytedance, Inc. (TikTok)"
-15943,17,18,wilhelm.tel GmbH
-12684,17,15,SES ASTRA S.A.
-3300,17,14,British Telecommunications Limited
-30012,17,8,"Universal Music Group, INC."
-19527,17,1,Google LLC (Google Cloud)
-40627,17,0,RingCentral Inc
-211316,17,0,Adyen N.V.
-54201,17,0,We Link Networks LLC
-137182,17,0,Blue Wireless PTE LTD
-62041,17,0,Telegram Messenger - Europe
-26464,17,0,"Joyent, Inc."
-9002,16,48162,RETN Limited
-32787,16,2932,Akamai (Prolexic)
-58453,16,2672,China Mobile International
-9304,16,2178,HGC Global Communications Limited
-21859,16,1246,Zenlayer Inc
-19551,16,270,Incapsula Inc
-2516,16,264,KDDI Corporation
-199524,16,227,Gcore S.A.
-4775,16,122,Globe Telecoms
-139057,16,98,Legend Dynasty Pte. Ltd.
-138915,16,91,Kaopu Cloud HK Limited
-8529,16,80,Zain Omantel International FZ-LLC
-21433,16,50,Accenture UK Limited
-49981,16,46,WorldStream B.V.
-9658,16,38,"Eastern Telecommunications Philippines, Inc."
-2603,16,31,NORDUnet
-28910,16,28,"""Uzbektelekom"" Joint Stock Company"
-136907,16,21,Huawei Cloud
-13984,16,9,SD Data Center
-3360,16,6,DXC US Latin America Corporation
-48200,16,6,Opteamax GmbH
-32035,16,3,Sangoma US Inc.
-40934,16,2,Fortinet Inc.
-63741,16,2,DCNET TELECOM
-22616,16,1,"ZSCALER, INC."
-10794,16,1,"Bank of America, National Association"
-200107,16,1,Kaspersky Lab Switzerland GmbH
-12713,16,1,Ote SA (Hellenic Telecommunications Organisation)
-43009,16,1,Infobip Limited
-40401,16,1,Backblaze Inc
-6128,16,1,Cablevision Systems Corp.
-13285,16,1,TalkTalk Communications Limited
-203410,16,1,COLOBIX LTD
-22764,16,0,"Fluor Enterprises, Inc."
-6810,16,0,"""Bezeq""- THE ISRAEL TELECOMMUNICATION CORP. LTD."
-62167,16,0,Tismi BV
-51185,16,0,MainStreaming SpA
+17035,18,0,NBCUniversal
+401671,18,0,ACCESSPARKS LLC
+14010,18,0,"Jack Henry & Associates, Inc."
+22764,18,0,"Fluor Enterprises, Inc."
+26380,18,0,MasterCard Technologies LLC
+400696,18,0,"MIBURA, INC."
+6220,18,0,inContact Inc.
+53813,18,0,"ZSCALER, INC."
+22768,18,0,SYNERGY BROADBAND
+28910,17,28,"""Uzbektelekom"" Joint Stock Company"
+37963,17,4,"Hangzhou Alibaba Advertising Co.,Ltd."
+30081,17,3,CacheFly
+213607,17,1,WORLD FIRST COMMUNICATION LTD
+10794,17,1,"Bank of America, National Association"
+21734,17,1,"Trading Technologies Intl, Inc."
+53766,17,1,Arista VeloCloud
+109,17,0,"CISCO SYSTEMS, INC."
+268546,17,0,Global Live
+46071,17,0,Pioneer Elabs Ltd.
+13335,16,18139,"Cloudflare, Inc."
+49915,16,368,Megaport Global Access
+198949,16,229,Radware
+4775,16,123,Globe Telecoms
+17072,16,39,"TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V."
+13445,16,4,Cisco Webex LLC
+28188,16,4,Pronto Net Ltda.
+57363,16,2,CDNvideo LLC
+132647,16,1,Pengelola Nama Domain Internet Indonesia
+19527,16,1,Google LLC (Google Cloud)
+136787,16,1,PacketHub S.A.
+16477,16,0,Nielsen Consumer LLC
+137922,16,0,IBOSS Inc.
+26450,16,0,CTDI
+33619,16,0,"Advanced Micro Devices, Inc."
 3614,16,0,"Dell, Inc."
-37721,15,58312,Virtual Technologies & Solutions
-1257,15,1116,Tele2 Sverige AB
-16276,15,564,OVH SAS
-9009,15,218,M247 Europe SRL
-37271,15,166,Workonline Communications(Pty) Ltd
-3292,15,107,TDC Holding A/S
-56630,15,98,Melbikomas UAB
-2686,15,97,"AT&T Enterprises, LLC"
-39386,15,71,Saudi Telecom Company JSC
-29049,15,65,Delta Telecom Ltd
-41095,15,60,IPTP LTD
-8849,15,59,Melbikomas UAB
-4229,15,54,Zenlayer Inc
-6667,15,44,Elisa Oyj
-28458,15,44,IENTC Telecom
-13249,15,37,"PRIVATE JOINT STOCK COMPANY ""DATAGROUP"""
-10310,15,31,Yahoo Holdings Inc.
-45474,15,27,Nexusguard Pte. Ltd.
-12189,15,23,PhoenixNAP LLC
-38082,15,23,"True International Gateway Co., Ltd."
-39351,15,22,31173 Services AB
-14537,15,17,Continent 8 LLC
-8657,15,15,MEO International Backbone
-5769,15,13,Videotron Ltee
-211826,15,12,Stability for Integrated Server Hosting Ltd
-42184,15,11,TKRZ Stadtwerke GmbH
-13101,15,10,TNG Stadtnetz GmbH
-8560,15,9,IONOS SE
-7979,15,9,"Servers.com, Inc."
-48635,15,8,CLDIN B.V.
-131314,15,6,CBC Tech International Limited
-216265,15,5,ARISTO NETWORKS LTD
-62955,15,4,"eBay, Inc"
-6910,15,4,DIGI ROMANIA S.A.
-6619,15,3,SamsungSDS Inc.
-30081,15,3,CacheFly
-2635,15,3,"Automattic, Inc"
-203724,15,3,Musarubra Germany GmbH
-60051,15,2,Earthlink Telecommunications Equipment Trading & Services DMCC
-14340,15,2,"Salesforce, Inc."
-60447,15,2,I NET BULGARIA EOOD
-202053,15,1,UpCloud Ltd
-400318,15,1,"Versa Networks, Inc."
-12041,15,1,"Afilias, Inc."
-39855,15,1,Mod Mission Critical LLC
+28572,16,0,Apoiocom Digital Ltda - EPP
+52890,16,0,Centro Integrado de Telemática do Exército
+16276,15,579,OVH SAS
+29049,15,67,Delta Telecom Ltd
+63473,15,49,"HostHatch, LLC"
+23352,15,29,DEFT.COM
+396356,15,28,Latitude.sh
+45090,15,7,Tencent Cloud
+138995,15,6,Antbox Networks Limited
+52924,15,4,Voxxen
+53225,15,2,IPGLOBE INTERNET LTDA
+28135,15,2,ASSOCIAÇÃO NACIONAL PARA INCLUSÃO DIGITAL - ANID
+206042,15,1,Suhail Haris
+204720,15,1,GLOBAL CLOUD NETWORK LLC
 147049,15,1,PacketHub S.A.
-109,15,0,"CISCO SYSTEMS, INC."
-63949,15,0,Akamai (Linode)
+52580,15,0,Azion Technologies Ltda.
 63399,15,0,"Dialpad, Inc."
-399647,15,0,Rumble USA Inc.
-137922,15,0,IBOSS Inc.
-50144,15,0,Unimatrix IT Solutions Kft.
-12876,15,0,Scaleway
 11414,15,0,Nvidia Corporation
-10780,15,0,"Pure Storage, INC."
-205080,15,0,SITA
-47583,15,0,Hostinger International Limited
-6220,15,0,inContact Inc.
+18880,15,0,Lam Research Corporation
+26395,15,0,Johnson Controls Inc
+398987,15,0,PhirePhly Design
+12257,15,0,"Dell, Inc."
 40339,15,0,Jump Trading LLC
-14907,14,1555,Wikimedia Foundation Inc.
-577,14,658,Bell Canada
-24961,14,190,WIIT AG (fka. myLoc Managed IT AG)
-4788,14,145,TM Technology Services Sdn. Bhd.
-15412,14,110,Flag Telecom UK Limited
-703,14,93,Verizon Business - APAC
-15802,14,80,Emirates Integrated Telecommunications Company PJSC
-11260,14,43,EastLink
-45352,14,35,IP ServerOne Solutions Sdn. Bhd.
-21013,14,35,eww ag
-49127,14,31,Asimo Networks B.V.
-9505,14,31,Taiwan Internet Gateway
-396356,14,25,Latitude.sh
-61461,14,25,Airtek Solutions C.A.
-8674,14,24,Netnod AB
-56911,14,23,Warian S.R.L.
-12654,14,22,RIPE NCC - RIS
-7843,14,19,Spectrum (Charter)
-61599,14,18,EAI TELECOMUNICACOES LTDA
-57043,14,16,HOSTKEY B.V.
+26793,15,0,ICS Advanced Technologies
+14907,14,1525,Wikimedia Foundation Inc.
+8849,14,61,Melbikomas UAB
+135377,14,25,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED
 33182,14,14,"HostDime.com, Inc."
-28663,14,14,FLYS INTERATIVA LTDA
-49121,14,14,"Infinity Telecom, s.r.o."
-200449,14,13,Qrator Labs CZ s.r.o.
-8426,14,13,Claranet Limited
-64050,14,12,BGP Network Limited
-20647,14,11,IPB Internet Provider in Berlin GmbH
-31477,14,10,Duocast B.V.
-49453,14,10,Global Layer B.V.
-200899,14,9,INTERSPACE DOOEL Skopje
-8315,14,8,WorldStream B.V.
-18001,14,8,Dialog Axiata PLC.
-23154,14,7,Sanmina-SCI Corporation
-20773,14,5,Host Europe GmbH
-32244,14,4,"Liquid Web, L.L.C"
-36224,14,4,HCL AMERICA INC
-5607,14,3,Sky UK
-8304,14,3,Ecritel SASU
-22995,14,3,Xplore Inc.
-18978,14,3,Enzu Inc
-72,14,2,Schlumberger Limited
-41887,14,2,Prolocation B.V.
-59711,14,1,HZ Hosting Ltd
-50763,14,1,Robert McKay
-63981,14,1,Nova Technology Development (Hong Kong) Limited
-54253,14,0,Oracle Corporation
-62597,14,0,IBM
-21245,14,0,MEDIANOVA INTERNET HIZMETLERI VE TICARET ANONIM SIRKETI
-14010,14,0,"Jack Henry & Associates, Inc."
-7862,14,0,Chevron Corporation
-51154,14,0,pCloud AG
-43996,14,0,Booking.com BV
-62713,14,0,"PubMatic, Inc."
-33425,14,0,"CoreWeave, Inc"
-204805,14,0,Voiped Wholesale BV
-20249,14,0,Jefferies LLC
-50889,14,0,NVIDIA Ltd
-15084,14,0,Concentrix CVG Corporation
-25091,13,20059,IP-Max SA
-8966,13,2817,Etisalat (E&)
-6204,13,709,INTERKVM HOST SRL
-17676,13,440,SoftBank Corp.
-17557,13,247,Pakistan Telecommunication Company Limited
-198949,13,219,Radware
-41327,13,172,Fiber Telecom S.p.A.
-52320,13,116,V.tal (GlobeNet)
-29169,13,90,GANDI SAS
-2119,13,71,Telenor Norge AS
-8767,13,70,M-net Telekommunikations GmbH
-47147,13,68,Anexia Cloud Solutions GmbH
-13194,13,65,"UAB ""Bite Lietuva"""
-9145,13,52,EWE TEL GmbH
-6866,13,36,Cyprus Telecommunications Authority
-45629,13,35,JasTel Network International Gateway
-25369,13,29,Hydra Communications Ltd
-12615,13,26,Global Communication Net Plc
-803,13,25,Saskatchewan Telecommunications
-18450,13,24,"WebNX, Inc."
-786,13,22,Jisc Services Limited
-8368,13,20,Dstny BE N.V.
-9541,13,19,Cyber Internet Services (Pvt) Ltd.
-34953,13,16,RelAix Networks GmbH
-16265,13,14,LeaseWeb Network B.V.
-4058,13,13,CITIC Telecom International CPC Limited
-2611,13,12,BELNET
-41960,13,12,Nextpertise B.V.
-210021,13,12,DIL Technology Limited
-21263,13,12,TeleData GmbH
-56987,13,11,ABACLOUDA SAS
-3214,13,10,xTom GmbH
-21351,13,9,Canal + Telecom SAS
-8365,13,9,Man-da.de GmbH
-12897,13,9,ENTEGA Medianet GmbH
-39572,13,8,DataWeb Global Group B.V.
-207594,13,7,Connectivia S.r.l
-38880,13,7,Micron21 Datacentre Pty Ltd
-42541,13,7,Fiberby ApS
-12731,13,7,IPHH Internet Port Hamburg GmbH
-398704,13,7,STACKS INC
-60280,13,6,National Traffic Exchange Center (Belarus)
-26496,13,5,"GoDaddy.com, LLC"
-21100,13,5,ROUTE 95 LLC
-6621,13,5,"Hughes Network Systems, LLC"
-47065,13,4,USC / UFMG PEERING Research Testbed
-11158,13,4,"NTT America, Inc."
-140627,13,4,OneQode
-31083,13,4,Telepoint Ltd
-21409,13,2,Ikoula Net SAS
-9584,13,2,Diyixian.com Limited
-16164,13,2,Sohonet Limited
-47764,13,2,LLC VK (Mail.ru)
-16921,13,2,"Inteliglobe USA, Inc."
-21928,13,2,"T-Mobile USA, Inc."
-54825,13,2,Equinix Metal (Packet.net)
-21734,13,1,"Trading Technologies Intl, Inc."
-62715,13,1,CrashPlan
-201401,13,1,NewVM B.V.
-963,13,1,N963 PTE. LTD.
-204720,13,1,GLOBAL CLOUD NETWORK LLC
-12902,13,1,Ekco B.V.
-24904,13,1,K-Net SAS
-21215,13,1,UNITED GROUP NETWORK INFRASTRUCTURE d.o.o. Beograd
-396253,13,0,"iboss,inc"
-395359,13,0,InTouch Health
-13821,13,0,AllianceBernstein L.P.
-25875,13,0,FriendFinder Networks Inc
+6619,14,3,SamsungSDS Inc.
+34879,14,3,"OOO ""Sovremennye setevye tekhnologii"""
+55990,14,3,Huawei Cloud Service data center
+30536,14,3,"Circle Computer Resources, Inc."
+29457,14,2,Options Technology Ltd
+6507,14,2,"Riot Games, Inc"
+214731,14,2,ETO Networks Limited
+273168,14,2,INFRAESTRUCTURA Y REDES SAS
+22689,14,2,SERCOMTEL S/A TELECOMUNICACOES
+52766,14,2,Printnet telecomunicaçoes
+23344,14,1,"Disney Worldwide Services, Inc."
+34939,14,1,NextDNS
+714,14,1,Apple Inc.
+44444,14,1,Forcepoint UK Limited
+39063,14,1,Leitwert GmbH
+205398,14,0,Tyler OBrien
+4983,14,0,Intel Corporation
+149440,14,0,Evoxt Sdn. Bhd.
+395359,14,0,InTouch Health
+13821,14,0,AllianceBernstein L.P.
+211316,14,0,Adyen N.V.
+202756,14,0,Radio Free Europe/Radio Liberty
+208223,14,0,SHU-HAO TUNG
+19239,14,0,KLA Corporation
+211609,14,0,OKKO LLC
+15830,13,3176,"Equinix, Inc."
+32787,13,2726,Akamai (Prolexic)
+9009,13,215,M247 Europe SRL
+8529,13,65,Zain Omantel International FZ-LLC
+14230,13,19,ARK Data Centers LLC
+137831,13,15,SEA IX
+12684,13,15,SES ASTRA S.A.
+211826,13,12,Stability for Integrated Server Hosting Ltd
+7979,13,9,"Servers.com, Inc."
+931,13,6,Hyonix
+263812,13,3,SONDATECH S.A.S.
+22612,13,2,"Namecheap, Inc."
+35052,13,1,ACONET
+400318,13,1,"Versa Networks, Inc."
+10100,13,1,UBS Group AG
+199518,13,1,Gregory Shapiro
+207353,13,1,Ruform LLC
+395753,13,1,KKR
+54148,13,0,Dynamic Quantum Networks
+36184,13,0,Virtu Financial Operating LLC
+17903,13,0,"Cognizant Technology Solutions India Pvt Ltd,"
+400097,13,0,National Wi-Fi
 46784,13,0,"Davis Polk & Wardwell, LLP"
-33619,13,0,"Advanced Micro Devices, Inc."
-19239,13,0,KLA Corporation
-26395,13,0,Johnson Controls Inc
-13631,13,0,CITADEL ENTERPRISE AMERICAS LLC
-42841,13,0,ANTIK Telecom s.r.o
+22283,13,0,Sidley Austin LLP
+9269,13,0,Hong Kong Broadband Network Ltd.
+25820,13,0,IT7 Networks Inc
 394161,13,0,"Tesla Motors, Inc."
-200478,13,0,Taboola.com ltd
-12257,13,0,"Dell, Inc."
-202196,13,0,Booking.com BV
-215724,13,0,"Edgevana, Inc."
-5405,12,3679,Inter.link GmbH
-37468,12,793,Angola Cables
-29119,12,321,AIRE NETWORKS DEL MEDITERRANEO SL UNIPERSONAL
-36236,12,233,"NetActuate, Inc"
-9299,12,210,PLDT (Philippine Long Distance Telephone Company)
-8551,12,144,Bezeq International Ltd.
-38193,12,128,Transworld Associates (Pvt.) Ltd.
-4455,12,101,IX Reach Ltd
-5606,12,88,GTS Telecom SRL
-42473,12,81,Anexia Cloud Solutions GmbH
-63023,12,61,GTHost
-44306,12,54,OMONIA d.o.o.
-41313,12,44,"""NOVATEL"" EOOD"
-17072,12,40,"TOTAL PLAY TELECOMUNICACIONES, S.A.P.I. DE C.V."
-6057,12,38,Administracion Nacional de Telecomunicaciones
-3327,12,38,CITIC Telecom CPC Netherlands B.V.
-8422,12,38,NetCologne
-35133,12,35,Eranium B.V.
-49600,12,33,"NEAR IP, S.L."
-9136,12,31,WOBCOM GmbH
-38757,12,30,PT Indonesia Comnets Plus
-29467,12,29,LUXNETWORK S.A.
-55821,12,25,"RADIUS TELECOMS, INC."
-47794,12,24,Etihad GO Company For communications
-24637,12,24,WEBDISCOUNT GmbH & Co. KG
-55329,12,21,Telcotech Ltd.
-62240,12,21,Clouvider Limited
-12200,12,21,Rackspace Hosting
-4538,12,20,China Education and Research Network Center
-8309,12,20,SIPARTECH SAS
-34177,12,20,Celeste SAS
-9044,12,19,BSE Software GmbH
-48314,12,19,IP-Projects GmbH & Co. KG
-30990,12,17,Djibouti Telecom SA
-56665,12,15,Proximus Luxembourg S.A.
-137831,12,15,SEA IX
-42346,12,15,NorthC Schweiz AG
-215638,12,14,Cilix Limited
-9957,12,14,KINX
-34347,12,13,HALLAG Kommunal GmbH
-42156,12,13,GNX B.V.
-44356,12,13,Epsilon Telecommunications Ltd
-47447,12,13,23M GmbH
-43440,12,12,Digitale Suisse AG
-131429,12,11,MOBIFONE Corporation
-9123,12,11,"JSC ""TIMEWEB"""
-18186,12,11,Nebula Global LLC
-136897,12,10,Enjoyvc Cloud Group Limited.
-25160,12,10,Vorboss Limited
-262287,12,9,Latitude.sh LTDA
-43350,12,9,NForce Entertainment B.V.
-12637,12,9,Seeweb s.r.l.
-20847,12,8,Previder B.V.
-48266,12,8,Catixs Ltd
-132876,12,8,Symphony Communication (Thailand) PCL.
-48152,12,7,Digital Frankfurt GmbH
-41692,12,7,OpenCarrier eG
-16524,12,7,MetTel
-47957,12,7,Worldline IGSA SA
-50245,12,7,Serverel Inc.
-45014,12,6,Nuco Technologies Ltd
-200612,12,6,Gulf Bridge International Inc.
-559,12,6,SWITCH
-18530,12,6,"Isomedia, Inc."
-25818,12,5,CMC NETWORK (PTY) LTD
-42649,12,5,Baffin Bay Networks AB
-6823,12,5,3C1B Telekomunikasyon ve Internet Hiz. San. ve Tic. A.S.
-133847,12,5,Anpple Tech Enterprise
-394354,12,4,Canadian Internet Registration Authority
-29140,12,4,Hostserver GmbH
-906,12,4,DMIT Cloud Services
-13213,12,4,THG HOSTING LIMITED
-198651,12,4,"HOSTLINE, UAB"
-34879,12,3,"OOO ""Sovremennye setevye tekhnologii"""
-8301,12,3,Gibtelecom Ltd.
-26141,12,3,CubePath
-51468,12,3,One.com A/S
-22351,12,3,INTELSAT GLOBAL SERVICE CORPORATION
-12414,12,3,Solcon Internetdiensten B.V.
-29457,12,2,Options Technology Ltd
-7522,12,2,"STNet, Incorporated"
-21385,12,2,Trusted Network GmbH
-53334,12,2,"Total Uptime Technologies, LLC"
-57363,12,1,CDNvideo LLC
-31029,12,1,M-REAL NET Ltd.
-4258,12,1,Accretive Networks
-52075,12,1,Wifirst S.A.S.
-207176,12,1,OPENFIBER B.V.
-9680,12,1,HiNet Service Center in U.S.A
-395753,12,1,KKR
-36864,12,1,AFRIBONE MALI SA
-17035,12,0,NBCUniversal
-203101,12,0,Navarino Single Member S.A.
-150436,12,0,Byteplus Pte. Ltd.
-26667,12,0,"Magnite, Inc."
-1200,12,0,Amsterdam Internet Exchange B.V.
-59930,12,0,Telegram Messenger - Americas
-52580,12,0,Azion Technologies Ltda.
-17903,12,0,"Cognizant Technology Solutions India Pvt Ltd,"
-136041,12,0,"Singapore Telecom, ConnectPlus"
-26450,12,0,CTDI
-395717,12,0,"Wasabi Technologies, Inc."
-60022,12,0,Sona Network B.V.
-15435,12,0,DELTA Fiber Nederland B.V.
-202617,12,0,Kering Eyewear S.p.A.
-26380,12,0,MasterCard Technologies LLC
-8632,12,0,Luxembourg Online S.A.
-12355,12,0,HeLi NET Telekommunikation GmbH & Co.
-27281,12,0,Quantcast Corporation
-51978,12,0,WEMACOM Telekommunikation GmbH
-142005,12,0,"NC Taiwan Co., Ltd."
+6404,13,0,"FactSet Research Systems, Inc."
+19197,13,0,"Stefanini, Inc."
+16758,13,0,"Ricoh USA, Inc."
+17044,13,0,"THE INTERPUBLIC GROUP OF COMPANIES, INC."
+17557,12,226,Pakistan Telecommunication Company Limited
+57344,12,187,Telehouse EAD
+16509,12,152,"Amazon.com, Inc."
+9829,12,85,BSNL (Bharat Sanchar Nigam Ltd)
+4651,12,59,The Communications Authority of Thailand (CAT)
+45629,12,35,JasTel Network International Gateway
+18106,12,25,Viewqwest Pte Ltd
+57043,12,17,HOSTKEY B.V.
+9123,12,15,"JSC ""TIMEWEB"""
+4058,12,13,CITIC Telecom International CPC Limited
+36351,12,11,IBM Cloud
+12418,12,11,Quantum CJSC
+25467,12,10,Akton d.o.o.
+25192,12,9,"CZ.NIC, z.s.p.o."
+200019,12,7,ALEXHOST SRL
+6621,12,5,"Hughes Network Systems, LLC"
+274672,12,4,INOVANOC SOLUCOES EM SUPORTE LTDA
+27712,12,3,Paulo Dias de Araujo Filho
+61112,12,3,AKILE LTD
+14114,12,3,SAP NIE
+1921,12,2,ipcom GmbH
+63741,12,2,DCNET TELECOM
+57073,12,2,LLC Wildberries
+63150,12,1,Bage Cloud LLC
+12041,12,1,"Afilias, Inc."
+7734,12,1,Toronto Dominion Bank
+47481,12,1,Lime HD LLC
+216299,12,1,Yang Liuchang
+27983,12,1,Red Intercable Digital S.A.
+23576,12,1,NAVER Cloud Corp.
+10879,12,0,Unitedhealthcare
+202448,12,0,MVPS LTD
+396253,12,0,"iboss,inc"
+203391,12,0,Cloud DNS Ltd
+206614,12,0,Taboola.com ltd
+12888,12,0,Amadeus GmbH
+13105,12,0,INFORM LLC
+41745,12,0,Baykov Ilya Sergeevich
+2134,12,0,"Santander Global Technology and Operations, S.L."
+48851,12,0,Radware Ltd
+39684,12,0,OOO Mango Telecom
+13684,12,0,"Medtronic, Incorporated"
+28409,12,0,ENI NETWORKS SAPI de CV
+209854,12,0,Cyberzone S.A.
+16789,12,0,"Yardi Systems, LLC"
+13443,12,0,LinkedIn Corporation
 55290,12,0,Depository Trust & Clearing Corporation
-7483,12,0,"Skycloud Computing co., Ltd."
-62005,12,0,BlueVPS OÜ
-18880,12,0,Lam Research Corporation
-13188,12,0,Triolan
-20559,12,0,Fundaments B.V.
+215502,12,0,Xing Qingyu
+32528,12,0,ROSS PRODUCTS DIVISION
+137182,12,0,Blue Wireless PTE LTD
+11031,12,0,Orbis Investments (Canada) Limited
+52931,12,0,Netvip Telecomunicações Ltda
+200936,12,0,Chengjie Guo
 14689,12,0,Enfusion LTD. LLC
-47195,12,0,Gameforge 4D GmbH
-211609,12,0,OKKO LLC
-400514,12,0,ESpace Networks
-59865,12,0,Ivent Mobile bv
+20258,12,0,"Analog Devices, Inc."
+397468,12,0,"Think On, Inc."
+199670,12,0,DNS-Belgium VZW
 30383,12,0,General Motors LLC
 393559,12,0,"WEBBING USA, INC."
-1126,12,0,Vancis Advanced ICT Services
-207063,12,0,"Kentik Technologies, Inc."
-16758,12,0,"Ricoh USA, Inc."
-44034,12,0,Hi3G Access AB
-20485,11,34039,TransTeleCom JSC
-12389,11,15093,Rostelecom PJSC
-9498,11,7421,Bharti Airtel Ltd.
-8220,11,6345,COLT
-58057,11,4274,Securebit AG
-3223,11,738,Voxility LLP
-6327,11,683,Shaw Communications
-8881,11,214,1&1 Versatel GmbH
-60171,11,206,AFR-IX TELECOM S.A.
-45899,11,159,VNPT Corp
-44901,11,108,Belcloud LTD
-6424,11,106,EDGOO NETWORKS
-1267,11,103,WIND TRE S.P.A.
-9198,11,102,JSC Kazakhtelecom
-29802,11,97,"HIVELOCITY, Inc."
-15557,11,94,SFR SA
-16637,11,91,MTN SA (Bayobab)
-35753,11,87,Etihad Salam Telecom CJSC
-136557,11,83,Host Universal Pty Ltd
-8452,11,75,Telecom Egypt
-8473,11,67,Bahnhof AB
-6206,11,63,Netrouting B.V.
-36994,11,61,Vodacom
-6697,11,55,Beltelecom
-5713,11,53,Telkom SA Ltd.
-8283,11,52,Netwerkvereniging Coloclue
-138997,11,44,Eons Data Communications Limited
-46450,11,44,"Pilot Fiber, Inc."
-203446,11,35,SMARTNET Germany GmbH
-28725,11,34,CETIN a.s.
-49544,11,32,i3D.net B.V
-1241,11,31,Nova Telecommunications & Media Single Member S.A
-63956,11,30,5G NETWORK OPERATIONS PTY LTD
-15958,11,29,CETIN Ltd. Belgrade
-23352,11,29,DEFT.COM
-1136,11,27,KPN B.V.
-35432,11,25,Cablenet Communication Systems plc
-135377,11,25,UCLOUD INFORMATION TECHNOLOGY (HK) LIMITED
-2852,11,25,CESNET z.s.p.o.
-49666,11,23,Telecommunication Infrastructure Company
-3462,11,23,HiNet (Chunghwa Telecom)
-8637,11,22,"SpainWISP, S.L."
-29405,11,21,VNET a.s.
-64289,11,20,Macarne.com
-39120,11,20,Convergenze S.p.A.
-53828,11,19,"NETWORK INNOVATIONS, LLC"
-214757,11,18,Jakub Krsa
-20326,11,17,TeraSwitch Networks Inc.
-49434,11,16,FBW NETWORKS SAS
-39326,11,15,Syntura Group Limited
-262725,11,14,CONECT
-5466,11,13,Eircom Limited
-51178,11,13,"JSC ""ER-Telecom Holding"""
-39704,11,13,CJ2 Hosting B.V.
-208414,11,13,"WEDOS Internet, a.s."
-48166,11,13,FORTEX CJSC
-153371,11,12,BACK WAVES LIMITED
-4849,11,11,S3 Company Ltd
-12418,11,11,Quantum CJSC
-21453,11,11,Flex Ltd.
-58243,11,10,TELE AG
-34428,11,10,Giulio Lo Presti
-20278,11,10,"Nexeon Technologies, Inc."
+200325,12,0,Bunny.net
+4195,12,0,D. E. Shaw & Co. LP
+54538,12,0,PALO ALTO NETWORKS
+19679,12,0,"Dropbox, Inc."
+20473,11,21626,"The Constant Company, LLC"
+9304,11,2369,HGC Global Communications Limited
+23764,11,1028,China Telecom Global
+18403,11,318,FPT Telecom Company
+55720,11,307,Gigabit Hosting Sdn Bhd
+45903,11,157,CMC Telecom Infrastructure Company
+9198,11,104,JSC Kazakhtelecom
+49063,11,54,Data Storage Center JSC
+9658,11,53,"Eastern Telecommunications Philippines, Inc."
+134823,11,49,"Sky Digital Co., Ltd."
+4809,11,44,China Telecom Next Generation Carrier Network
+35104,11,36,QMOBILE JSC
+264562,11,29,Texnet
+45474,11,28,Nexusguard Pte. Ltd.
+38082,11,23,"True International Gateway Co., Ltd."
+38040,11,20,TOT Public Company Limited
+4538,11,20,China Education and Research Network Center
+984,11,15,Octopus Web Solution Inc.
+49121,11,15,"Infinity Telecom, s.r.o."
+200449,11,13,Qrator Labs CZ s.r.o.
+8674,11,12,Netnod AB
+18186,11,11,Nebula Global LLC
 31529,11,9,DENIC eG
-16696,11,9,iTel Networks Inc
-58807,11,9,China Mobile International Limited
-3920,11,9,PUSHPKT OU
+50340,11,9,Selectel - Moscow
 50131,11,8,Spartan Host Ltd
-17511,11,8,OPTAGE Inc.
-50533,11,8,I.T.E.N.O.S. International Telecom Network Operation Services GmbH
-20932,11,7,Services Industriels de Geneve
-31638,11,6,Lepida S.c.p.A.
-56308,11,6,Telekomunikasi Indonesia International Pte. Ltd.
-149522,11,6,"OneCubit Co., Ltd."
-34170,11,6,Aztelekom LLC
-34968,11,5,iunxi B.V.
-33724,11,5,VOLICO
-31727,11,5,Node4 Limited
-56704,11,5,Farice ehf
-23673,11,5,"Cogetel Online, Cambodia, ISP"
-24812,11,5,RPC HomeNet Ltd.
-42093,11,4,InterRacks B.V.
-28118,11,4,ALTICE DOMINICANA S.A.
-42755,11,4,DataFiber Group B.V.
-48927,11,4,ESEVEN DevOps GmbH
-6797,11,4,GlobalConnect AB
+263290,11,5,IMUNIDADE DIGITAL SERVICOS EM COMUNICACAO LTDA
+1547,11,5,Interdnestrcom SZAO
+11158,11,4,"NTT America, Inc."
+58061,11,4,Scalaxy B.V.
 979,11,4,NetLab Global
-200462,11,4,"Lennart Seitz trading as ""ETH-Services"""
-15967,11,4,Nazwa.pl Sp.z.o.o.
-9031,11,3,EDPNET Belgium BV
-37054,11,3,Telecom Malagasy
-14114,11,3,SAP NIE
-1101,11,3,SURF (Thunderlab)
-58291,11,3,ColoCenter b.v.
-21056,11,3,Vianova S.p.A
-263812,11,3,SONDATECH S.A.S.
-10094,11,3,Unified National Networks
-200023,11,3,Qonnected B.V.
-61317,11,2,Hivelocity LLC
-201701,11,2,Freifunk Rheinland e.V.
-38623,11,2,Metfone (Viettel Cambodia)
-214329,11,2,BGP Network LLC
-12252,11,2,America Movil Peru S.A.C.
-38983,11,2,Copaco Cloud B.V.
-50266,11,2,Odido Netherlands B.V.
-207790,11,2,SWN Stadtwerke Neumuenster GmbH
-39647,11,2,Enreach Netherlands B.V.
-57073,11,2,LLC Wildberries
-199939,11,1,KeenSystems B.V.
-44391,11,1,JSC Elektrosvyaz
-209181,11,1,Zenex 5ive Limited
-200020,11,1,Stichting NBIP-NaWas
-50272,11,1,AVUR AS
-206804,11,1,Realcloud OU
-20495,11,1,We Dare B.V.
-198930,11,1,Vereinigte Stadtwerke Media GmbH
-10100,11,1,UBS Group AG
-35793,11,1,Acronis International GmbH
-212655,11,1,YouFibre Limited
-50083,11,1,Hermes Telecom BVBA
-207353,11,1,Ruform LLC
-23316,11,1,"Bel Air Internet, LLC"
-16477,11,0,Nielsen Consumer LLC
-43519,11,0,Nominet UK
-5390,11,0,Euronet Communications B.V.
-49362,11,0,DSV A/S
-132825,11,0,MYTEK TRADING PTY LTD
+14127,11,4,Iland Internet Solutions Corporation
+60900,11,4,Adrian Trifonov trading as Ssmidge Technologies
+64096,11,3,"Internet Harbor International Co., Ltd."
+38623,11,3,Metfone (Viettel Cambodia)
+16552,11,3,Tiggee LLC
+54801,11,2,Zillion Network Inc.
+204957,11,2,ROUTE 95 LLC
+22604,11,1,Disney Streaming Services
+42909,11,1,Community DNS Limited
+44358,11,1,Kauno Technologijos Universitetas
+62731,11,1,247RACK.com
+4913,11,1,"Speedcast Communications, Inc"
+64049,11,1,Reliance Jio Infocomm Pte. Ltd.
+11228,11,1,ARINC INCORPORATED
+39753,11,1,Kai Liu
+22317,11,1,"F5, Inc."
+63981,11,1,Nova Technology Development (Hong Kong) Limited
+215956,11,1,Dennis de Houx trading as All In One
+50414,11,0,ThousandEyes LLC
+17158,11,0,"Datto, LLC"
 13431,11,0,"Millennium Partners, L.P."
 205638,11,0,T-Bank (Mobile)
-4983,11,0,Intel Corporation
-215248,11,0,Bastiaan Mathijs Brink
-213576,11,0,Robert Weir
-56683,11,0,EXNESS LIMITED
+137718,11,0,"Beijing Volcano Engine Technology Co., Ltd."
+150436,11,0,Byteplus Pte. Ltd.
+62597,11,0,IBM
 393226,11,0,"Intercontinental Exchange, Inc."
-54119,11,0,"WhiteSky Communications, LLC."
-60476,11,0,LLC VK (Digital Transformation Plus LLC)
-400097,11,0,National Wi-Fi
-49463,11,0,BASSAC SA
-28604,11,0,Globo Comunicação e Participaçoes SA
-205975,11,0,Fibre Assets Ltd
-8399,11,0,SEWAN SAS
-199610,11,0,marbis GmbH
-16789,11,0,"Yardi Systems, LLC"
-60350,11,0,VENTE-PRIVEE.COM SA
-32528,11,0,ROSS PRODUCTS DIVISION
-3856,11,0,"Packet Clearing House, Inc."
-22283,11,0,Sidley Austin LLP
-16298,11,0,Lubbers Box Telematica BV
-20258,11,0,"Analog Devices, Inc."
-397468,11,0,"Think On, Inc."
-140227,11,0,"Hong Kong Communications International Co., Limited"
-201290,11,0,BlackGATE B.V.
+213535,11,0,YottaSrc
+800,11,0,OneWeb
+208393,11,0,Dedcloud Network Ltd
+397074,11,0,Marshalls
+269502,11,0,TECHNET COMUNICACAO MULTIMIDIA LTDA
+7483,11,0,"Skycloud Computing co., Ltd."
+215887,11,0,Serhiy Bobrov
+396922,11,0,"Cisco Systems, Inc."
+13631,11,0,CITADEL ENTERPRISE AMERICAS LLC
+52752,11,0,Vegas Telecom Informática Ltda.
+28138,11,0,WN INTERNET
+212238,11,0,Datacamp Limited
+399275,11,0,Solid Systems LLC
+215540,11,0,GLOBAL CONNECTIVITY SOLUTIONS LLP
+32537,11,0,Xilinx Incorporated
+262388,11,0,Via Rede Sul Serviço de Informatica Ltda
 38191,11,0,Infosys Technologies Ltd
-26793,11,0,ICS Advanced Technologies
-6404,11,0,"FactSet Research Systems, Inc."
-13896,11,0,"8x8, Inc."
-4195,11,0,D. E. Shaw & Co. LP
-33891,10,46961,Core-Backbone GmbH
-17639,10,43147,Converge ICT Solutions Inc.
-7713,10,3441,PT Telkom Indonesia Tbk
-50629,10,1130,LWLcom GmbH
-30844,10,575,Liquid Intelligent Technologies 
-37100,10,571,SEACOM Limited
-9318,10,537,SK Broadband Co Ltd
-3786,10,492,LG DACOM Corporation
-49915,10,358,Megaport Global Access
-59796,10,264,StormWall s.r.o.
-812,10,263,Rogers Communications Canada Inc.
-20115,10,218,Spectrum (Charter)
-6663,10,209,Türk Telekom International
-12578,10,162,SIA Tet
-18678,10,148,INTERNEXA S.A. E.S.P
-21497,10,148,Vodafone Ukraine
-4761,10,127,PT Indosat Tbk
-9829,10,84,BSNL (Bharat Sanchar Nigam Ltd)
-30058,10,80,FDCservers.net
-29208,10,76,"Quantcom, a.s."
-17433,10,72,Hytron Network Services Limited
-57866,10,72,Fusix Networks B.V.
-34309,10,67,Link11 GmbH
-3170,10,66,VeloxServ Communications Ltd
-49800,10,61,GNC-Alfa CJSC
-3399,10,61,Obenet AB
-139901,10,60,Apple Communication Ltd.
-49063,10,53,Data Storage Center JSC
-202984,10,52,Team-Host (Chernyshov Aleksandr Aleksandrovich)
-55850,10,51,Mercury NZ Limited
-3204,10,48,xTom OU
-9381,10,46,HKBN Enterprise Solutions HK Limited
-394684,10,44,GOLD DATA USA INC
-9924,10,43,"Taiwan Fixed Network, Telco and Network Service Provider."
-9902,10,36,NTC Neocom
-293,10,35,ESnet
-24088,10,34,Hanoi Telecom Joint Stock Company - HCMC Branch
-29278,10,32,Rackhost Zrt.
-44592,10,30,SkyLink Data Center BV
-680,10,28,Deutsches Forschungsnetz (DFN)
-21320,10,27,GEANT Vereniging
-10242,10,27,US Internet Corp
-46475,10,26,"Limestone Networks, Inc."
-12337,10,25,noris network AG
-23201,10,25,TIGO Paraguay
-32425,10,23,Pixel Factory
-29670,10,22,"Individual Network Berlin (""IN-Berlin"") e.V."
-21277,10,20,Allay Nawroz Telecom Company for Communication/Ltd.
-44684,10,20,Mythic Beasts Ltd
-12969,10,16,Ljósleiðarinn ehf (Sýn)
-399486,10,16,Virtuo
-20676,10,15,Plusnet GmbH
-8544,10,15,Primetel PLC
-39180,10,14,LASOTEL SAS
-44486,10,14,"Oliver Horscht trading as ""SYNLINQ"""
-9886,10,13,CTCSCI TECH LIMITED
-6653,10,12,Vero Broadband
-49505,10,12,JSC Selectel
-7679,10,11,"QTnet,Inc."
-23889,10,11,Mauritius Telecom Ltd
-12693,10,10,e.discom Telekommunikation GmbH
-28398,10,10,INTERNET TELEFONIA Y TV DE MICHOACAN SA DE CV
-44217,10,10,IQ Networks for Data and Internet Services Ltd
-203329,10,8,NTT Global Data Centers EMEA GmbH
-41378,10,7,Kirino LLC
-51945,10,7,ENLINK LTD
-54527,10,7,Astute Internet
-61955,10,6,ColocationIX GmbH
-205112,10,6,PHILUNET GmbH
-57629,10,6,LLC IVI.RU
-46844,10,6,Sharktech
-50867,10,6,HOSTKEY B.V.
-138995,10,6,Antbox Networks Limited
-2018,10,6,TENET (The UNINET Project)
-7545,10,5,TPG Telecom Limited
-8860,10,5,Delta HighTech Ltd.
-62887,10,5,"WhiteSky Communications, LLC."
-8821,10,5,WWZ Telekom AG
-149513,10,4,SyCloud
-13002,10,4,ISIX Communications LLP
-12496,10,4,Infinity Developments Limited
-55285,10,4,Serverside.com
-42295,10,4,TBISS Ltd
-202932,10,4,Quanza B.V.
-8298,10,4,IPng Networks GmbH
-43414,10,4,H2B Assets B.V.
-64096,10,3,"Internet Harbor International Co., Ltd."
+50889,11,0,NVIDIA Ltd
+28136,11,0,SPACnet - Projetos Avançados em Computação
+38166,11,0,Standard Chartered Bank (Hong Kong) Limited.Banking and
+202939,11,0,Chimon Technology Ltd
+62382,11,0,LLC KDV Grupp
+202196,11,0,Booking.com BV
+37721,10,59226,Virtual Technologies & Solutions
+17639,10,43464,Converge ICT Solutions Inc.
+52468,10,6464,UFINET PANAMA S.A.
+8966,10,2609,Etisalat (E&)
+52025,10,1972,ParadoxNetworks Limited
+9299,10,212,PLDT (Philippine Long Distance Telephone Company)
+60171,10,211,AFR-IX TELECOM S.A.
+8641,10,200,"LLC ""Nauka-Svyaz"""
+45147,10,141,PT NAP Info Lintas Nusa
+58495,10,118,PT Parsaoran Global Datatrans
+52320,10,115,V.tal (GlobeNet)
+29802,10,101,"HIVELOCITY, Inc."
+10099,10,100,China Unicom Global
+56630,10,99,Melbikomas UAB
+6774,10,58,BICS (Belgacom)
+202984,10,53,Team-Host (Chernyshov Aleksandr Aleksandrovich)
+10753,10,49,"Level 3 Parent, LLC"
+45352,10,35,IP ServerOne Solutions Sdn. Bhd.
+61461,10,25,Airtek Solutions C.A.
+24637,10,24,WEBDISCOUNT GmbH & Co. KG
+18450,10,23,"WebNX, Inc."
+8781,10,20,Ooredoo Q.S.C.
+48314,10,20,IP-Projects GmbH & Co. KG
+14537,10,17,Continent 8 LLC
+42156,10,15,GNX B.V.
+51178,10,12,"JSC ""ER-Telecom Holding"""
+131429,10,11,MOBIFONE Corporation
+262287,10,9,Latitude.sh LTDA
+5416,10,9,BEYON B.S.C.
+398704,10,7,STACKS INC
+197695,10,6,"""Domain names registrar REG.RU"", Ltd"
+56038,10,5,RackCorp
+393954,10,5,CFN Services Inc.
+266602,10,5,ODATA S.A.
+263650,10,4,Clicfacil Telecom
 50837,10,3,CLOUDSIGMA AG
-13122,10,3,Manx Telecom Trading Ltd
-62390,10,3,NexonHost Srl
-21804,10,3,Access Communications  Co-operative Limited
-198089,10,3,IP Visie Networking B.V.
-24638,10,3,Rambler Internet Holding LLC
-8697,10,3,Jordan Telecommunications PSC
-50923,10,3,Metroset Ltd.
-213452,10,2,PIO LLC
-24586,10,2,Intermax Group B.V.
-48452,10,2,Telco power Ltd
-134548,10,2,DXTL Tseung Kwan O Service
-56701,10,2,"LLC ""AVANTA TELECOM"""
-42707,10,2,e-Quest IT-diensten B.V.
-8804,10,2,regio[.NET] Holding GmbH
-41913,10,2,Computerline GmbH
-216107,10,2,Noah van der Aa trading as Frumentum Media
-50522,10,2,Sewan Nederland B.V.
-35574,10,2,SED Multitel s.r.l.
-57112,10,2,Fiber Services B.V.
-22604,10,1,Disney Streaming Services
-132647,10,1,Pengelola Nama Domain Internet Indonesia
+7155,10,3,"ViaSat,Inc."
+20598,10,3,Cybercloud Platform Limited
+12198,10,2,JSMSR Network
+22697,10,2,Roblox
+263584,10,2,WanHouse Solucoes em Tecnologia LTDA - EPP
 29357,10,1,OOredOO Kuwait NMTC
-1280,10,1,"Internet Systems Consortium, Inc."
+7602,10,1,Sai gon Postel Corporation
+29067,10,1,Hostmaster LLC
 60486,10,1,Swiss Networking Solutions AG
-206813,10,1,4830.org e. V.
-11228,10,1,ARINC INCORPORATED
-47481,10,1,Lime HD LLC
-5605,10,1,NetUSE AG
-1248,10,1,HERE Global BV
+40929,10,1,MoeDove
+33127,10,1,Integrated Systems Corp
 207137,10,1,PacketHub S.A.
-34288,10,1,Kantonsschule Zug
-25151,10,1,Cyso Group B.V.
-394977,10,1,"TAKE-TWO INTERACTIVE SOFTWARE, INC."
-45187,10,1,Rackspace IT Hosting AS IT Hosting Provider Hong Kong
-212250,10,1,Horizon Scope Mobile Telecom WLL
-12996,10,1,Domeneshop AS
-12440,10,1,Hughes Network Systems GmbH
-10879,10,0,Unitedhealthcare
-202870,10,0,Dimensione S.r.l.
-5583,10,0,Orange S.A.
-199790,10,0,IP Telecom Bulgaria
-36184,10,0,Virtu Financial Operating LLC
-47589,10,0,VIVA Kuwait (STC)
-14361,10,0,HopOne Internet Corporation
-132046,10,0,Sunbridge worldwide LTD
-12430,10,0,VODAFONE ESPANA S.A.U.
-21221,10,0,Infopact Netwerkdiensten B.V.
-53589,10,0,PlanetHoster
-48851,10,0,Radware Ltd
-39684,10,0,OOO Mango Telecom
-13684,10,0,"Medtronic, Incorporated"
-9605,10,0,"NTT DOCOMO, INC."
+20340,10,1,"CallTower, Inc."
+40703,10,1,"Turner Broadcasting System, Inc."
+212628,10,0,ARTRUBY PTE. LTD.
+32575,10,0,"DigiCert, Inc."
+14969,10,0,JANE STREET
+214483,10,0,FiberPower LLC
+136041,10,0,"Singapore Telecom, ConnectPlus"
+56683,10,0,EXNESS LIMITED
+2635,10,0,"Automattic, Inc"
 24319,10,0,Akamai Technologies Tokyo ASN
-14203,10,0,"Juniper Networks, Inc."
-54309,10,0,NEGU
-30827,10,0,Extraordinary Managed Services Ltd
+197569,10,0,BASED ON WHAT LLC
+4549,10,0,"ESPN, Inc."
+49106,10,0,Opticom Group AO
 13524,10,0,Arrow Electronics
-8302,10,0,Zattoo AG
+11941,10,0,"Pillsbury Madison & Sutro, Inc."
+33442,10,0,Zebra Technologies Corporation
 13778,10,0,Johnson & Johnson
-138699,10,0,TikTok Pte. Ltd.
+199610,10,0,marbis GmbH
 213176,10,0,Check Point Software Technologies Ltd
-199752,10,0,Go-Trex Holding BV
-132139,10,0,VECLOUD LIMITED
-20546,10,0,SOPRADO GmbH
-51752,10,0,"Wachttoren-, Bijbel en Traktaatgenootschap Kerkgenootschap"
-11983,10,0,Tiktok U.S. Data Security Inc.
-61098,10,0,Exoscale (Akenes SA)
-397074,10,0,Marshalls
+63402,10,0,Universal Orlando
+31747,10,0,"BlackRock Financial Management, Inc."
+197482,10,0,DoubleGIS LLC
+262792,10,0,GRUPO VESC
 13360,10,0,Triton Digital
-59637,10,0,RamSvyazInvest LLC
 45432,10,0,Tech Mahindra Limited
-211623,10,0,NAML B.V.
-216096,10,0,Alex Terrats Ciberseguretat SLU
-205275,10,0,ROMARG SRL
-41041,10,0,Conversant LLC
-11031,10,0,Orbis Investments (Canada) Limited
-25773,10,0,RADWARE INC.
+15347,10,0,IBEX Global Solutions
+59437,10,0,Northern Data AG
+2631,10,0,Discovery Communications
+215595,10,0,SparkTech LTD
+50069,10,0,"Misaka Network, Inc."
 35777,10,0,LTN Global Communications Inc
-5410,10,0,Bouygues Telecom SA
-198792,10,0,DStorage SASU (1fichier)
-4546,10,0,S&P Global Inc.
-136093,10,0,PT Mitra Lintas Multimedia
-12678,10,0,Badoo Trading Limited
-38166,10,0,Standard Chartered Bank (Hong Kong) Limited.Banking and
-19197,10,0,"Stefanini, Inc."
+7361,10,0,DataZone Networks LLC
+204921,10,0,zhenyun sun
+26464,10,0,"Joyent, Inc."
+270385,10,0,CONECTA - PROVEDOR DE INTERNET LTDA.
 22135,10,0,Skechers USA
-22768,10,0,SYNERGY BROADBAND
-208959,10,0,SlashN Services Pte. Ltd.
-54538,10,0,PALO ALTO NETWORKS
-196752,10,0,Tilaa B.V.
-34549,9,34816,meerfarbig GmbH & Co. KG
-35280,9,33153,F5 Networks SARL
-3216,9,30350,Vimpelcom PJSC
-20473,9,21916,"The Constant Company, LLC"
-7575,9,4309,Australian Academic and Research Network (AARNet)
-13030,9,4308,Init7 (Switzerland) Ltd.
-15830,9,3668,"Equinix, Inc."
-852,9,2200,TELUS Communications Inc.
-1764,9,1964,Next Layer Telecommunications
-137409,9,1142,GSL Networks Pty LTD
-4230,9,880,Claro (Embratel)
-50263,9,581,A-Systems Sp. z o.o.
-18403,9,310,FPT Telecom Company
-3255,9,271,Ukrainian Academic and Research Network
-8641,9,200,"LLC ""Nauka-Svyaz"""
-1828,9,181,PacketFabric / Unitas Global
-8455,9,169,atom86 BV
-34224,9,168,Neterra Ltd.
-1680,9,166,Cellcom Fixed Line Communication L.P
-45903,9,160,CMC Telecom Infrastructure Company
-44066,9,136,firstcolo GmbH
-12400,9,125,Partner Communications Ltd.
-8151,9,121,Telmex (Uninet)
-7552,9,119,Viettel Group
-63927,9,109,RISE
-39737,9,99,Prime Telecom srl
-15895,9,95,"""Kyivstar"" PJSC"
-44600,9,87,"""GIGATRANS UKRAINE"", LLC"
-39686,9,85,Eurofiber Nederland BV
-835,9,81,GoCodeIT Inc
-35625,9,68,Eurofiber France SAS
-58212,9,67,dataforest GmbH
-2687,9,63,"AT&T Enterprises, LLC"
-26042,9,61,"FiberState, LLC"
-9848,9,61,SEJONG NETWORKS
-58511,9,60,Swoop (Anycast Global Backbone)
-12695,9,59,LLC Digital Network
-62000,9,55,SERVERD SAS
-6205,9,53,HizliNet Teknoloji A.S.
-11232,9,51,Midcontinent Communications
-24724,9,51,Atman Sp. z o.o.
-43727,9,50,JSC KVANT-TELEKOM
-196844,9,48,"Institute of Bioorganic Chemistry Polish Academy of Science, Poznan Supercomputing and Networking Center"
-8932,9,47,Ucom CJSC
-8926,9,47,Moldtelecom SA
-4181,9,44,TDS TELECOM
-394177,9,44,Shift Hosting LLC
-23470,9,41,ReliableSite.Net LLC
-9457,9,41,DREAMLINE CO.
-35104,9,39,QMOBILE JSC
-42739,9,39,Hawe Telekom S.A.
-25645,9,39,"Momentum Telecom, Inc."
-10010,9,38,TOKAI Communications Corporation
-328748,9,36,Agile Solutions Provider (PTY) LTD
-40850,9,35,UPIX NETWORKS INTERNATIONAL LLC
-212477,9,34,RoyaleHosting B.V.
-17054,9,34,Expedient
-50581,9,34,Ukrainian Telecommunication Group LLC
-4213,9,33,Krypt Technologies
-15576,9,31,NTS workspace AG
-53427,9,29,TGLOBAL NETWORKS
-8492,9,29,"""OBIT"" Ltd."
-21473,9,28,PFALZKOM GmbH
-58470,9,28,Jazz Pakistan
-15704,9,27,XTRA TELECOM S.A.
-397423,9,27,Tier.Net Technologies LLC
-29314,9,27,VECTRA S.A.
-7311,9,26,Frontier Networks Inc
-17497,9,23,Liasail Global Hongkong Limited
-16347,9,23,ADISTA SAS
-8001,9,22,"Cologix, Inc"
-39122,9,22,Blacknight Internet Solutions Limited
-53587,9,22,"AZURE TECHNOLOGY CO., LIMITED"
-34696,9,21,"MISMELINK NETWORKS, SL"
-49808,9,21,Energie AG Oberoesterreich Services und Digital Solutions GmbH
-37035,9,20,MIC TANZANIA LTD
-34867,9,20,Cosmonova LLC
-45250,9,20,Vocom International Telecommunications AP Area
-101,9,20,Pacific Northwest Gigapop
-42532,9,18,SIA VEESP
-9534,9,17,Maxis
-43391,9,16,NETDIREKT BILISIM DANISMANLIK ILETISIM HIZMETLERI SANAYI VE TICARET AS
-210756,9,16,EdgeCenter LLC
-17547,9,15,M1 NET LTD
-132602,9,15,Bangladesh Submarine Cable Company Limited (BSCCL)
-10217,9,15,PT NTT Indonesia
-11320,9,15,LightEdge Solutions
-32133,9,15,Ting Fiber Inc.
-23951,9,15,PT Jembatan Citra Nusantara
-45796,9,14,UIH / BB Connect
-61400,9,14,Start2 LLC
-28968,9,14,"JSC ""Evrasia Telecom Ru"""
-31034,9,13,Aruba S.p.A.
-6805,9,13,Telefonica Germany (o2)
-24203,9,13,PT XL Axiata Tbk
-8888,9,13,xTom Pty Ltd
-58115,9,12,SwissIX Internet Exchange
-135391,9,12,"Aofei Data International Co., Ltd."
-9146,9,12,BH Telecom d.d.
-400587,9,12,"Ryamer, LLC"
-51202,9,11,NUXOA GmbH
-200845,9,11,"AVATEL TELECOM, SA"
+9498,9,7027,Bharti Airtel Ltd.
+4800,9,649,PT Aplikanusa Lintasarta
+267613,9,523,ELETRONET S.A.
+29119,9,332,AIRE NETWORKS DEL MEDITERRANEO SL UNIPERSONAL
+264409,9,312,Huge Networks
+34224,9,175,Neterra Ltd.
+58715,9,159,EARTH TELECOMMUNICATION (Pvt) LTD.
+45899,9,137,VNPT Corp
+263444,9,134,Open X Tecnologia Ltda
+55685,9,127,PT Jala Lintas Media
+8151,9,123,Telmex (Uninet)
+15802,9,84,Emirates Integrated Telecommunications Company PJSC
+139901,9,76,Apple Communication Ltd.
+6849,9,56,"JSC ""Ukrtelecom"""
+23470,9,44,ReliableSite.Net LLC
+9924,9,43,"Taiwan Fixed Network, Telco and Network Service Provider."
+24940,9,41,Hetzner Online GmbH
+12722,9,37,RECONN LLC
+208293,9,35,AlSalam State Company
+38235,9,34,ANGKOR DATA COMMUNICATION
+8492,9,31,"""OBIT"" Ltd."
+140570,9,30,Hong Kong Beecloud System Technology Services Limited
+983,9,29,Akari Networks LLC
+46475,9,28,"Limestone Networks, Inc."
+55821,9,25,"RADIUS TELECOMS, INC."
+17497,9,24,Liasail Global Hongkong Limited
+12189,9,23,PhoenixNAP LLC
+49666,9,23,Telecommunication Infrastructure Company
+18013,9,20,ASLINE LIMITED
+44486,9,14,"Oliver Horscht trading as ""SYNLINQ"""
+49505,9,13,JSC Selectel
+137983,9,12,TIANFENG (HONG KONG) COMMUNICATIONS LIMITED
+153371,9,11,BACK WAVES LIMITED
 60764,9,10,Telecom Samara LLC
-25192,9,10,"CZ.NIC, z.s.p.o."
-139831,9,10,DITO TELECOMMUNITY CORP.
-5404,9,10,conova communications GmbH
-5413,9,10,Wavenet Limited
+20278,9,10,"Nexeon Technologies, Inc."
+6653,9,10,Vero Broadband
 10111,9,10,Zeofast Network
-262206,9,10,COMCEL GUATEMALA S.A.
-4226,9,9,Sumofiber
-5416,9,9,BEYON B.S.C.
-20836,9,9,CDLAN SpA
-7642,9,9,Dhivehi Raajjeyge Gulhun Public Limited Company
-198726,9,8,Wemaconnect GmbH
-35266,9,8,EX Networks Limited
-12676,9,8,HKN GmbH
-50113,9,8,FIRST SERVER LIMITED
-42689,9,7,Glide Student & Residential Limited
-12329,9,7,GLASFASER RUHR GmbH & Co. KG
-29014,9,7,ScaleUp Technologies GmbH & Co. KG
-23089,9,7,Hotwire Communications
-394625,9,7,WhiteLabel IT Solutions Corp
-197790,9,7,Actus P.S.A
-42291,9,6,OOO Istranet
-8801,9,6,Rocket Fibre Ltd
-6660,9,6,Vodafone Enterprise Equipment Limited
-15547,9,6,netplus.ch SA
-206446,9,6,Cloud Lease Ltd
-3605,9,6,"Guam Cablevision, LLC."
-327814,9,6,Ecoband Ltd
-40994,9,6,Alwyzon (Hohl IT)
-34602,9,6,MEGASVYAZ LLC
-47973,9,6,Digital Realty Netherlands B.V.
-3361,9,5,"Digital Fortress, Inc."
-26223,9,5,Silver Star Communications
-62275,9,5,NHM - S.R.L.
-31424,9,5,Netrics AG
-56382,9,5,vServer.site LTD
-5377,9,5,Marlink AS
-400304,9,5,Redoubt Networks (Synteq / Crunchbits)
-6894,9,5,KDDI Europe Ltd
-16205,9,5,DSI GmbH Daten Service Informationssysteme
-932,9,4,XNNET LLC
-196922,9,4,Hofmeir Media GmbH
-201178,9,4,Euronet Telekomunikasyon A.S.
-42845,9,4,BLUE SAS
-56381,9,4,level66.network UG (haftungsbeschraenkt)
-42905,9,4,LIMANET Ltd.
-58061,9,4,Scalaxy B.V.
-48011,9,4,Turunc Smart Bilgisayar Teknoloji Ve Dis Ticaret Limited Sirketi
-49870,9,4,Alsycon B.V.
-9150,9,4,ML Consultancy
-59832,9,3,NAUKOWA I AKADEMICKA SIEC KOMPUTEROWA - PANSTWOWY INSTYTUT BADAWCZY
+21453,9,10,Flex Ltd.
+13984,9,9,SD Data Center
+33353,9,9,Sony Interactive Entertainment LLC
+56694,9,8,LLC Smart Ape
+199310,9,7,XIN BING XIAN
+16524,9,7,MetTel
+206264,9,5,Amarutu Technology Ltd
+133847,9,5,Anpple Tech Enterprise
+5065,9,4,Bunny Communications
+198651,9,4,"HOSTLINE, UAB"
 62246,9,3,WJY Limited
-41811,9,3,CONVERGENCE (GROUP NETWORKS) LIMITED
-213373,9,3,IP Connect Inc
-60822,9,3,Wispone S.R.L.
-48940,9,3,Link Ltd.
-43142,9,3,ADELI SAS
-41230,9,3,ASK4 Limited
-29686,9,3,Jonas Frey trading as Probe Networks
+209604,9,3,2E TELEKOMUNIKASYON LTD STI
+14061,9,3,DigitalOcean LLC
+203724,9,3,Musarubra Germany GmbH
+22351,9,3,INTELSAT GLOBAL SERVICE CORPORATION
 21723,9,3,GOCO TECHNOLOGY LIMITED PARTNERSHIP
-23930,9,3,VITRO INC.
-12941,9,3,intersaar GmbH
-33554,9,3,Neutral Data Centers Corp.
-215787,9,2,TELE90 Telecom GmbH
-8462,9,2,Tarr Kft.
-31229,9,2,Beyond.pl sp. z o.o.
-47541,9,2,LLC VK
-56286,9,2,IX Telecom
-216456,9,2,Dcent Investments BV
-39832,9,2,Opera Norway AS
-199483,9,2,NXO France SAS
-29286,9,2,SKYLOGIC S.P.A.
-5378,9,2,Vodafone Limited
-9908,9,2,HK Cable TV Ltd
-60144,9,2,3W Infra B.V.
-35526,9,2,Smart Technology LLC
-206014,9,2,SARL IPSET
-25220,9,2,equada network GmbH
-9729,9,2,iAdvantage Limited
-2647,9,2,Orange Business Communications Technology Limited
-138866,9,1,PT Mitra Media Data
-4773,9,1,M1 Limited
-219070,9,1,Eximia Networks Limited
-41275,9,1,Lovitel LLC
-44056,9,1,Trytek LLC
-25374,9,1,ESCOM Ltd. - Haskovo
-49033,9,1,Critical Core BV
-131219,9,1,Indosat Singapore Pte. Ltd.
-211181,9,1,"Civilisation Information Technology, communication and internet services Co., LTD"
-39735,9,1,"""Permtelecom"" Ltd"
-31319,9,1,ESTRACOM SPA
-207375,9,1,Fiber Operator B.V.
-51505,9,1,Dimosia Epicheirisi Ilektrismou Anonymi Etaireia
-206383,9,1,VOXLAN LTD.
-13289,9,1,Krick Management GmbH trading as iWelt GmbH + Co. KG
-15966,9,1,Emango Internet Services B.V.
-49585,9,1,CoreRoute UG
-7734,9,1,Toronto Dominion Bank
-136787,9,1,PacketHub S.A.
-216299,9,1,Yang Liuchang
-42567,9,1,MOJOHOST B.V.
-8554,9,1,TAS France SAS
-8757,9,1,"NSFOCUS, Inc."
-50316,9,1,Net Global Srl
-46997,9,1,Black Mesa Corporation
-215017,9,1,EMIRASLAN EMIRASLANOV
-58580,9,1,Fastrack Technology
-203489,9,1,WiMore S.r.l.
+201701,9,2,Freifunk Rheinland e.V.
+9584,9,2,Diyixian.com Limited
+208753,9,2,Marco d'Angelo
+271612,9,2,LOGO Telecom
+47764,9,2,LLC VK (Mail.ru)
+218569,9,2,Viktor Nesmeianov
+21030,9,2,Cluster LLC
+209710,9,1,SNRD NETWORKS LIMITED
+22616,9,1,"ZSCALER, INC."
+25145,9,1,Teknotel Telekomunikasyon Sanayi Ve Ticaret A.S.
+38365,9,1,"Beijing Baidu Netcom Science and Technology Co., Ltd."
+270350,9,1,RDS TECNOLOGIA-ME
+1288,9,1,"Packet Clearing House, Inc."
+1766,9,1,Exxon Mobil Corporation
+209650,9,1,Wu Zhiyuan
+210352,9,1,Yijia Xu
+56971,9,1,CGI GLOBAL LIMITED
+58084,9,1,Newcontact ltd.
+206813,9,1,4830.org e. V.
+48158,9,1,DigitalOne AG
+400317,9,1,Orchest Technologies
+397032,9,1,SPARKED HOST LLC
 54103,9,1,"MOD Mission Critical, LLC"
-22317,9,1,"F5, Inc."
-133504,9,1,PAOCLOUD
-20340,9,1,"CallTower, Inc."
 28613,9,1,HUGHES TELECOMUNICACOES DO BRASIL LTDA.
-52091,9,1,Level-MSK Ltd.
-48305,9,0,Noraina Ltd
+57976,9,1,"Blizzard Entertainment, Inc"
+60771,9,1,Comiten Corp LLC
+263267,9,1,VIUNET PROVIMENTO DE ACESSO A INTERNET LTDA - ME
+265447,9,1,ROMÃO E CARVALHO COMUNICAÇÃO E MULTIMÍDIA LTDA ME
+57898,9,1,DNS Retail Ltd.
 21504,9,0,"The Bessemer Group, Inc."
-202448,9,0,MVPS LTD
-19165,9,0,Webpass Inc.
-55219,9,0,"Cisco Systems, Inc."
-202954,9,0,Rapiddot Hosting Services Ltd
+46829,9,0,Lamhosting LLC
+12701,9,0,Barclays Bank plc
 54896,9,0,SMC Corporation of America
-34655,9,0,JWE S.a r.l.
-202779,9,0,EVOBITS Information Technology SRL
-54148,9,0,Dynamic Quantum Networks
-24207,9,0,PT NettoCyber Indonesia
-8587,9,0,Infracom Holding B.V.
+52778,9,0,VILANET INFORMÁTICA
+40663,9,0,IncogNet LLC
+10212,9,0,China Enterprise ICT Solutions Limited
+11251,9,0,Disney Streaming Services
+26685,9,0,Franklin Resources
+43937,9,0,Playtech Software Ltd
+47589,9,0,VIVA Kuwait (STC)
 18438,9,0,Brown Brothers Harriman & Company
-44788,9,0,Criteo Technology SAS
-206614,9,0,Taboola.com ltd
-63888,9,0,DATAWING LIMITED
-21534,9,0,"BroadSoft, Inc."
+11245,9,0,The Goodyear Tire & Rubber Company
+132046,9,0,Sunbridge worldwide LTD
 54535,9,0,"Nike, Inc."
-32575,9,0,"DigiCert, Inc."
-401671,9,0,ACCESSPARKS LLC
-205627,9,0,Daimler Truck AG
-13105,9,0,INFORM LLC
-14969,9,0,JANE STREET
-218822,9,0,Minhyeok Park
+26931,9,0,"Schonfeld Strategic Techworx, LLC."
+40627,9,0,RingCentral Inc
+201119,9,0,Icewood LLC
+204789,9,0,BIZBETA LTD
+399885,9,0,Evans & Sutherland Computer Corporation
+263210,9,0,HV TELEVISION S.A.S
+213576,9,0,Robert Weir
 399768,9,0,Verition Group LLC
-2134,9,0,"Santander Global Technology and Operations, S.L."
-41743,9,0,OPTIMASET Ltd.
-219421,9,0,Jonatan Miarecki
-48345,9,0,Abavia S.r.l.
-49685,9,0,Signet B.V.
+1200,9,0,Amsterdam Internet Exchange B.V.
+17561,9,0,LARUS Limited
+59930,9,0,Telegram Messenger - Americas
+52556,9,0,Ribeironet Informática
+17466,9,0,Genpact India Private Limited
+206980,9,0,AntiDDoS Solutions LLC
 60326,9,0,0xDEADBEEF LTD
 20347,9,0,Nvidia Corporation
-34624,9,0,Megaspace Internet Services GmbH
-32319,9,0,"Marqeta, Inc."
-42612,9,0,DinaHosting S.L.
+205848,9,0,Dominik Pohl
 205394,9,0,CSL (DualCom) Limited
-62663,9,0,Telecall
-32461,9,0,"ARE-East River Science Park, LLC"
+210558,9,0,1337 Services GmbH
+266065,9,0,VANGUARDA TELECOMUNICAÇÕES LTDA ME
+14203,9,0,"Juniper Networks, Inc."
 3455,9,0,Liberty Mutual Group
-39526,9,0,Mohammad Ali Obeidat
-133865,9,0,"Beijing IQIYI Science & Technology Co., Ltd."
-4549,9,0,"ESPN, Inc."
-4862,9,0,Orange Business AS for Asia
-58273,9,0,Broadband for the Rural North Limited.
-212980,9,0,"UAB ""Atlantis Capital"""
-55967,9,0,"Beijing Baidu Netcom Science and Technology Co., Ltd."
-62642,9,0,"Bigleaf Networks, Inc."
-49920,9,0,FLOWBIRD SAS
-397849,9,0,ZOHO
-29141,9,0,Bradler & Krantz GmbH & Co. KG
-38090,9,0,pearlabyss
-202756,9,0,Radio Free Europe/Radio Liberty
-49206,9,0,PeakFactory BV
-17350,9,0,Moody's Corp.
-800,9,0,OneWeb
-215502,9,0,Xing Qingyu
-209768,9,0,white2net Srl
-215887,9,0,Serhiy Bobrov
-36459,9,0,"GitHub, Inc."
-396922,9,0,"Cisco Systems, Inc."
-43515,9,0,Google Ireland Limited
-20504,9,0,RTL Nederland B.V.
-200052,9,0,Feral.io Ltd
-215212,9,0,Sander Jeurissen
-27381,9,0,Index Exchange Inc.
-4004,9,0,"Orange Business Services Britain, Western Africa"
-58075,9,0,X2com BV
-15347,9,0,IBEX Global Solutions
+205111,9,0,ZOHO Corporation B.V
+51154,9,0,pCloud AG
+6810,9,0,"""Bezeq""- THE ISRAEL TELECOMMUNICATION CORP. LTD."
+49200,9,0,Sperasoft Poland Sp. z o.o.
+18214,9,0,TELUS INTERNATIONAL
+32806,9,0,MTNSAT Holdings LLC
+262805,9,0,REDE MINAS TELECOM LTDA
+46269,9,0,"UKG Kronos Systems, LLC"
+142005,9,0,"NC Taiwan Co., Ltd."
+262393,9,0,A ALVES GOMES INFORMATICA - ME
+10376,9,0,"Wells Fargo Bank, N.A."
+395266,9,0,"Keysight Technologies, Inc"
+17003,9,0,Zoetis Inc.
+61098,9,0,Exoscale (Akenes SA)
+399122,9,0,VPS House Technology Group LLC
+17073,9,0,Allegis Group
+13188,9,0,Triolan
+393319,9,0,"Anduril Industries, Inc."
 16669,9,0,Applied Materials
-6364,9,0,"Atlantic.net, Inc."
+36068,9,0,AppDirect
+216096,9,0,Alex Terrats Ciberseguretat SLU
+262568,9,0,Netvia Telecom Provedor de Internet Ltda.
 16875,9,0,AON Corporation
-250,9,0,AS250.net Foundation
+211612,9,0,Datacamp Limited
+25773,9,0,RADWARE INC.
 41625,9,0,Express Teleservice Corp
-30598,9,0,Carnival Corporation
-16591,9,0,Google Fiber Inc.
-6752,9,0,"ANDORRA TELECOM, S.A.U."
-200936,9,0,Chengjie Guo
-39087,9,0,P.A.K.T LLC
-2631,9,0,Discovery Communications
-208059,9,0,Hermann Lienstromberg
-203182,9,0,DIGITURK LTD.
-47689,9,0,"Pudu, LLC"
-9246,9,0,"Teleguam Holdings, LLC"
-52112,9,0,Gentlent GmbH
+14148,9,0,Ex Libris (USA) Inc
+54778,9,0,"Bloomberg, LP"
+218964,9,0,QUATTRO APPS LTD
 135530,9,0,Acronis Asia Pte. Ltd
-400940,9,0,Railway
-32537,9,0,Xilinx Incorporated
-132829,9,0,Nevigate Communications (S) Pte Ltd
-199670,9,0,DNS-Belgium VZW
+211729,9,0,Yiming Zhang
+16920,9,0,"Wind River Systems, Inc."
+263283,9,0,JGNET - J G DE OLIVEIRA MATOS & CIA LTDA
 21057,9,0,Servicios Audiovisuales Overon S.L.
-12808,9,0,dtms GmbH
-400226,9,0,StormyCloud Inc
-2818,9,0,BBC
-210752,9,0,Global Legal Entity Identifier Foundation
-64475,9,0,Freifunk Frankfurt am Main e.V.
+4546,9,0,S&P Global Inc.
+52549,9,0,NET PREMIUM LTDA - ME
+24406,9,0,China Internet Network Infomation Center
+270207,9,0,JOSE DE JESUS VAZQUEZ PONCE
 206805,9,0,"LLC ""T1Cloud"""
-56478,9,0,Hyperoptic Ltd
-202939,9,0,Chimon Technology Ltd
-62382,9,0,LLC KDV Grupp
 3911,9,0,"Micron Technology, Inc."
-4657,8,15296,StarHub Ltd
-1836,8,13023,green.ch AG
-38001,8,6112,NewMedia Express Pte. Ltd.
-52468,8,5868,UFINET PANAMA S.A.
-7195,8,1805,EdgeUno
-8447,8,1080,A1 Telekom Austria AG
-13786,8,967,"Seaborn (Seabras USA, LLC)"
-37662,8,521,West Indian Ocean Cable Company (WIOCC)
-7049,8,360,Silica Networks Argentina S.A.
-24785,8,315,Joint Transit (Broadband Hosting B.V.)
-13237,8,296,euNetworks GmbH
-32098,8,188,Flō Networks (Transtelco Inc.)
+398833,9,0,Bombardier Inc.
+34927,8,34393,iFog GmbH
+12389,8,13839,Rostelecom PJSC
+7713,8,3650,PT Telkom Indonesia Tbk
+53062,8,1659,ACESSOLINE TELECOMUNICACOES LTDA
+4230,8,983,Claro (Embratel)
+23947,8,511,PT Mora Telematika Indonesia Tbk
+55410,8,383,Vodafone Idea Ltd
+29226,8,283,MasterTel
+3255,8,266,Ukrainian Academic and Research Network
+23106,8,243,American Tower Brasil
+44324,8,206,MoeDove LLC
 201706,8,183,SERVICEPIPE LLC
-8866,8,173,Vivacom Bulgaria EAD
-9050,8,169,Orange Romania S.A.
-30781,8,168,Free Pro SAS
-21949,8,158,Beanfield Technologies Inc.
-263444,8,135,Open X Tecnologia Ltda
-57463,8,124,NetIX Communications JSC
-33763,8,122,Paratus Telecommunications Limited
-12129,8,118,"123.Net, Inc."
-31287,8,113,IPACCT CABLE Ltd
-29838,8,88,"Atlantic Metro Communications II, Inc."
-17494,8,86,Bangladesh Telegraph & Telephone Board
-59692,8,86,IQWeb FZ-LLC
-12963,8,76,"Scientific Industrial Firm ""Volz"" Ltd"
-9119,8,69,SOFTNET d.o.o.
-30823,8,65,aurologic GmbH
-12297,8,61,Telecom Armenia OJSC
-262355,8,61,VSX Networks
-4780,8,54,Digital United Inc.
-6849,8,54,"JSC ""Ukrtelecom"""
-16086,8,52,DNA Oyj
-25180,8,50,Exponential-E Ltd.
-134823,8,50,"Sky Digital Co., Ltd."
-34772,8,49,NEOTEL AD Skopje
-327708,8,45,Airtel Rwanda Ltd
-35179,8,38,Korbank S. A.
-61049,8,37,Exascale Ltd
-2518,8,36,BIGLOBE Inc.
-21559,8,35,OSNET
-25394,8,35,MK Netzdienste Verwaltungs GmbH trading as MK Netzdienste GmbH & Co. KG
-140570,8,30,Hong Kong Beecloud System Technology Services Limited
-13004,8,30,Serbian Open Exchange DOO
-51847,8,30,Nearoute Limited
-50309,8,30,Arcadiz Telecom NV
-20119,8,28,ARROW DATACENTERS INC
-44735,8,28,Nova hf
-983,8,27,Akari Networks LLC
-9063,8,26,VSE NET GmbH
-14080,8,26,Telmex Colombia S.A.
-25454,8,25,Orange Moldova S.A.
-43139,8,24,Maximum-Net LLC
-8047,8,24,"GENERAL COMMUNICATION, INC."
-199081,8,24,Lancom Ltd.
-8758,8,23,Iway AG
-39801,8,23,France-IX L3 Services
-6677,8,23,Míla hf
-7632,8,22,PT Link Net Tbk
-263998,8,22,SIM FIBRA
-20712,8,21,Andrews & Arnold Ltd
+41327,8,171,Fiber Telecom S.p.A.
+4761,8,132,PT Indosat Tbk
+38193,8,131,Transworld Associates (Pvt.) Ltd.
+4837,8,131,China Unicom Backbone
+11172,8,121,"Alestra, S. de R.L. de C.V."
+12129,8,120,"123.Net, Inc."
+53356,8,105,Free Range Cloud Hosting Inc.
+17451,8,101,Biznet Networks
+2854,8,97,LLC Orange Business Services
+18734,8,95,"Operbes, S.A. de C.V."
+28220,8,84,Alares Internet
+45305,8,76,PT Lintas Data Prima
+917,8,71,"Misaka Network, Inc."
+196695,8,66,NetOne Rus JSC
+26042,8,62,"FiberState, LLC"
+4229,8,60,Zenlayer Inc
+9848,8,60,SEJONG NETWORKS
+24875,8,55,NovoServe B.V.
+43727,8,49,JSC KVANT-TELEKOM
+9381,8,48,HKBN Enterprise Solutions HK Limited
+28458,8,46,IENTC Telecom
+35133,8,37,Eranium B.V.
+10310,8,31,Yahoo Holdings Inc.
+12615,8,26,Global Communication Net Plc
+215120,8,25,Evolus IT Solutions GmbH
+24173,8,24,Netnam Company
+47794,8,23,Etihad GO Company For communications
+53587,8,22,"AZURE TECHNOLOGY CO., LIMITED"
 32217,8,21,GPIEX INC
-553,8,21,BelWü
-31122,8,20,Digiweb ltd
-15623,8,20,Cyberlink AG
-14230,8,19,ARK Data Centers LLC
-202425,8,19,IP Volume inc
-37119,8,17,UNITEL SA
-39642,8,17,Sinal A/S
-41820,8,17,New Information Systems PP
-43372,8,15,TELNAP TELECOM Sp. z o.o.
-58299,8,14,Openfactory GmbH
-15763,8,14,DOKOM Gesellschaft fuer Telekommunikation mbH
-36944,8,14,Ubuntunet Alliance For Research and Education Networking
-15965,8,14,CEGECOM S.A.
-7529,8,13,"GMO NetIRD, Inc."
-15935,8,13,ha-vel internet s.r.o.
+45250,8,21,Vocom International Telecommunications AP Area
+12200,8,21,Rackspace Hosting
+9541,8,20,Cyber Internet Services (Pvt) Ltd.
+25549,8,18,"JSC ""ER-Telecom Holding"""
+209307,8,16,LLC Cifrovie Seti Urala
+210756,8,15,EdgeCenter LLC
+262725,8,14,CONECT
+3300,8,14,British Telecommunications Limited
+9957,8,14,KINX
 19855,8,13,"Masergy Communications, Inc."
-13768,8,13,Aptum Technologies
-48084,8,13,Uzhnie Magistraljnie Linii Svyazi LLC
-12555,8,12,Data-center IMAQLIQ Ltd.
-3330,8,12,eww ag
-59900,8,11,B-IX Route Servers
-269832,8,11,MDS TELECOM C.A.
-9354,8,11,Community Network Center Inc.
-204457,8,10,Atlantis Telekomunikasyon Bilisim Hizmetleri San. ve Tic. Ltd. Sti.
-58307,8,10,UNITEL-MEDIA Sp. z o.o.
-33922,8,10,UAB Nacionalinis Telekomunikaciju Tinklas
-48293,8,10,Uniontel Ltd
-30500,8,10,Wolfpaw Data Centres Inc
-9873,8,10,"Lao Telecom Communication, LTC"
-14717,8,10,EZE Castle Integration Inc.
-203201,8,9,INFRASTRUCTURE ITALIA COLO S.R.L.
-50340,8,9,Selectel - Moscow
-8680,8,9,Sure (Guernsey) Limited
-13045,8,9,htp GmbH
+44356,8,13,Epsilon Telecommunications Ltd
+135391,8,12,"Aofei Data International Co., Ltd."
+210021,8,12,DIL Technology Limited
+31257,8,12,Orion Telecom LLC
+51202,8,11,NUXOA GmbH
+7679,8,10,"QTnet,Inc."
+214205,8,10,Cristian Tudor Marcus
+11019,8,10,"HAProxy Technologies, Inc."
+16143,8,9,OOO NIIR-RadioNet
 48642,8,8,K TELECOM LLC
-23671,8,8,PT Sarana Insan Muda Selaras
-34087,8,8,NTE TELEKOM AS
-39923,8,8,Unix-Solutions BV
-200019,8,8,ALEXHOST SRL
-37739,8,8,Abantu Cloud Africa (Pty) Ltd
-51500,8,8,Servisnet Ltd.
-6802,8,8,Bulgarian Research and Education Network Association (BREN)
-209022,8,8,Tschajera Limited
-3580,8,8,Planet Networks
-15605,8,7,Connesi S.p.A.
-56694,8,7,LLC Smart Ape
-39505,8,7,VESTITEL BG
-24955,8,7,"JSC ""Ufanet"""
-15598,8,7,NorthC Deutschland GmbH
-61157,8,7,PlusServer GmbH
-43366,8,7,OSSO B.V.
-35467,8,7,DDFR IT Infra & Security B.V.
-13000,8,6,Leon Sp. z o.o.
-197695,8,6,"""Domain names registrar REG.RU"", Ltd"
-8369,8,6,Intersvyaz-2 JSC
-262727,8,6,AtualNet Provedor de Internet Ltda
-9158,8,6,Telenor A/S
-203462,8,6,NOVACONN SRL
-47478,8,6,MSTN CJSC
-8648,8,6,dogado GmbH
-27523,8,6,Kawaii Networks LLC
-207044,8,6,Enet Telecommunications Networks Limited
-39521,8,5,TNGNET B.V.
-57187,8,5,Emirates Integrated Telecommunications Company PJSC
+18001,8,8,Dialog Axiata PLC.
+50113,8,8,FIRST SERVER LIMITED
+41378,8,7,Kirino LLC
+23031,8,7,TELECU TELECOMUNICACIONES DEL ECUADOR TELECUSA S.A.S.
+54527,8,7,Astute Internet
+32934,8,7,"Facebook, Inc."
+265171,8,6,SITELBRA LTDA
+10954,8,6,SERVICO FEDERAL DE PROCESSAMENTO DE DADOS - SERPRO
+24812,8,6,RPC HomeNet Ltd.
+2,8,6,University of Delaware
+138415,8,5,Yancy Limited
 14713,8,5,Hosted Backbone
-29611,8,5,Elite Limited
-38442,8,5,Vodafone Fiji Limited
-24951,8,5,EveryWare AG
-213605,8,5,Liu HaoRan
-60132,8,5,Zoreole Group SARL
-266602,8,5,ODATA S.A.
-50010,8,4,Omani Qatari Telecommunication Company SAOC
-209693,8,4,OC NETWORKS LIMITED
-29182,8,4,JSC IOT
-4818,8,4,DiGi Telecommunications Sdn. Bhd.
-11924,8,4,"Montana Opticom, LLC"
-29687,8,4,Geodim Ltd.
-214675,8,4,Hidenori Matsuo
-41364,8,4,CONSORZIO TOPIX - TORINO E PIEMONTE EXCHANGE POINT
-8468,8,4,Cityfibre Limited
-266435,8,4,THE FIBER INTERNET BANDA LARGA
-43404,8,4,Fastnet LLC
-197000,8,4,RIPE NCC - Anycast DNS
-29244,8,4,CETIN Bulgaria EAD
-36916,8,4,X-DSL Networking Solutions
-263152,8,4,MIGO TELECOM
-10158,8,4,Kakao Corp
-60503,8,4,FNX Tecnologia LTDA
-205460,8,3,LLC Svyaz Invest
-131267,8,3,Unitel Laos
-7162,8,3,Scala Data Centers / UNIVERSO ONLINE S/A
-151326,8,3,DCConnect Communication Pte. Ltd.
-51580,8,3,TIMENET SPA
-17984,8,3,PCCW Global (HK) Ltd.
-7155,8,3,"ViaSat,Inc."
-60793,8,3,Telefonica Tech (Cancom UK&I)
-39175,8,3,Connective Online Limited
-40788,8,3,Start Communications
-61323,8,3,ANS ACADEMY LIMITED
-6758,8,3,Monaco Telecom S.A.
-30536,8,3,"Circle Computer Resources, Inc."
-52771,8,3,GB Online
-8895,8,3,King Abdul Aziz City for Science and Technology
-36926,8,3,Airtel Networks Kenya Limited
-200303,8,3,LUMASERV
-58821,8,3,PT Lintas Jaringan Nusantara
-43289,8,3,Trabia SRL
-25255,8,2,Hutchison Drei Austria GmbH
-19229,8,2,Ensono LP
-139952,8,2,PT Trisari Data Indonusa
-31317,8,2,AnschlussWerk GmbH
-41114,8,2,Orne THD SPL
-1921,8,2,ipcom GmbH
-59545,8,2,Vertixo BV
-212567,8,2,Freie Netze Muenchen e.V.
+21100,8,5,ROUTE 95 LLC
+932,8,4,XNNET LLC
+27715,8,4,Locaweb Serviços de Internet S/A
+207529,8,3,NYANLOLI LTD
+29182,8,3,JSC IOT
+24811,8,3,Joint Stock Company Kuzbassenergosviaz
+47065,8,3,USC / UFMG PEERING Research Testbed
+24638,8,3,Rambler Internet Holding LLC
+50923,8,3,Metroset Ltd.
+39927,8,3,E-Light-Telecom Ltd.
+272809,8,2,"THUNDERNET, C.A."
+63731,8,2,TIEN PHAT TECHNOLOGY CORPORATION
 16491,8,2,"ViaSat, Inc."
-152144,8,2,LIGHTSTORM ASIA PTE. LTD.
-14380,8,2,Opus Interactive
-398991,8,2,X99
-47638,8,2,Cadence Networks Ltd
-205329,8,2,Kai-Jung Chen
-133182,8,2,Running River Network Technology Limited
-49468,8,2,MAGIT'ST SRL
-31214,8,2,TIS Dialog LLC
-197731,8,2,The Internet Engineering Group B.V.
-214731,8,2,ETO Networks Limited
-62313,8,2,Proact IT UK Limited
-15401,8,2,Orange Business Services SA
-42498,8,2,Gerkon LTD
-135477,8,2,PT Java Digital Nusantara
-21030,8,2,Cluster LLC
-59318,8,2,"SINET Fiber One, Cambodia's Fastest Broadband Service."
-133613,8,2,MTel telecommunication company ltd.
-31510,8,2,Innsbrucker Kommunalbetriebe AG
-15510,8,2,Compuweb Communications Services Limited
-5645,8,2,"TekSavvy Solutions, Inc."
-4760,8,2,HKT Limited
-5503,8,2,RM Education Ltd
-48173,8,2,Orange Business Digital Germany GmbH
-15447,8,2,CM.com N.V.
-5430,8,2,Wortmann AG
-209710,8,1,SNRD NETWORKS LIMITED
-51219,8,1,K2 Integration JSC
-42487,8,1,Vialis SEM
-29222,8,1,Infomaniak Network SA
-8763,8,1,DENIC eG
-51184,8,1,Fonira Telekom GmbH
-38278,8,1,Orient Telecoms Sdn. Bhd
-15366,8,1,DNS:NET Internet Service GmbH
-397301,8,1,"Thrive Broadband, LLC"
-25668,8,1,Cipherkey Exchange Corp.
-55944,8,1,Ooredoo Maldives Plc
-3213,8,1,Bogons Ltd
-39563,8,1,CTA Systems B.V.
-199938,8,1,Netzwerge GmbH
-206067,8,1,Hutchison 3G UK Limited
-10282,8,1,GLOBAL ONE
-135158,8,1,Softnet Limited
-16082,8,1,Spitfire Network Services Limited
-56971,8,1,CGI GLOBAL LIMITED
-17685,8,1,"SQUARE ENIX CO., LTD."
-3238,8,1,Ålands Telekommunikation Ab
-3258,8,1,xTom Japan
-31742,8,1,Sota Solutions Ltd.
-42010,8,1,I.T. PROFESSIONAL SERVICES LIMITED
-63113,8,1,Globecorp Networks
-200000,8,1,Hosting Ukraine LTD
-22611,8,1,"InMotion Hosting, Inc."
-41268,8,1,Sesameware FZ-LLC
-48416,8,1,"Information Network, LLC"
-8839,8,1,SDV6TM SAS
-7497,8,1,Computer Network Information Center of Chinese Academy of Sciences (CNIC-CAS)
-12390,8,1,KCOM Group Limited
-47569,8,1,Erlang company Ltd.
+33771,8,2,Safaricom Limited
+28469,8,2,AT&T COMUNICACIONES DIGITALES S DE RL
+215439,8,2,PLAY2GO INTERNATIONAL LIMITED
+138866,8,1,PT Mitra Media Data
+202053,8,1,UpCloud Ltd
+16417,8,1,Cisco Systems Ironport Division
+41275,8,1,Lovitel LLC
+22216,8,1,Siemens Corporation
+206383,8,1,VOXLAN LTD.
 6620,8,1,"AMA Communications, LLC"
-59642,8,1,"UAB ""Cherry Servers"""
-40929,8,1,MoeDove
-13443,8,1,LinkedIn Corporation
-33127,8,1,Integrated Systems Corp
-20969,8,1,Red Bee Media B.V.
-28213,8,1,LCI Telecom
-51248,8,1,Host-Telecom.com s.r.o.
-42459,8,1,Fiber Optics Bulgaria OOD
-215760,8,1,Adam Grazioli
-154324,8,1,AltusCloud Pte. Ltd.
-51776,8,1,Sportradar AG
-201838,8,1,Community Fibre Limited
 18434,8,1,"Fidelity National Information Services, Inc."
-53850,8,1,"GorillaServers, Inc."
-17088,8,1,"Currenex, Inc."
-135300,8,1,"Myanmar Broadband Telecom Co., Ltd"
-200350,8,1,Yandex.Cloud LLC
-267809,8,1,360NET C.A.
-12847,8,1,Latvijas Mobilais Telefons SIA
-6391,8,1,Beanfield Technologies Inc.
-40703,8,1,"Turner Broadcasting System, Inc."
-59570,8,1,Jens Zimperfeld
-50472,8,1,Chaos Computer Club e.V.
-42947,8,1,Telfy Telecom S.L.
-33680,8,1,TELEPERFORMANCE USA
-199284,8,1,Thueringer Netkom GmbH
-215956,8,1,Dennis de Houx trading as All In One
-50313,8,1,TESLATEL LLC
+48237,8,1,"Etihad Etisalat, a joint stock company"
+53845,8,1,"Broadband Dynamics, LLC"
+200315,8,1,NetConnect Innovations LLC
+41560,8,1,UGMK-Telecom LLC
+23316,8,1,"Bel Air Internet, LLC"
+203410,8,1,COLOBIX LTD
+207043,8,1,DEDIK SERVICES LIMITED
+197537,8,1,Wisdom Cloud Internet Technology Pte. Ltd.
 4749,8,0,WiseTechGlobal Pty Ltd
 202498,8,0,T-Bank (Mobile)
-8469,8,0,CANCOM Managed Services GmbH
-36182,8,0,Accretive Networks
-205398,8,0,Tyler OBrien
-30337,8,0,Deloitte Services LP
-205755,8,0,SDNBUCKS BV
+14328,8,0,"R.R. Donnelley and Sons, Co."
+42228,8,0,Brightstar Limited
 30175,8,0,EPICOR
-50414,8,0,ThousandEyes LLC
-48303,8,0,OVIS IT Consulting GmbH
-2639,8,0,ZOHO
-51087,8,0,Bling Network Ltd
-212628,8,0,ARTRUBY PTE. LTD.
-13172,8,0,Electroenergien Sistemen Operator EAD
-19116,8,0,"Washington Broadband, Inc."
-17158,8,0,"Datto, LLC"
-210258,8,0,Wildanet Ltd
+39960,8,0,Barnes & Noble Inc.
+262590,8,0,NET ON LINE LTDA
+203314,8,0,HATS NETWORK INC.
+25122,8,0,GULFSATCOMMUNICATIONS COMPANY K.S.C.
+49362,8,0,DSV A/S
+206766,8,0,Travchis LLC
 42339,8,0,Chaika Telecom Petersburg Limited Company
-19171,8,0,Stargate Connections Inc.
-11251,8,0,Disney Streaming Services
+50314,8,0,QuantHouse SAS
 131274,8,0,Cypresstel Global Network
-395502,8,0,JeffColo
-12470,8,0,Globe Development GmbH
-11233,8,0,Gorge Networks LLC
-202418,8,0,Hendrik George Koren
+16625,8,0,"Akamai Technologies, Inc."
+11396,8,0,Williams Information Technology LLC
+268910,8,0,AGIL COMERCIAL DO BRASIL INF. E COM. LTDA
+52917,8,0,SPACE NET SERV. DE TELECOMUNICAÇÃO EM INF. LTDA-ME
+132825,8,0,MYTEK TRADING PTY LTD
 53991,8,0,Acronis
 393330,8,0,Circana LLC
-13250,8,0,Backbone Solutions AG
-202032,8,0,GOLINE SA
-43872,8,0,Optinet U.K. Limited
-38186,8,0,"Forewin Telecom Group Limited, ISP at HK"
-53240,8,0,Net Onze Provedor de Acesso a Internet Eireli
-48519,8,0,Knipp Medien und Kommunikation GmbH
-31673,8,0,Uniserver Internet B.V.
-1140,8,0,Stichting Internet Domeinregistratie Nederland
-13737,8,0,"Interconnecx, LLC"
-26931,8,0,"Schonfeld Strategic Techworx, LLC."
-203536,8,0,FNOH DSL Suedheide GmbH
-205163,8,0,Sergey Proshutinskiy
-199243,8,0,Alex Smith
-50858,8,0,SAS SOLUTIONS INFORMATIQUES SERVICES
-201119,8,0,Icewood LLC
-399885,8,0,Evans & Sutherland Computer Corporation
-47927,8,0,WIFIWEB s.r.l.
+21534,8,0,"BroadSoft, Inc."
+216138,8,0,SKYQUANTUM TELECOM LTD.
+23058,8,0,Discovery Health
+60592,8,0,Gransy s.r.o.
 3738,8,0,State Street Bank and Trust Company
-211286,8,0,Tobias Fiebig
-11038,8,0,"Salish Networks, Inc."
-214022,8,0,Joseph Rawlings trading as Virtnet.bond
-151358,8,0,Finovy Pte. Ltd.
-8899,8,0,inexio Informationstechnologie und Telekommunikation Gmbh
-3,8,0,Massachusetts Institute of Technology
+263302,8,0,TORPEDOLINK TELECOM
+17428,8,0,"VNET Group, Inc."
 2003,8,0,Electric Power Research Institute
-45009,8,0,Rogier Krieger
-8360,8,0,Allianz Technology SE
-41718,8,0,Vitrina TV LLC
-38478,8,0,SunnyVision Limited
-35100,8,0,Patrik Lagerman
+64120,8,0,NOCPERU-LATIN TECHNOLOGIES
+11528,8,0,Photronics Inc.
+211575,8,0,Rui Feng
 16645,8,0,"EPIQ Systems, Inc"
+212532,8,0,XIAO YANG WEN RUI
 56201,8,0,"Zoho Corporation Pvt. Ltd,"
-62856,8,0,"Docusign, Inc"
 7726,8,0,FedEx Internet Technologies Corporation
 25350,8,0,Nuovo Pignone International S.r.l
 12211,8,0,Operations & Compliance Network LLC
 17210,8,0,"Everywhere Wireless, LLC"
-17466,8,0,Genpact India Private Limited
-26459,8,0,"The Trade Desk, Inc."
-21412,8,0,"UAB ""Cgates"""
-209162,8,0,INTERNET HELLAS LP
-201277,8,0,Eloquent Technologies Ltd
+15038,8,0,"The Cambridge Incubator, LLC"
+148000,8,0,BHARAT PUBLIC DNS (1.10.10.10)
+22808,8,0,"LION RESOURCES, INC."
+22103,8,0,"Nextiva, Inc."
+40806,8,0,GrapheneOS Foundation
 26485,8,0,"Six Continents Hotels, Inc."
-34788,8,0,Neue Medien Muennich GmbH
-39090,8,0,Brandl Services GmbH
-60142,8,0,NXP Semiconductors Netherlands B.V.
-35224,8,0,PLINQ BV
-7488,8,0,CNServer LLC
-54290,8,0,HostPapa
-208808,8,0,Enegan S.p.A.
-213798,8,0,Jude Gabriel Powell
-205111,8,0,ZOHO Corporation B.V
-7752,8,0,"THRESHOLD COMMUNICATIONS,INC."
-44534,8,0,YANDEX LLC
-13132,8,0,cyberways Informationsdienste GmbH
+32319,8,0,"Marqeta, Inc."
+42612,8,0,DinaHosting S.L.
+395717,8,0,"Wasabi Technologies, Inc."
+32461,8,0,"ARE-East River Science Park, LLC"
+263511,8,0,Saveincloud Hospedagem na Internet Ltda
+207104,8,0,"""BiZone"" LLC"
+262579,8,0,GE Network Provedor de Internet LTDA
+269586,8,0,ARENNA FIBRA TELECOM
+23036,8,0,"Northwest Minnesota Special Access, LLC"
+133865,8,0,"Beijing IQIYI Science & Technology Co., Ltd."
 214155,8,0,Saily Inc.
-16880,8,0,TREND MICRO INCORPORATED
-209854,8,0,Cyberzone S.A.
-200070,8,0,"CZ.NIC, z.s.p.o."
-11941,8,0,"Pillsbury Madison & Sutro, Inc."
 212336,8,0,ByteVirt LLC
-56654,8,0,Infinity Telecom SRL
-207445,8,0,Vincent Maroun
-15703,8,0,TrueFullstaq B.V.
-400687,8,0,Solytro LTD
-210667,8,0,Adam Goodenough
-49200,8,0,Sperasoft Poland Sp. z o.o.
-209823,8,0,Enki Multimedia EURL
-47836,8,0,SC Web Software Development SRL
-395354,8,0,"Starry, Inc."
-15436,8,0,WITBE S.A.
+13628,8,0,AMERISOURCEBERGEN
+13659,8,0,INTERTECH CORPORATION
+202736,8,0,WISDOM CLOUD INTERNET TECHNOLOGY PTE. LTD.
+212378,8,0,Aleksei Papulovskii
+49287,8,0,Melbikomas UAB
+7489,8,0,HostUS
 204384,8,0,"LLC ""OTT UKRAINE"""
-132337,8,0,Axclusive
-208814,8,0,Tilman Schaefers
-42004,8,0,VOIP-UN LIMITED
-205495,8,0,"OOO ""L-Telecom"""
+397849,8,0,ZOHO
+18701,8,0,ConocoPhillips Company
+11323,8,0,"Getty Images (Seattle), Inc."
+38090,8,0,pearlabyss
 203818,8,0,Marshall Wace Asset Management Ltd
-10376,8,0,"Wells Fargo Bank, N.A."
-400696,8,0,"MIBURA, INC."
+19512,8,0,Lyondell Chemical Company
+201744,8,0,ByteFlare LTD
 26344,8,0,"Real Page, Inc."
-31747,8,0,"BlackRock Financial Management, Inc."
-197482,8,0,DoubleGIS LLC
-17003,8,0,Zoetis Inc.
-205689,8,0,Whatbox Inc.
-204558,8,0,Odyssey Systems Ltd
+17350,8,0,Moody's Corp.
+55032,8,0,The Jackson Laboratory
+28852,8,0,"Aeris Communications, INC."
 36671,8,0,"TWO SIGMA INVESTMENTS, LP"
-25934,8,0,"Syniverse Technologies, LLC"
-53712,8,0,Wellington Management Company LLP
-393891,8,0,Nutrien
+2571,8,0,DHL Information Services (Europe) s.r.o
+134677,8,0,Dromatics Systems Pte Ltd
+43515,8,0,Google Ireland Limited
 14610,8,0,Integral Development Corp.
-35237,8,0,Sberbank of Russia PJSC
+26651,8,0,CareFusion Corporation
+62005,8,0,BlueVPS OÜ
 396417,8,0,"Salesforce, Inc."
-17073,8,0,Allegis Group
-46071,8,0,Pioneer Elabs Ltd.
-33921,8,0,Lebara Ltd
-21396,8,0,NetConnex Broadband Ltd.
-393319,8,0,"Anduril Industries, Inc."
-36068,8,0,AppDirect
-40526,8,0,"Gap, Inc. Direct"
-59437,8,0,Northern Data AG
-56396,8,0,NEXXEN GROUP LTD
-198020,8,0,Verda Cloud Oy
+27381,8,0,Index Exchange Inc.
+207740,8,0,Youssef Hamed
+13806,8,0,NCR Voyix Corporation
 2559,8,0,VISA INTERNATIONAL SERVICE ASSOCIATION
-17450,8,0,PT Bank Central Asia Tbk
-207941,8,0,JITEN PATHY
+268786,8,0,LINE FIBRA TELECOM LTDA
+6379,8,0,"A-Link Network Services, Inc."
+18608,8,0,"PALADYNE SYSTEMS, LLC"
+62041,8,0,Telegram Messenger - Europe
 20645,8,0,PurePeak Ltd.
-51758,8,0,ProcoliX B.V.
-205369,8,0,LI YIRAN
-38047,8,0,Taiwan Telecom
-12605,8,0,LIWEST Kabelmedien GmbH
-24594,8,0,Voiceflex Ltd
-150289,8,0,Sun Yanzheng
-200005,8,0,Akamai International B.V.
-198622,8,0,Adform A/S
+55547,8,0,WoodsDale Ventures INC
+32879,8,0,State of Nevada Legislature
+59019,8,0,"Beijing Kingsoft Cloud Internet Technology Co., Ltd"
+61228,8,0,BGP NETWORKS LLC
 15113,8,0,Harman International Industries Inc.
-208677,8,0,"""Cloud Technologies"" LLC trading as Cloud.ru"
-37002,8,0,Reunicable SAS
-198018,8,0,trivago N.V.
-395505,8,0,"iManage, LLC"
+400940,8,0,Railway
+151332,8,0,CoinJar Pty Ltd
+132829,8,0,Nevigate Communications (S) Pte Ltd
+46925,8,0,PAVLOV MEDIA INC
 203380,8,0,DA International Group Ltd.
-214420,8,0,Conor Lewis
-213039,8,0,MIKRAMIX LTD.
-3842,8,0,"InMotion Hosting, Inc."
-7617,8,0,CTM (HK) Limited
+213409,8,0,Daniil Koval
+17978,8,0,SERVCORP AUSTRALIAN HOLDINGS LTD
+152586,8,0,Kuroit
+24409,8,0,China Internet Network Infomation Center
+54900,8,0,Alianza Inc.
+22191,8,0,"Wilkes Communications, Inc."
+150288,8,0,METAGE TECHNOLOGY PTE. LTD.
 4868,8,0,"Pioneer Hi-Bred International, Inc."
+138005,8,0,LENOVO (AUSTRALIA & NEW ZEALAND) PTY LIMITED
 139138,8,0,"Gopay Information Technology Co.,Ltd"
-211029,8,0,XTX Markets Limited
-64294,8,0,Panasonic Avionics Corporation
-200325,8,0,Bunny.net
-30132,8,0,ISC F-ROOT AMS1
-46416,8,0,"BankOnIT, L.L.C."
-24023,8,0,Juniper Networks HK Ltd.
-214344,8,0,Hanxun Xu
-137897,8,0,"PAN-LIAN TECHNOLOGY CO., LIMITED"
-20756,8,0,NAMESHIELD SAS
+219147,8,0,Moskalev Georgiy
+203273,8,0,NetCrafters OU
+40776,8,0,TaoNet
+210250,8,0,K Media Tech Ltd.
+11054,8,0,"LivePerson, Inc."
 216452,8,0,Edvin Basil Samuval
-49223,8,0,EVEREST TV AND RADIO COMPANY LLC
+43927,8,0,HOSTERION SRL
+206540,8,0,BEANSUMMERHOST NEXTGEN SHED HOSTING SOLUTIONS LLC
 54363,8,0,Baker Hughes Holdings LLC
-4685,8,0,"Asahi Net, Inc."
-24482,7,65005,SG.GS
-34927,7,34226,iFog GmbH
-1103,7,6564,SURF B.V.
-31500,7,6386,Global Network Management Inc
-9930,7,2903,TIME dotCom Bhd
-42708,7,2899,Glesys AB
-29075,7,2238,IELO-LIAZO SERVICES SAS
-20562,7,1880,Open Peering (Broadband Hosting B.V.)
-52025,7,1874,ParadoxNetworks Limited
-14840,7,1805,BR.DIGITAL 
-58717,7,1014,Summit Communications Ltd
-4826,7,887,Vocus Connect International Backbone
-4800,7,691,PT Aplikanusa Lintasarta
-23520,7,659,"Columbus Networks USA, Inc."
-9583,7,540,Sify Limited
-28917,7,514,"Fiord Networks, UAB"
-9121,7,502,Turk Telekom
-29076,7,323,Citytelecom LLC
-7029,7,320,Uniti (fka. Windstream)
-12552,7,301,GlobalConnect (IP-Only)
-264409,7,290,Huge Networks
-35297,7,280,Dataline LLC
-12874,7,236,Fastweb SpA
-35661,7,225,VIRTUA SYSTEMS SAS
-35320,7,201,Eurotranstelecom Ltd
-8717,7,200,A1 Bulgaria EAD
-38195,7,190,Superloop
-20055,7,174,Ziply Fiber
-11404,7,171,Astound (fka. Wave Broadband)
-5603,7,160,"Telekom Slovenije, d.d."
-58715,7,158,EARTH TELECOMMUNICATION (Pvt) LTD.
-45147,7,156,PT NAP Info Lintas Nusa
-1820,7,143,WNET TELECOM USA Corp.
-17378,7,125,"TierPoint, LLC"
-55685,7,124,PT Jala Lintas Media
-6079,7,117,Astound (fka. RCN)
-8400,7,115,Telekom Srbija a.d.
-28716,7,111,Retelit Digital Services S.p.A.
-3741,7,108,Dimension Data
-34779,7,103,"T-2, d.o.o."
-2854,7,97,LLC Orange Business Services
-18734,7,95,"Operbes, S.A. de C.V."
-2519,7,88,ARTERIA Networks Corporation
-8262,7,88,Evolink EAD
-47605,7,68,FNE-Finland Oy
-28198,7,65,SEMPRE TELECOMUNICACOES LTDA
-35000,7,63,"JSC ""Severen-Telecom"""
-3212,7,63,Telemach Slovenija d.o.o.
+22775,8,0,Moore Capital Management
+24482,7,67260,SG.GS
+25091,7,19347,IP-Max SA
+208972,7,8520,GIBIRNet Iletisim
+58717,7,1258,Summit Communications Ltd
+37468,7,816,Angola Cables
+136106,7,690,PT Mega Akses Persada
+37100,7,561,SEACOM Limited
+61568,7,542,ALOO TELECOM - FSF TECNOLOGIA SA
+3786,7,492,LG DACOM Corporation
+28283,7,420,Adyl Telecom
+139009,7,386,Windstream Communication Limited
+43298,7,331,Storm Networks LLC
+7473,7,300,Singapore Telecommunications Ltd
+28146,7,203,MHNET TELECOM
+199995,7,173,Omega Telecom LLC
+52925,7,155,Ascenty Data Centers e Telecomunicações S/A
+21574,7,151,Century Telecom Ltda
+4788,7,147,TM Technology Services Sdn. Bhd.
+8551,7,141,Bezeq International Ltd.
+28126,7,129,BRISANET SERVICOS DE TELECOMUNICACOES S.A
+17433,7,102,Hytron Network Services Limited
+12735,7,95,TurkNet Iletisim Hizmetleri A.S.
+16637,7,86,MTN SA (Bayobab)
+136557,7,83,Host Universal Pty Ltd
+52863,7,82,UPX TECNOLOGIA LTDA
+56534,7,81,Comfortel Ltd.
+57866,7,73,Fusix Networks B.V.
+39386,7,69,Saudi Telecom Company JSC
+133296,7,65,Web Werks India Pvt. Ltd.
+6789,7,62,CRELCOM LLC
 5391,7,61,Hrvatski Telekom d.d.
-35200,7,57,TransitX Ltd
-2860,7,57,"NOS COMUNICACOES, S.A."
-5578,7,57,"SWAN, a.s."
-3302,7,56,Retelit Digital Services S.p.A.
-135069,7,55,Feenix Communications Limited
-197068,7,54,High Load Lab (Qrator)
-27552,7,53,"TowardEX Technologies International, Inc."
-28761,7,51,CrimeaCom South LLC
-63473,7,48,"HostHatch, LLC"
-4648,7,48,Spark New Zealand
-37497,7,40,Network Platforms (PTY) LTD
-270158,7,40,Wantelco SAS de CV
-2200,7,39,Renater
-12722,7,37,RECONN LLC
-11492,7,36,"CABLE ONE, INC."
+6697,7,54,Beltelecom
+27951,7,50,Media Commerce Partners S.A
+36086,7,49,Digital Realty (fka. Telx)
+13576,7,45,SDN Communications
+138997,7,44,Eons Data Communications Limited
+394684,7,44,GOLD DATA USA INC
+11260,7,44,EastLink
+216211,7,42,CYBERVERSE LLC
+25645,7,39,"Momentum Telecom, Inc."
 17476,7,35,CloudRadium (HK) Limited
-48858,7,35,"JSC ""ER-Telecom Holding"""
-38235,7,34,ANGKOR DATA COMMUNICATION
-3737,7,33,PenTeleData Inc.
-38008,7,32,Aperture Science Limited
-393577,7,32,Tritan Development
-3262,7,31,"SAREnet, S.A."
-48648,7,31,K-Link LLC
-61231,7,30,Neos Networks (SSE PLC)
-8374,7,30,Polkomtel Sp. z o.o.
-12843,7,29,TelemaxX Telekommunikation GmbH
-38182,7,28,Extreme Broadband
-16097,7,27,HL komm Telekommunikations GmbH
-51465,7,26,M3.NET Sp. z o.o. / Fixmap Group
-29909,7,26,Metro Optic
-9038,7,24,Al Bahrainia al Urdunia Liltaknia Wa Alitisalat Plc. Co
-19318,7,23,"Interserver, Inc"
-48422,7,22,IT-STARCOM LLC
-7992,7,22,Cogeco Connexion Inc.
-56595,7,22,Commsworld Ltd
+267469,7,33,W8 Telecom Ltda - ME
+53427,7,30,TGLOBAL NETWORKS
+42,7,30,"WoodyNet, Inc."
+15958,7,29,CETIN Ltd. Belgrade
+397423,7,27,Tier.Net Technologies LLC
+136255,7,25,Mytel Myanmar
+12337,7,25,noris network AG
+327708,7,25,Airtel Rwanda Ltd
+29670,7,22,"Individual Network Berlin (""IN-Berlin"") e.V."
 43766,7,22,Zain Saudi Arabia
-376,7,22,Reseau d'Informations Scientifiques du Quebec (RISQ Inc.)
-51088,7,21,A2B IP B.V.
-21738,7,21,Rozint
-215120,7,21,Evolus IT Solutions GmbH
-39153,7,20,"JOINT-STOCK COMPANY ""TELEPORT TELECOM"""
-33185,7,20,Hive Data Center Inc.
-12703,7,20,Pulsant (Scotland) Ltd
-197453,7,20,Biz Telecom LLC
-201814,7,20,MEVSPACE sp. z o.o.
-47626,7,20,"Timer, LLC"
-20860,7,19,IOMART CLOUD SERVICES LIMITED
-49304,7,18,SAKURA LINK LIMITED
-55039,7,18,"Fatbeam, LLC"
-42861,7,18,Foton Telecom CJSC
+28649,7,22,Desktop Sigmanet Comunicação Multimídia SA
+51964,7,21,ORANGE BUSINESS SERVICES U.S. Inc.
+15808,7,19,NTT DATA (Dimension Data)
+61599,7,18,EAI TELECOMUNICACOES LTDA
 199624,7,17,DK Svyaz OOO
-51028,7,17,Zummer LLC
-36874,7,17,Cybersmart
-13287,7,17,FALBOX S.L. trading as NIXVAL
-212683,7,17,Olilo UK & Ireland Ltd.
-48964,7,16,"Private Enterprise ""Enterra"""
-3225,7,16,Bonline aka GULF communications
-209307,7,16,LLC Cifrovie Seti Urala
-6821,7,15,Makedonski Telekom AD-Skopje
-984,7,15,Octopus Web Solution Inc.
-212027,7,15,PebbleHost Ltd
-265680,7,15,HNTELCO S.A
-19523,7,15,FlexNetworks
-263237,7,14,PowerHost Telecom SPA
-49824,7,14,"PC ""Astra-net"""
-12306,7,14,Plus.line AG
-6400,7,13,Claro Dominican Republic
-39637,7,13,ADES BV
-44814,7,13,"""Bulgartel"" AD"
-13009,7,13,Redcentric Solutions Ltd
-9286,7,13,KINX
-31257,7,13,Orion Telecom LLC
-43641,7,12,SOLLUTIUM EU Sp z.o.o.
-48728,7,12,Vodafone Qatar P.Q.S.C
-2495,7,12,Kansas Research and Education Network
-17477,7,12,Macquarie Technology Operations Pty Limited
-53610,7,11,Metro Communications Company
+45489,7,16,Sri Lanka Telecom PLC
+49434,7,16,FBW NETWORKS SAS
+11320,7,15,LightEdge Solutions
+17547,7,14,M1 NET LTD
+30990,7,14,Djibouti Telecom SA
+264943,7,14,VIARAPIDA TELECOMUNICAÇÕES LTDA - ME
+61400,7,14,Start2 LLC
+61468,7,14,CEDIA
+135409,7,14,Kacific Broadband Satellites Pte Ltd
+64050,7,13,BGP Network Limited
+35487,7,12,"Misaka Network, Inc."
+12555,7,12,Data-center IMAQLIQ Ltd.
 28890,7,11,INSYS LLC
-19711,7,11,SWAZILAND PTC
+53107,7,11,EVEO Serviços de Internet Ltda.
+23889,7,11,Mauritius Telecom Ltd
+215467,7,10,Skhron OU
 262427,7,10,Invista Net Provedor de Acesso Ltda
-61423,7,10,JMP Technology Services GmbH
-266438,7,10,GNS FIBRA
-60800,7,10,Netwise Hosting Ltd
-25467,7,10,Akton d.o.o.
-14103,7,10,ACD.net
-36947,7,9,Telecom Algeria
-38320,7,9,PT Maxindo Mitra Solusi
-18046,7,9,DongFong Technology Co. Ltd.
+48293,7,10,Uniontel Ltd
+29752,7,9,Zenlayer Inc
+21351,7,9,Canal + Telecom SAS
+7642,7,9,Dhivehi Raajjeyge Gulhun Public Limited Company
 12491,7,9,Gilat Telecom Ltd.
-25460,7,9,The Networking People (TNP) Limited
-6315,7,9,"XMission, L.C."
-43623,7,8,Hessischer Rundfunk
-138322,7,8,Afghan Wireless Communication Company
-12360,7,8,KEVAG Telekom GmbH
-51043,7,8,Aspire Technology Solutions Ltd
-20394,7,8,Rainier Connect
-29752,7,8,Zenlayer Inc
-16143,7,8,OOO NIIR-RadioNet
-138886,7,8,PT Data Buana Nusantara
-14178,7,8,"Megacable Comunicaciones de Mexico, S.A. de C.V."
-2572,7,8,Missouri Research and Education Network (MOREnet)
-25577,7,7,MAINFRAME & CYBERNETIC SYSTEMS LIMITED
-34525,7,7,KOBA Sp. z o.o.
-62365,7,7,SachsenGigaBit GmbH
-32437,7,7,Webdev CC T/A Cybertek
-200132,7,7,Peter-Paul Maria Kurstjens
-5631,7,7,Telcom Networks Limited
-52780,7,7,MAP Piumhi Ltda - ME
-28840,7,7,"PJSC ""TATTELECOM"""
+33991,7,9,IGRA-SERVICE LLC
+23671,7,8,PT Sarana Insan Muda Selaras
+9929,7,8,China Unicom Industrial Internet Backbone
+8369,7,7,Intersvyaz-2 JSC
+394625,7,7,WhiteLabel IT Solutions Corp
 137969,7,7,HONG KONG BRIDGE INFO-TECH LIMITED
-30818,7,6,Advania Ísland ehf (Advania Transit)
-132167,7,6,Nine Communications Company Limited
-44854,7,6,Arend Brouwer
-11090,7,6,"Matanuska Telecom Association, Incorporated"
-272102,7,6,BESSER SOLUTIONS C.A.
-12494,7,6,"OOO ""Post ltd"""
-18914,7,6,ETS TELECOM
-21430,7,6,WIA spol. s.r.o.
-210,7,6,Utah Education Network
-13189,7,6,Liden Data Internetwork AB
-9070,7,6,Cooolbox AD
-11071,7,6,InfoWest
-29550,7,6,Team Blue Carrier Limited
-8002,7,6,"Stealth Communications Services, LLC"
-15672,7,6,OOO Telecom TZ
-39889,7,6,Fredrik Holmqvist
-34245,7,5,Magnet Networks Limited
-8540,7,5,AMA netwoRX GmbH
-23175,7,5,PogoZone
-55195,7,5,CIRA Canadian Internet Registration Authority Autorit Canadienne pour les enregistrements Internet
-16247,7,5,Convergence Group (Wireless) Networks Limited
-29017,7,5,NTT Data Centers (Gyron)
-137557,7,5,"International gateway co., Ltd"
-29196,7,5,Inzhenernye seti - Telecom LLC
-12709,7,5,Melita Limited
-33991,7,5,IGRA-SERVICE LLC
-34244,7,5,Teleservice Bredband Skane AB
+42291,7,6,OOO Istranet
+47887,7,6,AL-HADATHEH LIL-ITISALAT WA AL-TECHNOLOGIA CO.
+11340,7,6,Red Universitaria Nacional
+50867,7,6,HOSTKEY B.V.
+50049,7,6,RedSwitches
+60388,7,6,"JSC ""Oil Transportation and Production Telecommunications"""
+42910,7,6,PremierDC Veri Merkezi Anonim Sirketi
+41564,7,6,Orion Network Limited
+37020,7,6,CELTEL DRC
+131314,7,6,CBC Tech International Limited
+60280,7,6,National Traffic Exchange Center (Belarus)
+32475,7,5,Internap Holding LLC
+29386,7,5,Syrian Telecommunication Private Closed Joint Stock Company
+209693,7,5,OC NETWORKS LIMITED
+397373,7,5,H4Y Technologies LLC
+43278,7,5,Castles LLC
+48014,7,5,Albanian Hosting SH.P.K.
+5377,7,5,Marlink AS
 61610,7,5,ELEA DATA CENTERS
-20161,7,5,TeraGo Networks Inc.
-12732,7,5,GutCon GmbH
-29608,7,5,Ovea SAS
-211588,7,5,Innovation Harbor B.V.
-56294,7,4,VMvault Pty Ltd
-7296,7,4,"Dynascale Technologies, Inc."
+263097,7,5,BRAVA INTERNET
+50187,7,5,BaikalWestCom Ltd
+34602,7,5,MEGASVYAZ LLC
+7356,7,5,Sikla Tech Limited
 57717,7,4,FiberXpress BV
-27715,7,4,Locaweb Serviços de Internet S/A
-8820,7,4,tal.de GmbH
-35228,7,4,o2 (Telefonica UK)
-15766,7,4,Domicilium (IOM) Limited
-5065,7,4,Bunny Communications
-35826,7,4,Netservers Limited
-11269,7,4,LinkBermuda LTD
-58779,7,4,i4HK Limited
-9500,7,4,One New Zealand Group Limited
-12322,7,4,Free SAS
-20799,7,4,Datanet.co.uk Ltd
-21766,7,4,"BEN LOMAND RURAL TELEPHONE COOPERATIVE, INC."
-14979,7,4,Aeronet Wireless
-36040,7,4,Google (Global Cache)
-31444,7,4,SeaExpress Ltd.
-30740,7,4,Exa Networks Limited
-8282,7,4,Bink Group Ltd
-60900,7,4,Adrian Trifonov trading as Ssmidge Technologies
-13247,7,4,Erdenreich Datentechnik GmbH
-328366,7,3,FIRSTNET TECHNOLOGY SERVICES (PTY) LTD
-24492,7,3,WiCAM Corporation Ltd.
-40779,7,3,VoltNet inc
-19016,7,3,Westman Communications Group
-34555,7,3,C.C.S. (Leeds) Ltd
+9678,7,4,HostingInside LTD
+30999,7,4,Emtel
+28118,7,4,ALTICE DOMINICANA S.A.
+3132,7,4,Red Cientifica Peruana
+63018,7,4,Dedicated.com
+48011,7,4,Turunc Smart Bilgisayar Teknoloji Ve Dis Ticaret Limited Sirketi
+263928,7,3,JBMNET TELECOM
+59238,7,3,"Innovative Extremist Co., Ltd."
 133199,7,3,SonderCloud Limited
-51375,7,3,STC BAHRAIN B.S.C CLOSED
-15743,7,3,net.de AG
-24811,7,3,Joint Stock Company Kuzbassenergosviaz
-13208,7,3,Newtel Limited
-8823,7,3,Rockenstein AG
-8681,7,3,JT (Jersey) Limited
-399226,7,3,SpeedFI Inc.
-41354,7,3,ITS Technology Group Limited
-24679,7,3,kyberio GmbH
-23379,7,3,"Blackburn Technologies II, LLC"
-28252,7,3,Worldnet Telecom Comunicações LTDA
-47775,7,3,"JSC ""Ufanet"""
-13037,7,3,Zen Internet Ltd
-29582,7,3,Optisprint OOD
-207203,7,3,TIMEWARP IT Consulting GmbH
+51580,7,3,TIMENET SPA
+48940,7,3,Link Ltd.
+5607,7,3,Sky UK
+52747,7,3,Wsp Serviços de Telecomunicações Ltda
+263262,7,3,MOV TELECOM LTDA
 51790,7,3,"SIEL, d.o.o."
 216334,7,3,New Hosting Technologies LLC
-8445,7,3,"SALZBURG AG fur Energie, Verkehr und Telekommunikation"
-59395,7,3,Southern Communications Ltd
-35612,7,3,EOLO S.p.A.
-266192,7,3,LP PROVEDORA DE INTERNET E INSTALAÇÕES DE REDES TE
+39156,7,3,First Telecom Ltd
+132372,7,3,GB Network Solutions Sdn. Bhd.
+8895,7,3,King Abdul Aziz City for Science and Technology
+263457,7,3,Alpinet Informática Ltda
 39279,7,3,Information Technology and Cyber Security Service
-37558,7,3,LIBYAN INTERNATIONAL TELECOMMUNICATION COMPANY
-61438,7,3,ip-it consult GmbH
-31272,7,3,WildPark Co
-249,7,3,Packet Star Networks Limited
-60880,7,3,Horizon Telecom B.V.
 213513,7,3,Computle Limited
-10098,7,3,Towngas Telecommunications Fixed Network Ltd
 267056,7,3,EVEREST RIDGE DO BRASIL LTDA
-140443,7,3,PT Herza Digital Indonesia
-51561,7,2,ICUK Computing Services Limited
-15389,7,2,P/F Telefonverkid
-16909,7,2,imput
-29680,7,2,Gamma Operadora de Comunicaciones S.A.
-41765,7,2,IPGarde SAS
-24916,7,2,Orbital Net Ltd
-198781,7,2,Connect Managed Services (UK) Limited
-12727,7,2,Vialis SEM
-20677,7,2,imos Gesellschaft fuer Internet-Marketing und Online-Services mbH
-48327,7,2,Ray-Svyaz Ltd.
-264528,7,2,KASATECH PROVEDOR DE INTERNET LTDA
-208621,7,2,LogicForge Limited
-399606,7,2,"Imaging Bay, Inc."
-19662,7,2,Uniserve On Line
-513,7,2,CERN
-39781,7,2,Diabolocom SAS
-60345,7,2,icixs networks GmbH
-5662,7,2,Warner Bros. Discovery
-39251,7,2,NETGUARD LLC
-208753,7,2,Marco d'Angelo
-48919,7,2,UACITY Ltd.
-30870,7,2,Trans-iX B.V.
-51430,7,2,AltusHost B.V.
-37009,7,2,"MTC - Mobile Telecommunications, Ltd."
-262354,7,2,LIGUE MÓVEL S.A.
-136749,7,2,KS IT SOLUTIONS SDN BHD
-23783,7,2,"Cable Networks Akita Co.,ltd."
-50469,7,2,Peer Kohlstetter trading as Hessenkom GmbH & Co. KG
-34119,7,2,Wildcard UK Limited
-196750,7,2,SETI WEBA LTD
-38176,7,2,ABS - Agility Beyond Space
-38778,7,2,PT Dutakom Wibawa Putra
-33771,7,2,Safaricom Limited
-23473,7,2,PAVLOV MEDIA INC
-35758,7,2,Rachamim Aviel Twito
-19255,7,2,"YOUR.ORG, INC."
-17924,7,2,SmarTone Mobile Communications Ltd
-8391,7,2,Knipp Medien und Kommunikation GmbH
-34154,7,2,Configo Systems Gesellschaft fuer Systemloesungen mbH
-42656,7,2,Allegro sp. z o.o.
-56864,7,2,Xeon LLC
-11767,7,2,"Quality Technology Services, LLC"
-23428,7,2,ServerForge LLC
-47172,7,2,Greenhost BV
-136841,7,2,PT Mitra Telemedia Manunggal
-47236,7,2,CityLink Ltd
-57154,7,2,Stadtwerke Konstanz GmbH
-61349,7,2,MaxiTEL Telecom B.V.
-202297,7,2,Skylon Solutions Limited
-55900,7,2,GLBB Japan KK
-24953,7,2,NETPLANET GmbH
-48092,7,2,T2 Mobile LLC Nizhniy Novgorod branch
-31490,7,2,NetIX Communications JSC
-48070,7,2,DSM (GB) Limited
-57119,7,1,NAITWAYS SAS
-48101,7,1,Trooli Ltd.
-61094,7,1,CRATIS d.o.o.
+35908,7,2,Krypt Technologies
+61317,7,2,Hivelocity LLC
+213306,7,2,Comtrade System Integration doo Belgrade Serbia
+139952,7,2,PT Trisari Data Indonusa
+202520,7,2,SkyPass Solutions Sp. z o.o.
+205103,7,2,Telegraph42 Management GmbH
+216382,7,2,Layer Marketing Services LLC
+39832,7,2,Opera Norway AS
+18723,7,2,Seagate Technology LLC
+264010,7,2,Polli Telecom
+216107,7,2,Noah van der Aa trading as Frumentum Media
+7522,7,2,"STNet, Incorporated"
+135477,7,2,PT Java Digital Nusantara
+12252,7,2,America Movil Peru S.A.C.
+35526,7,2,Smart Technology LLC
+43045,7,2,Svyaz-Holding Ltd.
+60447,7,2,I NET BULGARIA EOOD
+50313,7,2,TESLATEL LLC
+53334,7,2,"Total Uptime Technologies, LLC"
+36868,7,1,Rogers Capital Technology Services Ltd
 13750,7,1,"Transaction Network Services, Inc."
-16417,7,1,Cisco Systems Ironport Division
-215899,7,1,Justas Gudynas
-21886,7,1,Netrix LLC
-213607,7,1,WORLD FIRST COMMUNICATION LTD
-20783,7,1,pop-interactive GmbH
-46824,7,1,NameCrane LLC
-10118,7,1,Hutchison Telephone Company Limited
-8859,7,1,OSN Online Service Nuernberg GmbH
-12198,7,1,JSMSR Network
-200736,7,1,MEDIANET INVEST AE
-139750,7,1,IDCServices.net Inc
-22216,7,1,Siemens Corporation
-31950,7,1,Data Network Solutions
-25145,7,1,Teknotel Telekomunikasyon Sanayi Ve Ticaret A.S.
+44056,7,1,Trytek LLC
+209181,7,1,Zenex 5ive Limited
+131219,7,1,Indosat Singapore Pte. Ltd.
 30417,7,1,BTIG LLC
-8723,7,1,ITS INTEGRA SAS
-207995,7,1,Lightning Fibre
-42611,7,1,Full Fibre Limited
-202520,7,1,SkyPass Solutions Sp. z o.o.
-204995,7,1,RTB Marketing and Tech Services Ltd
-1100,7,1,Nuday Networks Inc.
+200242,7,1,Ember Ana
 35032,7,1,"LLC SIP ""NIS"""
-63150,7,1,Bage Cloud LLC
-20723,7,1,"AVONET, s.r.o."
-62105,7,1,Fiber Crew B.V.
-47388,7,1,Dante International SA
 31059,7,1,"SIA ""AVELACOM"""
-12931,7,1,IDKOM Networks GmbH
-199805,7,1,UGO LLC
-15372,7,1,IBH connect GmbH
-8878,7,1,nfon AG
-36924,7,1,GVA Cote d'Ivoire SAS
-401665,7,1,HostBilby Inc.
+265605,7,1,VELOCOM SA DE CV
 59371,7,1,Dimension Network & Communication Limited
 53205,7,1,IBSOL TELECOM LTDA
-50293,7,1,Interfiber Networks LDA
-58084,7,1,Newcontact ltd.
-21267,7,1,Wavenet Limited
-60431,7,1,PNO Solutions Limited
-52389,7,1,SSCS BV
-13215,7,1,"JSC Telecommunication company ""Convey Plus"""
-48284,7,1,SWU TeleNet GmbH
-264574,7,1,Elite Banda Larga
-29505,7,1,Stadtwerke Luebeck Digital GmbH
-24663,7,1,"ZAO ""COMPLAT-TELECOM"""
+16740,7,1,DOXX.NET CORPORATION
+24151,7,1,China Internet Network Infomation Center
+200000,7,1,Hosting Ukraine LTD
 20648,7,1,TMN SA
-39603,7,1,P4 Sp. z o.o.
-39602,7,1,The Cent.re Group Limited
-201213,7,1,DARZ GmbH
-207239,7,1,LLC G&G-Telecom
-9416,7,1,"KBT Co., LTD 4F., No.57, Dongxing Rd., Xinyi Dist., Taipei City 110, Taiwan (R.O.C.)"
-25521,7,1,Industrial Media Network LLC
-29030,7,1,TELECABEL PLC
-61124,7,1,Marston's Telecoms Limited
-23884,7,1,Proen Corp Public Company Limited.
+22717,7,1,Halliburton Company
+48096,7,1,Enterprise Cloud Ltd.
+58065,7,1,Orion Network Limited
+62715,7,1,CrashPlan
 11878,7,1,"tzulo, inc."
-33570,7,1,Cloudpath
-31564,7,1,Hexaglobe SAS
-17686,7,1,ACCELIA
-267124,7,1,Virtualnet.tv.br
-205769,7,1,Mainzer Breitband GmbH
-27983,7,1,Red Intercable Digital S.A.
-199518,7,1,Gregory Shapiro
-45543,7,1,SaiGon Tourist cable Televition Company
-33920,7,1,AQL (AQ Networks Limited)
+45815,7,1,ESDS Software Solution Limited.
+216129,7,1,SEBEK sp. z o.o
+35793,7,1,Acronis International GmbH
+133929,7,1,"TWOWIN CO., LIMITED"
+264398,7,1,Neonet Telecom
 10779,7,1,"StepBroBD, Inc."
-29748,7,1,"Quality Technology Services, LLC"
-131330,7,1,irix
-209870,7,1,Cylo Ltd
+57174,7,1,Nets and Services JCS
 53243,7,1,Brasil Site Informatica LTDA
-24889,7,1,Monzoon Networks AG
-34863,7,1,HEXANET SAS
-1213,7,1,ASIERA TECHNOLOGY SERVICES CLG
-29668,7,1,vXtream Ltd
-48282,7,1,Hosting technology LTD
-57811,7,1,Redge Technologies sp. z o.o.
-262609,7,1,CL9 Tecnologias Ltda.
-395466,7,1,Global Net
-62336,7,1,PURtel.com GmbH
-197422,7,1,Tetaneutral.net Association declaree
-39493,7,1,CJSC Kolomna-Sviaz TV
-2527,7,1,Sony Network Communications Inc.
-328112,7,1,Linux Based Systems Design SA (Pty) Ltd
-265188,7,1,Grupo WCM net
-30972,7,1,Bedrock SAS
-9153,7,1,Burstfire Networks Ltd
-152586,7,1,Kuroit
-393424,7,1,Toronto Internet Exchange Community
-41560,7,1,UGMK-Telecom LLC
-12186,7,1,GVVME
-18126,7,1,"Chubu Telecommunications Company, Inc."
-48219,7,1,3DATA LLC
-197301,7,1,Parknet F.M.B.A.
-215439,7,1,PLAY2GO INTERNATIONAL LIMITED
-206924,7,1,Ben Cartwright-Cox
+963,7,1,N963 PTE. LTD.
+207713,7,1,GLOBAL INTERNET SOLUTIONS LLC
+17088,7,1,"Currenex, Inc."
+135300,7,1,"Myanmar Broadband Telecom Co., Ltd"
+327885,7,1,Viettel Tanzania PLC
+207590,7,1,loclix
+141167,7,1,AgotoZ HK Limited
+45187,7,1,Rackspace IT Hosting AS IT Hosting Provider Hong Kong
+204818,7,1,Hosteur SAS
+52603,7,1,Supply Net Serviços Ltda - ME
 42038,7,1,Krivets Sergey Sergeevich
-31298,7,1,Zulu Ltd.
-142319,7,1,PT Telemedia Komunikasi Pratama
-58138,7,0,Korton Computer Communication (KCC) B.V.
-206292,7,0,Gerdriaan Mulder
-47631,7,0,SIP COMMUNICATIONS LIMITED
-207907,7,0,Elia Kessler
-24691,7,0,"TogoTelecom, Togo"
-205206,7,0,Netsite A/S
+52091,7,1,Level-MSK Ltd.
+61708,7,1,INFOCAT INFORMÁTICA LTDA
+270260,7,0,M.M.P. PROVEDOR DE ACESSO A INTERNET LTDA
+197196,7,0,PANSTAR CLOUD LIMITED
 58664,7,0,Adobe Systems India Pvt. LTD
+135392,7,0,MillenialHost Limited
 3599,7,0,CDW Technologies LLC
-23778,7,0,"IMIZU CABLE NETWORK CO.,LTD."
+11939,7,0,"THE MATHWORKS, INC."
 20464,7,0,HP Inc.
-12701,7,0,Barclays Bank plc
-3242,7,0,REEVO S.P.A.
+5774,7,0,United States Postal Service
 265691,7,0,WI-NET TELECOM S.A.C.
-49724,7,0,JSC Vainah Telecom
-60557,7,0,Krik van der Vinne trading as Alpine North
-43500,7,0,Warner Bros. Discovery
-56418,7,0,Operationrange LTD
-212483,7,0,LEVEL EIGHTY-SIX COMMUNICATIONS LTD
-57537,7,0,Net-D-Sign GmbH
-199471,7,0,Marcel Straub
-39046,7,0,Theorema Telecom Limited
-24253,7,0,J-Stream Inc.
-51764,7,0,JSC AMTEL-SVYAZ
-41529,7,0,MediaServe International B.V.
+395831,7,0,Meraki LLC
+30337,7,0,Deloitte Services LP
+35350,7,0,UCB Pharma S.A.
+61455,7,0,LACTLD - LATIN AMERICAN AND CARIBBEAN TLD ASSOCIATION
+268941,7,0,PAGSEGURO INTERNET S.A.
+211273,7,0,Cloud Software - FZCO
+34655,7,0,JWE S.a r.l.
 19886,7,0,"Bank of America, National Association"
-30971,7,0,nic.at GmbH
-39960,7,0,Barnes & Noble Inc.
-20681,7,0,Saxo Bank A/S
-15796,7,0,Salt Mobile SA
-38719,7,0,Dreamscape Networks Limited
-212087,7,0,"PLENIT TECHNOLOGY, S.L."
-203714,7,0,LLC Flex
-32554,7,0,Montgomery County Intermediate Unit
-34756,7,0,NEP Media Solutions B.V.
-15826,7,0,NFrance Conseil
-22295,7,0,Advin Services LLC
-138064,7,0,PT. Jinom Network Indonesia
-209990,7,0,Diyaaeldin Moustafa trading as Karmuz
-198046,7,0,DIDWW Ireland Limited
-50314,7,0,QuantHouse SAS
-44608,7,0,EMG Nederland B.V.
-214783,7,0,Danny Nieuwenhuis trading as DedicatedNodes
-16625,7,0,"Akamai Technologies, Inc."
-26685,7,0,Franklin Resources
-11396,7,0,Williams Information Technology LLC
-43937,7,0,Playtech Software Ltd
+268183,7,0,ATM SERVIÇOS EIRELE
+214143,7,0,SKYDIGITAL TELECOM LTD
+139659,7,0,LUCIDACLOUD LIMITED
+53168,7,0,Equatorial Energia
+53571,7,0,PRECISION CASTPARTS CORP
+59116,7,0,AIG Technologies KK
 199669,7,0,Okay-Telecom Ltd.
-198736,7,0,Stream Networks Ltd
-12759,7,0,SOCO Network Solutions
-32751,7,0,"Nuclearfallout Enterprises, Inc."
-61189,7,0,Elkdata OU
-11245,7,0,The Goodyear Tire & Rubber Company
-25694,7,0,Atomic Data LLC
-201877,7,0,NETandWORK s.r.l.
+29888,7,0,Unum Group
+63099,7,0,MADEALA TELECOM TECHNOLOGY INC
 265855,7,0,LEGON TELECOMUNICACIONES SAS
+394646,7,0,"Eagle Eye Networks, Inc"
 40513,7,0,"Edge Technology Group, LLC"
-212341,7,0,"Stephan Rakowski, trading as CSN-Solutions GmbH"
-200078,7,0,Gao Yijia
-55081,7,0,24 SHELLS
-41616,7,0,Teleservis-plus LLC
-32042,7,0,Evergate Solutions
-213054,7,0,Keepit A/S
-204631,7,0,VIVANET GmbH
-50655,7,0,ITS HOSTED
-29283,7,0,Hub One SA
-41047,7,0,Bart Vrancken
-24730,7,0,Garnier Projects BV
-205943,7,0,BDSF Technology B.V.
-208694,7,0,LEON AARON TIEKOETTER
-210893,7,0,Layered Technologies Limited
-206720,7,0,AIRBUS SAS
-263210,7,0,HV TELEVISION S.A.S
+198167,7,0,Apptc.me s.r.o.
+267978,7,0,JOTA NET TELECOMUNICACOES LTDA - ME
+264863,7,0,New Help Telecomunicaçoes Ltda-Me
+4243,7,0,"Wells Fargo Bank, N.A."
+268817,7,0,Acelera Telecom
+215248,7,0,Bastiaan Mathijs Brink
+51538,7,0,Lavrentyev Aleksandr Arkadievich
+58411,7,0,Gateway Technology Development Limited
+59253,7,0,Leaseweb Singapore Pte. Ltd.
+44493,7,0,Chelyabinsk-Signal LLC
+10747,7,0,"Epic Hosting, LLC"
 16728,7,0,"Mattel, Inc."
+11993,7,0,BANCO DO BRASIL S.A.
 22332,7,0,Western Digital Corporation
-206375,7,0,NETSPEED INTERNET A.S.
-5432,7,0,Proximus NV
+19115,7,0,Charter Communications LLC
 19380,7,0,"C.H. ROBINSON WORLDWIDE, INC."
-3130,7,0,RGnet OU
-198539,7,0,Objedinennye Seti LLC
+45029,7,0,"Join-stock company ""Internet Exchange""MSK-IX"""
+28492,7,0,Valores Corporativos Softtek S.A. de C.V.
 8092,7,0,"Access Media Holdings, LLC"
-210890,7,0,ROKR Services BV
-17958,7,0,"Kasaoka Cable Vision Co,LTD."
-62537,7,0,Sauce Labs Inc
-61102,7,0,Interhost Communication Solutions Ltd.
+208487,7,0,HASAN CAGRI AKSU
+201674,7,0,Wen ZhangYu
+22787,7,0,"ARRIS Technology, Inc."
+41718,7,0,Vitrina TV LLC
 10615,7,0,UBS AG
-44061,7,0,"SAT-MONT-SERVICE JACEK MRUK, KRZYSZTOF MRUK Sp. z o.o."
-49653,7,0,CADF S.p.A
+18602,7,0,"Paul, Weiss, Rifkind, Wharton & Garrison LLP"
+266196,7,0,BRASCOM SOLUCOES E TECNOLOGIA LTDA ME
+399647,7,0,Rumble USA Inc.
+131386,7,0,Long Van System Solution JSC
 14956,7,0,RouterHosting LLC
-206980,7,0,AntiDDoS Solutions LLC
-209894,7,0,Foerderverein Freie Infrastruktur e.V.
-62272,7,0,OblTelecomService LLC
-213467,7,0,ProAdmin - Lukasz Piwowarczyk
-59655,7,0,Exinity works (CY) LTD
-201191,7,0,Cobytes B.V.
-22808,7,0,"LION RESOURCES, INC."
-28792,7,0,Public Internet Ltd
-40913,7,0,"Quality Technology Services, LLC"
-25182,7,0,Nederlandse Publieke Omroep
-22103,7,0,"Nextiva, Inc."
-206141,7,0,Duisburger Versorgungs- und Verkehrsgesellschaft mbH
-12409,7,0,TRUSTTEAM SAS
-62227,7,0,EKCO CLOUD AND SECURITY LIMITED
-63859,7,0,PT Eka Mas Republik
-210558,7,0,1337 Services GmbH
-263511,7,0,Saveincloud Hospedagem na Internet Ltda
-197915,7,0,All for One Group SE
-201650,7,0,Webguru VOF
-4680,7,0,Mitsubishi Electric Information Network Corporation
-51263,7,0,County Broadband Ltd
-22512,7,0,OpenBSD
-60377,7,0,toob limited
-209835,7,0,Despliegue de Redes de Telecomunicaciones S.L.
+12,7,0,New York University
+201188,7,0,BJT Partners SAS
+398699,7,0,Cisco Systems Inc
+328126,7,0,Orange Tunisie
+212165,7,0,Alex Group LLC
+267979,7,0,UP CABLE SERVIÇOS DE INTERNET LTDA
+269107,7,0,WebNet
+60142,7,0,NXP Semiconductors Netherlands B.V.
+271068,7,0,Rede Free - Internet Wi-fi
+64245,7,0,"DigitalFyre Internet Solutions, LLC."
+23028,7,0,Team Cymru Inc.
+45839,7,0,Shinjiru Technology Sdn Bhd
 19661,7,0,"Susquehanna International Group, LLP"
-14500,7,0,Galaxy Broadband Communications Inc.
-7768,7,0,Nuh Ahmet Firat trading as TEKNET YAZILIM VE BILGISAYAR TEKNOLOJILERI
-207149,7,0,Julien Sansonnens
-29667,7,0,Atlantis Net Ltd.
-50624,7,0,Outscale SASU
-32110,7,0,"Asurion Insurance Services, Inc."
+32312,7,0,"Telecommunication Systems, Inc."
+33257,7,0,Expert Service Providers LLC
 22423,7,0,Altima Telecom
-32444,7,0,Anthem Broadband
-7201,7,0,Network Edge LLC
-402654,7,0,LHS Networks
+7867,7,0,TECH DATA CORPORATION
+141995,7,0,Contabo Asia Private Limited
+52533,7,0,TRADITIO COMPANHIA DE SEGUROS
 6363,7,0,"Extreme Networks, Inc."
-49770,7,0,Internetport Sweden AB
-35710,7,0,weber.digital GmbH
-137263,7,0,NETEASE HONG KONG LIMITED
-9312,7,0,xTom
-40138,7,0,"Mach Dilemma, LLC"
-18214,7,0,TELUS INTERNATIONAL
-31019,7,0,Paulus M. Hoogsteder
-51095,7,0,"EdgeUno, Inc."
-15190,7,0,CTS LanguageLink
-47363,7,0,Yunta Ltd.
-39561,7,0,"""Domain names registrar REG.RU"", Ltd"
-6681,7,0,GIVEME CLOUD SP Z O O
-41405,7,0,Altinea SAS
+136975,7,0,Global Technology
+8399,7,0,SEWAN SAS
+207445,7,0,Vincent Maroun
+211381,7,0,Podaon SIA
+210667,7,0,Adam Goodenough
+39678,7,0,OOO ALL UP NET
+142002,7,0,Scloud Pte Ltd
 207986,7,0,LLC OZON BANK
-46269,7,0,"UKG Kronos Systems, LLC"
-41802,7,0,Limited Liability Company Kvidex-Telecom
-205919,7,0,ON-X GROUPE SA
+202335,7,0,Zhanrui Tian
+201511,7,0,ScPA Starline LLC
 6253,7,0,The Prudential Insurance Company of America
-215527,7,0,Xero Networks LTD
-59126,7,0,"NCT CO.,LTD."
-42632,7,0,MnogoByte LLC
-59985,7,0,SAM Office B.V.
+132139,7,0,VECLOUD LIMITED
+62167,7,0,Tismi BV
 62566,7,0,Starbucks Coffee Company
-41090,7,0,Equation SAS
-63402,7,0,Universal Orlando
-11323,7,0,"Getty Images (Seattle), Inc."
-262393,7,0,A ALVES GOMES INFORMATICA - ME
-137753,7,0,Beijing Jingdong Shangke Information Technology Co. Ltd.
-55270,7,0,"Quik, LLC"
-16218,7,0,"Ingo Assion trading as ""IACD Systemhaus GmbH"""
-19512,7,0,Lyondell Chemical Company
-9120,7,0,Keepit A/S
-395266,7,0,"Keysight Technologies, Inc"
-204144,7,0,Comfort XXI Century Ltd.
+205495,7,0,"OOO ""L-Telecom"""
+29588,7,0,Ivstar Ltd
+268824,7,0,CONNECTMAX TELECOM
 1294,7,0,NTT DATA Services Holdings Corporation
-13039,7,0,Global Village GmbH
-208223,7,0,SHU-HAO TUNG
-204151,7,0,EWII Bredbaand A/S
+266364,7,0,RABELO FLORES SERVIÇOS DE MULTIMIDIA EIRELI-IGBWEB
+13729,7,0,Fidessa Corporation
+28498,7,0,Network Information Center México
 204463,7,0,Xin Zhao
-44949,7,0,Gigacodes GmbH
-401418,7,0,Red Team LTD
-56329,7,0,Gigaclear Limited
+271353,7,0,JJ PowerNet
+25934,7,0,"Syniverse Technologies, LLC"
 8069,7,0,Microsoft Corporation
-35271,7,0,"JSC ""AVIEL"""
-2571,7,0,DHL Information Services (Europe) s.r.o
-133936,7,0,X86 Network Sdn Bhd
-47480,7,0,Blue Tiger Solutions Limited
-26651,7,0,CareFusion Corporation
-51055,7,0,Bridge Fibre Limited
-201791,7,0,Devhouse Spindle B.V.
-11377,7,0,"SendGrid, Inc."
-206426,7,0,Conclusion Enablement BV
-399122,7,0,VPS House Technology Group LLC
-205614,7,0,Medialine EuroTrade AG
-214271,7,0,ICONIC PROTECH LTD
-50779,7,0,Societe Mediterraneenne d'Etudes et d'Informatique SA
-45557,7,0,Vietnam Technology and Telecommunication JSC
-35180,7,0,Broadsoft LTD
-27630,7,0,XFERNET
-43942,7,0,Grifonline S.r.l.
-1798,7,0,State of Oregon
-38230,7,0,Navice Consulting
-201379,7,0,Christian Hofstede-Kuhn
-15600,7,0,Quickline AG
-55803,7,0,Hostopia Australia Web Pty Ltd
-2484,7,0,AFNIC (Association Francaise pour le Nommage Internet en Cooperation)
+57169,7,0,EDIS GmbH
+53712,7,0,Wellington Management Company LLP
+271418,7,0,freynet telecom
+59637,7,0,RamSvyazInvest LLC
+201341,7,0,"trafficforce, UAB"
+53943,7,0,Paylocity Corporation
+10411,7,0,Environmental Systems Research Institute
+33717,7,0,HiNet (Chunghwa Telecom)
 397353,7,0,Teledyne Technologies Incorporated
-17534,7,0,"NSK Co.,Ltd."
-136744,7,0,Dream Power Technology Limited
-42965,7,0,net services Beteiligungsgesellschaft mbH trading as net services GmbH & Co. KG
+141190,7,0,Jindun Technology PTE. Ltd.
+214036,7,0,"Ultahost, Inc."
 394434,7,0,Twilio Inc
-50172,7,0,Regie Autonome Des Transports Parisiens
-11588,7,0,Lambda
+268760,7,0,LIVENET SERVICOS DE COMUNICACAO MULTMIDIA LTDA ME
 398037,7,0,NVIDIA Corporation
-42344,7,0,Subtopia Ltd
-22379,7,0,Manifold Services Inc
 46024,7,0,PT Bank Negara Indonesia (Persero) Tbk
-9137,7,0,Uno Communications SpA
-25820,7,0,IT7 Networks Inc
-207866,7,0,InCompanyMedia B.V.
-6379,7,0,"A-Link Network Services, Inc."
+30082,7,0,QS1 Data Systems
+273717,7,0,TECNONET SINAL DE INTERNET LTDA
+267481,7,0,TUDONLINE SERVICOS E COMERCIO LTDA ME
+30303,7,0,"Ooma, Inc."
+39087,7,0,P.A.K.T LLC
 219378,7,0,ZHANG XIYUAN
-31050,7,0,The Framestore Limited
-18608,7,0,"PALADYNE SYSTEMS, LLC"
-31449,7,0,BELCENTER SA
-55547,7,0,WoodsDale Ventures INC
-200879,7,0,John Carlo Olideles
+263343,7,0,PC2 TELECOM
+28075,7,0,ARLINK S.A.
+207941,7,0,JITEN PATHY
+208059,7,0,Hermann Lienstromberg
+10146,7,0,Ford Motor Company
+24381,7,0,BGP.Exchange
 40391,7,0,CHS COOPERATIVES FOUNDATION
-58907,7,0,Acquire BPO Pty Ltd
-47531,7,0,GorPTUs OOO
-54778,7,0,"Bloomberg, LP"
-210578,7,0,Lucas Groenewegen trading as McPal
-25581,7,0,GMG AG
-210644,7,0,Aéza International Limited
-52890,7,0,Centro Integrado de Telemática do Exército
-33835,7,0,WEACCESS GROUP S.A.
-31472,7,0,VoiceHost Ltd
-16920,7,0,"Wind River Systems, Inc."
+203182,7,0,DIGITURK LTD.
+57843,7,0,GK INTERLOGICA LLC
+55966,7,0,Post Savings Bank of China
+263539,7,0,NEW SYSTEM INTERNET
+140227,7,0,"Hong Kong Communications International Co., Limited"
+6250,7,0,"NeoNova Network Services, LLC"
+204805,7,0,Voiped Wholesale BV
 34164,7,0,Akamai International B.V.
-125,7,0,"Honeywell International, Inc."
+208677,7,0,"""Cloud Technologies"" LLC trading as Cloud.ru"
 37342,7,0,"Movitel, SA"
-35313,7,0,Infonas W.L.L.
-7270,7,0,IDT Corporation
-23954,7,0,PT Bank Mandiri (Persero) Tbk
-57503,7,0,OOO Taxtelecom
-131958,7,0,"Tama Cable Network Co.,Ltd."
-200373,7,0,3xK Tech GmbH
-17978,7,0,SERVCORP AUSTRALIAN HOLDINGS LTD
-213499,7,0,Gorokhov Kirill
-59675,7,0,mywire Datentechnik GmbH
-45349,7,0,Telecom Fiji Ltd
-138860,7,0,PT Jaya Lintas Indonesia
-61200,7,0,MediaMonks Multimedia Holding B.V.
-202282,7,0,FIBRUS NETWORKS LTD
+11857,7,0,"Money Services, Inc."
+52548,7,0,tc conecta serviços de telecomunicações e provedor
+41231,7,0,Canonical Group Limited
+136093,7,0,PT Mitra Lintas Multimedia
+41135,7,0,Voxbone SA
+52903,7,0,Sglinknet Telecomunicacoes Ltda-ME
+270765,7,0,VIVA PIXEL AGENCIA DIGITAL
 40185,7,0,"Junction Networks, Inc."
+12678,7,0,Badoo Trading Limited
 22593,7,0,Blue Cross and Blue Shield of North Carolina
-150288,7,0,METAGE TECHNOLOGY PTE. LTD.
-205530,7,0,DE-CIX Management GmbH
-21040,7,0,EKT AG
-47524,7,0,Turksat Uydu Haberlesme Kablo TV ve Isletme A.S.
-270207,7,0,JOSE DE JESUS VAZQUEZ PONCE
-41480,7,0,Systemec BV
-202427,7,0,Ursin Filli
-213671,7,0,Vision Fibre Media Ltd.
-48061,7,0,Limited Liability Company GPM Digital Technologies
-205119,7,0,TELEKS DOOEL Skopje
-1011,7,0,Accutar Biotechnology (Canada) Inc.
+25896,7,0,IPC Network Services Inc.
+39264,7,0,Region Svyaz Konsalt LLC
+22098,7,0,"The Capital Group Companies, Inc."
+270409,7,0,MARCIO ISAIAS DA SILVA EIRELI
+26704,7,0,Open Text Corporation
+269704,7,0,GL FIBRA
 16931,7,0,"Global Payments, Inc."
-29990,7,0,Xandr Inc.
-56990,7,0,Syscomm Limited
-200184,7,0,Surfboard Holding BV
+268191,7,0,MARTINS INFORMATICA E TELECOMUNICAÇÕES LTDA-ME
+394265,7,0,Box.com
+31499,7,0,Ekaterinburg-2000 LLC
+270865,7,0,PW FIBRA OPTICA
 40170,7,0,"Intermetro Communications, Inc."
-8683,7,0,Nominet UK
-203273,7,0,NetCrafters OU
-61805,7,0,Emex Internet
-51826,7,0,evroc AB
-216071,7,0,SERVERS TECH FZCO
-210250,7,0,K Media Tech Ltd.
-58349,7,0,Elna Paulette Valentin trading as INNETRA PC
-28665,7,0,PREDIALNET FIBRA
+64294,7,0,Panasonic Avionics Corporation
+148996,7,0,GLOBAL COMMUNICATION NETWORK LIMITED
+202396,7,0,Zeng Yukai
+208959,7,0,SlashN Services Pte. Ltd.
+15447,7,0,CM.com N.V.
+200690,7,0,Junxiao Shi
+23767,7,0,"Agency for Science, Technology, And Research"
+47168,7,0,"LLC ""Lenvendo-Soft"""
+52773,7,0,INTERMICRO INFORMATICA DE ITAPERUNA LTDA
+141109,7,0,PT Omni Cloud Indonesia
 7246,7,0,Bristol-Myers Squibb Company
+18365,7,0,PT Gramedia Asri Media
 16751,7,0,Open Text Corporation
-41484,7,0,NYnet Ltd
-11054,7,0,"LivePerson, Inc."
-39356,7,0,Avanti Broadband Ltd
+55402,7,0,PNB Financial Center
+270309,7,0,TURBONET - Provedor de Acesso a Internet
+20756,7,0,NAMESHIELD SAS
 22687,7,0,L3 NETWORKS INC
 25878,7,0,"Quinstreet, Inc."
-208034,7,0,Rono-IT BV
-196674,7,0,Speedflow Communications Ltd
-17044,7,0,"THE INTERPUBLIC GROUP OF COMPANIES, INC."
-22775,7,0,Moore Capital Management
-204911,7,0,Digitale Partizipation e.V.
+396856,7,0,"Sharon Networks, LLC"
+49223,7,0,EVEREST TV AND RADIO COMPANY LLC
 30614,7,0,"Dell, Inc."
-214508,7,0,Manu Braibant
 212237,7,0,Changgong Zhang
-219458,7,0,Volodymyr Puzanov
-398833,7,0,Bombardier Inc.
-48185,6,30323,team.blue NV
-12779,6,27909,IT.Gate S.p.A.
-50673,6,27897,Serverius Holding B.V.
-50300,6,22866,CustodianDC Limited
-31133,6,3175,MegaFon PJSC
-35598,6,902,INETCOM CARRIER LLC
-9049,6,880,"JSC ""ER-Telecom Holding"""
-136106,6,700,PT Mega Akses Persada
-271253,6,542,LINK BRASIL TELECOMUNICACOES LTDA
-10075,6,398,Fiber@Home Global Limited
-55410,6,374,Vodafone Idea Ltd
-55720,6,305,Gigabit Hosting Sdn Bhd
-62081,6,275,Stowarzyszenie e-Poludnie
-29226,6,236,MasterTel
-11164,6,206,Internet2 I2PX
-971,6,196,PureVoltage Hosting Inc.
-21574,6,158,Century Telecom Ltda
-49581,6,133,Ferdinand Zink trading as Tube-Hosting
-58495,6,124,PT Parsaoran Global Datatrans
-11172,6,122,"Alestra, S. de R.L. de C.V."
-37613,6,112,DOLPHIN TELECOMMUNICATION LIMITED
-270735,6,107,COMPUTIZE NETWORK TELECOMUNICACOES LTDA
-8772,6,97,NetAssist LLC
-12735,6,94,TurkNet Iletisim Hizmetleri A.S.
-22356,6,88,Durand do Brasil Ltda
+50673,6,23938,Serverius Holding B.V.
+4657,6,14896,StarHub Ltd
+20764,6,7039,CJSC RASCOM
+38001,6,6332,NewMedia Express Pte. Ltd.
+58057,6,4519,Securebit AG
+9930,6,3039,TIME dotCom Bhd
+137409,6,1122,GSL Networks Pty LTD
+13786,6,1010,"Seaborn (Seabras USA, LLC)"
+35598,6,927,INETCOM CARRIER LLC
+9049,6,882,"JSC ""ER-Telecom Holding"""
+3223,6,757,Voxility LLP
+30844,6,572,Liquid Intelligent Technologies 
+9318,6,538,SK Broadband Co Ltd
+9583,6,536,Sify Limited
+212895,6,480,Johannes Ernst
+10075,6,443,Fiber@Home Global Limited
+4134,6,420,China Telecom Backbone
+29535,6,382,Orange Polska Spolka Akcyjna
+24785,6,318,Joint Transit (Broadband Hosting B.V.)
+812,6,306,Rogers Communications Canada Inc.
+62081,6,270,Stowarzyszenie e-Poludnie
+2516,6,264,KDDI Corporation
+8881,6,215,1&1 Versatel GmbH
+11664,6,203,Techtel LMDS Comunicaciones Interactivas S.A.
+971,6,195,PureVoltage Hosting Inc.
+32098,6,188,Flō Networks (Transtelco Inc.)
+28598,6,186,MOB
+269096,6,175,NORTH TECNOLOGIA
+137366,6,171,PT iForte Solusi Infotek
+1680,6,166,Cellcom Fixed Line Communication L.P
+17378,6,123,"TierPoint, LLC"
+28343,6,116,Unifique Telecomunicações SA
+31287,6,114,IPACCT CABLE Ltd
+270735,6,112,COMPUTIZE NETWORK TELECOMUNICACOES LTDA
+199599,6,110,"Telecom-Birzha, LLC"
+6424,6,109,EDGOO NETWORKS
+4455,6,102,IX Reach Ltd
+35168,6,92,TNS-Plus LLP
+35753,6,90,Etihad Salam Telecom CJSC
 40676,6,87,Psychz Networks
-3758,6,85,SingNet
-26615,6,84,TIM S/A
-56534,6,82,Comfortel Ltd.
+44600,6,86,"""GIGATRANS UKRAINE"", LLC"
+12963,6,82,"Scientific Industrial Firm ""Volz"" Ltd"
+8452,6,77,Telecom Egypt
+13194,6,65,"UAB ""Bite Lietuva"""
 15994,6,64,A1 Hrvatska d.o.o.
-6789,6,62,CRELCOM LLC
-50384,6,54,W-IX Route Servers
-12301,6,53,One Hungary Ltd.
-53180,6,52,INFORTEL COMUNICACOES LTDA
-36086,6,49,Digital Realty (fka. Telx)
-196925,6,48,Azertelecom LLC
-11096,6,45,FloridaNet
-13576,6,45,SDN Communications
-6661,6,42,POST Luxembourg
-19151,6,41,"BroadbandONE, LLC"
-12083,6,40,WideOpenWest Finance LLC
-216211,6,39,CYBERVERSE LLC
-394437,6,39,PS Lightwave
+262589,6,64,SAMM (Internexa)
+262761,6,63,Sinal Br Telecom Ltda
+14868,6,61,Ligga Telecomunicações S.A.
+4780,6,54,Digital United Inc.
+5713,6,53,Telkom SA Ltd.
+11232,6,51,Midcontinent Communications
+28761,6,51,CrimeaCom South LLC
+8926,6,49,Moldtelecom SA
+62000,6,48,SERVERD SAS
+7342,6,46,VeriSign Infrastructure & Operations
+3204,6,46,xTom OU
+49981,6,45,WorldStream B.V.
+394177,6,45,Shift Hosting LLC
+23688,6,44,Link3 Technologies Ltd.
+81,6,39,MCNC
 27947,6,38,Telconet S.A
-13415,6,38,"FirstDigital Communications, LLC"
-31117,6,36,ENERGOTEL a.s.
-19754,6,35,"The Fusion Network, LLC"
-30036,6,34,Mediacom Communications Corp
-237,6,34,Merit Network Inc.
-13329,6,33,"Kansas Fiber Network, LLC"
-12213,6,33,Centersquare
-136168,6,33,Campana MYTHIC Co. Ltd.
-38022,6,32,REANNZ National Research and Education Network
-23404,6,31,Rightfiber
+10010,6,38,TOKAI Communications Corporation
+328748,6,36,Agile Solutions Provider (PTY) LTD
+21559,6,35,OSNET
+203446,6,35,SMARTNET Germany GmbH
+273478,6,35,Sage Networks
+24088,6,34,Hanoi Telecom Joint Stock Company - HCMC Branch
+12213,6,34,Centersquare
+51847,6,33,Nearoute Limited
+29278,6,32,Rackhost Zrt.
+49127,6,31,Asimo Networks B.V.
+135636,6,30,PT RackH Lintas Asia
+8470,6,30,JSC Macomnet
+133524,6,30,"Global Technology Co., Ltd."
+21473,6,28,PFALZKOM GmbH
 13999,6,28,"Mega Cable, S.A. de C.V."
-19905,6,28,Arbor Cloud
-9125,6,26,Orion telekom d.o.o.
-12387,6,26,TON Total optical Networks AG
-133385,6,25,Atom Myanmar Limited
-18106,6,25,Viewqwest Pte Ltd
-41039,6,24,"Timer, LLC"
-265144,6,24,MCD INFORMATICA E TELECOMUNICACOES LTDA - ME
-24173,6,24,Netnam Company
-29518,6,24,Bredband2 AB
-10396,6,23,"DATACOM CARIBE, INC."
-766,6,23,Entidad Publica Empresarial Red.es
-141898,6,23,PT Milenial Inti Telekomunikasi
-13489,6,23,EPM Telecomunicaciones S.A. E.S.P.
-57630,6,23,84 Grams AB
-6848,6,22,Telenet BV
-22742,6,22,Connecticut Education Network
-41998,6,22,NetCom BW GmbH
-20141,6,22,"Quality Technology Services, LLC"
-5580,6,21,GTT Communications (APAC)
-6208,6,21,FiberX
-28649,6,21,Desktop Sigmanet Comunicação Multimídia SA
-26744,6,20,"Planters Communications, LLC"
-263482,6,20,Megalink Servicos Ltda
-2734,6,20,CoreSite
-42831,6,19,UK Dedicated Servers Limited
-28210,6,19,GIGA MAIS FIBRA TELECOMUNICACOES S.A.
-26548,6,19,PureVoltage Hosting Inc.
-18013,6,19,ASLINE LIMITED
-206119,6,19,Veganet Teknolojileri ve Hizmetleri LTD STI
-58002,6,18,JSC Svyazinform
-2614,6,18,Agentia de Administrare a Retelei Nationale de Informatica pentru Educatie si Cercetare
-17828,6,18,PNG DATACO LTD
+15704,6,27,XTRA TELECOM S.A.
+41039,6,26,"Timer, LLC"
+14080,6,26,Telmex Colombia S.A.
+205941,6,25,Lungu Stefan Gabriel
+58470,6,25,Jazz Pakistan
+7311,6,25,Frontier Networks Inc
+6846,6,24,"Joint Ukrainan-German Enterprise ""INFOCOM"" LLC"
+38203,6,24,ADN Telecom Ltd.
+199081,6,24,Lancom Ltd.
+32425,6,23,Pixel Factory
+12387,6,23,TON Total optical Networks AG
+61758,6,22,TOP NET SERVIÇOS LTDA
+37035,6,21,MIC TANZANIA LTD
+265290,6,21,Uplink Telecom
+4618,6,21,Internet Thailand Company Limited
+17625,6,21,BlazeNet's Network
+8309,6,21,SIPARTECH SAS
+21277,6,20,Allay Nawroz Telecom Company for Communication/Ltd.
+8368,6,20,Dstny BE N.V.
+55329,6,19,Telcotech Ltd.
+214757,6,19,Jakub Krsa
+29614,6,19,TELECEL GHANA AS INTERNATIONAL TRANSIT
+35847,6,19,Ezee Fiber
+50917,6,17,Diederik Focko de Zee
+57,6,17,Northern Lights GigaPoP
 47122,6,17,CYBERFIRST LLC
-8194,6,17,Latvia State Radio and Television Centre
 31430,6,17,OOO Suntel
-213438,6,17,ColocaTel Inc.
-48832,6,17,Jordanian mobile phone services Ltd
-212396,6,17,FyfeWeb Ltd
+3225,6,17,Bonline aka GULF communications
 14754,6,17,Claro Guatemala (Telgua)
-3701,6,17,Link Oregon (University of Oregon)
-34471,6,17,Free Technologies Excom S.L.
-49418,6,16,NETSHIELD LTD
-37678,6,16,BOTSWANA FIBRE NETWORKS (Proprietary) Limited
-10133,6,16,Chief Telecom Inc.
+200590,6,16,NLS Kazakhstan LLC
 5078,6,16,OneNet
-29551,6,16,Aixit GmbH
-18747,6,16,IFX Corporation
+43391,6,16,NETDIREKT BILISIM DANISMANLIK ILETISIM HIZMETLERI SANAYI VE TICARET AS
 16504,6,15,Granite Telecommunications LLC
-7670,6,15,"Enecom,Inc."
-212815,6,15,Dyjix SAS
-62314,6,15,Atmospherica Ltd.
-135409,6,15,Kacific Broadband Satellites Pte Ltd
-20853,6,15,eTOP sp. z o.o.
-34056,6,14,Kyiv Optic Networks ltd
-262474,6,14,ALTERNA TELECOMUNICACOES E CONECTIVIDADE LTDA EPP
-21947,6,14,"Blackfoot Telephone Cooperative, Inc."
-47169,6,14,Pro-M Zrt.
-12611,6,14,R-KOM Regensburger
-53597,6,13,Hoyos Consulting LLC
-44103,6,13,The Mastermind Holding B.V.
+132602,6,15,Bangladesh Submarine Cable Company Limited (BSCCL)
+43372,6,15,TELNAP TELECOM Sp. z o.o.
+200010,6,15,Olfe Veri Merkezi Anonim Sirketi
+8544,6,15,Primetel PLC
+45796,6,14,UIH / BB Connect
+263237,6,14,PowerHost Telecom SPA
+212027,6,14,PebbleHost Ltd
+4849,6,14,S3 Company Ltd
+53237,6,14,Telebras (TELECOMUNICACOES BRASILEIRAS S.A)
+28663,6,14,FLYS INTERATIVA LTDA
+28968,6,14,"JSC ""Evrasia Telecom Ru"""
+17469,6,14,Access Telecom (BD) Ltd.
+48084,6,14,Uzhnie Magistraljnie Linii Svyazi LLC
+2386,6,13,"AT&T Enterprises, LLC"
+31034,6,13,Aruba S.p.A.
+150706,6,13,"Hong Kong Zhengxing Technology Co., Ltd."
+6400,6,13,Claro Dominican Republic
+45896,6,13,Mobifone Global JSC
 35614,6,13,Therecom Ltd
-55805,6,13,MobiCom Corporation
-40107,6,13,"Quality Technology Services, LLC"
-23033,6,12,Wowrack.com
-215828,6,12,"Tizian Maxime Weigt trading as ""TMW Global Networks"""
-33965,6,12,LITECOM AG
-8339,6,11,kabelplus GmbH
-51407,6,11,Mada Al-Arab General Services Company
+9886,6,13,CTCSCI TECH LIMITED
+43440,6,13,Digitale Suisse AG
+13768,6,13,Aptum Technologies
+48166,6,13,FORTEX CJSC
+264598,6,12,DELTA TELECOM
+400587,6,12,"Ryamer, LLC"
+61884,6,12,Ollá Telecom
+131642,6,11,"Pittqiao Network Information Co.,Ltd."
+139831,6,11,DITO TELECOMMUNITY CORP.
+37349,6,11,Aptus Solutions Ltd
 44267,6,11,EN+ TELECOM LLC
-53107,6,11,EVEO Serviços de Internet Ltda.
-206735,6,11,Novelcomm LP
-12312,6,10,ecotel communication ag
-18451,6,10,LES.NET
-44407,6,10,Linkt SAS
-201746,6,10,Olivenet Network S.L.
-39912,6,10,oja.at GmbH
+48399,6,10,Svyaz VSD LLC
+58955,6,10,"Bangmod Enterprise Co., Ltd."
 45804,6,10,MEGHBELA BROADBAND
-28359,6,10,ZAAZ PROVEDOR DE INTERNET E TELECOMUNICACOES LTDA
-13119,6,10,"Zachodniopomorski Uniwersytet Technologiczny w Szczecinie, Akademickie Centrum Informatyki"
-14016,6,10,Capcon Networks
+266438,6,10,GNS FIBRA
+263553,6,10,GIGANET SERVIÇOS DE INTERNET -LTDA
+8075,6,10,Microsoft Corporation
+48728,6,10,Vodafone Qatar P.Q.S.C
 12778,6,10,"MEGA M, d.o.o."
-50360,6,10,Tamatiya EOOD
-43833,6,10,"OPEN CABLE TELECOMUNICACIONES, S.L."
-137,6,9,Consortium GARR
-52263,6,9,Telecable Economico S.A.
+28605,6,10,Defferrari Informatica Ltda.
+44217,6,10,IQ Networks for Data and Internet Services Ltd
+37153,6,10,Xneelo (Pty) Ltd
+203201,6,9,INFRASTRUCTURE ITALIA COLO S.R.L.
 15493,6,9,"""Russian company"" LLC"
-47872,6,9,Sofia Connect EAD
-39702,6,9,S-IT Verwaltungs GmbH trading as S-IT Informationstechnologie Betreiber GmbH & Co. KG im Nordschwarzwald
-20912,6,9,Panservice s.a.s. di Cuseo Fabrizio & C.
-49425,6,9,Digital Realty (UK) Limited
-41720,6,9,Revolution Provider S.r.l.
-262808,6,9,Brasilnet Telecomunicações Ltda ME
-265175,6,9,Amplitude Telecom
-12993,6,9,Delska Latvia
-9211,6,9,Nawork Internet Informationssysteme GmbH
-59645,6,9,Tobias Fiebig
-6503,6,9,"Axtel, S.A.B. de C.V."
-50124,6,9,EASIO-COM SASU
-41435,6,8,UnderNet LLC
-41421,6,8,StarNet Telecom Sp. z o.o.
-52783,6,8,ALCANS TELECOM LTDA
-142373,6,8,PT Multi Network Indonesia
-10674,6,8,Gainesville Regional Utilities
-60439,6,8,SERVERNET INTERNET LIMITED
-2544,6,8,King County Gov
-196714,6,8,Thueringer Netkom GmbH
-34251,6,7,LLC IMC
-199310,6,7,XIN BING XIAN
-15699,6,7,"Adam EcoTech, S.A"
-59624,6,7,"National Research Center ""Kurchatov Institute"""
-59589,6,7,LLC KA-2
-50020,6,7,CETIN Bulgaria EAD
-18187,6,7,Ignite Telecommunications Inc
-15997,6,7,Intelligent Technologies S.A.
-61071,6,7,NETBOX LTD
-401322,6,7,NetO Corp
-35213,6,7,"TOV ""Kompjuternie Merezhi"""
-20448,6,7,Peace Communications LLC
-8636,6,7,MAXnet Systems Ltd.
-34362,6,6,Terrakom d.o.o.
+4226,6,9,Sumofiber
+48266,6,9,Catixs Ltd
+135423,6,9,Total Information Management Corporation
+18046,6,9,DongFong Technology Co. Ltd.
+37447,6,9,ORANGE RDC
+9873,6,9,"Lao Telecom Communication, LTC"
+132876,6,9,Symphony Communication (Thailand) PCL.
+203329,6,8,NTT Global Data Centers EMEA GmbH
+48635,6,8,CLDIN B.V.
+59589,6,8,LLC KA-2
+141126,6,8,PT Cubiespot Pilar Data Nusantara
+47957,6,7,Worldline IGSA SA
+38880,6,7,Micron21 Datacentre Pty Ltd
+52780,6,7,MAP Piumhi Ltda - ME
+140481,6,7,PT Tonggak Teknologi Netikom
+37619,6,6,Broadband Systems Corporation
 35810,6,6,Big Telecom JSC
-265171,6,6,SITELBRA LTDA
-47720,6,6,Cork Internet Exchange Limited
-48326,6,6,DataNetworks s.r.o.
-30764,6,6,PODA a.s.
-57050,6,6,DreamServer S.R.L.
-9110,6,6,"""AMT GROUP TELECOM"" Limited Liability Company"
-8387,6,6,Deutsche Telekom Global Business Solutions GmbH
-28876,6,6,suec // dacor GmbH
-44894,6,6,Ukrchermetavtomatika LLC
-395662,6,6,"OzarksGo, LLC"
-35807,6,6,SkyNet Ltd.
-137331,6,6,PT Cloud Teknologi Nusantara
-28760,6,6,Infotech EDV-Systeme GmbH
-12480,6,6,ILK Internet GmbH Rechnerkommunikation im Internet
+6660,6,6,Vodafone Enterprise Equipment Limited
+35196,6,6,FIRST SERVER LIMITED
+18914,6,6,ETS TELECOM
+1002,6,6,Bytefilter LLC
+56382,6,6,vServer.site LTD
+47478,6,6,MSTN CJSC
+18530,6,6,"Isomedia, Inc."
 215172,6,6,JIANYUELAB LTD
-35236,6,6,UVT Internet s.r.o.
-36222,6,6,WindWave Communications
-47895,6,6,"LTD ""Erline"""
-219062,6,5,Nera sp z.o.o
-46562,6,5,Performive LLC
-265330,6,5,Ponto a Ponto Telecomunicaçoes
-204861,6,5,Codisa Telco Solutions S.L.
-20080,6,5,Florida International University
-44512,6,5,KONVERTO SPA
-11666,6,5,Nexicom Inc.
-262378,6,5,Webflash / COMPUSERVICE EMPREENDIMENTOS LTDA
-21472,6,5,ServerHouse Ltd
-19122,6,5,eStruxture Data Centers Inc.
-56111,6,5,Agarto Sdn Bhd
-54182,6,5,Bell Canada
-36734,6,5,Paxio Inc.
-29084,6,5,Comnet Bulgaria Holding Ltd.
-8893,6,5,Artfiles New Media GmbH
-35706,6,5,Net at Once Sweden AB
-18103,6,5,PT Prestasi Piranti Informasi
-60404,6,5,The Infrastructure Group B.V.
-11290,6,5,Cogeco Connexion inc
-54483,6,5,GeoLinks
-63018,6,5,Dedicated.com
-40065,6,5,CNSERVERS LLC
-50254,6,5,Sky Engineering LLC
-198150,6,5,SIACOM JSC
-15962,6,5,Orange Slovensko a.s.
-11403,6,5,NYI
-7356,6,5,Sikla Tech Limited
-7668,6,4,Hokuriku Telecommunication Network Co.
-48817,6,4,PRIZZ TELECOM SAS
-47887,6,4,AL-HADATHEH LIL-ITISALAT WA AL-TECHNOLOGIA CO.
-53264,6,4,"SBA Edge, LLC"
-29386,6,4,Syrian Telecommunication Private Closed Joint Stock Company
-138854,6,4,PT Inter Medialink Solusi
+209030,6,6,AO Kaspersky Lab
+206446,6,6,Cloud Lease Ltd
+56308,6,6,Telekomunikasi Indonesia International Pte. Ltd.
+41495,6,6,Faelix Limited
+48200,6,6,Opteamax GmbH
+149522,6,6,"OneCubit Co., Ltd."
+20448,6,6,Peace Communications LLC
+39521,6,5,TNGNET B.V.
+150142,6,5,Wolast Technologies
+6823,6,5,3C1B Telekomunikasyon ve Internet Hiz. San. ve Tic. A.S.
+213605,6,5,Liu HaoRan
+23673,6,5,"Cogetel Online, Cambodia, ISP"
+52705,6,5,FRANET TELECOM
+37088,6,4,VDT COMMUNICATIONS LIMITED
+906,6,4,DMIT Cloud Services
+50010,6,4,Omani Qatari Telecommunication Company SAOC
+51162,6,4,JSC Kazteleport - subsidiary of Halyk Bank of Kazakhstan
 7131,6,4,PTI Pacifica Inc.
-60011,6,4,Mythic Beasts Ltd
-62068,6,4,SpectraIP B.V.
-18988,6,4,City West Cable & Telephone Corp.
+135097,6,4,LUOGELANG (FRANCE) LIMITED
+37480,6,4,Cobranet Limited
+42295,6,4,TBISS Ltd
 47536,6,4,PathConnect GmbH
-272193,6,4,SPnetFibra Provedor Networking Ltda
-266475,6,4,Sem Fronteiras
-48885,6,4,Neocarrier Communications Sarl
-58010,6,4,uvensys GmbH
-43852,6,4,Fast Communication Company Ltd
-11814,6,4,Distributel Communications Limited
-138398,6,4,Prodigi Technology Services Limited
-59699,6,4,Lenfiber S.r.l.
-34820,6,4,DELTA ONLINE spol. s r.o.
-134640,6,4,PT DCI Indonesia
-59497,6,4,Buknet LLC
+21766,6,4,"BEN LOMAND RURAL TELEPHONE COOPERATIVE, INC."
+60503,6,4,FNX Tecnologia LTDA
+55309,6,4,Minh Tu Telecom Limited Company
+200462,6,4,"Lennart Seitz trading as ""ETH-Services"""
 214432,6,3,"Zhilian Technology CO., LTD."
-16223,6,3,"MAXNET TELECOM, LTD"
-27712,6,3,Paulo Dias de Araujo Filho
-51155,6,3,Citylink Telecom Sp. z o.o.
-263928,6,3,JBMNET TELECOM
-265315,6,3,BINDNET RJ
-209505,6,3,Unchained ISP Limited
-6515,6,3,DACS-IX
-24028,6,3,REDtone
-58396,6,3,PT Dewata Telematika
-207529,6,3,NYANLOLI LTD
-32489,6,3,Amanah Tech Inc.
-152194,6,3,CTG Server Limited
-49403,6,3,AVK-Wellcom Ltd.
-139628,6,3,"Mega Truenet Communication Co., Ltd."
-10594,6,3,"Cutting Edge Communications, Inc."
-32002,6,3,RackGenius
+7162,6,3,Scala Data Centers / UNIVERSO ONLINE S/A
+58291,6,3,ColoCenter b.v.
 18260,6,3,"EHIME CATV CO.,LTD."
-39785,6,3,"Axioma, LLC"
-57829,6,3,IVER
-204539,6,3,Axivora Connect Ltd
-6421,6,3,TATA COMMUNICATIONS (AMERICA) INC
-27257,6,3,Webair Internet Development Company Inc.
-197133,6,3,MEDIACTIVE SAS
-2685,6,3,"AT&T Enterprises, LLC"
-49320,6,3,Golitsyno Telecom Ltd
-399077,6,3,Tcloudnet
-2514,6,3,"NTT PC Communications, Inc."
-4136,6,3,"Quality Technology Services, LLC"
-27589,6,3,MOJOHOST
-53225,6,3,IPGLOBE INTERNET LTDA
-1003,6,3,andrewnet
-13170,6,3,Kaisanet Oy
-11979,6,3,Bluegrass Network LLC
-31103,6,3,Keyweb AG
-57208,6,3,Advania Sverige AB
-6723,6,3,"""AS6723"" LIMITED LIABILITY COMPANY"
-273461,6,3,Atjp Corp
-4474,6,3,"TCT West, Inc."
-52699,6,3,Itanet Conecta Ltda
-131705,6,3,PT Aneka Teguh Jaya
-62410,6,3,Linenet Ltd.
-59554,6,3,Datacenter Groningen B.V.
-141140,6,3,PT Jinde Grup Indonesia
-2688,6,3,"AT&T Enterprises, LLC"
-26523,6,3,Province of New Brunswick
-62205,6,3,"Unitel, LLC"
-29063,6,3,Eviden Netherlands B.V.
-54801,6,2,Zillion Network Inc.
-30176,6,2,Priority Colo Inc
-35575,6,2,Vaioni Group Ltd
-557,6,2,University of Maine System
-59659,6,2,Securus Communications Ltd.
-60670,6,2,WideFM Ltd
-207994,6,2,Blockchain Creek B.V.
-62386,6,2,Bulgarian Telecommunication Group EOOD
-43338,6,2,TSG Interactive Services Limited
-200187,6,2,CloudKleyer Frankfurt GmbH
-50869,6,2,Free-IX Remote Peering
-21032,6,2,TELTA Citynetz GmbH
-48610,6,2,Bykov Roman Andreevich
-24929,6,2,IT arte Sp. z o.o.
-12886,6,2,LEW TelNet GmbH
-8607,6,2,Digital Space Group Limited
-59507,6,2,terralink networks GmbH
-43578,6,2,TEMPLUS BARCELONA S.L.
-32415,6,2,C3
-23138,6,2,"FIRST STEP INTERNET, LLC"
-7690,6,2,Mirai Communication Network Inc.
-50182,6,2,Proxima Ltd
-43545,6,2,Teledata UK Limited
-30766,6,2,GGEW net GmbH
-8879,6,2,DTS Systeme GmbH
-197078,6,2,Yarnet Ltd
+47775,6,3,"JSC ""Ufanet"""
+52875,6,3,Montreal Informatica
+208349,6,3,O2 Cloud LLC
+140627,6,3,OneQode
+37684,6,3,Angani Limited
+50477,6,3,Svyaz-Energo Ltd.
+53038,6,3,IDC19 - WDI SOLUCOES EM TEC INFORMACAO LTDA
+200303,6,3,LUMASERV
+18978,6,3,Enzu Inc
+31029,6,2,M-REAL NET Ltd.
+29680,6,2,Gamma Operadora de Comunicaciones S.A.
+60051,6,2,Earthlink Telecommunications Equipment Trading & Services DMCC
+135834,6,2,Multicraft Digital Technologies Private Limited
+264886,6,2,GD NET SOLUTION
+213452,6,2,PIO LLC
+25181,6,2,Sony Europe B.V.
+41477,6,2,LMAX Limited
+151338,6,2,PoloNetwork Limited
+51375,6,2,STC BAHRAIN B.S.C CLOSED
+215703,6,2,FREAKHOSTING LTD
+53153,6,2,CINTE TELECOM COMERCIO E SERVICOS LTDA
+272836,6,2,CALA SERVICIOS INTEGRALES E.I.R.L.
+56701,6,2,"LLC ""AVANTA TELECOM"""
+5662,6,2,Warner Bros. Discovery
+207249,6,2,Icard Services PLC
+272004,6,2,EGP COMUNICACIONES S.A.C
 5539,6,2,SpaceNet AG
-201675,6,2,SACLAK NETWORK SAS
-133815,6,2,PT Primacom Interbuana
-41107,6,2,Backbone Connect Limited
-35401,6,2,"AO ""Tele-Service Tula"""
-18723,6,2,Seagate Technology LLC
 62217,6,2,Vinters IT Ltd
-264010,6,2,Polli Telecom
-21527,6,2,Daystarr Communications
-14007,6,2,Skyway West
-31445,6,2,Fiberax sp. z o.o.
-63731,6,2,TIEN PHAT TECHNOLOGY CORPORATION
-11280,6,2,SNAPPYDSL.NET
-202246,6,2,Valoo Oy
-267373,6,2,ÁGIL TECOMUNICACOES LTDA
-215685,6,2,Maik Sussdorf
-196610,6,2,DE-CIX Academy
-22612,6,2,"Namecheap, Inc."
-1341,6,2,"Rockwell Collins, Inc."
-45630,6,2,Fibrecomm Network (M) Sdn. Bhd.
-34854,6,2,Maria Merkel trading as Blahaj Studio
-34758,6,2,Axera SpA
-36914,6,2,Kenya Education Network
-24611,6,2,Datacenter Luxembourg S.A.
-59139,6,2,PT Wifiku Indonesia
-24187,6,2,KIRZ Service Provider
-48638,6,2,Cronos NV
-8487,6,2,Phibee Telecom SAS
-61287,6,2,onway (Schweiz) AG
-17559,6,2,Spectrums Core Network
-38506,6,2,PT Pika Media Komunika
-197275,6,2,Link Telecom NN Ltd.
-7506,6,2,"GMO Internet, Inc."
-196954,6,2,Epcan GmbH
-138384,6,2,"Rakuten Mobile Network, Inc."
-198545,6,2,FLEX NETWORK SARL
-39605,6,2,Iguane Solutions SAS
-30041,6,2,"Race Tech, LLC"
-35640,6,2,OOO MIGRAPH
+50469,6,2,Peer Kohlstetter trading as Hessenkom GmbH & Co. KG
+197817,6,2,Nyco Cloud Network LLC
+38176,6,2,ABS - Agility Beyond Space
+152918,6,2,Liberally Network LLC
+62313,6,2,Proact IT UK Limited
+35574,6,2,SED Multitel s.r.l.
 141607,6,2,PT Gayatri Lintas Nusantara
-43966,6,2,"OOO ""IT-Region"""
-40966,6,2,ZAO Web Hosting
-7794,6,2,Execulink Telecom Inc.
-204281,6,2,NETX - NG LTD
+56864,6,2,Xeon LLC
 23487,6,2,CONECEL
+23428,6,2,ServerForge LLC
 262978,6,2,Centro de Tecnologia Armazem Datacenter Ltda.
-5467,6,2,"Non state educational institution ""Educational Scientific and Experimental Center of Moscow Institute of Physics and Technology"""
-57758,6,2,CBWS Holding B.V.
-63066,6,2,"7Hoop Network Telecom, LLC"
-32270,6,2,"LD Telecommunications, Inc."
-9370,6,2,SAKURA Internet Inc.
-17303,6,2,"Network Advisors, LLC"
-203729,6,2,June Slater
-39839,6,2,Punktum dk A/S
-62563,6,2,GLOBALTELEHOST Corp.
-49558,6,2,IT-Yaroslavl Ltd.
-200924,6,2,Stiegeler Internet Service GmbH
-214749,6,2,James Cahill
-28469,6,2,AT&T COMUNICACIONES DIGITALES S DE RL
-39537,6,2,SysGroup plc
-196881,6,2,Liberty-izone Ltd
-55355,6,2,HGC Global Communications
-52545,6,2,BJ NET Provedor de Internet Ltda. - ME
-45960,6,2,YTL COMMUNICATIONS SDN BHD
-9993,6,2,ITOCHU Techno-Solutions Corporation
-57356,6,1,Highland Network Ltd
-62160,6,1,WEB3 Leaders INC
-14453,6,1,ADVANCED KNOWLEDGE NETWORKS
-51985,6,1,Adenis SAS
-268502,6,1,Sinal do Ceu Telecom Comercio e Servicos Ltda
-202619,6,1,Dovecom LLC
+136841,6,2,PT Mitra Telemedia Manunggal
+23930,6,2,VITRO INC.
+47236,6,2,CityLink Ltd
+25220,6,2,equada network GmbH
+11888,6,2,"Television Internacional, S.A. de C.V."
+9729,6,2,iAdvantage Limited
+12739,6,2,JSC Netline
+39647,6,2,Enreach Netherlands B.V.
+31490,6,2,NetIX Communications JSC
+61094,6,1,CRATIS d.o.o.
+4773,6,1,M1 Limited
 200651,6,1,FlokiNET ehf
-398013,6,1,NGX Networks
 49675,6,1,SKB Kontur Production JSC
-60427,6,1,System-Net Sas
-19518,6,1,Rock Island Communications
 33549,6,1,Whipcord Edge Data Centers Inc.
-11708,6,1,"City of North Kansas City, MO"
-213641,6,1,Pascal Van der Poel
-7057,6,1,Managed Network Systems Inc.
-28748,6,1,Marc Pauls (AlphaCron Datensysteme)
-44358,6,1,Kauno Technologijos Universitetas
+25374,6,1,ESCOM Ltd. - Haskovo
 62917,6,1,"Gigabit Fiber, LLC"
-57793,6,1,1310 Limited
-133372,6,1,Interaptus Limited
-132641,6,1,PT Netciti Persada
-213791,6,1,XeniaGroup SRL
-25358,6,1,Novso SARL
-18119,6,1,ACSData
-133527,6,1,HuaBo Technology International Limited
-20919,6,1,DataFort LLC
-208501,6,1,Tim Schoondergang trading as TIMMIT.NL
-16399,6,1,First Communications LLC
-15399,6,1,Wananchi Group (Kenya) Limited
-12167,6,1,LightWave Networks
-15580,6,1,Allianz Technology SE
-9365,6,1,its communications Inc.
-209650,6,1,Wu Zhiyuan
+46824,6,1,NameCrane LLC
+38278,6,1,Orient Telecoms Sdn. Bhd
+44354,6,1,BROCK VOJKOVIC
+139750,6,1,IDCServices.net Inc
+397301,6,1,"Thrive Broadband, LLC"
+59711,6,1,HZ Hosting Ltd
 21965,6,1,Highmark Inc
-6614,6,1,"T-Mobile USA, Inc."
-13280,6,1,Three Ireland (Hutchison) limited
-60299,6,1,Mezhdugorodnyaya Mezhdunarodnaya Telefonnaya Stanciya Ltd.
-268397,6,1,REINALDO DE JESUS
-208915,6,1,HYPERLXC MEDICAL LTD
-2486,6,1,AFNIC (Association Francaise pour le Nommage Internet en Cooperation)
-60602,6,1,Inovare-Prim SRL
-48822,6,1,Universum bit Ltd.
-42396,6,1,PJSC Telesystems of Ukraine
-10036,6,1,DLIVE
-269153,6,1,Conecte Telecom
-272786,6,1,X99 INTERNET
-51310,6,1,Marcin Moczulski trading as Matronix
-35506,6,1,INFORMATION SOCIETY S.A.
-30833,6,1,Technology & Networks LLC
-16740,6,1,DOXX.NET CORPORATION
-197898,6,1,Integrated Digital Services Ltd
-13054,6,1,badenIT GmbH
-44530,6,1,HOPUS SAS
-12826,6,1,CYLLENE ITS SAS
-4913,6,1,"Speedcast Communications, Inc"
-49436,6,1,Stadtwerke Soest GmbH
-196938,6,1,Krastelecom Ltd
-42929,6,1,Artefact SARL
-3801,6,1,Mikrotec Internet Services
+35100,6,1,Patrik Lagerman
+47388,6,1,Dante International SA
+199805,6,1,UGO LLC
+262687,6,1,Screen Saver Informática LTDA
+22611,6,1,"InMotion Hosting, Inc."
+41268,6,1,Sesameware FZ-LLC
+213291,6,1,Nebius B.V.
+41714,6,1,SPOT-NET LTD
 14522,6,1,Satnet
-13058,6,1,serve-u - Buchholz und Sünderhauf GbR
-18390,6,1,Spintel Pty Ltd
-44431,6,1,Marlink AS
-132789,6,1,Pivotel Group Pty Limited
-6233,6,1,xTom
-29606,6,1,Borwood Ltd
-47705,6,1,FOP Masliy Kostyantin Mikhailovich
-206347,6,1,Wessex Internet Limited
-20810,6,1,Netcom Kassel Gesellschaft fuer Telekommunikation mbH
-32181,6,1,GigeNET
-29988,6,1,Rogers Communications Canada Inc.
-61754,6,1,INFORNET TELECOM
-42605,6,1,Ratiodata SE
-49888,6,1,Ultranet Sp. z o.o.
-269070,6,1,Hostzone Tecnologia LTDA
+39561,6,1,"""Domain names registrar REG.RU"", Ltd"
+132337,6,1,Axclusive
+271482,6,1,Mega Telecom Ltda
+137443,6,1,"ChangLian Network Technology Co., Limited"
+23884,6,1,Proen Corp Public Company Limited.
+201401,6,1,NewVM B.V.
+27720,6,1,CITTA TELECOM LTDA
 34352,6,1,MSN Telecom LLC
-41653,6,1,Aqua Ray SAS
-49158,6,1,WIFINITY NETWORKS LIMITED
-136065,6,1,PT Solusi Trimegah Persada
-9036,6,1,Neuronnexion SCOP
-215955,6,1,ALTEASYSTEMS OU
-397031,6,1,"GALAXYGATE, LLC"
-31736,6,1,senseLAN GmbH
-214809,6,1,Jere Kiitola trading as Stocade
-152320,6,1,"GOALNOW NETWORK TECHNOLOGY CO., LIMITED"
-26383,6,1,Baxet Group Inc.
-31293,6,1,ITNS GLOBAL EOOD
-199660,6,1,LTI NETWORKS SASU
-57753,6,1,Radist LTD
-28209,6,1,Under Servicos de Internet Ltda
-18278,6,1,Cable TV Corporation
-36231,6,1,AGX Management Consultancy - FZCO
-142393,6,1,PT Media Solusi Sukses
+267124,6,1,Virtualnet.tv.br
+154324,6,1,AltusCloud Pte. Ltd.
+399220,6,1,"Finger Lakes Communications Group, Inc"
+214454,6,1,PoloNetwork Limited
+43133,6,1,Cosmonova Broadcast LLC
 6984,6,1,Verizon Business
-211101,6,1,Nasteka Maksim Viktorovich
-63474,6,1,"Sirius Computer Solutions, Inc."
-51265,6,1,Mass Response Service GmbH
-12488,6,1,Krystal Hosting Ltd
-6769,6,1,Kertinis valstybes telekomunikaciju centras
+133800,6,1,PT Biznet Gio Nusantara
+53850,6,1,"GorillaServers, Inc."
+48282,6,1,Hosting technology LTD
 38165,6,1,PT Ambhara Duta Shanti
-267521,6,1,ULTRANET NETWORK
-199248,6,1,NUMLOG S.A.S.
-54415,6,1,WIZ K.K.
-17012,6,1,"PayPal, Inc."
-52947,6,1,PARAOPEBANET PROVEDOR LTDA
-57902,6,1,Metro Optic SAS
-10024,6,1,LGA International
-140469,6,1,PT Wahyu Adidaya Network
+142594,6,1,SpeedyPage Ltd
+58580,6,1,Fastrack Technology
+19133,6,1,Bird Hosting Inc.
+9680,6,1,HiNet Service Center in U.S.A
 209974,6,1,ITGLOBAL.COM RUS Ltd
-60246,6,1,Consumer Internet Cooperative PG-19
-53845,6,1,"Broadband Dynamics, LLC"
-262967,6,1,OPTIDATA LTDA
-39878,6,1,Peter Rauter GmbH
-27924,6,1,AMPLIA COMMUNICATIONS LTD.
-42574,6,1,Novaya Sibir Plus Ltd.
-151066,6,1,Imperial network inc
-12399,6,1,q.beyond AG
+48614,6,1,ITSOFT LLC
+133504,6,1,PAOCLOUD
 49009,6,1,Freifunk Rheinland e.V.
-45287,6,1,PT Varnion Technology Semesta
-201764,6,1,mgm technology partners GmbH
-26619,6,1,GTD COLOMBIA S.A.S
-139076,6,1,EnjoyVC Japan Corporation
-54600,6,1,PEG TECH INC
-271957,6,1,SOMOS NETWORKS COLOMBIA S.A.S. BIC
-266498,6,1,UNIVERSO FIBER COMUNICACAO MULTIMIDIA
-37645,6,1,ZAP-Angola
+210079,6,1,EuroByte LLC
+50472,6,1,Chaos Computer Club e.V.
 198610,6,1,Beget LLC
-210728,6,1,Cyso Group B.V.
-401233,6,1,Alliance Broadband
-209097,6,1,NETSYST SAS
-200993,6,1,Yanislav Basiuk
-57521,6,1,Simplysoft GmbH
-204818,6,1,Hosteur SAS
-208591,6,1,Aitire S.L
-30640,6,1,"Etheric Networks, Inc."
-25085,6,1,ALUE LTD
-1301,6,1,Electricite de France SA
+48219,6,1,3DATA LLC
+139648,6,1,PacketStream Korea
+21367,6,1,TrunkMobile JSC
+16406,6,0,"Intermedia.net, Inc."
+56619,6,0,Safety Integrated Systems Ltd
 3653,6,0,House of Ben Avraham LLC
-198225,6,0,MDDSL - Mitteldeutsche Gesellschaft fuer Kommunikation mbH
-58011,6,0,CHEOPS TECHNOLOGY FRANCE S.A.
-49218,6,0,Nizhnetagilskie Kompyuternye Seti LLC
-394229,6,0,"Juxto, Inc."
-49813,6,0,Innova Solutions FZ LLC
+43740,6,0,Secure Telecommunication LLC
+136523,6,0,"COLODEE DIGITAL NETWORK CO.,LTD."
+219443,6,0,Ints Danebergs
+214693,6,0,Fusiora OU
+17644,6,0,ZORN TECHNOLOGIES
+48305,6,0,Noraina Ltd
+39944,6,0,Telecom North America Inc.
+25687,6,0,"KVH INDUSTRIES,INC."
 10991,6,0,"CAPGEMINI AMERICA, INC."
-150161,6,0,HYPERSONIC MANAGEMENT OPC
-208608,6,0,Haemoglobin
-51904,6,0,Shchurov Mikhail Yurievich
-206539,6,0,HelloTel Telecomunicazioni srl
-11939,6,0,"THE MATHWORKS, INC."
+59449,6,0,Mitja Herbaj
+31451,6,0,Thomas King
 20385,6,0,AccessLine Communications Corp.
 19054,6,0,Nath Network & Telecom Inc
-42228,6,0,Brightstar Limited
-47864,6,0,V-NET B.V.
-395831,6,0,Meraki LLC
-17666,6,0,Hitachi Sunway
-24255,6,0,"Koshinomiyako Network, Inc."
-61111,6,0,"RTCloud, LLC"
+25627,6,0,Business Telecommunications Services Inc
+266942,6,0,NAVEGADOR INTERNET LTDA ME
+267788,6,0,IP TECHNOLOGIES S.A.S.
+270282,6,0,SIMONE BARBOSA DO NASCIMENTO SOUZA COMUNICAÇÃO
+19881,6,0,Valley Telecommunications Company
+28753,6,0,Leaseweb Deutschland GmbH
+40551,6,0,"Activision Publishing, Inc."
+199018,6,0,Xkrme Network LLC
 31362,6,0,NETPROTECT SRL
 213466,6,0,BPCE S.A.
 59451,6,0,Al-Bank Al-Arabi PLC. CO.
-25279,6,0,Treml+Sturm Datentechnik GmbH
-212034,6,0,Zezhu Yu
-47372,6,0,Bringe Informationstechnik GmbH
-200185,6,0,Aruba S.p.A.
-51057,6,0,nexxtra GmbH
+263676,6,0,NetMG Informática Ltda.
+271608,6,0,plus internet telecom
+212483,6,0,LEVEL EIGHTY-SIX COMMUNICATIONS LTD
 27011,6,0,XM Satellite Radio
-37109,6,0,MyISP Limited
-213028,6,0,DD webhosting B.V.
-16128,6,0,AGARIK SAS
-51326,6,0,W3TEL SAS
-211585,6,0,Maiyun Zhang
-52878,6,0,REDE DE TELECOMUNICAÇÕES CARAJAS LTDA
-206356,6,0,Freifunk Essen e.V.
-36165,6,0,ITM TELECOM
-211170,6,0,Stromnetz Berlin GmbH
-7524,6,0,"ITEC HANKYU HANSHIN CO.,LTD."
-208016,6,0,The Infrastructure Company GmbH
-15933,6,0,ith Kommunikationstechnik GmbH
-59125,6,0,FAMILY NET JAPAN INCORPORATED
-41000,6,0,Freethought Internet Limited
-213392,6,0,Tan Siewert
-214143,6,0,SKYDIGITAL TELECOM LTD
+61272,6,0,UAB Bacloud
+52594,6,0,VISALINK SERVICOS DE COMUNICACAO LTDA.
+204128,6,0,OOO WestCall Ltd.
+52793,6,0,Kelvyn Sat Comércio e telecomunicações Ltda
+210873,6,0,Hewlett Packard France S.A.S.
+215899,6,0,Justas Gudynas
+262550,6,0,LUCAS NETWORK INFORMATICA LTDA ME
+46313,6,0,Walmart Inc.
+19796,6,0,"Shubert Organization, Inc."
+271687,6,0,ICARUS NET LTDA
 16599,6,0,Bentley Systems
-203314,6,0,HATS NETWORK INC.
-25122,6,0,GULFSATCOMMUNICATIONS COMPANY K.S.C.
-57999,6,0,LLC DataNet ISP
-134840,6,0,"Myanmar Country Co., Ltd."
-51713,6,0,WHG Hosting Services Ltd
-20253,6,0,Qwilt Inc.
+135682,6,0,Advika Web Developments Hosting Pvt Ltd
+56006,6,0,"Shanghai Pudong Development Bank Co.,Ltd."
 401215,6,0,MITCHELL PLASTICS
-50473,6,0,Altagen JSC
-211074,6,0,ESPUBLICO SERVICIOS PARA LA ADMINISTRACION SA
-139659,6,0,LUCIDACLOUD LIMITED
+59078,6,0,Yunify Technologies Inc.
+394957,6,0,"Zadara Storage, Inc."
+28110,6,0,NAVEGALO S.A.
 17802,6,0,Macquarie Bank
-9597,6,0,KDDI Web Communications Inc.
-33986,6,0,Redder Telco s.r.l.
+52304,6,0,NIC Chile
 16581,6,0,Deep Infra Inc.
-50169,6,0,LLC Inventos
 205963,6,0,BURGER RUS LLC
 21595,6,0,Baxter Healthcare
-39599,6,0,Talex S.A.
-10212,6,0,China Enterprise ICT Solutions Limited
-61215,6,0,IIJ Europe Limited
-266216,6,0,BRASIL LIKE TELECOMUNICACOES EIRELLI
-15177,6,0,STARTOUCH INC
-59780,6,0,Surfboxx IT-Solutions GmbH
-211733,6,0,Prime creation events SAS
-50471,6,0,Limited Liability Company Sviaz Industriya
-50061,6,0,PricewaterhouseCoopers GmbH WPG
-268546,6,0,Global Live
-59116,6,0,AIG Technologies KK
-17955,6,0,"Densan Co., Ltd."
-45852,6,0,Bendigo and Adelaide Bank Limited
+26277,6,0,ServerPoint.com
+19171,6,0,Stargate Connections Inc.
+201217,6,0,RADISHCLOUD TECHNOLOGY LLC
+24207,6,0,PT NettoCyber Indonesia
+206216,6,0,Advin Services LLC
+834,6,0,IPXO LLC
+134039,6,0,Ibus Virtual Network Services Private Limited
+202917,6,0,Cigna HLA Technology Services Company Ltd
 4917,6,0,AMDOCS Inc.
-203752,6,0,E-CAPS DOO
-137990,6,0,SUNIWAY GROUP LIMITED
-7682,6,0,"HOKKAIDO TELECOMMUNICATIONS NETWORK Co., Inc."
-153771,6,0,Heptasky Hong Kong Limited
-56675,6,0,O.A.C. bvba
-197205,6,0,Numberly SAS
+52232,6,0,Telefonía Pública y Privada S.A.
+267500,6,0,DIGITAL LIFE
 58096,6,0,Viter Evgeniy Vasilevich
-59693,6,0,Intronex Setevye Resheniya Ltd.
-10003,6,0,"Ogaki Cable Television Co.,Inc."
-216246,6,0,Aeza Group LLC
-8431,6,0,TEA Ltd.
-48348,6,0,Cloud Builders SA
-62244,6,0,Watch Tower Bible and Tract Society of Britain
-29888,6,0,Unum Group
-199562,6,0,Edificom SA
-60362,6,0,alwaysdata SARL
-24806,6,0,"INTERNET CZ, a.s."
-201971,6,0,CreeperHost LTD
-142132,6,0,263 Global Communications Limited
+205263,6,0,ABC arbitrage Asset Management SA
+264169,6,0,WNP INTERNET
+19254,6,0,"Koch Industries, Inc."
+61189,6,0,Elkdata OU
+266613,6,0,COMMTEL TRANSMISSAO DE DADOS E INTERNET LTDA
+14297,6,0,"ACI Worldwide, Inc."
+268812,6,0,BATISTA E SANTOS LTDA
 204453,6,0,VASKIANI VENTURES LIMITED
+263620,6,0,Sertaonet Internet Provider LTDA-ME
 35872,6,0,"FreedomPay, Inc."
+25694,6,0,Atomic Data LLC
 53736,6,0,Nutanix
 56443,6,0,IP WAY LLC
-51247,6,0,SkyCore Technologies L.L.C-FZ
-63099,6,0,MADEALA TELECOM TECHNOLOGY INC
-198016,6,0,Michael Kieser
-42511,6,0,Connect LLC
-24284,6,0,"CyberAgent, Inc."
-394646,6,0,"Eagle Eye Networks, Inc"
+13250,6,0,Backbone Solutions AG
+1780,6,0,Valmet Oyj
+212374,6,0,Virtuozzo International GmbH
 46513,6,0,"Alarm.com, Inc."
 54036,6,0,"Clean Harbors Environmental Services, Inc."
-36730,6,0,"Transformyx, Inc."
-999,6,0,CORIX NETWORKS
-206775,6,0,novomind AG
-50446,6,0,Datacampus SAS
-201053,6,0,Stowarzyszenie e-Poludnie
+36644,6,0,4Voice LLC
+270376,6,0,EWERTON N B ARAUJO
+42600,6,0,Global Message Services Ukraine LLC
+271005,6,0,Byte Telecom
+395793,6,0,Arisk Communications inc.
+38186,6,0,"Forewin Telecom Group Limited, ISP at HK"
 62014,6,0,Telegram Messenger - Singapore
-58007,6,0,Witine Limited
-152419,6,0,PT Berbaur Network Connected
-205272,6,0,Musarubra Germany GmbH
-4243,6,0,"Wells Fargo Bank, N.A."
+262608,6,0,Vapt Solucoes Tecnologicas Ltda
+201616,6,0,Theo Holroyd
+10372,6,0,"Wells Fargo Bank, N.A."
+20203,6,0,First Financial Bank NA
 266169,6,0,BIXNET
-207811,6,0,SuperCell ISP LTD
-202173,6,0,MaximaTelecom JSC
-199775,6,0,Connexin Limited
-197563,6,0,"""GLOBALNET UA"" LLC"
-64442,6,0,Securitas AG Schweizerische Bewachungsgesellschaft
-397540,6,0,Windscribe
-6712,6,0,VELTON ISP LLC
-26709,6,0,Racksquared
+19236,6,0,"Steelcase, Inc."
+204631,6,0,VIVANET GmbH
+263611,6,0,ZUM TELECOM LTDA- ME
+264059,6,0,D.V Comercio em Telecomunicacoes de Rede LTDA-ME
+41047,6,0,Bart Vrancken
+49576,6,0,RED ELECTRICA DE ESPANA S.A.U.
 30320,6,0,"Kia America, Inc."
-48768,6,0,GTECH SWEDEN INTERACTIVE AB
-153038,6,0,Business Zone Limited
-61373,6,0,Connect The World Ltd.
-14609,6,0,"Equinix, Inc."
-59253,6,0,Leaseweb Singapore Pte. Ltd.
-399728,6,0,P Foundation
-10089,6,0,Total Access Communication PLC.
-197075,6,0,Active Network S.p.A.
-38016,6,0,Nokia IP Networks Labs
-44493,6,0,Chelyabinsk-Signal LLC
+263011,6,0,6P Telecom Ltda
+14043,6,0,"ScanSource, Inc."
+268081,6,0,CONNECT MARANHAO
+54681,6,0,Lucy Rose
+63410,6,0,PrivateSystems Networks
+203215,6,0,DATAGROUP Enterprise Services GmbH
 62958,6,0,ADT LLC
-11921,6,0,SECRELNET INFORMATICA LTDA
-206530,6,0,VOXYONDER NETWORK SERVICES UK LTD
+396291,6,0,"NCH Healthcare System, Inc."
 214585,6,0,IBM Deutschland GmbH
-395434,6,0,46 Labs LLC
-216056,6,0,Jingqiu Xu
-10747,6,0,"Epic Hosting, LLC"
-34343,6,0,Eweka Internet Services B.V.
-49690,6,0,Saint Gobain Group Digital & IT International SAS
+327947,6,0,Kwame Nkrumah University of Science and Technology
+19377,6,0,Cloud Carib Limited
+30060,6,0,Verisign Operations
+266082,6,0,PowerServ Internet
 17381,6,0,Williams-Sonoma
-63117,6,0,Churchill Downs Incorporated
-11993,6,0,BANCO DO BRASIL S.A.
-19115,6,0,Charter Communications LLC
-41745,6,0,Baykov Ilya Sergeevich
-29263,6,0,Gemeente Den Haag
-41264,6,0,Google Switzerland GmbH
-23780,6,0,CTB Media Inc.
-23114,6,0,Critical Hub Networks
-50072,6,0,Talpa TV B.V.
-139299,6,0,FGHRSH STUDIO
-214483,6,0,FiberPower LLC
-215150,6,0,Shawn Maurin
-11452,6,0,Mount Sinai School of Medicine
+268636,6,0,Netway soluções em redes de acesso e comunicação l
+262693,6,0,WCOM COM E SERV TELECOM LTDA
+34689,6,0,Castlegem SRL
+30967,6,0,TP Global Operations Limited
+12167,6,0,LightWave Networks
+21509,6,0,"Apollo Management, L.P."
 52180,6,0,Nikolay Victorovich Kucheruk PE
-148971,6,0,Keibiin's Holdings Limited
-196997,6,0,Uni-tel A/S
-212236,6,0,Kinescope LLC
-34746,6,0,AXA Insurance UK plc
-51531,6,0,DE-CIX Management GmbH
-201674,6,0,Wen ZhangYu
-52060,6,0,"""MaximaTelecom North-West"" LLC"
-59827,6,0,Futureweb BVBA
-22787,6,0,"ARRIS Technology, Inc."
-265816,6,0,DELCO IMAGEN S.A.
-20565,6,0,NetR SAS
-11528,6,0,Photronics Inc.
-211575,6,0,Rui Feng
-5409,6,0,toplink GmbH
-398962,6,0,CONTROLD INC.
-48763,6,0,"LLC ""SMART CENTER"""
-16101,6,0,Ordipat SAS
-40999,6,0,dus.net GmbH
-212532,6,0,XIAO YANG WEN RUI
+54485,6,0,Philadelphia College of Osteopathic Medicine
+198539,6,0,Objedinennye Seti LLC
+53973,6,0,"Freepoint Commodities, LLC"
+151358,6,0,Finovy Pte. Ltd.
+3,6,0,Massachusetts Institute of Technology
+219421,6,0,Jonatan Miarecki
+55992,6,0,Beijing Qihu Technology Company Limited
+62537,6,0,Sauce Labs Inc
 203689,6,0,NATIONALE-NEDERLANDEN TOWARZYSTWO UBEZPIECZEN NA ZYCIE SA
-2607,6,0,Zdruzenie pouzivatelov Slovenskej akademickej datovej siete SANET
+200455,6,0,HOTARU NETWORK LTD.
 400494,6,0,Cirrascale Cloud Services LLC
 63641,6,0,"Mega Vantage Information Consulting Co., Ltd."
-35787,6,0,Miroslaw Backiel
-18081,6,0,"Kintetsu Cable Network Co., Ltd."
-212928,6,0,Amsterdam Internet Exchange B.V.
-35205,6,0,RFT Kabel Brandenburg GmbH
-131386,6,0,Long Van System Solution JSC
-28855,6,0,Octopuce s.a.r.l.
+203923,6,0,HOYOVERSE NETWORK LTD
+271616,6,0,CONEXÃO WEB - SOLUÇÕES EM REDES E TELECOMUNICAÇÕES
+203483,6,0,"Garmin International, Inc."
+43832,6,0,"Join-stock company ""Internet Exchange""MSK-IX"""
+36776,6,0,Five9 Inc.
 11911,6,0,The Bank of New York Mellon Corporation
-212781,6,0,Hypercon Ltd
-15038,6,0,"The Cambridge Incubator, LLC"
+50053,6,0,Anton Levin
 8739,6,0,ICDSoft Ltd.
-12,6,0,New York University
-266280,6,0,Saga Internet
-44943,6,0,Ramtel Ltd.
-36591,6,0,PixelRiver
-34545,6,0,Webinar Tehnologii OOO
-198408,6,0,E-Mouse Karol Urbanowicz
-205881,6,0,MAN Truck & Bus SE
-61360,6,0,"Special Engineering and Design Bureau ""Orbita"" JSC"
-16617,6,0,CISP
-214087,6,0,EXO TECHNOLOGIES spol. s r.o.
-34577,6,0,SKAT TV Ltd.
+267157,6,0,Provedor Ls Net
+16715,6,0,Aristotle Internet Access
+269030,6,0,TWSPEED TELECOM CENTRO NORTE
+50144,6,0,Unimatrix IT Solutions Kft.
+22362,6,0,Global Tel*link Corporation
+138968,6,0,rainbow network limited
+28238,6,0,Sator Engenharia Ltda.
 26178,6,0,AtkinsRealis
-39208,6,0,I.P. Integration Limited
-265586,6,0,"INBTEL, S.A. DE C.V."
+53779,6,0,Bomgar Corporation
+34624,6,0,Megaspace Internet Services GmbH
+203154,6,0,MITELIS SECURITY LIMITED
 21660,6,0,Baxalta Incorporated
-15238,6,0,Gates Foundation
-61053,6,0,UAB ESNET
-44965,6,0,8x8 Inc
-200605,6,0,Alexander Samoylyk
-15128,6,0,Comwave Telecom Inc.
-53684,6,0,Centre WISP Venture Company
-207104,6,0,"""BiZone"" LLC"
-133712,6,0,Spectra Technologies India Private Limited
-211389,6,0,Briant Broadband Limited
+60022,6,0,Sona Network B.V.
+137386,6,0,Child Wisdom Limited
+214456,6,0,ServerSP LLC
 103,6,0,Northwestern University
 7138,6,0,"Encompass Digital Media, LLC"
 21789,6,0,"Lowe's Companies, Inc."
-51198,6,0,Servada B.V.
-34066,6,0,Telappliant Limited
-197569,6,0,BASED ON WHAT LLC
-22006,6,0,PRONSS
-23028,6,0,Team Cymru Inc.
-28409,6,0,ENI NETWORKS SAPI de CV
-63303,6,0,TouchTone Communications
-29624,6,0,Krick Management GmbH trading as iWelt GmbH + Co. KG
+394749,6,0,"Equinix, Inc."
+268490,6,0,A.I.P. INTERNET
+15107,6,0,Grupo Financiero Bancomer
+22192,6,0,Pennsylvania State System of Higher Education
+270644,6,0,Lagoanet Telecomunicações
+52759,6,0,DB3 TELECOM
+14990,6,0,Avnet Inc.
+19351,6,0,Teck Resources Limited
+151669,6,0,Xiaofei Xu
 36819,6,0,MELALEUCA INC.
-47998,6,0,Oscar Music & Media Ltd.
-208754,6,0,XingRui Li
-9253,6,0,New Media Group Limited
-50030,6,0,system.de - System & Project GmbH
-10226,6,0,ETL Company Limited
+22598,6,0,"ALENCO COMMUNICATIONS, INC"
+25875,6,0,FriendFinder Networks Inc
 53020,6,0,IDT Brasil Telecomunicações Ltda.
-200768,6,0,Currenta GmbH & Co. OHG
+270656,6,0,2 M TELECOM EIRELI
+202656,6,0,Ivanov Vitaliy Sergeevich
 11739,6,0,"Digital Fortress, Inc."
-11740,6,0,Progressive Casualty Insurance Company
-49106,6,0,Opticom Group AO
-32312,6,0,"Telecommunication Systems, Inc."
+401783,6,0,TOKALA COMMUNICATIONS INC.
+327738,6,0,STE AFRICELL RDC SPRL
+58744,6,0,Mirror Tower
+7768,6,0,Nuh Ahmet Firat trading as TEKNET YAZILIM VE BILGISAYAR TEKNOLOJILERI
+37114,6,0,Vodacom Business Africa Group (PTY) Ltd
+32110,6,0,"Asurion Insurance Services, Inc."
+44534,6,0,YANDEX LLC
 46746,6,0,"NTT Managed Services Americas, LLC"
-7503,6,0,"Air Internet Service Co.,Ltd."
-40841,6,0,"MARKETAXESS HOLDINGS, INC."
-33257,6,0,Expert Service Providers LLC
 13581,6,0,SHI International Corp.
-58793,6,0,FUJITSU LIMITED
-51698,6,0,"""ActiveHost RU"" LLC"
-7867,6,0,TECH DATA CORPORATION
-206521,6,0,Technoberg Beheer B.V.
-141995,6,0,Contabo Asia Private Limited
-218538,6,0,ARGSMENT LIMITED
-52533,6,0,TRADITIO COMPANHIA DE SEGUROS
-40244,6,0,Turnkey Internet Inc.
-63989,6,0,DE-CORP
-47127,6,0,Telemaque SAS
-49823,6,0,Hastingwood Securities Ltd
-13628,6,0,AMERISOURCEBERGEN
-56741,6,0,"JSC ""Gloria-Jeans"""
-43530,6,0,Limited Liability Company Irtelcom
-33442,6,0,Zebra Technologies Corporation
-154217,6,0,PT Fiber Akses Nusantara
-328722,6,0,Ciudad Infrastructure Limited
-4150,6,0,"SupraNet Communications, Inc."
+16880,6,0,TREND MICRO INCORPORATED
+210041,6,0,Licheng MAO
+4862,6,0,Orange Business AS for Asia
+202617,6,0,Kering Eyewear S.p.A.
+202051,6,0,NETGRID HOST LTD
+55967,6,0,"Beijing Baidu Netcom Science and Technology Co., Ltd."
+49920,6,0,FLOWBIRD SAS
+15703,6,0,TrueFullstaq B.V.
+138699,6,0,TikTok Pte. Ltd.
 58385,6,0,PT Bank Syariah Mandiri
-202736,6,0,WISDOM CLOUD INTERNET TECHNOLOGY PTE. LTD.
-62119,6,0,Root SAS
-199996,6,0,AY TI VI NET LTD
+402931,6,0,AdaptGroup LLC
+14499,6,0,ALORICA INC
 13448,6,0,Forcepoint LLC
-39678,6,0,OOO ALL UP NET
-4857,6,0,TVP Operations Company
-202022,6,0,Flexyz B.V.
-47866,6,0,iBrowse SARL
-32806,6,0,MTNSAT Holdings LLC
-210076,6,0,Beat Joerg
-39007,6,0,"UAB ""Balticum TV"""
-42676,6,0,Joint Stock Company Smartkom
-61866,6,0,INTELBRAS S.A. INDUSTRIA DE TELECOMUNICACAO ELETRO
-328475,6,0,AFRIQ NETWORK SOLUTIONS LIMITED
-49287,6,0,Melbikomas UAB
+268080,6,0,JMA PROVEDOR DE INTERNET LTDA - ME
+3955,6,0,Compucom Systems
 400138,6,0,"Databento, Inc."
-12243,6,0,Waddell Solutions Group LLC
 19701,6,0,Yodlee Inc.
-206548,6,0,ZCOM.cz s.r.o
-203554,6,0,Louis Vuitton Malletier SA
 2594,6,0,CSI Piemonte
-30150,6,0,Exegy Incorporated
+263109,6,0,Primus Solucoes em T.I. LTDA
+272801,6,0,RED AMONES S.A.C.
+27385,6,0,"QUALYS, Inc."
+204889,6,0,Online Business Technologies Ltd.
 19936,6,0,Gordon Food Service
 47740,6,0,"OAO ""UBRiR"""
-141039,6,0,PacketHub S.A.
-38754,6,0,PT Primedia Armoekadata Internet
-17961,6,0,"mitene internet co., ltd."
-201026,6,0,Zalando SE
-46276,6,0,SmarterBroadband
-210165,6,0,VIDEAS SAS
+53550,6,0,"NTT Cloud Communications US, Inc."
+398993,6,0,PEG TECH INC
+208814,6,0,Tilman Schaefers
+264446,6,0,MIDIX FIBRA
+50427,6,0,Orion Telecom LLC
 395029,6,0,STN Incorporated
-34743,6,0,NASHNET LTD
-268824,6,0,CONNECTMAX TELECOM
-55032,6,0,The Jackson Laboratory
-58627,6,0,OneAsia Network Limited
-266364,6,0,RABELO FLORES SERVIÇOS DE MULTIMIDIA EIRELI-IGBWEB
-30286,6,0,ThreatMetrix Inc.
+25111,6,0,Coloplast A/S
+196755,6,0,Sewan Belgium SA
+24507,6,0,FFastFill Australia Pty Limited
+203656,6,0,Easy Tech Gaming FZ LLC
+10599,6,0,McKesson Corp.
+202986,6,0,Lukas Tautz
 54855,6,0,Interface Security Systems LLC
-38628,6,0,HIMEJI CABLE TELEVISION CORPORATION
+399272,6,0,"Barnholdt, LLC"
 45530,6,0,Agoda Company Pte. Ltd.
 196736,6,0,QUOTIX LTD
-203372,6,0,GSA Capital Services Ltd
-35278,6,0,SPRINTHOST.RU LLC
 18692,6,0,Neuberger Berman
-36444,6,0,"Liquid Web, L.L.C"
-24432,6,0,Robi Axiata
-53052,6,0,MULTIVELOX SERVICOS DE PROVEDOR DE ACESSO A INTERN
 400110,6,0,Anuvu Operations LLC
-27400,6,0,Clearfly Communications
-154343,6,0,AGILENAAS GLOBAL SERVICE PTE.LTD
-28852,6,0,"Aeris Communications, INC."
-267248,6,0,AIPEER TECNOLOGIA LTDA
-25441,6,0,Imagine Communications Group Limited
+269038,6,0,IDX DATA CENTERS & IT SERVICES S.A.
+64410,6,0,BELICOM.NET LLC
+46790,6,0,Providence Health & Services
+270631,6,0,Totvs S.A.
+14343,6,0,i2 Technologies Inc.
 14579,6,0,"Edward D. Jones & Co., L.P."
-271353,6,0,JJ PowerNet
 202929,6,0,Olaf Lienau
-12403,6,0,Telecommunication company FEONET+ LLC
+216139,6,0,Iron Hosting Centre LTD
 138096,6,0,PT Informasi Nusantara Teknologi
-57169,6,0,EDIS GmbH
-198259,6,0,ECOM SERVICE AD
-59689,6,0,Code40 SAS
-48825,6,0,Fast4networks Ltd
-134677,6,0,Dromatics Systems Pte Ltd
-7219,6,0,"Tulix Systems, Inc."
+214238,6,0,HOST TELECOM LTD
+22341,6,0,RTM - Rede de Telecomunicações para o Mercado Ltda
 393339,6,0,Consilio
-206755,6,0,Netcube Ltd.
-208802,6,0,Netavo Global Data Services Ltd
-10135,6,0,EASPNET Inc.
-45295,6,0,PT Cipta Informatika Cemerlang
-48128,6,0,Obyedinyonniye Lokalniye Seti Ltd.
+209453,6,0,Gandi LiveDNS Anycast
+211619,6,0,MAXKO d.o.o.
+393891,6,0,Nutrien
 264249,6,0,Lyra Network Telecomunicações LTDA
-20886,6,0,bn:t Blatzheim Networks Telecom GmbH
-206295,6,0,"Joint Stock Company ""Medsi group"""
-53943,6,0,Paylocity Corporation
-199421,6,0,MTI Teleport Muenchen GmbH Gesellschaft fur Satellitenubertragungen
+265170,6,0,GSM TELECOM SERVIÇO DE PROVEDOR DE INTERNET LTDA
 214266,6,0,ZERODESK LTD
-199710,6,0,DAZN MEDIA SERVICES LIMITED
-39560,6,0,KT-NET Communications GmbH
+18874,6,0,Vantor Parent Inc.
 53017,6,0,REDE NOVO TEMPO DE COMUNICAÇÃO
-262729,6,0,Telemidia Sistema de Telecomunicacao Ltda
-21525,6,0,Seattle Public Library
+41740,6,0,"Join-stock company ""Internet Exchange""MSK-IX"""
+4373,6,0,Online Computer Library Center
+37209,6,0,Hyperia Limited
+51185,6,0,MainStreaming SpA
 53620,6,0,"Pinterest, Inc."
 214618,6,0,Hack The Box Single Member Private Company
+25655,6,0,Overstock.com
 36180,6,0,Cisco IoT
-396507,6,0,Emerald Onion
-42310,6,0,IE Domain Registry CLG
-21554,6,0,"Wisconsin CyberLynk Network, Inc."
-41601,6,0,NEO Print Ltd.
-10411,6,0,Environmental Systems Research Institute
-61029,6,0,DODW Holding B.V.
-25455,6,0,Guardfox SRL
-23628,6,0,Academic newtown Community Cable Service
-402366,6,0,Soheil Digital Solutions Ltd.
+1798,6,0,State of Oregon
+203090,6,0,BITSFLOWCLOUD LTD
+24109,6,0,WNS Global Services
+57573,6,0,"JSC ""Greenatom"""
 201705,6,0,Xinrun Li
-55244,6,0,"Blue Origin Enterprises, L.P."
-207740,6,0,Youssef Hamed
+401988,6,0,5005 LLC
+17817,6,0,Concentrix Daksh Services India Private Limited
+48488,6,0,"JSC ""TNT-Teleset"""
+61776,6,0,Proserv / PROVEDOR DE ACESSO A INTERNET LTDA
 212994,6,0,MEDIA INVESTCOM LLC
-51692,6,0,Steven Smith trading as HyberHost
-34572,6,0,HELIANTIS SAS
-42518,6,0,Unet Communication LLC
-58323,6,0,netgo tax GmbH
-197696,6,0,Evolix SARL
-197727,6,0,KPN B.V.
-328578,6,0,KEMNET TECHNOLOGIES LIMITED
-49040,6,0,K and G UNISAT -TV LLC
-60522,6,0,KomMITT-Ratingen GmbH
-47648,6,0,NOREST SERVICES SAS
-38333,6,0,Symbio Networks
+45806,6,0,Siam Commercial Bank
+2484,6,0,AFNIC (Association Francaise pour le Nommage Internet en Cooperation)
+18676,6,0,Avaya LLC
+267101,6,0,ACB Fibra
 54092,6,0,"DRW Holdings, LLC"
+32043,6,0,NeoFiber Communications inc.
 3917,6,0,Shell Information Technology International B.V.
-30030,6,0,Walmart Inc.
-200976,6,0,Lifestream Ltd
 27647,6,0,"Weebly, Inc."
-60111,6,0,ASOM-Net Forening
-27747,6,0,Telecentro S.A.
-214036,6,0,"Ultahost, Inc."
+40526,6,0,"Gap, Inc. Direct"
+6364,6,0,"Atlantic.net, Inc."
 22674,6,0,"Southern Wine & Spirits of America, Inc."
+136744,6,0,Dream Power Technology Limited
 18018,6,0,Gamebuilders Inc.
-395657,6,0,"Hoplite Industries, Inc."
-205920,6,0,iFog GmbH
-20679,6,0,Syntura Group Limited
-17514,6,0,Otsuka Corp.
+265592,6,0,KBLEX SA DE CV
 18725,6,0,PVH Corp.
-47898,6,0,RPC HomeNet Ltd.
+63648,6,0,"Beijing Xiaoju Science and Technology Co., Ltd."
+64160,6,0,NimblyNet Limited
+271050,6,0,LINK INTERNET FIBRA OTICA
+62713,6,0,"PubMatic, Inc."
+262321,6,0,Conectwave Serviços e Internet Ltda
 40459,6,0,Saddleback Communications
-44134,6,0,BOLIGNET A/S
+39798,6,0,MivoCloud SRL
 394984,6,0,"Fragomen, Del Rey, Bernsen & Loewy, LLP"
-262412,6,0,AGERA TELECOMUNICACOES SA
 216253,6,0,Interhive OU
+213169,6,0,Catixs Ltd
 53985,6,0,DODGE & COX
+28154,6,0,AR TELECOM PROVEDOR DE INTERNET LTDA
+132839,6,0,POWER LINE DATACENTER
 10982,6,0,"TiVo, Inc."
-33359,6,0,COWEN EXECUTION SERVICES LLC.
-205555,6,0,SNCF Connect & Tech Services SASU
-13849,6,0,Blockinetic LLC
-12696,6,0,AXA Technology Services France GIE
 49368,6,0,DomoLAN Ltd.
-23274,6,0,Priceline.com
-28709,6,0,LLC VK
-60893,6,0,Art of Automation B.V.
-205806,6,0,Stadtwerke Neustrelitz GmbH
+19404,6,0,Quest
 16037,6,0,AB Tetra Pak
-268786,6,0,LINE FIBRA TELECOM LTDA
-211633,6,0,Keepit A/S
-213052,6,0,Bram Wittendorp trading as BittenBytes
-30303,6,0,"Ooma, Inc."
+52864,6,0,Fillnet Com. e Ser. LTDA
+6752,6,0,"ANDORRA TELECOM, S.A.U."
+57973,6,0,LLC VK
+21217,6,0,Infrastructure Switzerland Colo Sarl
+270165,6,0,Servicios Best CTC S.A. de C.V.
+218985,6,0,YU WANG
+10584,6,0,"TradeWeb, LLC"
+49941,6,0,Eurotux Informatica SA
 153913,6,0,Check Point Software Technologies India PVT LTD.
-208420,6,0,XTB S.A.
-199452,6,0,MS3 Networks Ltd
-48467,6,0,"""Pronet"" LLC"
-28075,6,0,ARLINK S.A.
-396984,6,0,Stage2Data Inc.
+31050,6,0,The Framestore Limited
+17450,6,0,PT Bank Central Asia Tbk
 266561,6,0,NATURA COSMETICOS S/A
-25532,6,0,"LLC ""MASTERHOST"""
-24689,6,0,JSC Rosin.telekom
-45701,6,0,PT Internet Madju Abad Milenindo
+49849,6,0,MG 2002 LTD.
+13379,6,0,"Disney Worldwide Services, Inc."
+208981,6,0,Data Center LLC
 52016,6,0,JSC ADFACT
-897,6,0,"Turtle Rock Studios, Inc."
-13331,6,0,MetaPeer
-20596,6,0,Future Publishing Ltd
+329097,6,0,SI Futures (Pty) Ltd
+262194,6,0,Dese Technologies Argentina S.A.
+268085,6,0,Plusnetfoz Provedor de Internet Ltda -ME
 21639,6,0,Blue Cross Blue Shield Of Louisiana
 139216,6,0,Htroy Network Research Limited
 203346,6,0,Proper Support LLP
 5080,6,0,Aramco
-32879,6,0,State of Nevada Legislature
-10146,6,0,Ford Motor Company
-131923,6,0,MCAT Ltd.
-17939,6,0,"miyazaki cabletelevision network Co.,LTD"
+22065,6,0,LPL Financial
+200478,6,0,Taboola.com ltd
 24477,6,0,"NetApp, Inc."
 14693,6,0,Baptist Health
-393950,6,0,Xiber
-203568,6,0,Airband Community Internet Ltd
+206300,6,0,YUNYOO LTD
+212883,6,0,ORION LLC
+210814,6,0,VUNIFY LTD
 8161,6,0,"Insight Direct USA, Inc."
-142375,6,0,PT Hayat Teknologi Informatika
+272022,6,0,ZAPPING SPA
 209347,6,0,FNorden e.V. - Freifunk Hannover
 31404,6,0,LYCATEL DISTRIBUTION UK LIMITED
-403001,6,0,Mirage Global Technologies LLC
-49825,6,0,Lantek LLC
-51343,6,0,Telecom Service LLC
 40410,6,0,FRIT 
-206245,6,0,Subset Solutions UK Limited
+198622,6,0,Adform A/S
+63311,6,0,"20C, LLC"
+262754,6,0,FLIX FIBRA
+26211,6,0,"Proofpoint, Inc."
 60119,6,0,Ediniy Operator Svyazi LLC
-6250,6,0,"NeoNova Network Services, LLC"
-400818,6,0,Ausra LLC
-211729,6,0,Yiming Zhang
-9092,6,0,Open Systems AG
-31923,6,0,The Auto Club Group
-50999,6,0,King Abdullah University of Science and Technology
+328840,6,0,ST DIGITAL
 19031,6,0,"CU*Answers, Inc."
 199391,6,0,One System Integration LTD
-211713,6,0,Connectium B.V.
-328411,6,0,Gulfsat Madagascar
+125,6,0,"Honeywell International, Inc."
 35030,6,0,Comfone AG
-29006,6,0,Acora Limited
 38260,6,0,Transaction Network Services AS for Asia Pac
 25917,6,0,ROCKWELL AUTOMATION Inc.
-38965,6,0,Rick van der Sterren trading as HostIn
 26673,6,0,"Uber Technologies, Inc"
-151332,6,0,CoinJar Pty Ltd
 10000,6,0,Nagasaki Cable Media Inc.
-60098,6,0,Filippov Aleksei Vladilenovich
-211008,6,0,Arturs Lihners
-50295,6,0,Triple IT BV
-141083,6,0,PT Filltech Antar Nusa
-52341,6,0,WOM SpA
+135037,6,0,Techno Asia InfoTech Pvt. ltd
+44273,6,0,Host Europe GmbH
+198018,6,0,trivago N.V.
+395505,6,0,"iManage, LLC"
+58536,6,0,CONAC (China Organizational Name Administration Center)
+7270,6,0,IDT Corporation
 202191,6,0,Katoen Natie
-6456,6,0,Altopia Corporation
-24740,6,0,NTT DATA Business Solutions sp. z o.o.
-34966,6,0,Ralf Bender
-57700,6,0,DeepCo Ltd
-51333,6,0,Arcolink Telecomunicazioni S.r.l.
-205915,6,0,Pinkroccade HealthCare B.V.
+7536,6,0,chiaochiao ltd.
+57503,6,0,OOO Taxtelecom
+59865,6,0,Ivent Mobile bv
+44786,6,0,Adobe Systems Software Ireland Ltd
 198057,6,0,Flooyd Telecom LTDA
-205668,6,0,Green Mini host BV
 27016,6,0,United States Nuclear Regulatory Commission
-122,6,0,UPMC
-214145,6,0,Seyed Pouria Mousavizadeh Tehrani
-49627,6,0,Speakup B.V.
-13745,6,0,"Ventus Networks, LLC"
-11857,6,0,"Money Services, Inc."
-45356,6,0,Mobitel Pvt Ltd
-9374,6,0,EDION Corporation
-199400,6,0,Solytro LTD.
+28539,6,0,Administradora de Servicios de Internet Sandur S.A. de C.V.
+22809,6,0,American Family Insurance
+199440,6,0,"""ATB-market"" LLC"
+269177,6,0,NEUTRA TELECOMUNICACOES DO BRASIL LTDA
 10690,6,0,NETSCOUT SYSTEMS INC.
-48945,6,0,OPEN FIBRE NETWORKS (WHOLESALE) LIMITED
-50060,6,0,Annet Ltd.
+62685,6,0,OrionVM Inc
 6648,6,0,"Bayan Telecommunications, Inc."
-39202,6,0,Global Radio Limited
-41231,6,0,Canonical Group Limited
-35834,6,0,Fenris Creations ehf.
+4977,6,0,"Vencore Services and Solutions, Inc."
 22056,6,0,Sitel
-58015,6,0,Collin Schneeweiss trading as Tievolu GbR
-29513,6,0,Foliateam Operateur SAS
-9595,6,0,NTT-ME Corporation
-394449,6,0,"FyberCom, LLC"
-41135,6,0,Voxbone SA
-22191,6,0,"Wilkes Communications, Inc."
-30931,6,0,IG Index Ltd.
-12850,6,0,Retelit Digital Services S.p.A.
-17017,6,0,campuscolo.com
-47321,6,0,"Autonomous Non-Profit Organization ""Institute of Engineering Physics"""
+133299,6,0,Yalamanchili Software Exports Ltd
+213039,6,0,MIKRAMIX LTD.
+269898,6,0,SOFTBUTTERFLY SAC
 9294,6,0,GNET INC.
-141959,6,0,PT Arta Flash Sintesa Nusantara
-51345,6,0,HUGO REGIBO
-31178,6,0,Celeonet SAS
-20911,6,0,Net-Surf.net Ltd.
-60781,6,0,LeaseWeb Netherlands B.V.
-55391,6,0,INTERNET MULTIFEED CO.
-26533,6,0,STiBaRC
-25896,6,0,IPC Network Services Inc.
-198551,6,0,REZOCEAN SAS
-57653,6,0,Central Technology Ltd
-26329,6,0,InServer Networks
-210171,6,0,"LLC ""AVP-Technology"""
+31128,6,0,Apple Distribution International Ltd.
+35916,6,0,MULTACOM CORPORATION
+201612,6,0,nic.at GmbH
+209002,6,0,Blackberry Capital Limited LLC
 213550,6,0,Jon Radel
-22098,6,0,"The Capital Group Companies, Inc."
-9022,6,0,TWL-KOM GmbH
-138005,6,0,LENOVO (AUSTRALIA & NEW ZEALAND) PTY LIMITED
-21743,6,0,Atlas Networks Corporation
-133012,6,0,Cocoa Oriental Network Limited
+55996,6,0,CYPRESS TELECOM (CHINA) LIMITED
+5,6,0,WFA Group LLC
 48739,6,0,SPUTNIK LLC
 63182,6,0,"RapidScale, Inc"
-197155,6,0,Artnet Sp. z o.o.
-32277,6,0,TBayTel
-21577,6,0,TOLEDO TELEPHONE CO INC
-57483,6,0,Ian Chilton
+205201,6,0,Public Service Media Radio Television of Serbia
 31942,6,0,HyperFiber
+199742,6,0,Akenai Products LTD
 22024,6,0,"Splunk, Inc."
-26704,6,0,Open Text Corporation
 210562,6,0,WURZELLOS LLC
+11734,6,0,Connectria
+45079,6,0,GDS CHANGAN SERVICES Ltd.
 48417,6,0,ITS akciova spolecnost
-394265,6,0,Box.com
+266338,6,0,HDL SOLUCOES EM TECNOLOGIA LTDA
 393316,6,0,"Clearpool Technologies, LLC"
-16189,6,0,KLEE SA
-30900,6,0,Sternforth Ltd. trading as WebWorld
-26978,6,0,"Quality Technology Services, LLC"
-148996,6,0,GLOBAL COMMUNICATION NETWORK LIMITED
-205520,6,0,XTB S.A.
-60868,6,0,Runtime Collective Limited
-44123,6,0,Telavox AB
-48846,6,0,"Inetum Espana, S.A."
-199839,6,0,MikeNetworks S.a r.l.-S.
+37308,6,0,Steam Broadcasting and Communications Limited
+204552,6,0,POPILNYA.NET LLC
+204890,6,0,Pegasystems Inc.
+6075,6,0,Lockheed Martin Corporation
 51444,6,0,IT Lite LLC
-56400,6,0,SPD Chernega Aleksandr Anatolevich
-134366,6,0,Cloud Computing HK Limited
-50577,6,0,Intelsc Ltd.
-202224,6,0,Giannis Kontos
-35691,6,0,Plan Communications Ltd
-139468,6,0,DC Communications Inc.
-200690,6,0,Junxiao Shi
-15224,6,0,Adobe Inc.
-213050,6,0,Nedap N.V.
-8918,6,0,Coolwave Communications Limited
-55222,6,0,Aylo (Mindgeek)
-205892,6,0,Nomical Ltd
-141109,6,0,PT Omni Cloud Indonesia
+398090,6,0,Lambda
+216039,6,0,EdgeSec Technologies Limited
+218444,6,0,Muhammet Eren Karaman
 51859,6,0,Mainstream doo Beograd
-36062,6,0,"DoubleVerify, Inc."
 36329,6,0,"Intrado Life & Safety, Inc."
-55402,6,0,PNB Financial Center
+47952,6,0,ICT BULUT BILISIM A.S.
 28959,6,0,Vitol Services Ltd
-211869,6,0,Nicholis du Toit
-401401,6,0,Unredacted Inc
-32402,6,0,Tower Research Capital LLC
-208844,6,0,VTech Electronics Europe B.V.
-39931,6,0,FRANCHE COMTE NET SAS
-49605,6,0,Digital Telecommunication Services S.r.l.
-400719,6,0,RJN Services
-43927,6,0,HOSTERION SRL
+198364,6,0,BANATSYNC SRL
+199163,6,0,DATAGROUP Operations GmbH
+14136,6,0,"PC Connection, Inc."
+204871,6,0,Shihabudheen P K
+196674,6,0,Speedflow Communications Ltd
+265419,6,0,WA. TELECON COMERCIO E SERVICOS LTDA
+27176,6,0,DataWagon LLC
 14762,6,0,"AMGEN, Inc."
 33168,6,0,INLAND IMAGING L.L.C.
-6717,6,0,Internet Central Limited
+271466,6,0,UC Telecom Ltda
+264938,6,0,Online TELECOM
 22683,6,0,Koninklijke Philips N.V.
-205479,6,0,Luke Eiji Granger-Brown
-197667,6,0,Telekom System sp.z o.o.
+17060,6,0,NBCUniversal
+3958,6,0,Air Canada
 22460,6,0,"PepsiCo, Inc."
-210320,6,0,Cedric Hoogendoorn
-25068,6,0,Konica Minolta Business Solutions Europe GmbH
+46646,6,0,"BOTTOMLINE TECHNOLOGIES (DE), INC"
 199592,6,0,WAHYU
-64200,6,0,VIVID-HOSTING LLC
+2615,6,0,Bechtel Corporation

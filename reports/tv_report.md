@@ -12,11 +12,11 @@
     ====================================================================================================
      THE TV CORE (Top 20 Networks)
     ====================================================================================================
-    ASN      | Verdict                        | Cone     | APNIC% | Name
-    ----------------------------------------------------------------------------------------------------
-    AS23917  | REGRESSED                      | 0        | 0%     | Tuvalu Telecommunications Corporation
-    AS133117 | NOT ROUTED                     | 0        | -      | Tuvalu Telecommunications Corporation
-    AS142573 | NOT ROUTED                     | 0        | -      | Government of Tuvalu
+    ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
+    -------------------------------------------------------------------------------------------------------------------------------------
+    AS142573 | NOT ROUTED                     | -                              | 0        | -      | Government of Tuvalu
+    AS23917  | REGRESSED                      | -                              | 0        | 0%     | Tuvalu Telecommunications Corporation
+    AS133117 | NOT ROUTED                     | -                              | 0        | -      | Tuvalu Telecommunications Corporation
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TV?)
@@ -24,4 +24,4 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS9241   | 1          | PARTIAL: VULNERABLE (Mixed)    | Fiji International Telecomunications Ltd
-    #2   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink
+    #2   | AS14593  | 1          | PARTIAL: VULNERABLE (Mixed)    | SpaceX Starlink

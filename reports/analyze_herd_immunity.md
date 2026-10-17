@@ -1,21 +1,21 @@
     [*] Loading rov_audit_v22_final.csv...
-        - Loading Cones from final_as_rank.csv... OK (87459 ASNs)
+        - Loading Cones from final_as_rank.csv... OK (87712 ASNs)
         - Loading Graph from data/downstream_graph.json... OK
-    [!] 92 IXP phantom networks excluded (< 5% captive customers). Re-run build_topology for full fix.
+    [!] 56 IXP phantom networks excluded (< 5% captive customers). Re-run build_topology for full fix.
 
     ================================================================================
      HERD IMMUNITY STATUS
     ================================================================================
 
     [GLOBAL CORE] (The 100 largest legitimate transit networks)
-      Networks Secure:      35 / 100  (35.0%)
-      Traffic Protected:   73.8% (by Cone Weight)
-      Progress: |████████████████████████████████████░░░░░░░░░░░░░░|
+      Networks Secure:      58 / 100  (58.0%)
+      Traffic Protected:   78.6% (by Cone Weight)
+      Progress: |███████████████████████████████████████░░░░░░░░░░░|
 
     [TRANSIT LAYER] (The 1000 largest legitimate transit networks)
-      Networks Secure:     184 / 1000  (18.4%)
-      Traffic Protected:   71.5% (by Cone Weight)
-      Progress: |███████████████████████████████████░░░░░░░░░░░░░░░|
+      Networks Secure:     319 / 1000  (31.9%)
+      Traffic Protected:   76.3% (by Cone Weight)
+      Progress: |██████████████████████████████████████░░░░░░░░░░░░|
 
     ================================================================================
      THE HOLDOUTS (Top Vulnerable Transit Nets)
@@ -23,31 +23,31 @@
     ------------------------------------------------------------------------------------
     Rank  | ASN      | CC |       Cone |  Excl% | Name
     ------------------------------------------------------------------------------------
-    #4    | AS6461   | US |     71,946 |    41% | Zayo Bandwidth
-    #20   | AS4134   | CN |     52,552 |    81% | China Telecom Backbone
-    #21   | AS4837   | CN |     50,577 |    57% | China Unicom Backbone
-    #23   | AS34927  | CH |     34,226 |    11% | iFog GmbH
-    #24   | AS20485  | RU |     34,039 |    20% | TransTeleCom JSC
-    #25   | AS3216   | RU |     30,350 |    29% | Vimpelcom PJSC
-    #28   | AS4657   | SG |     15,296 |     8% | StarHub Ltd
-    #33   | AS9498   | IN |      7,421 |    60% | Bharti Airtel Ltd.
-    #38   | AS8359   | RU |      5,054 |    50% | MTS PJSC
-    #44   | AS15830  | NL |      3,668 |    54% | Equinix, Inc.
-    #45   | AS22652  | CA |      3,658 |    20% | Videotron Ltee
-    #46   | AS7713   | ID |      3,441 |    23% | PT Telkom Indonesia Tbk
-    #50   | AS42708  | SE |      2,899 |    17% | Glesys AB
-    #51   | AS9808   | CN |      2,840 |    69% | China Mobile Backbone
-    #52   | AS4755   | IN |      2,547 |    60% | TATA Communications (formerly VSNL)
-    #56   | AS9304   | HK |      2,178 |    32% | HGC Global Communications Limited
-    #60   | AS53062  | BR |      1,557 |    60% | ACESSOLINE TELECOMUNICACOES LTDA
-    #61   | AS9929   | CN |      1,508 |    67% | China Unicom Industrial Internet Backbon
-    #70   | AS8447   | AT |      1,080 |    59% | A1 Telekom Austria AG
-    #72   | AS58717  | BD |      1,014 |    80% | Summit Communications Ltd
-    #77   | AS4230   | BR |        880 |    37% | Claro (Embratel)
-    #79   | AS12741  | PL |        763 |    71% | Netia SA
-    #81   | AS3223   | GB |        738 |    21% | Voxility LLP
-    #83   | AS61832  | BR |        703 |    26% | Giga+ Empresas
-    #85   | AS4800   | ID |        691 |    52% | PT Aplikanusa Lintasarta
+    #3    | AS6461   | US |     73,779 |    46% | Zayo Bandwidth
+    #4    | AS7018   | US |     72,521 |    63% | AT&T Enterprises, LLC
+    #21   | AS17639  | PH |     43,464 |    65% | Converge ICT Solutions Inc.
+    #29   | AS3216   | RU |     29,090 |    49% | Vimpelcom PJSC
+    #37   | AS4657   | SG |     14,896 |    47% | StarHub Ltd
+    #39   | AS12389  | RU |     13,839 |    57% | Rostelecom PJSC
+    #40   | AS1836   | CH |     13,269 |    82% | green.ch AG
+    #48   | AS9498   | IN |      7,027 |    62% | Bharti Airtel Ltd.
+    #52   | AS38001  | SG |      6,332 |    67% | NewMedia Express Pte. Ltd.
+    #53   | AS4637   | HK |      5,443 |    17% | Telstra International Limited
+    #54   | AS6696   | BE |      5,153 |    73% | VERIXI SA
+    #55   | AS8359   | RU |      4,771 |    61% | MTS PJSC
+    #56   | AS13030  | CH |      4,623 |    63% | Init7 (Switzerland) Ltd.
+    #57   | AS2828   | US |      4,522 |   100% | Verizon (fka XO Communications)
+    #63   | AS7713   | ID |      3,650 |    63% | PT Telkom Indonesia Tbk
+    #65   | AS22652  | CA |      3,557 |    68% | Videotron Ltee
+    #67   | AS15830  | NL |      3,176 |    54% | Equinix, Inc.
+    #68   | AS31133  | RU |      3,082 |    47% | MegaFon PJSC
+    #70   | AS9930   | MY |      3,039 |    60% | TIME dotCom Bhd
+    #71   | AS42708  | SE |      2,940 |    73% | Glesys AB
+    #74   | AS8966   | AE |      2,609 |    10% | Etisalat (E&)
+    #75   | AS4755   | IN |      2,591 |    61% | TATA Communications (formerly VSNL)
+    #76   | AS401753 | VG |      2,455 |   100% | BIXCE Inc
+    #78   | AS9304   | HK |      2,369 |    44% | HGC Global Communications Limited
+    #86   | AS14840  | BR |      1,862 |    48% | BR.DIGITAL 
     ------------------------------------------------------------------------------------
 
     CONCLUSION:

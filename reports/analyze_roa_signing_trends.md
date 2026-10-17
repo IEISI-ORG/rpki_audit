@@ -1,31 +1,31 @@
     [*] Fetching APNIC Labs ROA-coverage snapshots...
-        - Now   (reported date 07/10/2026): 278 countries/regions
-        - 3mo   (reported date 11/07/2026): 278 countries/regions
-        - 6mo   (reported date 11/04/2026): 279 countries/regions
-        - 12mo  (reported date 11/10/2025): 279 countries/regions
-        - 24mo  (reported date 11/10/2024): 279 countries/regions
+        - Now   (reported date 15/10/2026): 278 countries/regions
+        - 3mo   (reported date 18/07/2026): 278 countries/regions
+        - 6mo   (reported date 18/04/2026): 279 countries/regions
+        - 12mo  (reported date 18/10/2025): 280 countries/regions
+        - 24mo  (reported date 18/10/2024): 279 countries/regions
 
     ====================================================================================================
      GLOBAL ROA COVERAGE TREND (IPv4 Route Objects, % Valid)
     ====================================================================================================
     Period   | Reported Date  | % Valid  | Total Route Objects
     ------------------------------------------------------------
-    Now      | 07/10/2026     |   68.7% |  1,278,948
-    3mo      | 11/07/2026     |   65.8% |  1,265,733
-    6mo      | 11/04/2026     |   58.9% |  1,251,814
-    12mo     | 11/10/2025     |   53.6% |  1,254,526
-    24mo     | 11/10/2024     |   48.0% |  1,188,598
+    Now      | 15/10/2026     |   67.6% |  1,316,817
+    3mo      | 18/07/2026     |   65.9% |  1,264,564
+    6mo      | 18/04/2026     |   59.1% |  1,255,332
+    12mo     | 18/10/2025     |   53.8% |  1,258,337
+    24mo     | 18/10/2024     |   48.3% |  1,190,863
 
     ====================================================================================================
      GLOBAL ROA COVERAGE TREND (IPv6 Route Objects, % Valid)
     ====================================================================================================
     Period   | Reported Date  | % Valid  | Total Route Objects
     ------------------------------------------------------------
-    Now      | 07/10/2026     |   75.6% |    319,804
-    3mo      | 11/07/2026     |   74.0% |    313,201
-    6mo      | 11/04/2026     |   62.5% |    303,246
-    12mo     | 11/10/2025     |   57.9% |    296,577
-    24mo     | 11/10/2024     |   55.6% |    260,203
+    Now      | 15/10/2026     |   76.0% |    318,358
+    3mo      | 18/07/2026     |   74.1% |    314,307
+    6mo      | 18/04/2026     |   62.7% |    302,145
+    12mo     | 18/10/2025     |   57.5% |    296,773
+    24mo     | 18/10/2024     |   55.6% |    259,929
 
     NOTE: IPv4 and IPv6 are reported separately because they are measured
     separately by APNIC and can diverge significantly per network — do not
@@ -36,22 +36,22 @@
     ====================================================================================================
     RIR        | ASNs (now) |     Now |     3mo |     6mo |    12mo |    24mo
     -------------------------------------------------------------------------
-    afrinic    | 2,468      |   65.3% |   60.9% |   58.1% |   37.9% |   32.2%
-    apnic      | 31,402     |   76.9% |   74.1% |   54.9% |   49.0% |   45.7%
-    arin       | 35,504     |   54.7% |   51.3% |   48.9% |   42.9% |   33.9%
-    lacnic     | 13,816     |   69.1% |   63.0% |   58.4% |   59.2% |   54.6%
-    ripencc    | 38,518     |   74.9% |   74.5% |   73.6% |   68.3% |   61.7%
+    afrinic    | 2,471      |   65.4% |   61.6% |   58.7% |   37.9% |   32.3%
+    apnic      | 31,425     |   76.3% |   74.3% |   55.5% |   49.0% |   45.9%
+    arin       | 35,540     |   52.2% |   51.4% |   49.0% |   43.4% |   34.0%
+    lacnic     | 13,817     |   69.2% |   63.4% |   58.4% |   59.2% |   54.8%
+    ripencc    | 38,568     |   74.5% |   74.1% |   73.7% |   68.4% |   62.3%
 
     ====================================================================================================
      RIR ROA COVERAGE TREND (IPv6 Route Objects, % Valid, weighted by route-object count)
     ====================================================================================================
     RIR        | ASNs (now) |     Now |     3mo |     6mo |    12mo |    24mo
     -------------------------------------------------------------------------
-    afrinic    | 2,468      |   41.7% |   38.8% |   40.6% |   35.1% |   66.9%
-    apnic      | 31,402     |   83.5% |   81.5% |   51.3% |   49.3% |   39.4%
-    arin       | 35,504     |   76.3% |   76.5% |   75.5% |   67.0% |   62.5%
-    lacnic     | 13,816     |   65.7% |   61.2% |   60.0% |   57.5% |   55.9%
-    ripencc    | 38,518     |   77.4% |   77.5% |   76.6% |   66.1% |   76.0%
+    afrinic    | 2,471      |   41.7% |   39.5% |   41.0% |   35.2% |   65.4%
+    apnic      | 31,425     |   83.4% |   81.7% |   51.6% |   48.7% |   39.4%
+    arin       | 35,540     |   76.4% |   76.5% |   75.9% |   67.6% |   62.1%
+    lacnic     | 13,817     |   67.7% |   61.2% |   59.7% |   56.1% |   56.3%
+    ripencc    | 38,568     |   77.4% |   77.7% |   76.7% |   65.9% |   75.9%
 
     [+] Full per-country trend data (IPv4 + IPv6) saved to roa_signing_trends.csv
 
@@ -61,37 +61,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 3mo     | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    TG   | Togo                 | afrinic  | 11     |  62.3% |  10.2% |  +52.1pp
-    TJ   | Tajikistan           | ripencc  | 43     |  85.1% |  36.8% |  +48.3pp
-    MX   | Mexico               | lacnic   | 656    |  78.1% |  44.8% |  +33.3pp
-    KI   | Kiribati             | apnic    | 5      |  90.9% |  63.2% |  +27.7pp
-    CD   | Congo, The Democrati | afrinic  | 51     |  56.1% |  38.2% |  +17.9pp
-    KE   | Kenya                | afrinic  | 247    |  77.0% |  59.4% |  +17.6pp
+    TG   | Togo                 | afrinic  | 11     |  57.0% |  10.2% |  +46.8pp
+    TJ   | Tajikistan           | ripencc  | 43     |  82.3% |  37.4% |  +44.9pp
+    MX   | Mexico               | lacnic   | 658    |  78.0% |  45.2% |  +32.8pp
+    KI   | Kiribati             | apnic    | 5      |  92.0% |  63.2% |  +28.8pp
+    SK   | Slovakia             | ripencc  | 229    |  65.1% |  42.9% |  +22.2pp
+    CD   | Congo, The Democrati | afrinic  | 51     |  56.4% |  37.9% |  +18.5pp
+    KE   | Kenya                | afrinic  | 247    |  77.1% |  59.5% |  +17.6pp
     SO   | Somalia              | afrinic  | 22     |  82.8% |  65.5% |  +17.3pp
-    NG   | Nigeria              | afrinic  | 266    |  58.8% |  42.6% |  +16.2pp
-    AU   | Australia            | apnic    | 3000   |  51.1% |  36.5% |  +14.6pp
-    BJ   | Benin                | afrinic  | 16     |  69.3% |  55.8% |  +13.5pp
-    YT   | Mayotte              | afrinic  | 1      |  75.9% |  63.2% |  +12.7pp
-    MA   | Morocco              | afrinic  | 32     |  15.3% |   3.2% |  +12.1pp
-    SL   | Sierra Leone         | afrinic  | 22     |  69.8% |  58.6% |  +11.2pp
-    GQ   | Equatorial Guinea    | afrinic  | 7      |  60.0% |  51.3% |   +8.7pp
-    VG   | Virgin Islands, Brit | ripencc  | 49     |  51.6% |  43.5% |   +8.1pp
+    NG   | Nigeria              | afrinic  | 265    |  58.8% |  42.6% |  +16.2pp
+    AU   | Australia            | apnic    | 3001   |  51.9% |  36.6% |  +15.3pp
+    YT   | Mayotte              | afrinic  | 1      |  76.7% |  63.2% |  +13.5pp
+    GQ   | Equatorial Guinea    | afrinic  | 7      |  58.5% |  45.7% |  +12.8pp
+    SL   | Sierra Leone         | afrinic  | 22     |  69.4% |  58.6% |  +10.8pp
+    BW   | Botswana             | afrinic  | 33     |  74.8% |  66.3% |   +8.5pp
+    DO   | Dominican Republic   | lacnic   | 215    |  81.5% |  73.9% |   +7.6pp
     Decliners:
-    IT   | Italy                | ripencc  | 1322   |  50.6% |  68.5% |  -17.9pp
-    MG   | Madagascar           | afrinic  | 7      |  28.1% |  42.0% |  -13.9pp
-    LY   | Libya                | afrinic  | 27     |  63.7% |  71.7% |   -8.0pp
-    ST   | Sao Tome and Princip | afrinic  | 2      |  76.9% |  83.8% |   -6.9pp
+    MH   | Marshall Islands     | ripencc  | 11     |  52.0% |  94.2% |  -42.2pp
+    IT   | Italy                | ripencc  | 1324   |  51.0% |  68.1% |  -17.1pp
+    ST   | Sao Tome and Princip | afrinic  | 2      |  75.0% |  83.8% |   -8.8pp
+    KY   | Cayman Islands       | arin     | 18     |  49.1% |  55.2% |   -6.1pp
     CV   | Cabo Verde           | afrinic  | 8      |  35.4% |  40.6% |   -5.2pp
-    KY   | Cayman Islands       | arin     | 18     |  49.5% |  54.6% |   -5.1pp
-    MK   | North Macedonia      | ripencc  | 69     |  46.9% |  50.4% |   -3.5pp
-    CF   | Central African Repu | afrinic  | 4      |  16.0% |  19.2% |   -3.2pp
-    LR   | Liberia              | afrinic  | 16     |  41.1% |  44.3% |   -3.2pp
+    VE   | Venezuela            | lacnic   | 261    |  90.1% |  94.7% |   -4.6pp
+    SC   | Seychelles           | ripencc  | 87     |  81.6% |  85.9% |   -4.3pp
+    MG   | Madagascar           | afrinic  | 7      |  39.0% |  42.0% |   -3.0pp
     BQ   | Bonaire, Sint Eustat | lacnic   | 6      |  80.4% |  83.3% |   -2.9pp
-    PE   | Peru                 | lacnic   | 225    |  35.5% |  38.3% |   -2.8pp
-    GU   | Guam                 | apnic    | 10     |  78.6% |  81.2% |   -2.6pp
-    VE   | Venezuela            | lacnic   | 261    |  91.7% |  94.3% |   -2.6pp
-    KN   | Saint Kitts and Nevi | arin     | 11     |  12.5% |  15.1% |   -2.6pp
-    GP   | Guadeloupe           | arin     | 10     |  91.0% |  93.4% |   -2.4pp
+    SG   | Singapore            | apnic    | 729    |  77.7% |  80.5% |   -2.8pp
+    BD   | Bangladesh           | apnic    | 2030   |  93.2% |  96.0% |   -2.8pp
+    PE   | Peru                 | lacnic   | 226    |  35.6% |  38.3% |   -2.7pp
+    PH   | Philippines          | apnic    | 674    |  88.4% |  91.1% |   -2.7pp
+    MK   | North Macedonia      | ripencc  | 69     |  47.6% |  50.3% |   -2.7pp
+    KN   | Saint Kitts and Nevi | arin     | 11     |  12.4% |  15.1% |   -2.7pp
 
     ====================================================================================================
      BIGGEST MOVERS — 6mo WINDOW (IPv4, % Valid, ROA coverage)
@@ -100,36 +100,36 @@
     -------------------------------------------------------------------------------------
     Improvers:
     DJ   | Djibouti             | afrinic  | 4      |  96.1% |   5.6% |  +90.5pp
-    CN   | China                | apnic    | 6503   |  89.4% |   5.0% |  +84.4pp
-    ST   | Sao Tome and Princip | afrinic  | 2      |  76.9% |   5.9% |  +71.0pp
-    CM   | Cameroon             | afrinic  | 29     |  94.9% |  35.3% |  +59.6pp
-    TJ   | Tajikistan           | ripencc  | 43     |  85.1% |  37.1% |  +48.0pp
-    JE   | Jersey               | ripencc  | 13     |  92.1% |  53.8% |  +38.3pp
-    TT   | Trinidad and Tobago  | lacnic   | 16     |  91.6% |  54.6% |  +37.0pp
-    MX   | Mexico               | lacnic   | 656    |  78.1% |  42.0% |  +36.1pp
-    SO   | Somalia              | afrinic  | 22     |  82.8% |  52.9% |  +29.9pp
-    MT   | Malta                | ripencc  | 56     |  53.8% |  25.2% |  +28.6pp
-    KI   | Kiribati             | apnic    | 5      |  90.9% |  63.2% |  +27.7pp
-    GG   | Guernsey             | ripencc  | 11     |  71.0% |  49.3% |  +21.7pp
-    KE   | Kenya                | afrinic  | 247    |  77.0% |  57.6% |  +19.4pp
-    CD   | Congo, The Democrati | afrinic  | 51     |  56.1% |  37.0% |  +19.1pp
-    BW   | Botswana             | afrinic  | 33     |  74.4% |  55.4% |  +19.0pp
+    CN   | China                | apnic    | 6507   |  89.2% |   6.7% |  +82.5pp
+    ST   | Sao Tome and Princip | afrinic  | 2      |  75.0% |   5.9% |  +69.1pp
+    CM   | Cameroon             | afrinic  | 30     |  94.5% |  35.8% |  +58.7pp
+    TJ   | Tajikistan           | ripencc  | 43     |  82.3% |  37.0% |  +45.3pp
+    JE   | Jersey               | ripencc  | 13     |  92.2% |  53.8% |  +38.4pp
+    TT   | Trinidad and Tobago  | lacnic   | 16     |  91.8% |  54.6% |  +37.2pp
+    MX   | Mexico               | lacnic   | 658    |  78.0% |  42.3% |  +35.7pp
+    KI   | Kiribati             | apnic    | 5      |  92.0% |  63.2% |  +28.8pp
+    MT   | Malta                | ripencc  | 55     |  53.7% |  25.3% |  +28.4pp
+    SO   | Somalia              | afrinic  | 22     |  82.8% |  59.9% |  +22.9pp
+    GG   | Guernsey             | ripencc  | 11     |  70.6% |  49.3% |  +21.3pp
+    SK   | Slovakia             | ripencc  | 229    |  65.1% |  44.9% |  +20.2pp
+    BW   | Botswana             | afrinic  | 33     |  74.8% |  55.0% |  +19.8pp
+    KE   | Kenya                | afrinic  | 247    |  77.1% |  57.7% |  +19.4pp
     Decliners:
-    CV   | Cabo Verde           | afrinic  | 8      |  35.4% |  86.7% |  -51.3pp
-    MG   | Madagascar           | afrinic  | 7      |  28.1% |  45.5% |  -17.4pp
-    IT   | Italy                | ripencc  | 1322   |  50.6% |  65.9% |  -15.3pp
-    LY   | Libya                | afrinic  | 27     |  63.7% |  71.5% |   -7.8pp
-    SD   | Sudan                | afrinic  | 11     |  39.4% |  45.9% |   -6.5pp
-    KY   | Cayman Islands       | arin     | 18     |  49.5% |  55.2% |   -5.7pp
-    UZ   | Uzbekistan           | ripencc  | 128    |  72.6% |  77.3% |   -4.7pp
-    MK   | North Macedonia      | ripencc  | 69     |  46.9% |  51.3% |   -4.4pp
-    NE   | Niger                | afrinic  | 7      |  15.5% |  19.5% |   -4.0pp
-    MP   | Northern Mariana Isl | apnic    | 2      |  94.7% |  98.1% |   -3.4pp
-    GL   | Greenland            | ripencc  | 1      |  77.1% |  79.4% |   -2.3pp
-    PE   | Peru                 | lacnic   | 225    |  35.5% |  37.7% |   -2.2pp
-    AS   | American Samoa       | apnic    | 2      |  18.2% |  20.3% |   -2.1pp
-    GP   | Guadeloupe           | arin     | 10     |  91.0% |  92.6% |   -1.6pp
-    FM   | Micronesia, Federate | apnic    | 6      |  85.0% |  86.4% |   -1.4pp
+    CV   | Cabo Verde           | afrinic  | 8      |  35.4% |  86.9% |  -51.5pp
+    MH   | Marshall Islands     | ripencc  | 11     |  52.0% |  91.7% |  -39.7pp
+    IT   | Italy                | ripencc  | 1324   |  51.0% |  66.5% |  -15.5pp
+    SD   | Sudan                | afrinic  | 11     |  38.9% |  46.0% |   -7.1pp
+    MG   | Madagascar           | afrinic  | 7      |  39.0% |  45.9% |   -6.9pp
+    KY   | Cayman Islands       | arin     | 18     |  49.1% |  55.2% |   -6.1pp
+    SC   | Seychelles           | ripencc  | 87     |  81.6% |  87.4% |   -5.8pp
+    NE   | Niger                | afrinic  | 7      |  16.4% |  21.4% |   -5.0pp
+    MP   | Northern Mariana Isl | apnic    | 2      |  93.3% |  98.2% |   -4.9pp
+    UZ   | Uzbekistan           | ripencc  | 129    |  72.7% |  77.5% |   -4.8pp
+    TG   | Togo                 | afrinic  | 11     |  57.0% |  61.7% |   -4.7pp
+    KM   | Comoros              | afrinic  | 4      |  74.3% |  78.6% |   -4.3pp
+    AE   | United Arab Emirates | ripencc  | 216    |  81.4% |  85.5% |   -4.1pp
+    MK   | North Macedonia      | ripencc  | 69     |  47.6% |  51.7% |   -4.1pp
+    LY   | Libya                | afrinic  | 27     |  68.5% |  71.5% |   -3.0pp
 
     ====================================================================================================
      BIGGEST MOVERS — 12mo WINDOW (IPv4, % Valid, ROA coverage)
@@ -137,37 +137,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 12mo    | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    CK   | Cook Islands         | apnic    | 2      | 100.0% |   5.0% |  +95.0pp
     DJ   | Djibouti             | afrinic  | 4      |  96.1% |   2.9% |  +93.2pp
     EG   | Egypt                | afrinic  | 86     |  95.5% |   7.6% |  +87.9pp
-    CN   | China                | apnic    | 6503   |  89.4% |   3.8% |  +85.6pp
-    PK   | Pakistan             | apnic    | 473    |  93.0% |  15.4% |  +77.6pp
-    ST   | Sao Tome and Princip | afrinic  | 2      |  76.9% |   3.1% |  +73.8pp
-    BJ   | Benin                | afrinic  | 16     |  69.3% |   5.7% |  +63.6pp
-    CM   | Cameroon             | afrinic  | 29     |  94.9% |  31.7% |  +63.2pp
+    CN   | China                | apnic    | 6507   |  89.2% |   3.9% |  +85.3pp
+    PK   | Pakistan             | apnic    | 473    |  92.5% |  15.4% |  +77.1pp
+    ST   | Sao Tome and Princip | afrinic  | 2      |  75.0% |   3.1% |  +71.9pp
+    BJ   | Benin                | afrinic  | 16     |  72.5% |   5.7% |  +66.8pp
     SO   | Somalia              | afrinic  | 22     |  82.8% |  19.7% |  +63.1pp
-    TJ   | Tajikistan           | ripencc  | 43     |  85.1% |  27.4% |  +57.7pp
-    HT   | Haiti                | lacnic   | 11     |  55.9% |   3.7% |  +52.2pp
-    JE   | Jersey               | ripencc  | 13     |  92.1% |  42.4% |  +49.7pp
-    KI   | Kiribati             | apnic    | 5      |  90.9% |  42.9% |  +48.0pp
-    LS   | Lesotho              | afrinic  | 9      |  72.6% |  30.1% |  +42.5pp
-    KZ   | Kazakhstan           | ripencc  | 262    |  80.1% |  38.8% |  +41.3pp
+    CM   | Cameroon             | afrinic  | 30     |  94.5% |  31.9% |  +62.6pp
+    TJ   | Tajikistan           | ripencc  | 43     |  82.3% |  27.1% |  +55.2pp
+    HT   | Haiti                | lacnic   | 11     |  56.7% |   3.0% |  +53.7pp
+    JE   | Jersey               | ripencc  | 13     |  92.2% |  42.4% |  +49.8pp
+    KI   | Kiribati             | apnic    | 5      |  92.0% |  42.9% |  +49.1pp
+    LS   | Lesotho              | afrinic  | 9      |  72.1% |  30.1% |  +42.0pp
+    KZ   | Kazakhstan           | ripencc  | 266    |  80.3% |  39.6% |  +40.7pp
+    TT   | Trinidad and Tobago  | lacnic   | 16     |  91.8% |  52.2% |  +39.6pp
     Decliners:
     CV   | Cabo Verde           | afrinic  | 8      |  35.4% |  84.9% |  -49.5pp
-    MG   | Madagascar           | afrinic  | 7      |  28.1% |  52.9% |  -24.8pp
-    IE   | Ireland              | ripencc  | 287    |  66.2% |  78.5% |  -12.3pp
-    AO   | Angola               | afrinic  | 70     |  49.1% |  57.8% |   -8.7pp
-    GT   | Guatemala            | lacnic   | 79     |  82.4% |  90.6% |   -8.2pp
-    BF   | Burkina Faso         | afrinic  | 30     |  81.2% |  89.3% |   -8.1pp
-    KY   | Cayman Islands       | arin     | 18     |  49.5% |  56.7% |   -7.2pp
-    PY   | Paraguay             | lacnic   | 115    |  75.6% |  82.8% |   -7.2pp
+    MH   | Marshall Islands     | ripencc  | 11     |  52.0% |  76.5% |  -24.5pp
+    MG   | Madagascar           | afrinic  | 7      |  39.0% |  52.5% |  -13.5pp
+    IE   | Ireland              | ripencc  | 287    |  65.2% |  78.5% |  -13.3pp
+    GT   | Guatemala            | lacnic   | 79     |  81.4% |  90.5% |   -9.1pp
+    AO   | Angola               | afrinic  | 70     |  49.4% |  58.0% |   -8.6pp
+    BF   | Burkina Faso         | afrinic  | 30     |  81.3% |  89.5% |   -8.2pp
+    KY   | Cayman Islands       | arin     | 18     |  49.1% |  56.7% |   -7.6pp
+    PY   | Paraguay             | lacnic   | 115    |  75.4% |  82.7% |   -7.3pp
+    TG   | Togo                 | afrinic  | 11     |  57.0% |  64.2% |   -7.2pp
+    KM   | Comoros              | afrinic  | 4      |  74.3% |  80.8% |   -6.5pp
     GL   | Greenland            | ripencc  | 1      |  77.1% |  83.3% |   -6.2pp
-    KM   | Comoros              | afrinic  | 4      |  76.5% |  80.8% |   -4.3pp
-    KN   | Saint Kitts and Nevi | arin     | 11     |  12.5% |  16.2% |   -3.7pp
-    ME   | Montenegro           | ripencc  | 31     |  49.0% |  52.6% |   -3.6pp
-    MP   | Northern Mariana Isl | apnic    | 2      |  94.7% |  98.3% |   -3.6pp
-    UZ   | Uzbekistan           | ripencc  | 128    |  72.6% |  76.2% |   -3.6pp
-    MU   | Mauritius            | afrinic  | 41     |  81.2% |  84.3% |   -3.1pp
+    MP   | Northern Mariana Isl | apnic    | 2      |  93.3% |  98.3% |   -5.0pp
+    MU   | Mauritius            | afrinic  | 42     |  80.7% |  85.3% |   -4.6pp
+    AE   | United Arab Emirates | ripencc  | 216    |  81.4% |  85.4% |   -4.0pp
 
     ====================================================================================================
      BIGGEST MOVERS — 24mo WINDOW (IPv4, % Valid, ROA coverage)
@@ -175,37 +175,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 24mo    | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    CK   | Cook Islands         | apnic    | 2      | 100.0% |   3.7% |  +96.3pp
     DJ   | Djibouti             | afrinic  | 4      |  96.1% |   1.0% |  +95.1pp
-    EG   | Egypt                | afrinic  | 86     |  95.5% |   7.7% |  +87.8pp
-    CN   | China                | apnic    | 6503   |  89.4% |   2.9% |  +86.5pp
-    CM   | Cameroon             | afrinic  | 29     |  94.9% |  13.8% |  +81.1pp
+    EG   | Egypt                | afrinic  | 86     |  95.5% |   7.6% |  +87.9pp
+    CN   | China                | apnic    | 6507   |  89.2% |   2.9% |  +86.3pp
+    CM   | Cameroon             | afrinic  | 30     |  94.5% |  13.9% |  +80.6pp
     FM   | Micronesia, Federate | apnic    | 6      |  85.0% |   4.8% |  +80.2pp
-    PK   | Pakistan             | apnic    | 473    |  93.0% |  15.0% |  +78.0pp
-    ST   | Sao Tome and Princip | afrinic  | 2      |  76.9% |   0.0% |  +76.9pp
-    CI   | Côte d'Ivoire        | afrinic  | 24     |  94.3% |  19.7% |  +74.6pp
-    IS   | Iceland              | ripencc  | 87     |  75.7% |   1.7% |  +74.0pp
-    SO   | Somalia              | afrinic  | 22     |  82.8% |  13.0% |  +69.8pp
-    JE   | Jersey               | ripencc  | 13     |  92.1% |  25.0% |  +67.1pp
-    BJ   | Benin                | afrinic  | 16     |  69.3% |   3.4% |  +65.9pp
-    SL   | Sierra Leone         | afrinic  | 22     |  69.8% |   7.8% |  +62.0pp
-    TJ   | Tajikistan           | ripencc  | 43     |  85.1% |  24.0% |  +61.1pp
+    PK   | Pakistan             | apnic    | 473    |  92.5% |  15.3% |  +77.2pp
+    ST   | Sao Tome and Princip | afrinic  | 2      |  75.0% |   0.0% |  +75.0pp
+    CI   | Côte d'Ivoire        | afrinic  | 25     |  94.5% |  19.7% |  +74.8pp
+    IS   | Iceland              | ripencc  | 87     |  75.8% |   1.7% |  +74.1pp
+    SO   | Somalia              | afrinic  | 22     |  82.8% |  13.3% |  +69.5pp
+    BJ   | Benin                | afrinic  | 16     |  72.5% |   3.4% |  +69.1pp
+    JE   | Jersey               | ripencc  | 13     |  92.2% |  25.0% |  +67.2pp
+    ML   | Mali                 | afrinic  | 8      |  83.4% |  25.1% |  +58.3pp
+    TJ   | Tajikistan           | ripencc  | 43     |  82.3% |  24.1% |  +58.2pp
+    HT   | Haiti                | lacnic   | 11     |  56.7% |   1.9% |  +54.8pp
     Decliners:
     CV   | Cabo Verde           | afrinic  | 8      |  35.4% |  83.0% |  -47.6pp
-    SD   | Sudan                | afrinic  | 11     |  39.4% |  60.6% |  -21.2pp
-    PE   | Peru                 | lacnic   | 225    |  35.5% |  52.4% |  -16.9pp
-    KM   | Comoros              | afrinic  | 4      |  76.5% |  90.5% |  -14.0pp
-    LY   | Libya                | afrinic  | 27     |  63.7% |  76.8% |  -13.1pp
-    IE   | Ireland              | ripencc  | 287    |  66.2% |  75.4% |   -9.2pp
-    SK   | Slovakia             | ripencc  | 229    |  44.4% |  52.5% |   -8.1pp
-    AO   | Angola               | afrinic  | 70     |  49.1% |  56.6% |   -7.5pp
-    PY   | Paraguay             | lacnic   | 115    |  75.6% |  82.6% |   -7.0pp
-    MZ   | Mozambique           | afrinic  | 31     |  15.5% |  21.9% |   -6.4pp
-    CG   | Congo                | afrinic  | 13     |  16.2% |  21.9% |   -5.7pp
-    ME   | Montenegro           | ripencc  | 31     |  49.0% |  54.4% |   -5.4pp
-    BF   | Burkina Faso         | afrinic  | 30     |  81.2% |  86.4% |   -5.2pp
-    GL   | Greenland            | ripencc  | 1      |  77.1% |  80.6% |   -3.5pp
-    VU   | Vanuatu              | apnic    | 13     |  91.5% |  94.9% |   -3.4pp
+    MH   | Marshall Islands     | ripencc  | 11     |  52.0% |  82.4% |  -30.4pp
+    SD   | Sudan                | afrinic  | 11     |  38.9% |  59.1% |  -20.2pp
+    PE   | Peru                 | lacnic   | 226    |  35.6% |  52.2% |  -16.6pp
+    KM   | Comoros              | afrinic  | 4      |  74.3% |  90.5% |  -16.2pp
+    IE   | Ireland              | ripencc  | 287    |  65.2% |  75.4% |  -10.2pp
+    AO   | Angola               | afrinic  | 70     |  49.4% |  57.7% |   -8.3pp
+    PY   | Paraguay             | lacnic   | 115    |  75.4% |  83.2% |   -7.8pp
+    LY   | Libya                | afrinic  | 27     |  68.5% |  76.1% |   -7.6pp
+    MZ   | Mozambique           | afrinic  | 31     |  16.0% |  21.9% |   -5.9pp
+    CG   | Congo                | afrinic  | 13     |  16.3% |  21.9% |   -5.6pp
+    TZ   | Tanzania             | afrinic  | 116    |  33.7% |  39.3% |   -5.6pp
+    ME   | Montenegro           | ripencc  | 31     |  49.2% |  54.4% |   -5.2pp
+    BF   | Burkina Faso         | afrinic  | 30     |  81.3% |  86.4% |   -5.1pp
+    AE   | United Arab Emirates | ripencc  | 216    |  81.4% |  85.6% |   -4.2pp
 
     ====================================================================================================
      BIGGEST MOVERS — 3mo WINDOW (IPv6, % Valid, ROA coverage)
@@ -213,37 +213,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 3mo     | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    TJ   | Tajikistan           | ripencc  | 43     |  92.3% |  50.0% |  +42.3pp
-    TH   | Thailand             | apnic    | 620    |  88.5% |  58.9% |  +29.6pp
-    MA   | Morocco              | afrinic  | 32     |  44.4% |  21.6% |  +22.8pp
-    MX   | Mexico               | lacnic   | 656    |  82.7% |  60.4% |  +22.3pp
-    AZ   | Azerbaijan           | ripencc  | 121    |  87.8% |  72.7% |  +15.1pp
-    SC   | Seychelles           | ripencc  | 87     |  83.2% |  68.3% |  +14.9pp
-    VI   | Virgin Islands, U.S. | arin     | 12     |  73.8% |  62.1% |  +11.7pp
-    MZ   | Mozambique           | afrinic  | 31     |  47.8% |  37.0% |  +10.8pp
-    PH   | Philippines          | apnic    | 672    |  82.1% |  71.9% |  +10.2pp
-    LK   | Sri Lanka            | apnic    | 32     |  89.7% |  81.1% |   +8.6pp
-    NZ   | New Zealand          | apnic    | 701    |  73.2% |  64.7% |   +8.5pp
-    MY   | Malaysia             | apnic    | 405    |  53.9% |  45.6% |   +8.3pp
-    SD   | Sudan                | afrinic  | 11     |  73.9% |  66.7% |   +7.2pp
-    KH   | Cambodia             | apnic    | 142    |  84.8% |  77.7% |   +7.1pp
-    AR   | Argentina            | lacnic   | 1249   |  69.6% |  62.6% |   +7.0pp
+    TJ   | Tajikistan           | ripencc  | 43     |  91.7% |  50.0% |  +41.7pp
+    MT   | Malta                | ripencc  | 55     |  79.4% |  45.8% |  +33.6pp
+    TH   | Thailand             | apnic    | 620    |  89.1% |  59.0% |  +30.1pp
+    CL   | Chile                | lacnic   | 401    |  93.1% |  64.5% |  +28.6pp
+    MX   | Mexico               | lacnic   | 658    |  82.7% |  60.4% |  +22.3pp
+    KZ   | Kazakhstan           | ripencc  | 266    |  54.0% |  37.5% |  +16.5pp
+    AZ   | Azerbaijan           | ripencc  | 121    |  89.0% |  72.7% |  +16.3pp
+    PH   | Philippines          | apnic    | 674    |  84.3% |  72.0% |  +12.3pp
+    SD   | Sudan                | afrinic  | 11     |  77.3% |  65.2% |  +12.1pp
+    SC   | Seychelles           | ripencc  | 87     |  75.6% |  66.4% |   +9.2pp
+    MC   | Monaco               | ripencc  | 5      | 100.0% |  91.3% |   +8.7pp
+    MY   | Malaysia             | apnic    | 406    |  54.1% |  45.7% |   +8.4pp
+    PK   | Pakistan             | apnic    | 473    |  97.8% |  89.5% |   +8.3pp
+    LK   | Sri Lanka            | apnic    | 32     |  89.3% |  81.1% |   +8.2pp
+    NZ   | New Zealand          | apnic    | 701    |  73.3% |  65.1% |   +8.2pp
     Decliners:
+    RW   | Rwanda               | afrinic  | 28     |  15.3% |  78.6% |  -63.3pp
     TK   | Tokelau              | ripencc  | 3      |   7.7% |  33.3% |  -25.6pp
-    AL   | Albania              | ripencc  | 132    |  71.8% |  95.9% |  -24.1pp
-    PR   | Puerto Rico          | arin     | 124    |  29.6% |  47.0% |  -17.4pp
+    AL   | Albania              | ripencc  | 132    |  73.4% |  96.3% |  -22.9pp
+    PR   | Puerto Rico          | arin     | 124    |  30.6% |  47.0% |  -16.4pp
     LA   | Laos                 | apnic    | 42     |  77.3% |  91.4% |  -14.1pp
     FJ   | Fiji                 | apnic    | 20     |  87.0% | 100.0% |  -13.0pp
-    MM   | Myanmar              | apnic    | 171    |  90.3% |  99.2% |   -8.9pp
-    AM   | Armenia              | ripencc  | 155    |  85.1% |  93.5% |   -8.4pp
-    VE   | Venezuela            | lacnic   | 261    |  87.7% |  95.4% |   -7.7pp
-    PT   | Portugal             | ripencc  | 167    |  87.2% |  93.5% |   -6.3pp
-    UY   | Uruguay              | lacnic   | 45     |  43.1% |  49.3% |   -6.2pp
-    RO   | Romania              | ripencc  | 1083   |  64.2% |  69.3% |   -5.1pp
-    ES   | Spain                | ripencc  | 1171   |  81.1% |  85.9% |   -4.8pp
+    VE   | Venezuela            | lacnic   | 261    |  86.6% |  95.6% |   -9.0pp
+    AM   | Armenia              | ripencc  | 155    |  86.2% |  93.5% |   -7.3pp
+    ES   | Spain                | ripencc  | 1172   |  79.7% |  86.1% |   -6.4pp
+    PT   | Portugal             | ripencc  | 167    |  87.3% |  93.5% |   -6.2pp
+    GE   | Georgia              | ripencc  | 174    |  85.5% |  91.2% |   -5.7pp
+    PY   | Paraguay             | lacnic   | 115    |  54.8% |  59.7% |   -4.9pp
     BB   | Barbados             | arin     | 10     |  13.6% |  18.2% |   -4.6pp
+    RO   | Romania              | ripencc  | 1085   |  65.5% |  69.7% |   -4.2pp
     HN   | Honduras             | lacnic   | 110    |  91.6% |  95.7% |   -4.1pp
-    MP   | Northern Mariana Isl | apnic    | 2      |  15.0% |  19.0% |   -4.0pp
 
     ====================================================================================================
      BIGGEST MOVERS — 6mo WINDOW (IPv6, % Valid, ROA coverage)
@@ -251,37 +251,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 6mo     | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    CN   | China                | apnic    | 6503   |  96.9% |  13.1% |  +83.8pp
-    TJ   | Tajikistan           | ripencc  | 43     |  92.3% |  50.0% |  +42.3pp
-    RO   | Romania              | ripencc  | 1083   |  64.2% |  25.1% |  +39.1pp
-    TH   | Thailand             | apnic    | 620    |  88.5% |  57.2% |  +31.3pp
-    MX   | Mexico               | lacnic   | 656    |  82.7% |  58.1% |  +24.6pp
-    MA   | Morocco              | afrinic  | 32     |  44.4% |  21.1% |  +23.3pp
-    ZM   | Zambia               | afrinic  | 21     | 100.0% |  80.0% |  +20.0pp
-    PH   | Philippines          | apnic    | 672    |  82.1% |  63.3% |  +18.8pp
-    SD   | Sudan                | afrinic  | 11     |  73.9% |  55.6% |  +18.3pp
-    NI   | Nicaragua            | lacnic   | 30     |  98.7% |  82.6% |  +16.1pp
-    UG   | Uganda               | afrinic  | 59     |  90.0% |  74.7% |  +15.3pp
-    MZ   | Mozambique           | afrinic  | 31     |  47.8% |  33.3% |  +14.5pp
-    AZ   | Azerbaijan           | ripencc  | 121    |  87.8% |  73.4% |  +14.4pp
-    BD   | Bangladesh           | apnic    | 2029   |  85.6% |  71.7% |  +13.9pp
-    KG   | Kyrgyzstan           | ripencc  | 70     |  92.9% |  81.8% |  +11.1pp
+    CN   | China                | apnic    | 6507   |  97.0% |  15.5% |  +81.5pp
+    TJ   | Tajikistan           | ripencc  | 43     |  91.7% |  50.0% |  +41.7pp
+    RO   | Romania              | ripencc  | 1085   |  65.5% |  25.2% |  +40.3pp
+    MT   | Malta                | ripencc  | 55     |  79.4% |  40.4% |  +39.0pp
+    TH   | Thailand             | apnic    | 620    |  89.1% |  58.2% |  +30.9pp
+    CL   | Chile                | lacnic   | 401    |  93.1% |  65.6% |  +27.5pp
+    SD   | Sudan                | afrinic  | 11     |  77.3% |  50.0% |  +27.3pp
+    MX   | Mexico               | lacnic   | 658    |  82.7% |  57.0% |  +25.7pp
+    MA   | Morocco              | afrinic  | 33     |  43.9% |  21.1% |  +22.8pp
+    KZ   | Kazakhstan           | ripencc  | 266    |  54.0% |  32.5% |  +21.5pp
+    PH   | Philippines          | apnic    | 674    |  84.3% |  63.3% |  +21.0pp
+    BD   | Bangladesh           | apnic    | 2030   |  85.9% |  65.2% |  +20.7pp
+    UG   | Uganda               | afrinic  | 59     |  90.0% |  74.2% |  +15.8pp
+    AZ   | Azerbaijan           | ripencc  | 121    |  89.0% |  73.4% |  +15.6pp
+    KG   | Kyrgyzstan           | ripencc  | 71     |  95.2% |  81.8% |  +13.4pp
     Decliners:
-    KE   | Kenya                | afrinic  | 247    |  31.8% |  81.4% |  -49.6pp
-    AE   | United Arab Emirates | ripencc  | 216    |  48.3% |  95.4% |  -47.1pp
+    AE   | United Arab Emirates | ripencc  | 216    |  49.3% |  95.4% |  -46.1pp
     TK   | Tokelau              | ripencc  | 3      |   7.7% |  33.3% |  -25.6pp
-    AL   | Albania              | ripencc  | 132    |  71.8% |  97.2% |  -25.4pp
-    PR   | Puerto Rico          | arin     | 124    |  29.6% |  45.5% |  -15.9pp
-    LA   | Laos                 | apnic    | 42     |  77.3% |  91.3% |  -14.0pp
+    AL   | Albania              | ripencc  | 132    |  73.4% |  97.3% |  -23.9pp
+    PR   | Puerto Rico          | arin     | 124    |  30.6% |  46.1% |  -15.5pp
     FJ   | Fiji                 | apnic    | 20     |  87.0% | 100.0% |  -13.0pp
-    MO   | Macao                | apnic    | 15     |  65.2% |  76.6% |  -11.4pp
+    SA   | Saudi Arabia         | ripencc  | 200    |  80.6% |  92.1% |  -11.5pp
+    MO   | Macao                | apnic    | 15     |  65.5% |  76.3% |  -10.8pp
     PS   | Palestine, State of  | ripencc  | 69     |  86.4% |  95.2% |   -8.8pp
-    UY   | Uruguay              | lacnic   | 45     |  43.1% |  51.2% |   -8.1pp
-    NG   | Nigeria              | afrinic  | 266    |  42.6% |  50.0% |   -7.4pp
-    VE   | Venezuela            | lacnic   | 261    |  87.7% |  94.0% |   -6.3pp
-    LI   | Liechtenstein        | ripencc  | 29     |  79.2% |  85.4% |   -6.2pp
-    MM   | Myanmar              | apnic    | 171    |  90.3% |  96.3% |   -6.0pp
-    PK   | Pakistan             | apnic    | 473    |  91.2% |  96.8% |   -5.6pp
+    VE   | Venezuela            | lacnic   | 261    |  86.6% |  93.6% |   -7.0pp
+    LI   | Liechtenstein        | ripencc  | 29     |  79.2% |  85.6% |   -6.4pp
+    ES   | Spain                | ripencc  | 1172   |  79.7% |  85.5% |   -5.8pp
+    UY   | Uruguay              | lacnic   | 45     |  45.2% |  50.8% |   -5.6pp
+    MM   | Myanmar              | apnic    | 172    |  90.9% |  96.3% |   -5.4pp
+    MW   | Malawi               | afrinic  | 30     |  78.8% |  84.0% |   -5.2pp
+    LA   | Laos                 | apnic    | 42     |  77.3% |  82.4% |   -5.1pp
 
     ====================================================================================================
      BIGGEST MOVERS — 12mo WINDOW (IPv6, % Valid, ROA coverage)
@@ -289,37 +289,37 @@
     CC   | Country              | RIR      | ASNs   | Now     | 12mo    | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    CN   | China                | apnic    | 6503   |  96.9% |   2.1% |  +94.8pp
-    CH   | Switzerland          | ripencc  | 1062   |  82.3% |  16.5% |  +65.8pp
-    SO   | Somalia              | afrinic  | 22     |  82.1% |  21.4% |  +60.7pp
-    SD   | Sudan                | afrinic  | 11     |  73.9% |  33.3% |  +40.6pp
-    CM   | Cameroon             | afrinic  | 29     |  91.7% |  54.5% |  +37.2pp
-    TJ   | Tajikistan           | ripencc  | 43     |  92.3% |  57.1% |  +35.2pp
-    JM   | Jamaica              | arin     | 15     |  65.0% |  30.6% |  +34.4pp
-    SI   | Slovenia             | ripencc  | 306    |  76.9% |  48.3% |  +28.6pp
-    SC   | Seychelles           | ripencc  | 87     |  83.2% |  56.7% |  +26.5pp
-    MA   | Morocco              | afrinic  | 32     |  44.4% |  18.4% |  +26.0pp
-    MX   | Mexico               | lacnic   | 656    |  82.7% |  59.3% |  +23.4pp
-    DE   | Germany              | ripencc  | 3267   |  82.2% |  62.2% |  +20.0pp
-    PH   | Philippines          | apnic    | 672    |  82.1% |  63.8% |  +18.3pp
-    CA   | Canada               | arin     | 2531   |  73.9% |  56.7% |  +17.2pp
-    AZ   | Azerbaijan           | ripencc  | 121    |  87.8% |  70.8% |  +17.0pp
+    CN   | China                | apnic    | 6507   |  97.0% |   2.1% |  +94.9pp
+    CH   | Switzerland          | ripencc  | 1063   |  82.1% |  16.3% |  +65.8pp
+    SO   | Somalia              | afrinic  | 22     |  85.2% |  21.4% |  +63.8pp
+    TJ   | Tajikistan           | ripencc  | 43     |  91.7% |  40.9% |  +50.8pp
+    SD   | Sudan                | afrinic  | 11     |  77.3% |  33.3% |  +44.0pp
+    CM   | Cameroon             | afrinic  | 30     |  91.7% |  54.5% |  +37.2pp
+    JM   | Jamaica              | arin     | 15     |  66.7% |  30.6% |  +36.1pp
+    MT   | Malta                | ripencc  | 55     |  79.4% |  51.6% |  +27.8pp
+    CL   | Chile                | lacnic   | 401    |  93.1% |  65.3% |  +27.8pp
+    MA   | Morocco              | afrinic  | 33     |  43.9% |  17.8% |  +26.1pp
+    KZ   | Kazakhstan           | ripencc  | 266    |  54.0% |  29.5% |  +24.5pp
+    MX   | Mexico               | lacnic   | 658    |  82.7% |  59.1% |  +23.6pp
+    SC   | Seychelles           | ripencc  | 87     |  75.6% |  54.8% |  +20.8pp
+    DE   | Germany              | ripencc  | 3276   |  82.4% |  62.0% |  +20.4pp
+    PH   | Philippines          | apnic    | 674    |  84.3% |  64.0% |  +20.3pp
     Decliners:
-    KE   | Kenya                | afrinic  | 247    |  31.8% |  77.4% |  -45.6pp
-    AE   | United Arab Emirates | ripencc  | 216    |  48.3% |  90.5% |  -42.2pp
+    KE   | Kenya                | afrinic  | 247    |  31.6% |  77.0% |  -45.4pp
+    AE   | United Arab Emirates | ripencc  | 216    |  49.3% |  90.7% |  -41.4pp
     TK   | Tokelau              | ripencc  | 3      |   7.7% |  42.9% |  -35.2pp
-    MO   | Macao                | apnic    | 15     |  65.2% |  95.8% |  -30.6pp
-    RO   | Romania              | ripencc  | 1083   |  64.2% |  94.5% |  -30.3pp
-    BT   | Bhutan               | apnic    | 43     |  72.1% | 100.0% |  -27.9pp
-    AL   | Albania              | ripencc  | 132    |  71.8% |  97.6% |  -25.8pp
-    ZW   | Zimbabwe             | afrinic  | 28     |  14.4% |  36.8% |  -22.4pp
-    IE   | Ireland              | ripencc  | 287    |  73.1% |  89.6% |  -16.5pp
-    ZA   | South Africa         | afrinic  | 751    |  35.7% |  50.1% |  -14.4pp
-    PR   | Puerto Rico          | arin     | 124    |  29.6% |  42.6% |  -13.0pp
+    RO   | Romania              | ripencc  | 1085   |  65.5% |  94.6% |  -29.1pp
+    BT   | Bhutan               | apnic    | 43     |  73.0% | 100.0% |  -27.0pp
+    AL   | Albania              | ripencc  | 132    |  73.4% |  98.2% |  -24.8pp
+    ZW   | Zimbabwe             | afrinic  | 28     |  13.6% |  36.8% |  -23.2pp
+    SA   | Saudi Arabia         | ripencc  | 200    |  80.6% |  98.3% |  -17.7pp
+    IE   | Ireland              | ripencc  | 287    |  73.0% |  88.6% |  -15.6pp
+    ZA   | South Africa         | afrinic  | 751    |  35.8% |  50.2% |  -14.4pp
     FJ   | Fiji                 | apnic    | 20     |  87.0% | 100.0% |  -13.0pp
-    SA   | Saudi Arabia         | ripencc  | 201    |  86.3% |  98.5% |  -12.2pp
+    PR   | Puerto Rico          | arin     | 124    |  30.6% |  42.9% |  -12.3pp
     LA   | Laos                 | apnic    | 42     |  77.3% |  89.1% |  -11.8pp
-    NG   | Nigeria              | afrinic  | 266    |  42.6% |  52.5% |   -9.9pp
+    MO   | Macao                | apnic    | 15     |  65.5% |  76.7% |  -11.2pp
+    ES   | Spain                | ripencc  | 1172   |  79.7% |  90.4% |  -10.7pp
 
     ====================================================================================================
      BIGGEST MOVERS — 24mo WINDOW (IPv6, % Valid, ROA coverage)
@@ -327,51 +327,51 @@
     CC   | Country              | RIR      | ASNs   | Now     | 24mo    | Delta
     -------------------------------------------------------------------------------------
     Improvers:
-    CN   | China                | apnic    | 6503   |  96.9% |   1.7% |  +95.2pp
-    IS   | Iceland              | ripencc  | 87     |  93.8% |  24.8% |  +69.0pp
-    JP   | Japan                | apnic    | 984    |  83.1% |  17.7% |  +65.4pp
-    GH   | Ghana                | afrinic  | 104    |  91.0% |  38.5% |  +52.5pp
-    JM   | Jamaica              | arin     | 15     |  65.0% |  14.3% |  +50.7pp
-    SC   | Seychelles           | ripencc  | 87     |  83.2% |  40.4% |  +42.8pp
-    UZ   | Uzbekistan           | ripencc  | 128    |  85.0% |  45.5% |  +39.5pp
-    MC   | Monaco               | ripencc  | 5      |  90.9% |  56.2% |  +34.7pp
-    AZ   | Azerbaijan           | ripencc  | 121    |  87.8% |  53.1% |  +34.7pp
-    SD   | Sudan                | afrinic  | 11     |  73.9% |  40.0% |  +33.9pp
-    TJ   | Tajikistan           | ripencc  | 43     |  92.3% |  60.0% |  +32.3pp
-    SI   | Slovenia             | ripencc  | 306    |  76.9% |  46.0% |  +30.9pp
-    TT   | Trinidad and Tobago  | lacnic   | 16     |  63.6% |  32.8% |  +30.8pp
-    BM   | Bermuda              | arin     | 23     |  79.2% |  50.0% |  +29.2pp
-    IN   | India                | apnic    | 6215   |  86.3% |  60.2% |  +26.1pp
+    CN   | China                | apnic    | 6507   |  97.0% |   1.7% |  +95.3pp
+    IS   | Iceland              | ripencc  | 87     |  93.8% |  24.6% |  +69.2pp
+    JP   | Japan                | apnic    | 983    |  83.5% |  17.8% |  +65.7pp
+    SD   | Sudan                | afrinic  | 11     |  77.3% |  20.0% |  +57.3pp
+    JM   | Jamaica              | arin     | 15     |  66.7% |  10.7% |  +56.0pp
+    GH   | Ghana                | afrinic  | 104    |  90.9% |  36.5% |  +54.4pp
+    MC   | Monaco               | ripencc  | 5      | 100.0% |  50.0% |  +50.0pp
+    MT   | Malta                | ripencc  | 55     |  79.4% |  38.2% |  +41.2pp
+    UZ   | Uzbekistan           | ripencc  | 129    |  84.7% |  44.4% |  +40.3pp
+    AZ   | Azerbaijan           | ripencc  | 121    |  89.0% |  50.0% |  +39.0pp
+    TJ   | Tajikistan           | ripencc  | 43     |  91.7% |  53.3% |  +38.4pp
+    BM   | Bermuda              | arin     | 23     |  79.2% |  41.7% |  +37.5pp
+    CL   | Chile                | lacnic   | 401    |  93.1% |  57.1% |  +36.0pp
+    SO   | Somalia              | afrinic  | 22     |  85.2% |  50.0% |  +35.2pp
+    SI   | Slovenia             | ripencc  | 306    |  79.4% |  45.1% |  +34.3pp
     Decliners:
-    TK   | Tokelau              | ripencc  | 3      |   7.7% | 100.0% |  -92.3pp
-    CD   | Congo, The Democrati | afrinic  | 51     |  25.4% |  83.9% |  -58.5pp
-    KE   | Kenya                | afrinic  | 247    |  31.8% |  82.3% |  -50.5pp
-    ZW   | Zimbabwe             | afrinic  | 28     |  14.4% |  58.8% |  -44.4pp
-    AE   | United Arab Emirates | ripencc  | 216    |  48.3% |  89.7% |  -41.4pp
-    MZ   | Mozambique           | afrinic  | 31     |  47.8% |  86.7% |  -38.9pp
-    MU   | Mauritius            | afrinic  | 41     |   2.6% |  40.6% |  -38.0pp
-    MA   | Morocco              | afrinic  | 32     |  44.4% |  76.7% |  -32.3pp
-    MO   | Macao                | apnic    | 15     |  65.2% |  96.4% |  -31.2pp
-    BT   | Bhutan               | apnic    | 43     |  72.1% | 100.0% |  -27.9pp
-    AL   | Albania              | ripencc  | 132    |  71.8% |  98.3% |  -26.5pp
-    PR   | Puerto Rico          | arin     | 124    |  29.6% |  54.6% |  -25.0pp
-    ZA   | South Africa         | afrinic  | 751    |  35.7% |  60.5% |  -24.8pp
-    LA   | Laos                 | apnic    | 42     |  77.3% |  95.2% |  -17.9pp
-    VI   | Virgin Islands, U.S. | arin     | 12     |  73.8% |  90.5% |  -16.7pp
+    CD   | Congo, The Democrati | afrinic  | 51     |  27.0% |  82.1% |  -55.1pp
+    KE   | Kenya                | afrinic  | 247    |  31.6% |  82.2% |  -50.6pp
+    ZW   | Zimbabwe             | afrinic  | 28     |  13.6% |  62.5% |  -48.9pp
+    TK   | Tokelau              | ripencc  | 3      |   7.7% |  50.0% |  -42.3pp
+    AE   | United Arab Emirates | ripencc  | 216    |  49.3% |  89.5% |  -40.2pp
+    MU   | Mauritius            | afrinic  | 42     |   2.5% |  36.8% |  -34.3pp
+    MA   | Morocco              | afrinic  | 33     |  43.9% |  75.0% |  -31.1pp
+    MZ   | Mozambique           | afrinic  | 31     |  47.8% |  76.5% |  -28.7pp
+    MO   | Macao                | apnic    | 15     |  65.5% |  92.9% |  -27.4pp
+    BT   | Bhutan               | apnic    | 43     |  73.0% |  98.6% |  -25.6pp
+    ZA   | South Africa         | afrinic  | 751    |  35.8% |  60.9% |  -25.1pp
+    AL   | Albania              | ripencc  | 132    |  73.4% |  96.7% |  -23.3pp
+    PR   | Puerto Rico          | arin     | 124    |  30.6% |  53.4% |  -22.8pp
+    TZ   | Tanzania             | afrinic  | 116    |  33.3% |  50.0% |  -16.7pp
+    NG   | Nigeria              | afrinic  | 265    |  42.4% |  58.5% |  -16.1pp
 
     ====================================================================================================
      SPOTLIGHT: CHINA (CN)
     ====================================================================================================
-    ASNs: 6503  |  RIR: apnic
+    ASNs: 6507  |  RIR: apnic
     IPv4:
-      Now  : 89.4% of IPv4 route objects covered by a valid ROA
-      3mo  : 88.2% of IPv4 route objects covered by a valid ROA
-      6mo  : 5.0% of IPv4 route objects covered by a valid ROA
-      12mo : 3.8% of IPv4 route objects covered by a valid ROA
+      Now  : 89.2% of IPv4 route objects covered by a valid ROA
+      3mo  : 88.3% of IPv4 route objects covered by a valid ROA
+      6mo  : 6.7% of IPv4 route objects covered by a valid ROA
+      12mo : 3.9% of IPv4 route objects covered by a valid ROA
       24mo : 2.9% of IPv4 route objects covered by a valid ROA
     IPv6:
-      Now  : 96.9% of IPv6 route objects covered by a valid ROA
-      3mo  : 95.8% of IPv6 route objects covered by a valid ROA
-      6mo  : 13.1% of IPv6 route objects covered by a valid ROA
+      Now  : 97.0% of IPv6 route objects covered by a valid ROA
+      3mo  : 96.1% of IPv6 route objects covered by a valid ROA
+      6mo  : 15.5% of IPv6 route objects covered by a valid ROA
       12mo : 2.1% of IPv6 route objects covered by a valid ROA
       24mo : 1.7% of IPv6 route objects covered by a valid ROA

@@ -7,33 +7,37 @@
     Total Cone Gravity:  27
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     1 ( 2.3%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:        26 (60.5%) -> Exposes  100.0% of Traffic
+    VULNERABLE NETWORKS:        28 (65.1%) -> Exposes  100.0% of Traffic
+    ------------------------------------------------------------
+    Seen in IPv6:        19 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict     1 ( 5.3%)   IPv6 verdict     1 ( 5.3%)
+      VULNERABLE main verdict    18 (94.7%)   IPv6 verdict    18 (94.7%)
 
     ====================================================================================================
      THE BT CORE (Top 20 Networks)
     ====================================================================================================
-    ASN      | Verdict                        | Cone     | APNIC% | Name
-    ----------------------------------------------------------------------------------------------------
-    AS38740  | REGRESSED                      | 16       | -      | Tashi InfoComm Limited
-    AS17660  | REGRESSED                      | 9        | 0%     | DrukNet ISP
-    AS18024  | REGRESSED                      | 2        | 0%     | Bhutan Telecom Ltd
-    AS7615   | STUB: VULNERABLE               | 0        | -      | Bhutan Internet Exchange
-    AS17482  | NOT ROUTED                     | 0        | -      | Bhutan Internet Exchange
-    AS18025  | STUB: VULNERABLE               | 0        | -      | Bhutan Telecom Ltd
-    AS18205  | NOT ROUTED                     | 0        | -      | Bhutan Telecom Ltd
-    AS23955  | STUB: VULNERABLE               | 0        | 90%    | Tashi InfoComm Limited
-    AS38004  | STUB: VULNERABLE               | 0        | -      | FastLink Wireless ISP, DrukCom Pvt. Ente
-    AS59219  | NOT ROUTED                     | 0        | -      | Ministry of Information & Communications
-    AS132232 | STUB: VULNERABLE               | 0        | -      | Data Centre Services
-    AS132894 | STUB: VULNERABLE               | 0        | 0%     | Sigma Internet Service
-    AS134715 | STUB: VULNERABLE               | 0        | 0%     | Government Technology Agency
-    AS135147 | STUB: VULNERABLE               | 0        | -      | T Bank Limited
-    AS135666 | STUB: VULNERABLE               | 0        | -      | Government Data Center (DITT/MoIC)
-    AS136039 | STUB: VULNERABLE               | 0        | 1%     | NANO, Bhutan
-    AS137412 | STUB: VOLATILE                 | 0        | 99%    | Tashicell Domestic AS Thimphu Bhutan
-    AS137925 | NOT ROUTED                     | 0        | -      | GIC-Bhutan Reinsurance Co. Ltd.
-    AS137994 | NOT ROUTED                     | 0        | -      | Bhutan National Bank limited
-    AS138529 | REGRESSED                      | 0        | 42%    | DATANET WIFI
+    ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
+    -------------------------------------------------------------------------------------------------------------------------------------
+    AS38740  | REGRESSED                      | REGRESSED                      | 17       | -      | Tashi InfoComm Limited
+    AS17660  | REGRESSED                      | REGRESSED                      | 9        | 0%     | DrukNet ISP
+    AS18024  | REGRESSED                      | REGRESSED                      | 1        | 0%     | Bhutan Telecom Ltd
+    AS154825 | STUB: VULNERABLE               | -                              | 0        | -      | GKIT BROAD BAND PVT LTD
+    AS140695 | STUB: VULNERABLE               | -                              | 0        | -      | Bank of Bhutan Limited
+    AS140322 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Green E Solutions
+    AS138920 | NOT ROUTED                     | -                              | 0        | -      | Royal University of Bhutan
+    AS141680 | REGRESSED                      | REGRESSED                      | 0        | 39%    | SuperNet Infocomm
+    AS151955 | STUB: VULNERABLE               | -                              | 0        | -      | DRUK PNB BANK LIMITED
+    AS151782 | STUB: VULNERABLE               | -                              | 0        | -      | Royal Insurance Corporation of Bhutan Li
+    AS152480 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | NETVISION INFOCOMM LTD
+    AS152318 | NOT ROUTED                     | -                              | 0        | -      | Gelephu Thromde
+    AS152317 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | Wangdue Phodrang Dzongkhag Administratio
+    AS152316 | NOT ROUTED                     | -                              | 0        | -      | Punakha Dzongkhag Administration
+    AS152315 | NOT ROUTED                     | -                              | 0        | -      | Sarpang Dzongkhag Administration
+    AS152314 | NOT ROUTED                     | -                              | 0        | -      | Chhukha Dzongkhag Administration
+    AS152313 | NOT ROUTED                     | -                              | 0        | -      | Samtse Dzongkhag Administration
+    AS152312 | NOT ROUTED                     | -                              | 0        | -      | Paro Dzongkhag Administration
+    AS152311 | NOT ROUTED                     | -                              | 0        | -      | Haa Dzongkhag Administration
+    AS152310 | NOT ROUTED                     | -                              | 0        | -      | Thimphu Dzongkhag Administration
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to BT?)
