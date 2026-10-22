@@ -301,7 +301,11 @@ countries are masked.
 call (`/rovista/api/overview?count=100000`), cached at `data/rovista/overview.json`,
 refreshed daily, with fallback to the cached copy on failure. Rows whose `lastUpdatedDate`
 is older than `ROVISTA_TTL_DAYS = 7` are dropped: about 9,600 listed ASes were last
-measured in 2024–2025 (AS681's last reading is 2025-03-03).
+measured in 2024–2025 (AS681's last reading is 2025-03-03). A well-formed reply with no row
+inside the TTL logs "API OK, nothing measured" (not FAIL) and is not cached. **30-day rule**
+(Terry, 2026-10-22): when ROVista's newest measurement is `ROVISTA_ABANDON_DAYS = 30` days
+old, `sync_rovista` warns "stop relying on ROVista"; removal is manual (checklist in TODO.md).
+Last measurement 2026-10-09, so the limit is 2026-11-08 unless it publishes again.
 
 **What it measures**: an IP-ID side channel on hosts inside the AS tests whether they can
 reach RPKI-invalid prefixes. Like APNIC, it **cannot tell local from upstream filtering**

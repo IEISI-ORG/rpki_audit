@@ -42,6 +42,8 @@ FILE_ROVISTA = os.path.join(DIR_ROVISTA, "overview.json")
 URL_ROVISTA_OVERVIEW = "https://api.rovista.netsecurelab.org/rovista/api/overview?count=100000"
 ROVISTA_TTL_DAYS = 7          # rows whose lastUpdatedDate is older are discarded
 ROVISTA_REFRESH_SECS = 86400  # measures most days (gaps: 53 days Jun-Aug 2026); ~6MB fetch
+# Newest measurement this old: stop relying on ROVista (Terry, 2026-10-22). The sync warns; removal is manual.
+ROVISTA_ABANDON_DAYS = 30
 # Thresholds shared by APNIC and ROVista scores (0-100).
 MEASURE_FILTERING_MIN = 95.0
 MEASURE_NOT_FILTERING_MAX = 30.0
@@ -940,6 +942,23 @@ def parse_rovista_overview(payload: dict, today: date) -> dict[int, float]:
     return scores
 
 
+def rovista_newest_date(payload) -> date | None:
+    """lastUpdatedDate of the newest well-formed row in an overview payload, or None if none is."""
+    rows = payload.get("data") if isinstance(payload, dict) else None
+    if not isinstance(rows, list):
+        return None
+    newest = None
+    for r in rows:
+        try:
+            int(r["asn"]), float(r["ratio"])  # same row checks as parse_rovista_overview
+            d = date.fromisoformat(r["lastUpdatedDate"])
+        except (TypeError, ValueError, KeyError):
+            continue
+        if newest is None or d > newest:
+            newest = d
+    return newest
+
+
 def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
                  force: bool = False) -> dict[int, float]:
     """Fetch the ROVista overview (one bulk call), falling back to the cached copy."""
@@ -947,6 +966,7 @@ def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
     fresh = (os.path.exists(cache_path)
              and time.time() - os.path.getmtime(cache_path) < ROVISTA_REFRESH_SECS)
     scores = None
+    newest = None
     if force or not fresh:
         print("    - Fetching ROVista overview...", end=" ", flush=True)
         try:
@@ -954,14 +974,23 @@ def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
             resp.raise_for_status()
             payload = resp.json()
             scores = parse_rovista_overview(payload, today)
-            if not scores:
+            newest = rovista_newest_date(payload)
+            if not scores and newest is None:
                 # Parsed before caching, so a bad response never replaces a good copy.
-                raise ValueError("response has no usable fresh rows")
-            print(f"OK ({len(payload['data']):,} ASes)")
+                raise ValueError("response has no usable rows")
         except (requests.RequestException, ValueError) as e:
             print(f"FAIL ({e})")
             scores = None
         else:
+            if not scores:
+                # Well-formed, but ROVista hasn't measured lately: not a failure. Not cached
+                # (a regressed API mustn't replace fresher rows) and no fallback (the cache
+                # is no newer than what the API serves).
+                print(f"API OK, nothing measured in the last {ROVISTA_TTL_DAYS} days "
+                      f"(newest {newest})")
+                scores = {}
+        if scores:
+            print(f"OK ({len(payload['data']):,} ASes)")
             try:
                 os.makedirs(os.path.dirname(cache_path), exist_ok=True)
                 tmp = cache_path + ".tmp"
@@ -978,14 +1007,23 @@ def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
                 print(f"      -> using cached copy {cache_path} ({age_days:.1f} days old)")
             try:
                 with open(cache_path) as fh:
-                    scores = parse_rovista_overview(json.load(fh), today)
+                    cached = json.load(fh)
+                scores = parse_rovista_overview(cached, today)
+                newest = rovista_newest_date(cached)
             except (OSError, ValueError) as e:
                 print(f"      -> cached copy unreadable ({e})")
     print(f"    - ROVista: {len(scores):,} ASes measured in the last {ROVISTA_TTL_DAYS} days")
     if not scores:
-        # ROVista has had outages (53 days in Jun-Aug 2026).  Not fatal, but every
-        # DISPUTED and ROVista-only verdict silently falls back to APNIC alone.
-        print("    [!] WARNING: no fresh ROVista data — this audit is APNIC-only")
+        # ROVista has had outages (53 days in Jun-Aug 2026).  Not fatal.
+        if ROVISTA_IN_VERDICTS:
+            print("    [!] WARNING: no fresh ROVista data — this audit is APNIC-only")
+        else:
+            print("    [!] WARNING: no fresh ROVista data — rovista_score column is empty "
+                  "(verdicts don't use it)")
+    if newest is not None and (today - newest).days >= ROVISTA_ABANDON_DAYS:
+        print(f"    [!] WARNING: ROVista's newest measurement is {newest}, "
+              f"{(today - newest).days} days old (limit {ROVISTA_ABANDON_DAYS}): "
+              f"stop relying on ROVista (TODO.md)")
     return scores
 
 

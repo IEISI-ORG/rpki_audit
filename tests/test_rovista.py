@@ -5,6 +5,8 @@ ROVista is weighed the same as APNIC: both measure whether traffic from inside a
 AS reaches RPKI-invalid prefixes, with the same thresholds. When one says
 filtering and the other says not filtering, the AS is DISPUTED. No network access.
 """
+import contextlib
+import io
 import json
 import os
 import tempfile
@@ -228,6 +230,59 @@ class TestSyncRovista(unittest.TestCase):
                                side_effect=requests.ConnectTimeout("down")):
             scores = rov_utils.sync_rovista(cache_path=self.cache, today=date(2026, 10, 13))
         self.assertEqual(scores, {})
+
+    def _sync_output(self, payload, today):
+        out = io.StringIO()
+        with mock.patch.object(rov_utils.requests, "get", return_value=self._resp(payload)), \
+                contextlib.redirect_stdout(out):
+            scores = rov_utils.sync_rovista(cache_path=self.cache, today=today)
+        return scores, out.getvalue()
+
+    def test_no_new_measurements_is_not_a_failure(self):
+        # ROVista answered, but measured nothing within the TTL (as on 2026-10-22).
+        stale = {"data": [_row(681, 1.0, "2026-10-09")]}
+        os.makedirs(os.path.dirname(self.cache))
+        with open(self.cache, "w") as fh:
+            json.dump(stale, fh)
+        os.utime(self.cache, (0, 0))
+        scores, out = self._sync_output(stale, date(2026, 10, 22))
+        self.assertEqual(scores, {})
+        self.assertIn("API OK, nothing measured in the last 7 days (newest 2026-10-09)", out)
+        self.assertNotIn("FAIL", out)
+        self.assertNotIn("using cached copy", out)
+        self.assertEqual(os.path.getmtime(self.cache), 0)  # not rewritten
+
+    def test_abandon_warning_at_30_days(self):
+        stale = {"data": [_row(681, 1.0, "2026-10-09")]}
+        _, out = self._sync_output(stale, date(2026, 11, 7))   # 29 days
+        self.assertNotIn("stop relying on ROVista", out)
+        _, out = self._sync_output(stale, date(2026, 11, 8))   # 30 days
+        self.assertIn("newest measurement is 2026-10-09, 30 days old (limit 30)", out)
+
+    def test_abandon_warning_from_cache(self):
+        # Download fails; the age check still runs on the cached copy.
+        os.makedirs(os.path.dirname(self.cache))
+        with open(self.cache, "w") as fh:
+            json.dump({"data": [_row(681, 1.0, "2026-10-09")]}, fh)
+        os.utime(self.cache, (0, 0))
+        out = io.StringIO()
+        with mock.patch.object(rov_utils.requests, "get",
+                               side_effect=requests.ConnectTimeout("down")), \
+                contextlib.redirect_stdout(out):
+            rov_utils.sync_rovista(cache_path=self.cache, today=date(2026, 12, 1))
+        self.assertIn("53 days old (limit 30)", out.getvalue())
+
+
+class TestNewestDate(unittest.TestCase):
+    def test_newest_well_formed_row(self):
+        payload = {"data": [_row(1, 1.0, "2026-10-08"), _row(2, 0.0, "2026-10-09"),
+                            _row("AS3", 1.0, "2026-10-20"),   # bad ASN: ignored
+                            _row(4, 1.0, "not a date"), {"asn": 5}, "junk"]}
+        self.assertEqual(rov_utils.rovista_newest_date(payload), date(2026, 10, 9))
+
+    def test_no_usable_rows(self):
+        for payload in (None, [], {"data": []}, {"data": "oops"}, {"data": [_row("AS1", 1.0, "2026-10-12")]}):
+            self.assertIsNone(rov_utils.rovista_newest_date(payload), payload)
 
 
 if __name__ == "__main__":
