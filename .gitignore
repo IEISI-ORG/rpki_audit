@@ -40,3 +40,6 @@ logs/
 # Claude Code session state — local only, never commit
 .claude/
 
+
+# Third-party reports (other organisations' PDFs, papers, datasets): local reference only, never commit
+third_party/
