@@ -35,8 +35,8 @@
     AS131995 | STUB: VULNERABLE               | -                              | 0        | -      | XLPM
     AS131248 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GOTV
     AS134405 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Data Services Pacific
+    AS45461  | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | TeleNet
     AS45345  | STUB: ACTIVE LOCAL ROV         | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Nautile
-    AS45461  | STUB: FORTUITOUS ROV           | STUB: FORTUITOUS ROV           | 0        | 100%   | TeleNet
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NC?)
@@ -47,5 +47,5 @@
     #2   | AS38195  | 1          | ACTIVE LOCAL ROV               | Superloop
     #3   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #4   | AS45355  | 1          | ACTIVE LOCAL ROV               | Digicel Fiji Limited
-    #5   | AS4638   | 1          | VULNERABLE (Atlas Verified)    | Telecom Fiji Limited
+    #5   | AS4638   | 1          | REGRESSED                      | Telecom Fiji Limited
     #6   | AS56055  | 1          | STUB: FORTUITOUS ROV           | Micro Logic Systems

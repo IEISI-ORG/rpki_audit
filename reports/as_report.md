@@ -18,7 +18,7 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS23657  | STUB: FORTUITOUS ROV           | -                              | 0        | 99%    | Blue Sky Communications
+    AS23657  | STUB: FORTUITOUS ROV           | -                              | 0        | 100%   | Blue Sky Communications
     AS9751   | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | AMERICAN SAMOA TELECOMMUNICATIONS AUTHOR
 
     ====================================================================================================

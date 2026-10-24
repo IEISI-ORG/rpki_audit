@@ -24,4 +24,4 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS9241   | 1          | PARTIAL: VULNERABLE (Mixed)    | Fiji International Telecomunications Ltd
-    #2   | AS14593  | 1          | PARTIAL: VULNERABLE (Mixed)    | SpaceX Starlink
+    #2   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink

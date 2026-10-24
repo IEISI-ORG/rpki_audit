@@ -18,7 +18,7 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS17993  | ACTIVE LOCAL ROV               | -                              | 1        | 99%    | Vodafone Samoa Limited
+    AS17993  | ACTIVE LOCAL ROV               | -                              | 1        | 100%   | Vodafone Samoa Limited
     AS139679 | STUB: VULNERABLE               | -                              | 0        | -      | Office of the Electoral Commission
     AS153053 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Lesamoa.net
     AS150321 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Secretariat of the Pacific Regional Envi

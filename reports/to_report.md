@@ -20,7 +20,7 @@
     -------------------------------------------------------------------------------------------------------------------------------------
     AS140987 | NOT ROUTED                     | -                              | 0        | -      | Government of Tonga, Ministry of MEIDECC
     AS132579 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Tonga Cable Limited
-    AS132831 | STUB: UNRELIABLE               | -                              | 0        | -      | TokoWireless Limited
+    AS132831 | STUB: VULNERABLE               | -                              | 0        | -      | TokoWireless Limited
     AS38201  | STUB: VOLATILE                 | STUB: VOLATILE                 | 0        | 100%   | Tonga Communications Internet Network
     AS38198  | STUB: ACTIVE LOCAL ROV         | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Digicel Tonga Ltd
 
@@ -31,7 +31,7 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #2   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
-    #3   | AS135069 | 1          | VULNERABLE (Atlas Verified)    | Feenix Communications Limited
+    #3   | AS135069 | 1          | PARTIAL: VULNERABLE (Mixed)    | Feenix Communications Limited
     #4   | AS38198  | 1          | STUB: ACTIVE LOCAL ROV         | Digicel Tonga Ltd
     #5   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
     #6   | AS132579 | 1          | STUB: PASSIVE (Clean Pipe)     | Tonga Cable Limited

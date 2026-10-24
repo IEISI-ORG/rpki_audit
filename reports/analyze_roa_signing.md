@@ -1,25 +1,25 @@
     [*] Loading Data for ROA Signing Report...
-        - Loading ASN data from packed file... OK (125,397 records)
+        - Loading ASN data from packed file... OK (125,524 records)
 
     ================================================================================
     GLOBAL ROA SIGNING REPORT
     ================================================================================
-    Total Networks: 123,387
-      - Fully Signed (>90%):  47,434  (38.4%)
-      - Partially Signed:      6,053  (4.9%)
-      - Totally Unsigned:     69,900  (56.7%)
+    Total Networks: 123,487
+      - Fully Signed (>90%):  47,560  (38.5%)
+      - Partially Signed:      6,104  (4.9%)
+      - Totally Unsigned:     69,823  (56.5%)
 
     ================================================================================
     ROA SIGNING x ROV COVERAGE CLASSIFICATION
     --------------------------------------------------------------------------------
-      FULL ROV COVERAGE              8,698  ( 7.0%)
-      PARTIALLY SECURE               1,081  ( 0.9%)
-      SIGNED (NO ROV)               37,655  (30.5%)
-      PARTIALLY SIGNED (WEAK)        6,053  ( 4.9%)
-      NOT SIGNED (ROV LOCAL)           335  ( 0.3%)
-      NOT SIGNED (ROV UPSTREAM)      6,371  ( 5.2%)
-      NOT SIGNED (ROV PARTIAL)         292  ( 0.2%)
-      NOT SIGNED (INSECURE)         62,902  (51.0%)
+      FULL ROV COVERAGE              8,576  ( 6.9%)
+      PARTIALLY SECURE               1,144  ( 0.9%)
+      SIGNED (NO ROV)               37,840  (30.6%)
+      PARTIALLY SIGNED (WEAK)        6,104  ( 4.9%)
+      NOT SIGNED (ROV LOCAL)           329  ( 0.3%)
+      NOT SIGNED (ROV UPSTREAM)      6,268  ( 5.1%)
+      NOT SIGNED (ROV PARTIAL)         295  ( 0.2%)
+      NOT SIGNED (INSECURE)         62,931  (51.0%)
 
     ================================================================================
     NOT SIGNED, BY ROV COVERAGE TYPE
@@ -28,39 +28,39 @@
     --------------------------------------------------------------------------------
     ASN      | CC | Cone     | State                      | Name
     --------------------------------------------------------------------------------
-    AS33891  | DE | 47014    | NOT SIGNED (ROV LOCAL)     | Core-Backbone GmbH
-    AS48185  | BE | 30362    | NOT SIGNED (ROV PARTIAL)   | team.blue NV
-    AS29632  | DE | 29479    | NOT SIGNED (ROV UPSTREAM)  | Netassist International EOOD
-    AS56662  | PL | 10611    | NOT SIGNED (ROV PARTIAL)   | Marcin Gondek
-    AS16735  | BR | 2431     | NOT SIGNED (ROV LOCAL)     | Algar Telecom
-    AS1031   | US | 1159     | NOT SIGNED (ROV PARTIAL)   | PEER 1031 LLC
-    AS35598  | RU | 927      | NOT SIGNED (ROV PARTIAL)   | INETCOM CARRIER LLC
-    AS62255  | SI | 788      | NOT SIGNED (ROV PARTIAL)   | BiMajLink d.o.o.
-    AS4635   | HK | 747      | NOT SIGNED (ROV PARTIAL)   | HKIX Route Servers
-    AS205794 | CN | 301      | NOT SIGNED (ROV PARTIAL)   | JINZE YANG
-    AS62081  | PL | 270      | NOT SIGNED (ROV UPSTREAM)  | Stowarzyszenie e-Poludnie
-    AS8732   | RU | 208      | NOT SIGNED (ROV PARTIAL)   | JSC Comcor
-    AS11664  | AR | 203      | NOT SIGNED (ROV LOCAL)     | Techtel LMDS Comunicaciones Interactivas
-    AS201706 | RU | 183      | NOT SIGNED (ROV PARTIAL)   | SERVICEPIPE LLC
-    AS41051  | CH | 111      | NOT SIGNED (ROV UPSTREAM)  | Freetransit Project (Openfactory GmbH)
+    AS33891  | DE | 47131    | NOT SIGNED (ROV LOCAL)     | Core-Backbone GmbH
+    AS48185  | BE | 29289    | NOT SIGNED (ROV PARTIAL)   | team.blue NV
+    AS56662  | PL | 10719    | NOT SIGNED (ROV PARTIAL)   | Marcin Gondek
+    AS16735  | BR | 2529     | NOT SIGNED (ROV LOCAL)     | Algar Telecom
+    AS1031   | US | 1266     | NOT SIGNED (ROV PARTIAL)   | PEER 1031 LLC
+    AS35598  | RU | 921      | NOT SIGNED (ROV PARTIAL)   | INETCOM CARRIER LLC
+    AS4635   | HK | 817      | NOT SIGNED (ROV PARTIAL)   | HKIX Route Servers
+    AS62255  | SI | 742      | NOT SIGNED (ROV PARTIAL)   | BiMajLink d.o.o.
+    AS205794 | CN | 304      | NOT SIGNED (ROV PARTIAL)   | JINZE YANG
+    AS62081  | PL | 276      | NOT SIGNED (ROV PARTIAL)   | Stowarzyszenie e-Poludnie
+    AS8732   | RU | 211      | NOT SIGNED (ROV PARTIAL)   | JSC Comcor
+    AS11664  | AR | 204      | NOT SIGNED (ROV LOCAL)     | Techtel LMDS Comunicaciones Interactivas
+    AS41051  | CH | 124      | NOT SIGNED (ROV UPSTREAM)  | Freetransit Project (Openfactory GmbH)
+    AS52554  | BR | 104      | NOT SIGNED (ROV PARTIAL)   | Rede MegasNet Telecomunicações
+    AS31242  | PL | 90       | NOT SIGNED (ROV LOCAL)     | P4 Sp. z o.o.
 
     ================================================================================
     SIGNED (NO ROV) — Own Routes Signed, Feeds Show Invalid Routes
     --------------------------------------------------------------------------------
     ASN      | CC | Cone     | Feeds  | Name
     --------------------------------------------------------------------------------
-    AS6461   | US | 73779    | 0/0    | Zayo Bandwidth
-    AS17639  | PH | 43464    | 1/10   | Converge ICT Solutions Inc.
-    AS4657   | SG | 14896    | 1/6    | StarHub Ltd
-    AS12389  | RU | 13839    | 0/8    | Rostelecom PJSC
-    AS1836   | CH | 13269    | 0/4    | green.ch AG
-    AS212024 | FR | 12971    | 1/1    | Marc Schmitt
-    AS38001  | SG | 6332     | 1/6    | NewMedia Express Pte. Ltd.
-    AS4637   | HK | 5443     | 1/2    | Telstra International Limited
-    AS15830  | NL | 3176     | 5/13   | Equinix, Inc.
-    AS31133  | RU | 3082     | 2/4    | MegaFon PJSC
-    AS9930   | MY | 3039     | 0/6    | TIME dotCom Bhd
-    AS42708  | SE | 2940     | 0/2    | Glesys AB
-    AS4755   | IN | 2591     | 0/1    | TATA Communications (formerly VSNL)
-    AS401753 | VG | 2455     | 2/2    | BIXCE Inc
-    AS9304   | HK | 2369     | 4/11   | HGC Global Communications Limited
+    AS6461   | US | 74006    | 0/0    | Zayo Bandwidth
+    AS6453   | US | 71624    | 0/0    | TATA Communications (America) Inc
+    AS6762   | IT | 71093    | 0/0    | Telecom Italia Sparkle (Seabone)
+    AS17639  | PH | 43350    | 0/11   | Converge ICT Solutions Inc.
+    AS4657   | SG | 15499    | 1/6    | StarHub Ltd
+    AS12389  | RU | 13486    | 1/7    | PJSC Rostelecom
+    AS1836   | CH | 13457    | 0/4    | green.ch AG
+    AS212024 | FR | 13403    | 2/2    | Marc Schmitt
+    AS20766  | FR | 12463    | 0/2    | Association "Gitoyen"
+    AS38001  | SG | 6129     | 1/6    | NewMedia Express Pte. Ltd.
+    AS15830  | NL | 3203     | 5/13   | Equinix, Inc.
+    AS9930   | MY | 2918     | 1/6    | TIME dotCom Bhd
+    AS42708  | SE | 2881     | 0/2    | Glesys AB
+    AS4755   | IN | 2584     | 1/1    | TATA Communications (formerly VSNL)
+    AS401753 | VG | 2456     | 1/1    | BIXCE Inc
