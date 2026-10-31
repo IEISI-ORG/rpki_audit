@@ -28,5 +28,5 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS9507   | 1          | PARTIAL: VULNERABLE (Mixed)    | NextHop Pty Ltd
     #2   | AS45177  | 1          | REGRESSED                      | Devoli
-    #3   | AS12684  | 1          | VOLATILE                       | SES ASTRA S.A.
+    #3   | AS12684  | 1          | REGRESSED                      | SES ASTRA S.A.
     #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC

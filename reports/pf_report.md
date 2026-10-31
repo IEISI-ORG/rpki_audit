@@ -33,5 +33,5 @@
     #1   | AS55943  | 3          | REGRESSED                      | ONATI
     #2   | AS36149  | 2          | REGRESSED                      | Hawaiian Telcom Services Company, Inc.
     #3   | AS3257   | 1          | CORE: ACTIVE PROTECTOR         | GTT Communications Inc.
-    #4   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #4   | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
     #5   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC

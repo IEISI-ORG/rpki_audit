@@ -4,7 +4,7 @@
      NATIONAL ROUTING SECURITY: GU (Guam)
     ====================================================================================================
     Total Networks:      10
-    Total Cone Gravity:  5
+    Total Cone Gravity:  6
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     1 (10.0%) -> Protects 0.0% of Traffic
     VULNERABLE NETWORKS:         6 (60.0%) -> Exposes  100.0% of Traffic
@@ -18,7 +18,7 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS3605   | REGRESSED                      | REGRESSED                      | 5        | 0%     | Guam Cablevision, LLC.
+    AS3605   | REGRESSED                      | REGRESSED                      | 6        | 0%     | Guam Cablevision, LLC.
     AS152735 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Guam Exchange
     AS395400 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | UNIVERSITY OF GUAM
     AS23676  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Mariana Islands Internet Exchange
@@ -36,10 +36,10 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS7131   | 4          | REGRESSED                      | PTI Pacifica Inc.
     #2   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #3   | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | NTT America, Inc.
+    #3   | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
     #4   | AS17456  | 1          | STUB: VULNERABLE               | Pacific Data Systems
     #5   | AS3605   | 1          | REGRESSED                      | Guam Cablevision, LLC.
     #6   | AS395400 | 1          | STUB: VULNERABLE               | UNIVERSITY OF GUAM
-    #7   | AS140627 | 1          | ACTIVE LOCAL ROV               | OneQode
+    #7   | AS140627 | 1          | PARTIAL: VULNERABLE (Mixed)    | OneQode
     #8   | AS4637   | 1          | VOLATILE                       | Telstra International Limited
     #9   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC

@@ -19,8 +19,8 @@
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
     AS38442  | REGRESSED                      | REGRESSED                      | 5        | 0%     | Vodafone Fiji Limited
-    AS4638   | REGRESSED                      | REGRESSED                      | 3        | 49%    | Telecom Fiji Limited
     AS45355  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 3        | 99%    | Digicel Fiji Limited
+    AS4638   | VULNERABLE                     | VULNERABLE                     | 3        | 60%    | Telecom Fiji Limited
     AS9241   | PARTIAL: VULNERABLE (Mixed)    | -                              | 1        | -      | Fiji International Telecomunications Ltd
     AS140046 | NOT ROUTED                     | -                              | 0        | -      | Telecommunications Authority of Fiji
     AS142245 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Kastle (Fiji) Pte Ltd
@@ -45,15 +45,15 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS174    | 3          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #2   | AS6939   | 3          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #2   | AS6939   | 3          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
     #3   | AS4637   | 3          | VOLATILE                       | Telstra International Limited
-    #4   | AS4638   | 3          | REGRESSED                      | Telecom Fiji Limited
-    #5   | AS7474   | 2          | VULNERABLE (Atlas Verified)    | SingTel Optus Pty Ltd
-    #6   | AS4648   | 2          | PASSIVE (Clean Pipe)           | Spark New Zealand
+    #4   | AS4638   | 3          | VULNERABLE                     | Telecom Fiji Limited
+    #5   | AS7474   | 2          | PARTIAL: VULNERABLE (Mixed)    | SingTel Optus Pty Ltd
+    #6   | AS4648   | 2          | PARTIAL: VULNERABLE (Mixed)    | Spark New Zealand
     #7   | AS38442  | 2          | REGRESSED                      | Vodafone Fiji Limited
     #8   | AS7575   | 2          | ACTIVE LOCAL ROV               | Australian Academic and Research Network
-    #9   | AS2914   | 1          | CORE: ACTIVE PROTECTOR         | NTT America, Inc.
+    #9   | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
     #10  | AS7473   | 1          | VOLATILE                       | Singapore Telecommunications Ltd
-    #11  | AS45349  | 1          | STUB: VULNERABLE               | Telecom Fiji Ltd
-    #12  | AS132528 | 1          | PARTIAL: VULNERABLE (Mixed)    | DIGICEL (AUS) PTY LTD
+    #11  | AS132528 | 1          | PARTIAL: VULNERABLE (Mixed)    | DIGICEL (AUS) PTY LTD
+    #12  | AS45349  | 1          | STUB: VULNERABLE               | Telecom Fiji Ltd
     #13  | AS45355  | 1          | ACTIVE LOCAL ROV               | Digicel Fiji Limited

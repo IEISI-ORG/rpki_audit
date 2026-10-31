@@ -18,7 +18,7 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS17993  | ACTIVE LOCAL ROV               | -                              | 1        | 100%   | Vodafone Samoa Limited
+    AS17993  | ACTIVE LOCAL ROV               | -                              | 1        | 99%    | Vodafone Samoa Limited
     AS139679 | STUB: VULNERABLE               | -                              | 0        | -      | Office of the Electoral Commission
     AS153053 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Lesamoa.net
     AS150321 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Secretariat of the Pacific Regional Envi
@@ -26,8 +26,8 @@
     AS55579  | NOT ROUTED                     | -                              | 0        | -      | Computer Services Ltd
     AS138356 | NOT ROUTED                     | -                              | 0        | -      | National University of Samoa
     AS134376 | NOT ROUTED                     | -                              | 0        | -      | Samoa IXP
-    AS38227  | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Computer Services Limited (CSL)
     AS38800  | STUB: VOLATILE                 | STUB: VOLATILE                 | 0        | 100%   | Digicel Samoa Ltd
+    AS38227  | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Computer Services Limited (CSL)
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to WS?)
@@ -37,8 +37,8 @@
     #1   | AS38227  | 2          | STUB: PASSIVE (Clean Pipe)     | Computer Services Limited (CSL)
     #2   | AS9241   | 1          | PARTIAL: VULNERABLE (Mixed)    | Fiji International Telecomunications Ltd
     #3   | AS4826   | 1          | ACTIVE LOCAL ROV               | Vocus Connect International Backbone
-    #4   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #4   | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
     #5   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #6   | AS18400  | 1          | VULNERABLE                     | Xtreme Networks Limited
-    #7   | AS38800  | 1          | STUB: VOLATILE                 | Digicel Samoa Ltd
-    #8   | AS132528 | 1          | PARTIAL: VULNERABLE (Mixed)    | DIGICEL (AUS) PTY LTD
+    #7   | AS132528 | 1          | PARTIAL: VULNERABLE (Mixed)    | DIGICEL (AUS) PTY LTD
+    #8   | AS38800  | 1          | STUB: VOLATILE                 | Digicel Samoa Ltd

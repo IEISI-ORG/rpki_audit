@@ -1,15 +1,15 @@
     [*] Loading Data...
-        - Loading ASN data from packed file... OK (125,524 records)
-        - Modeled: 87,383 'Regular' Networks
+        - Loading ASN data from packed file... OK (125,651 records)
+        - Modeled: 87,513 'Regular' Networks
 
     ===============================================================================================
      1. ASPA READINESS (Simplicity vs Complexity)
     ===============================================================================================
-    Total Networks: 87,383
+    Total Networks: 87,513
     ------------------------------------------------------------
-      - Trivial (1-2 Providers):   71,411 (81.7%)
-      - Moderate (3-5 Providers):  14,042 (16.1%)
-      - Complex (>5 Providers):     1,930 ( 2.2%) -> Target for Engineering Support
+      - Trivial (1-2 Providers):   71,365 (81.5%)
+      - Moderate (3-5 Providers):  14,209 (16.2%)
+      - Complex (>5 Providers):     1,939 ( 2.2%) -> Target for Engineering Support
 
     ===============================================================================================
      2. COMPLEXITY GIANTS (Traffic Engineering Heavyweights)
@@ -18,55 +18,55 @@
     ------------------------------------------------------------------------------------------
     ASN      | Providers  | Cone     | Name
     ------------------------------------------------------------------------------------------
-    AS14789  | 219        | 1374     | Cloudflare, Inc.
-    AS54994  | 94         | 264      | Meteverse Limited
-    AS3573   | 92         | 118      | Accenture LLP
-    AS139341 | 80         | 301      | WeChat/QQ CDN
-    AS63293  | 76         | 110      | Meta (CDN Network)
-    AS21433  | 76         | 35       | Accenture UK Limited
-    AS24429  | 72         | 262      | Alibaba Cloud
-    AS139057 | 62         | 78       | Legend Dynasty Pte. Ltd.
-    AS262663 | 60         | 189      | METROFLEX TELECOMUNICACOES LTDA
-    AS271493 | 58         | 54       | SPEED NET PEDRA
-    AS20940  | 57         | 226      | Akamai International B.V.
-    AS54113  | 55         | 60       | Fastly, Inc.
-    AS136907 | 55         | 20       | Huawei Cloud
-    AS55256  | 53         | 28       | Netskope Inc
-    AS12654  | 51         | 23       | RIPE NCC - RIS
+    AS14789  | 220        | 1349     | Cloudflare, Inc.
+    AS54994  | 95         | 277      | Meteverse Limited
+    AS3573   | 93         | 119      | Accenture LLP
+    AS139341 | 78         | 301      | WeChat/QQ CDN
+    AS63293  | 77         | 118      | Meta (CDN Network)
+    AS21433  | 75         | 36       | Accenture UK Limited
+    AS24429  | 73         | 264      | Alibaba Cloud
+    AS271493 | 63         | 77       | SPEED NET PEDRA
+    AS139057 | 61         | 94       | Legend Dynasty Pte. Ltd.
+    AS262663 | 60         | 187      | METROFLEX TELECOMUNICACOES LTDA
+    AS136907 | 56         | 20       | Huawei Cloud
+    AS20940  | 55         | 263      | Akamai International B.V.
+    AS54113  | 55         | 61       | Fastly, Inc.
+    AS55256  | 54         | 28       | Netskope Inc
+    AS12654  | 51         | 25       | RIPE NCC - RIS
     AS13150  | 51         | 19       | CATO NETWORKS LTD
     AS396986 | 45         | 24       | Bytedance, Inc. (TikTok)
-    AS14593  | 40         | 50       | SpaceX Starlink
-    AS31898  | 39         | 89       | Oracle Cloud
+    AS14593  | 40         | 51       | SpaceX Starlink
+    AS31898  | 38         | 94       | Oracle Cloud
+    AS45102  | 38         | 2        | Alibaba (US) Technology Co., Ltd.
     AS23154  | 37         | 5        | Sanmina-SCI Corporation
-    AS40934  | 35         | 2        | Fortinet Inc.
-    AS45102  | 35         | 2        | Alibaba (US) Technology Co., Ltd.
-    AS138915 | 34         | 98       | Kaopu Cloud HK Limited
+    AS40934  | 36         | 2        | Fortinet Inc.
+    AS36040  | 35         | 4        | Google (Global Cache)
+    AS138915 | 34         | 100      | Kaopu Cloud HK Limited
     AS136258 | 34         | 11       | BrainStorm Network, Inc
-    AS36040  | 34         | 4        | Google (Global Cache)
-    AS19551  | 33         | 313      | Incapsula Inc
-    AS42473  | 33         | 64       | Anexia Cloud Solutions GmbH
-    AS205563 | 33         | 4        | Marc Gomez
+    AS205563 | 34         | 3        | Marc Gomez
+    AS19551  | 33         | 272      | Incapsula Inc
+    AS42473  | 33         | 65       | Anexia Cloud Solutions GmbH
     AS35928  | 33         | 1        | BECKMAN COULTER, INC.
     AS54253  | 32         | 0        | Oracle Corporation
+    AS205080 | 32         | 0        | SITA
     AS72     | 31         | 2        | Schlumberger Limited
-    AS205080 | 31         | 0        | SITA
-    AS10798  | 30         | 9        | The Standard Bank of South Africa (Proprietary) Li
-    AS30012  | 30         | 8        | Universal Music Group, INC.
+    AS16839  | 31         | 0        | SERVICENOW, INC.
+    AS273443 | 30         | 8        | Canal ISP - Soluções em Tecnologia LTDA
+    AS10798  | 30         | 7        | The Standard Bank of South Africa (Proprietary) Li
     AS12222  | 30         | 0        | Akamai Technologies, Inc.
-    AS16839  | 30         | 0        | SERVICENOW, INC.
     AS15695  | 29         | 21       | Expereo International BV
-    AS28590  | 29         | 13       | Directnet Prestacao de Servicos Ltda.
-    AS21859  | 28         | 1204     | Zenlayer Inc
-    AS268314 | 28         | 69       | SUPORTI TELECOM
+    AS28590  | 29         | 12       | Directnet Prestacao de Servicos Ltda.
+    AS30012  | 29         | 2        | Universal Music Group, INC.
+    AS21859  | 28         | 1331     | Zenlayer Inc
+    AS268314 | 28         | 79       | SUPORTI TELECOM
     AS212085 | 28         | 6        | Alexander Bruegmann
-    AS199524 | 26         | 228      | Gcore S.A.
-    AS57629  | 26         | 7        | LLC IVI.RU
+    AS19637  | 28         | 0        | Avago Technologies U.S. Inc.
+    AS132203 | 27         | 1        | Tencent
     AS30103  | 26         | 1        | Zoom Video Communications, Inc
-    AS132203 | 26         | 1        | Tencent
     AS22379  | 26         | 0        | Manifold Services Inc
-    AS19637  | 26         | 0        | Avago Technologies U.S. Inc.
-    AS262727 | 25         | 7        | AtualNet Provedor de Internet Ltda
+    AS199524 | 25         | 242      | Gcore S.A.
+    AS57629  | 25         | 6        | LLC IVI.RU
     AS36224  | 25         | 4        | HCL AMERICA INC
-    AS36692  | 24         | 3        | Cisco OpenDNS, LLC
+    AS262727 | 24         | 6        | AtualNet Provedor de Internet Ltda
 
-    [+] Full list of 1930 complex networks saved to 'aspa_complexity_list.csv'
+    [+] Full list of 1939 complex networks saved to 'aspa_complexity_list.csv'

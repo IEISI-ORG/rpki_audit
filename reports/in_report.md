@@ -3,41 +3,41 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: IN (India)
     ====================================================================================================
-    Total Networks:      6,226
-    Total Cone Gravity:  14,248
+    Total Networks:      6,232
+    Total Cone Gravity:  15,220
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    98 ( 1.6%) -> Protects 0.2% of Traffic
-    VULNERABLE NETWORKS:      2862 (46.0%) -> Exposes  93.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):   125 ( 2.0%) -> Protects 3.1% of Traffic
+    VULNERABLE NETWORKS:      2839 (45.6%) -> Exposes  92.6% of Traffic
     ------------------------------------------------------------
-    Seen in IPv6:        1,130 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict    33 ( 2.9%)   IPv6 verdict    47 ( 4.2%)
-      VULNERABLE main verdict  1094 (96.8%)   IPv6 verdict  1073 (95.0%)
+    Seen in IPv6:        1,131 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict    43 ( 3.8%)   IPv6 verdict    56 ( 5.0%)
+      VULNERABLE main verdict  1084 (95.8%)   IPv6 verdict  1071 (94.7%)
 
     ====================================================================================================
      THE IN CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS9498   | REGRESSED                      | REGRESSED                      | 6995     | 2%     | Bharti Airtel Ltd.
-    AS4755   | REGRESSED                      | REGRESSED                      | 2584     | 10%    | TATA Communications (formerly VSNL)
-    AS18229  | REGRESSED                      | REGRESSED                      | 659      | 2%     | CtrlS
-    AS9583   | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 550      | 64%    | Sify Limited
-    AS55836  | Unverified (Transit/Peer?)     | ACTIVE LOCAL ROV               | 418      | 42%    | Reliance Jio Infocomm Limited
-    AS45820  | REGRESSED                      | REGRESSED                      | 396      | 3%     | Tata Teleservices ISP
-    AS55410  | REGRESSED                      | REGRESSED                      | 386      | 3%     | Vodafone Idea Ltd
-    AS9730   | VULNERABLE                     | VULNERABLE                     | 235      | -      | Bharti Telesonic Ltd
+    AS9498   | REGRESSED                      | REGRESSED                      | 7867     | 3%     | Bharti Airtel Ltd.
+    AS4755   | REGRESSED                      | REGRESSED                      | 2658     | 3%     | TATA Communications (formerly VSNL)
+    AS18229  | REGRESSED                      | REGRESSED                      | 607      | 1%     | CtrlS
+    AS9583   | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 560      | 68%    | Sify Limited
+    AS55836  | VOLATILE                       | VOLATILE                       | 448      | 87%    | Reliance Jio Infocomm Limited
+    AS45820  | REGRESSED                      | REGRESSED                      | 398      | 1%     | Tata Teleservices ISP
+    AS55410  | REGRESSED                      | REGRESSED                      | 389      | 4%     | Vodafone Idea Ltd
+    AS9730   | VULNERABLE                     | VULNERABLE                     | 237      | -      | Bharti Telesonic Ltd
     AS17665  | REGRESSED                      | REGRESSED                      | 163      | 0%     | ONEOTT INTERTAINMENT LIMITED
-    AS17762  | REGRESSED                      | REGRESSED                      | 142      | 1%     | Tata Teleservices Maharashtra Ltd
-    AS45117  | REGRESSED                      | REGRESSED                      | 125      | 1%     | Ishan Netsol Pvt Ltd
-    AS55824  | INCONSISTENT                   | INCONSISTENT                   | 86       | 17%    | NKN Core Network
-    AS9829   | REGRESSED                      | REGRESSED                      | 83       | 2%     | BSNL (Bharat Sanchar Nigam Ltd)
+    AS17762  | REGRESSED                      | REGRESSED                      | 143      | 2%     | Tata Teleservices Maharashtra Ltd
+    AS45117  | REGRESSED                      | REGRESSED                      | 127      | 2%     | Ishan Netsol Pvt Ltd
+    AS55824  | Unverified (Transit/Peer?)     | Unverified (Transit/Peer?)     | 84       | 42%    | NKN Core Network
+    AS9829   | REGRESSED                      | REGRESSED                      | 83       | 5%     | BSNL (Bharat Sanchar Nigam Ltd)
     AS133296 | VULNERABLE                     | VULNERABLE                     | 68       | -      | Web Werks India Pvt. Ltd.
-    AS132770 | REGRESSED                      | REGRESSED                      | 65       | 0%     | Gazon Communications India Limited
-    AS17439  | REGRESSED                      | REGRESSED                      | 62       | -      | NTT Communications India Pvt. Ltd.
-    AS135718 | REGRESSED                      | REGRESSED                      | 52       | 5%     | DISHAWAVES INFONET PVT. LTD
+    AS132770 | REGRESSED                      | REGRESSED                      | 67       | 0%     | Gazon Communications India Limited
+    AS17439  | REGRESSED                      | REGRESSED                      | 66       | -      | NTT Communications India Pvt. Ltd.
+    AS135718 | VULNERABLE                     | VULNERABLE                     | 52       | 48%    | DISHAWAVES INFONET PVT. LTD
     AS136334 | REGRESSED                      | REGRESSED                      | 49       | 0%     | Vortex Netsol Private Limited
-    AS137085 | REGRESSED                      | REGRESSED                      | 46       | 0%     | ANONET COMMUNICATIONS PVT LTD
-    AS151690 | REGRESSED                      | REGRESSED                      | 44       | 1%     | FAB FIVE NETWORK PRIVATE LIMITED
+    AS137085 | REGRESSED                      | REGRESSED                      | 47       | 1%     | ANONET COMMUNICATIONS PVT LTD
+    AS151690 | REGRESSED                      | REGRESSED                      | 46       | 6%     | FAB FIVE NETWORK PRIVATE LIMITED
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to IN?)
@@ -50,10 +50,10 @@
     #4   | AS9730   | 170        | VULNERABLE                     | Bharti Telesonic Ltd
     #5   | AS9583   | 167        | PARTIAL: VULNERABLE (Mixed)    | Sify Limited
     #6   | AS55410  | 156        | REGRESSED                      | Vodafone Idea Ltd
-    #7   | AS55836  | 143        | Unverified (Transit/Peer?)     | Reliance Jio Infocomm Limited
+    #7   | AS55836  | 143        | VOLATILE                       | Reliance Jio Infocomm Limited
     #8   | AS18229  | 139        | REGRESSED                      | CtrlS
     #9   | AS45117  | 79         | REGRESSED                      | Ishan Netsol Pvt Ltd
-    #10  | AS55824  | 78         | INCONSISTENT                   | NKN Core Network
+    #10  | AS55824  | 78         | Unverified (Transit/Peer?)     | NKN Core Network
     #11  | AS17762  | 76         | REGRESSED                      | Tata Teleservices Maharashtra Ltd
     #12  | AS9829   | 71         | REGRESSED                      | BSNL (Bharat Sanchar Nigam Ltd)
     #13  | AS133296 | 48         | VULNERABLE                     | Web Werks India Pvt. Ltd.
@@ -63,7 +63,7 @@
     #17  | AS136334 | 40         | REGRESSED                      | Vortex Netsol Private Limited
     #18  | AS140641 | 38         | UNRELIABLE                     | YOTTA NETWORK SERVICES PRIVATE LIMITED
     #19  | AS132215 | 38         | REGRESSED                      | Powergrid Teleservices Limited
-    #20  | AS135718 | 37         | REGRESSED                      | DISHAWAVES INFONET PVT. LTD
+    #20  | AS135718 | 37         | VULNERABLE                     | DISHAWAVES INFONET PVT. LTD
 
     ====================================================================================================
      IPv6 DIFFERENCES (IN networks whose IPv6 verdict class differs)
@@ -72,25 +72,17 @@
     E.g. Hurricane Electric gives its peers IPv6 transit and filters invalids (reports/he_ipv6_peering.md).
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
-    AS55836  | Unverified (Transit/Peer?)     | ACTIVE LOCAL ROV               | 1/1            | Reliance Jio Infocomm Limited
-    AS140641 | UNRELIABLE                     | PARTIAL: VULNERABLE (Mixed)    | 3/4            | YOTTA NETWORK SERVICES PRIVATE LIMITED
-    AS24186  | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 1/2            | RailTel Corporation of India Ltd
-    AS132774 | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 3/4            | Niss Internet services private limited
-    AS45916  | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 1/2            | Gujarat Telelink Pvt Ltd
-    AS9885   | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 2/3            | NKN INTERNET GATEWAY NETWORK
-    AS7633   | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 4/5            | Software Technology Parks of India - Ban
-    AS59179  | VULNERABLE                     | PASSIVE (Clean Pipe)           | 0/1            | MINS Technologies Private Limited
+    AS136695 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/1            | Zeroshell Networks Private Limited
     AS9430   | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 3/4            | Software Technology Parks of India,Block
-    AS132717 | VULNERABLE                     | PARTIAL: VULNERABLE (Mixed)    | 3/4            | NXTGEN CLOUD TECHNOLOGIES PRIVATE LIMITE
     AS140124 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Leeway Softtech Pvt Ltd
-    AS138788 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Acushnet Communication Private Limited
+    AS142501 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | BHARAT-PUBLIC-DNS
+    AS141288 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | National Institute Of Science Education 
     AS141275 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Maxnet Digital Pvt Ltd
     AS151845 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Scalewithus India
     AS152488 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | BLUELINE BROADBAND PRIVATE LIMITED
-    AS153759 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | De-cix Interwire Internet Services Priva
-    AS146890 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | SHARVA TELENET PRIVATE LIMITED
     AS149616 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Saileelas Internet Service Private Limit
-    AS149268 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Roarnet Broadband Pvt Ltd
     AS17753  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | DATA INGENIOUS GLOBAL LIMITED
-    AS135257 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | DL GTPL Broadband Private Limited
+    AS136667 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Space Applications Centre
+    AS135257 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | DL GTPL Broadband Private Limited
+    AS138788 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Acushnet Communication Private Limited
     AS132931 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | FICUS TELECOM PRIVATE LIMITED

@@ -30,7 +30,7 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS3605   | 2          | REGRESSED                      | Guam Cablevision, LLC.
     #2   | AS20473  | 1          | ACTIVE LOCAL ROV               | The Constant Company, LLC
-    #3   | AS140627 | 1          | ACTIVE LOCAL ROV               | OneQode
+    #3   | AS140627 | 1          | PARTIAL: VULNERABLE (Mixed)    | OneQode
     #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #5   | AS24545  | 1          | STUB: VULNERABLE               | 8/F.,Sino Favour Centre ,1 OnYip Street 
 

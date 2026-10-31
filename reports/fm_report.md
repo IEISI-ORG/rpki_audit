@@ -30,7 +30,7 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #1   | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
     #2   | AS6461   | 1          | REGRESSED                      | Zayo Bandwidth
     #3   | AS9246   | 1          | STUB: PASSIVE (Clean Pipe)     | Teleguam Holdings, LLC
     #4   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink

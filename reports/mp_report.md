@@ -18,7 +18,7 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS7131   | REGRESSED                      | REGRESSED                      | 4        | 0%     | PTI Pacifica Inc.
+    AS7131   | REGRESSED                      | REGRESSED                      | 4        | 1%     | PTI Pacifica Inc.
     AS9839   | STUB: VULNERABLE               | -                              | 0        | -      | Micronesian Telecommunications Corp
 
     ====================================================================================================
@@ -28,7 +28,7 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #2   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
-    #3   | AS6453   | 1          | CORE: UNPROTECTED              | TATA Communications (America) Inc
-    #4   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #3   | AS6453   | 1          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
+    #4   | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
     #5   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #6   | AS701    | 1          | CORE: ACTIVE PROTECTOR         | Verizon Business

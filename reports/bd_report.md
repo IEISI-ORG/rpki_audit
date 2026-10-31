@@ -3,41 +3,41 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: BD (Bangladesh)
     ====================================================================================================
-    Total Networks:      2,031
-    Total Cone Gravity:  3,458
+    Total Networks:      2,032
+    Total Cone Gravity:  3,568
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):    13 ( 0.6%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:      1545 (76.1%) -> Exposes  89.6% of Traffic
+    VULNERABLE NETWORKS:      1549 (76.2%) -> Exposes  90.1% of Traffic
     ------------------------------------------------------------
-    Seen in IPv6:        537 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict     1 ( 0.2%)   IPv6 verdict     5 ( 0.9%)
-      VULNERABLE main verdict   529 (98.5%)   IPv6 verdict   529 (98.5%)
+    Seen in IPv6:        538 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict     1 ( 0.2%)   IPv6 verdict     3 ( 0.6%)
+      VULNERABLE main verdict   531 (98.7%)   IPv6 verdict   530 (98.5%)
 
     ====================================================================================================
      THE BD CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS58717  | REGRESSED                      | REGRESSED                      | 1027     | 0%     | Summit Communications Ltd
-    AS10075  | REGRESSED                      | REGRESSED                      | 407      | 0%     | Fiber@Home Global Limited
-    AS139009 | REGRESSED                      | REGRESSED                      | 356      | 0%     | Windstream Communication Limited
-    AS58682  | REGRESSED                      | REGRESSED                      | 264      | 0%     | Level3 Carrier Ltd.
-    AS150178 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 200      | -      | EXABYTE LTD
-    AS58715  | REGRESSED                      | REGRESSED                      | 158      | 0%     | EARTH TELECOMMUNICATION (Pvt) LTD.
+    AS58717  | REGRESSED                      | REGRESSED                      | 1071     | 0%     | Summit Communications Ltd
+    AS10075  | REGRESSED                      | REGRESSED                      | 417      | 1%     | Fiber@Home Global Limited
+    AS139009 | REGRESSED                      | REGRESSED                      | 390      | 0%     | Windstream Communication Limited
+    AS58682  | REGRESSED                      | REGRESSED                      | 269      | 0%     | Level3 Carrier Ltd.
+    AS150178 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 194      | -      | EXABYTE LTD
+    AS58715  | REGRESSED                      | REGRESSED                      | 171      | 0%     | EARTH TELECOMMUNICATION (Pvt) LTD.
     AS17494  | VULNERABLE (Atlas Verified)    | VULNERABLE (Atlas Verified)    | 91       | 0%     | Bangladesh Telegraph & Telephone Board
-    AS139901 | REGRESSED                      | REGRESSED                      | 86       | -      | Apple Communication Ltd.
-    AS150748 | REGRESSED                      | REGRESSED                      | 61       | 0%     | Gmax
-    AS137491 | REGRESSED                      | REGRESSED                      | 61       | 0%     | Peerex Networks Ltd
-    AS58656  | REGRESSED                      | REGRESSED                      | 55       | 0%     | bdHUB Limited
-    AS149765 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 52       | 0%     | Coronet Corporation Limited
-    AS149994 | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 52       | 3%     | Rego Communications Ltd
-    AS23688  | REGRESSED                      | REGRESSED                      | 44       | 0%     | Link3 Technologies Ltd.
-    AS58945  | REGRESSED                      | REGRESSED                      | 38       | 0%     | Virgo Communication Ltd
-    AS24323  | VULNERABLE                     | VULNERABLE                     | 34       | 13%    | aamra networks limited
-    AS63961  | REGRESSED                      | REGRESSED                      | 32       | 0%     | Bangladesh Research and Education Networ
-    AS141731 | REGRESSED                      | REGRESSED                      | 31       | 0%     | Max Hub Limited
+    AS139901 | REGRESSED                      | REGRESSED                      | 78       | -      | Apple Communication Ltd.
+    AS150748 | REGRESSED                      | REGRESSED                      | 62       | 0%     | Gmax
+    AS137491 | REGRESSED                      | REGRESSED                      | 60       | 0%     | Peerex Networks Ltd
+    AS58656  | REGRESSED                      | REGRESSED                      | 60       | 0%     | bdHUB Limited
+    AS149994 | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 54       | 7%     | Rego Communications Ltd
+    AS149765 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 53       | 0%     | Coronet Corporation Limited
+    AS23688  | REGRESSED                      | REGRESSED                      | 45       | 0%     | Link3 Technologies Ltd.
+    AS58945  | REGRESSED                      | REGRESSED                      | 40       | 0%     | Virgo Communication Ltd
+    AS24323  | VULNERABLE                     | VULNERABLE                     | 38       | 14%    | aamra networks limited
+    AS141731 | REGRESSED                      | REGRESSED                      | 33       | 0%     | Max Hub Limited
+    AS63961  | REGRESSED                      | REGRESSED                      | 31       | 1%     | Bangladesh Research and Education Networ
     AS9230   | VULNERABLE                     | VULNERABLE                     | 26       | 0%     | Bangladesh Online Ltd.
-    AS38203  | REGRESSED                      | REGRESSED                      | 24       | 2%     | ADN Telecom Ltd.
+    AS23956  | REGRESSED                      | REGRESSED                      | 25       | 0%     | AmberIT Limited
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to BD?)
@@ -73,8 +73,5 @@
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
     AS149994 | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 3/3            | Rego Communications Ltd
-    AS132602 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/4            | Bangladesh Submarine Cable Company Limit
-    AS132267 | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 2/2            | NovoCom Limited
-    AS139931 | Unverified (Transit/Peer?)     | PASSIVE (Clean Pipe)           | 0/1            | Bangladesh Submarine Cable Company Limit
     AS64092  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | IT Consultants PLC
     AS132817 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | DZCRD Networks Ltd

@@ -18,16 +18,16 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
+    AS45891  | VULNERABLE                     | -                              | 2        | 2%     | Solomon Telekom Co Ltd
     AS139609 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 2        | -      | Solomon Islands Submarine Cable Company
-    AS45891  | VULNERABLE                     | -                              | 2        | 1%     | Solomon Telekom Co Ltd
     AS139277 | STUB: VULNERABLE               | -                              | 0        | -      | Solomon Islands Government ICT Support D
     AS142279 | STUB: VULNERABLE               | -                              | 0        | -      | Solitech Ltd
-    AS150403 | STUB: VULNERABLE               | -                              | 0        | -      | Solomon Islands National Provident Fund 
     AS150349 | STUB: VULNERABLE               | -                              | 0        | -      | Pacific Vaizeds Enterprise Ltd
+    AS150403 | STUB: VULNERABLE               | -                              | 0        | -      | Solomon Islands National Provident Fund 
     AS24013  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | SB Professional Services
     AS132260 | NOT ROUTED                     | -                              | 0        | -      | SATSOL LIMITED
-    AS132468 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 1%     | SATSOL LIMITED
     AS132462 | STUB: VULNERABLE               | -                              | 0        | -      | Bemobile Solomon Islands Ltd
+    AS132468 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | SATSOL LIMITED
     AS134525 | STUB: VULNERABLE               | -                              | 0        | -      | Solomon Telekom Co Ltd
 
     ====================================================================================================
@@ -37,9 +37,9 @@
     ----------------------------------------------------------------------------------------------------
     #1   | AS139609 | 4          | PARTIAL: VULNERABLE (Mixed)    | Solomon Islands Submarine Cable Company
     #2   | AS45891  | 2          | VULNERABLE                     | Solomon Telekom Co Ltd
-    #3   | AS4637   | 1          | VOLATILE                       | Telstra International Limited
-    #4   | AS17559  | 1          | PASSIVE (Clean Pipe)           | Spectrums Core Network
-    #5   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
+    #3   | AS135409 | 1          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
+    #4   | AS4637   | 1          | VOLATILE                       | Telstra International Limited
+    #5   | AS17559  | 1          | PARTIAL: VULNERABLE (Mixed)    | Spectrums Core Network
     #6   | AS132468 | 1          | STUB: VULNERABLE               | SATSOL LIMITED
     #7   | AS7594   | 1          | PASSIVE (Clean Pipe)           | On Q
 
