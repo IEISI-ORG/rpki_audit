@@ -21,7 +21,7 @@
     AS140987 | NOT ROUTED                     | -                              | 0        | -      | Government of Tonga, Ministry of MEIDECC
     AS132831 | STUB: VULNERABLE               | -                              | 0        | -      | TokoWireless Limited
     AS132579 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Tonga Cable Limited
-    AS38201  | STUB: VOLATILE                 | STUB: VOLATILE                 | 0        | 99%    | Tonga Communications Internet Network
+    AS38201  | STUB: VOLATILE                 | STUB: VOLATILE                 | 0        | 100%   | Tonga Communications Internet Network
     AS38198  | STUB: ACTIVE LOCAL ROV         | STUB: ACTIVE LOCAL ROV         | 0        | 100%   | Digicel Tonga Ltd
 
     ====================================================================================================

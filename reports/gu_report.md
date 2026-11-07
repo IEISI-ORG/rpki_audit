@@ -34,12 +34,12 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS7131   | 4          | REGRESSED                      | PTI Pacifica Inc.
+    #1   | AS7131   | 4          | PARTIAL: VULNERABLE (Mixed)    | PTI Pacifica Inc.
     #2   | AS3356   | 2          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #3   | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
     #4   | AS17456  | 1          | STUB: VULNERABLE               | Pacific Data Systems
     #5   | AS3605   | 1          | REGRESSED                      | Guam Cablevision, LLC.
     #6   | AS395400 | 1          | STUB: VULNERABLE               | UNIVERSITY OF GUAM
-    #7   | AS140627 | 1          | PARTIAL: VULNERABLE (Mixed)    | OneQode
+    #7   | AS140627 | 1          | ACTIVE LOCAL ROV               | OneQode
     #8   | AS4637   | 1          | VOLATILE                       | Telstra International Limited
     #9   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC

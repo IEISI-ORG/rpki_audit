@@ -3,15 +3,15 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: NP (Nepal)
     ====================================================================================================
-    Total Networks:      209
-    Total Cone Gravity:  186
+    Total Networks:      208
+    Total Cone Gravity:  190
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     2 ( 1.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:       151 (72.2%) -> Exposes  81.7% of Traffic
+    SECURE (ACTIVE/PASSIVE):     1 ( 0.5%) -> Protects 0.0% of Traffic
+    VULNERABLE NETWORKS:       152 (73.1%) -> Exposes  82.1% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        75 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict     2 ( 2.7%)   IPv6 verdict     2 ( 2.7%)
-      VULNERABLE main verdict    72 (96.0%)   IPv6 verdict    73 (97.3%)
+      SECURE     main verdict     1 ( 1.3%)   IPv6 verdict     1 ( 1.3%)
+      VULNERABLE main verdict    73 (97.3%)   IPv6 verdict    74 (98.7%)
 
     ====================================================================================================
      THE NP CORE (Top 20 Networks)
@@ -25,18 +25,18 @@
     AS141047 | VULNERABLE                     | VULNERABLE                     | 10       | 0%     | Nepal Digital Service Pvt. Ltd.
     AS139922 | REGRESSED                      | REGRESSED                      | 9        | 0%     | DISH MEDIA NETWORK PUBLIC LIMITED
     AS148979 | VULNERABLE                     | VULNERABLE                     | 9        | -      | Fiberworld Communication Pvt. Ltd.
-    AS58504  | REGRESSED                      | REGRESSED                      | 7        | 0%     | TECHMINDS NETWORKS PVT. LTD.
-    AS141767 | REGRESSED                      | REGRESSED                      | 6        | 0%     | C G Communications Ltd
-    AS38565  | VULNERABLE                     | VULNERABLE                     | 6        | 1%     | Ncell Pvt. Ltd.
-    AS23752  | REGRESSED                      | REGRESSED                      | 5        | 0%     | Nepal Telecommunications Corporation, In
+    AS38565  | VULNERABLE                     | VULNERABLE                     | 7        | 1%     | Ncell Pvt. Ltd.
+    AS141767 | REGRESSED                      | REGRESSED                      | 6        | 1%     | C G Communications Ltd
+    AS58504  | REGRESSED                      | REGRESSED                      | 6        | 0%     | TECHMINDS NETWORKS PVT. LTD.
+    AS24550  | REGRESSED                      | REGRESSED                      | 6        | 0%     | Websurfer Nepal Internet Service Provide
     AS151396 | REGRESSED                      | REGRESSED                      | 4        | 0%     | Sajilo Net Pvt Ltd
+    AS23752  | REGRESSED                      | REGRESSED                      | 4        | 0%     | Nepal Telecommunications Corporation, In
     AS55915  | REGRESSED                      | REGRESSED                      | 1        | 0%     | Classic Tech Pvt. Ltd.
-    AS24550  | REGRESSED                      | REGRESSED                      | 1        | 0%     | Websurfer Nepal Internet Service Provide
     AS154858 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Sajilo Cloud Pvt Ltd
-    AS140324 | STUB: VULNERABLE               | -                              | 0        | -      | Airlink Communication Service Provider P
-    AS139907 | NOT ROUTED                     | -                              | 0        | -      | Sajilo Net Pvt Ltd
-    AS139902 | STUB: VULNERABLE               | -                              | 0        | 0%     | SURKHET CABLE NET T.V. PVT. LTD.
     AS140072 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | Fiberworld Communication Pvt.ltd
+    AS139902 | STUB: VULNERABLE               | -                              | 0        | 0%     | SURKHET CABLE NET T.V. PVT. LTD.
+    AS139907 | NOT ROUTED                     | -                              | 0        | -      | Sajilo Net Pvt Ltd
+    AS139810 | NOT ROUTED                     | -                              | 0        | -      | Sky Broadband Pvt. Ltd
     AS140050 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Next Geekers Pvt. Ltd.
 
     ====================================================================================================

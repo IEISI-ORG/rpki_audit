@@ -27,6 +27,6 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS60679  | 1          | NOT ROUTED                     | Unknown
+    #1   | AS60679  | 1          | Unknown (Not in Audit)         | -
     #2   | AS4648   | 1          | PARTIAL: VULNERABLE (Mixed)    | Spark New Zealand
     #3   | AS56294  | 1          | PASSIVE (Clean Pipe)           | VMvault Pty Ltd

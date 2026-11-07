@@ -4,10 +4,10 @@
      NATIONAL ROUTING SECURITY: PK (Pakistan)
     ====================================================================================================
     Total Networks:      473
-    Total Cone Gravity:  572
+    Total Cone Gravity:  590
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    29 ( 6.1%) -> Protects 10.1% of Traffic
-    VULNERABLE NETWORKS:       283 (59.8%) -> Exposes  64.5% of Traffic
+    SECURE (ACTIVE/PASSIVE):    28 ( 5.9%) -> Protects 10.8% of Traffic
+    VULNERABLE NETWORKS:       285 (60.3%) -> Exposes  64.1% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        111 networks (verdict from IPv6 providers only, column v6_verdict)
       SECURE     main verdict     5 ( 4.5%)   IPv6 verdict     8 ( 7.2%)
@@ -18,26 +18,26 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS17557  | REGRESSED                      | REGRESSED                      | 204      | 0%     | Pakistan Telecommunication Company Limit
-    AS38193  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 137      | 12%    | Transworld Associates (Pvt.) Ltd.
+    AS17557  | REGRESSED                      | REGRESSED                      | 205      | 0%     | Pakistan Telecommunication Company Limit
+    AS38193  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 141      | 7%     | Transworld Associates (Pvt.) Ltd.
+    AS38264  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 43       | 96%    | Wateen Telecom
     AS138423 | REGRESSED                      | REGRESSED                      | 43       | 1%     | CMPak Limited
-    AS38264  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 39       | 96%    | Wateen Telecom
-    AS58470  | REGRESSED                      | REGRESSED                      | 29       | 0%     | Jazz Pakistan
-    AS9541   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 19       | 75%    | Cyber Internet Services (Pvt) Ltd.
+    AS58470  | REGRESSED                      | REGRESSED                      | 27       | 0%     | Jazz Pakistan
+    AS9541   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 21       | 75%    | Cyber Internet Services (Pvt) Ltd.
     AS23674  | REGRESSED                      | REGRESSED                      | 17       | 0%     | Nayatel (Pvt) Ltd
-    AS135523 | REGRESSED                      | REGRESSED                      | 17       | 2%     | Multinet Broadband
+    AS135523 | REGRESSED                      | REGRESSED                      | 16       | 2%     | Multinet Broadband
     AS139820 | REGRESSED                      | REGRESSED                      | 13       | 1%     | HG TELECOMMUNICATION PRIVATE LIMITED
     AS138655 | REGRESSED                      | REGRESSED                      | 10       | 0%     | Trans World Enterprise Services (Private
-    AS24499  | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 8        | 0%     | Telenor Pakistan
     AS132165 | REGRESSED                      | REGRESSED                      | 7        | 0%     | Connect Communications
-    AS23750  | REGRESSED                      | REGRESSED                      | 5        | 1%     | GERRYS INFORMATION TECHNOLOGY PVT LTD.
+    AS24499  | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 7        | 0%     | Telenor Pakistan
+    AS23750  | REGRESSED                      | REGRESSED                      | 6        | 1%     | GERRYS INFORMATION TECHNOLOGY PVT LTD.
+    AS138926 | REGRESSED                      | REGRESSED                      | 5        | 43%    | Netpoint IT & Communications Pvt. Ltd
+    AS139088 | VULNERABLE                     | VULNERABLE                     | 5        | -      | TUFA Telecommunication (PVT) LTD.
+    AS23966  | VULNERABLE                     | VULNERABLE                     | 5        | 1%     | LINKdotNET Telecom Limited
     AS9260   | REGRESSED                      | REGRESSED                      | 4        | 2%     | Multinet Pakistan Pvt. Ltd.
-    AS138926 | REGRESSED                      | REGRESSED                      | 2        | 40%    | Netpoint IT & Communications Pvt. Ltd
     AS137561 | REGRESSED                      | REGRESSED                      | 2        | 0%     | WAYLINK
-    AS136969 | REGRESSED                      | REGRESSED                      | 2        | 0%     | KK Networks (Pvt) Ltd.
-    AS23966  | VULNERABLE                     | VULNERABLE                     | 2        | 1%     | LINKdotNET Telecom Limited
-    AS133495 | REGRESSED                      | REGRESSED                      | 2        | 1%     | Vision telecom Private limited
-    AS150750 | VULNERABLE                     | VULNERABLE                     | 1        | 18%    | IN CABLE INTERNET (PRIVATE) LIMITED
+    AS137910 | VULNERABLE                     | VULNERABLE                     | 2        | 5%     | Wavecomm (Private) Limited
+    AS133495 | REGRESSED                      | REGRESSED                      | 2        | 2%     | Vision telecom Private limited
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PK?)

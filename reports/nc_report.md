@@ -31,8 +31,8 @@
     AS56089  | STUB: FORTUITOUS ROV           | STUB: FORTUITOUS ROV           | 0        | 100%   | OFFRATEL
     AS136402 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Nautile SARL
     AS137243 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | INGENIERIE DES SYSTEMES DES INFORMATIONS
-    AS131995 | STUB: VULNERABLE               | -                              | 0        | -      | XLPM
     AS132079 | NOT ROUTED                     | -                              | 0        | -      | Office des Postes et Telecommunications 
+    AS131995 | STUB: VULNERABLE               | -                              | 0        | -      | XLPM
     AS131248 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | GOTV
     AS134405 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Data Services Pacific
     AS45461  | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | TeleNet

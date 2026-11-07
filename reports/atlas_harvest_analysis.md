@@ -1,6 +1,6 @@
 # Public Atlas traces to Cloudflare's RPKI-invalid beacon
 
-Generated 2026-11-01 by `analyze_harvest.py` from `atlas_harvest.py` output (third-party measurements, no credits). A trace that reaches the invalid host means the ASes on its path forwarded the invalid route then; most receive it straight from Cloudflare, so this tests that session. Traces that stop attribute nothing. Invalid side only: there is no paired valid trace, so there is no off-path check. An AS counts as a forwarder only if it is the probe's own AS, has >= 2 hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a border-router address). Probe home ASNs known for 52,384 probes.
+Generated 2026-11-08 by `analyze_harvest.py` from `atlas_harvest.py` output (third-party measurements, no credits). A trace that reaches the invalid host means the ASes on its path forwarded the invalid route then; most receive it straight from Cloudflare, so this tests that session. Traces that stop attribute nothing. Invalid side only: there is no paired valid trace, so there is no off-path check. An AS counts as a forwarder only if it is the probe's own AS, has >= 2 hops, or hands the trace straight to Cloudflare (a single hop between two other ASes is usually a border-router address). Probe home ASNs known for 52,384 probes.
 
 IX LAN hops are attributed to the participant holding the address (PeeringDB netixlan). 58 IXP ASNs never count as forwarders: at least two independent signals agree, one of them from outside PeeringDB (PeeringDB info_type 'Route Server'; an AS0 ASPA record; the exchange operator's own network: owned by the exchange's PeeringDB organisation or announcing its IX LAN; marked member_type 'ixp' in the exchange's IX-F export), the ASN has no providers (an exchange's cache-fill or operator ASN buys transit), and it doesn't carry traffic in RIS (an IXP's route servers are transparent; its ASN is mid-path for at most 2 members with non-transparent sessions). AS0 on its own means no providers: Cogent, Arelion, AT&T, GTT, Deutsche Telekom and Liberty Global publish it, which supports their Tier 1 status.
 
@@ -10,9 +10,9 @@ Only traces from the last 7 days count, the same freshness rule as the audit's o
 |---|---|---|
 | traces (any age) | 16,433 | 8,838 |
 | reached the invalid host (any age) | 8,995 | 3,610 |
-| reached it, last 7 days | 22 | 0 |
-| ASes seen forwarding (any age) | 2,894 | 1,394 |
-| ASes seen forwarding, last 7 days | 9 | 0 |
+| reached it, last 7 days | 0 | 0 |
+| ASes seen forwarding (any age) | 2,895 | 1,394 |
+| ASes seen forwarding, last 7 days | 0 | 0 |
 
 ## IPv4: audit says SECURE, but current traces show the AS forwarding
 
@@ -29,9 +29,8 @@ Decided by a declaration (bgp.tools tag, isbgpsafeyet) or not at all in the audi
 
 | AS | name | cc | cone | verdict | decided by | probes (7 d) | last seen |
 |---|---|---|---|---|---|---|---|
-| 38082 | True International Gateway Co. | TH | 24 | PARTIAL: VULNERABLE (Mixed) | none | 1 | 2026-10-30 |
 
-1 ASes in all.
+0 ASes in all.
 
 ## NZ networks seen forwarding (IPv4, current)
 

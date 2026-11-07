@@ -4,40 +4,40 @@
      NATIONAL ROUTING SECURITY: MA (Morocco)
     ====================================================================================================
     Total Networks:      33
-    Total Cone Gravity:  35
+    Total Cone Gravity:  34
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    21 (63.6%) -> Protects 94.3% of Traffic
+    SECURE (ACTIVE/PASSIVE):    21 (63.6%) -> Protects 94.1% of Traffic
     VULNERABLE NETWORKS:         8 (24.2%) -> Exposes  0.0% of Traffic
     ------------------------------------------------------------
-    Seen in IPv6:        18 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict    14 (77.8%)   IPv6 verdict    17 (94.4%)
-      VULNERABLE main verdict     4 (22.2%)   IPv6 verdict     1 ( 5.6%)
+    Seen in IPv6:        17 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict    14 (82.4%)   IPv6 verdict    17 (100.0%)
+      VULNERABLE main verdict     3 (17.6%)   IPv6 verdict     0 ( 0.0%)
 
     ====================================================================================================
      THE MA CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS36925  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 13       | 99%    | Orange Maroc
-    AS36884  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 10       | 97%    | Wana Corporate
+    AS36925  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 12       | 99%    | Orange Maroc
+    AS36884  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 10       | 99%    | Wana Corporate
     AS6713   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 8        | 99%    | Maroc Telecom
     AS328867 | PARTIAL: VULNERABLE (Mixed)    | -                              | 2        | -      | Corebach Backbone SARL
     AS36956  | PASSIVE (Clean Pipe)           | -                              | 2        | -      | Office National des Postes et Telecommun
     AS201129 | STUB: VULNERABLE               | -                              | 0        | -      | Linceris International Cloud Solutions -
-    AS329280 | STUB: VULNERABLE               | -                              | 0        | -      | Centre Royal de Télédétection Spatiale
     AS329442 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
     AS329461 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Maroc Datacenter MDC
-    AS329691 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | AFRIQUIA S.M.D.C.
     AS329628 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | AL BARID BANK
     AS329612 | STUB: VULNERABLE               | -                              | 0        | -      | MTDS
     AS329605 | STUB: VULNERABLE               | -                              | 0        | -      | ATTIJARIWAFABANK
+    AS329280 | STUB: VULNERABLE               | -                              | 0        | -      | Centre Royal de Télédétection Spatiale
+    AS329691 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | AFRIQUIA S.M.D.C.
     AS328280 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
     AS328272 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | CIE NATIONALE ROYAL AIR MAROC
     AS328268 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INSTITUT NATIONAL DES POSTES ET TELECOMM
-    AS327989 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Genious Communications
-    AS327917 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Direction Generale de la Securite des Sy
     AS328066 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | MEDAFRICA SYSTEMS
     AS328055 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | NPONE
+    AS327989 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Genious Communications
+    AS328799 | NOT ROUTED                     | -                              | 0        | -      | PIXI MEDIA SARL
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to MA?)
@@ -55,9 +55,9 @@
     #9   | AS6453   | 1          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
     #10  | AS3257   | 1          | CORE: ACTIVE PROTECTOR         | GTT Communications Inc.
     #11  | AS2914   | 1          | INCONSISTENT                   | NTT America, Inc.
-    #12  | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
+    #12  | AS1299   | 1          | INCONSISTENT                   | Arelion (fka. Telia Carrier)
     #13  | AS13335  | 1          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.
-    #14  | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
+    #14  | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
 
     ====================================================================================================
      IPv6 DIFFERENCES (MA networks whose IPv6 verdict class differs)

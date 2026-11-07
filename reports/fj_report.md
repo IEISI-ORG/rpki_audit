@@ -4,10 +4,10 @@
      NATIONAL ROUTING SECURITY: FJ (Fiji)
     ====================================================================================================
     Total Networks:      20
-    Total Cone Gravity:  12
+    Total Cone Gravity:  13
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):     4 (20.0%) -> Protects 25.0% of Traffic
-    VULNERABLE NETWORKS:        10 (50.0%) -> Exposes  66.7% of Traffic
+    SECURE (ACTIVE/PASSIVE):     4 (20.0%) -> Protects 23.1% of Traffic
+    VULNERABLE NETWORKS:        10 (50.0%) -> Exposes  69.2% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        5 networks (verdict from IPv6 providers only, column v6_verdict)
       SECURE     main verdict     2 (40.0%)   IPv6 verdict     2 (40.0%)
@@ -18,9 +18,9 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS38442  | REGRESSED                      | REGRESSED                      | 5        | 0%     | Vodafone Fiji Limited
+    AS38442  | REGRESSED                      | REGRESSED                      | 6        | 0%     | Vodafone Fiji Limited
     AS45355  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 3        | 99%    | Digicel Fiji Limited
-    AS4638   | VULNERABLE                     | VULNERABLE                     | 3        | 60%    | Telecom Fiji Limited
+    AS4638   | VULNERABLE                     | VULNERABLE                     | 3        | 78%    | Telecom Fiji Limited
     AS9241   | PARTIAL: VULNERABLE (Mixed)    | -                              | 1        | -      | Fiji International Telecomunications Ltd
     AS140046 | NOT ROUTED                     | -                              | 0        | -      | Telecommunications Authority of Fiji
     AS142245 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Kastle (Fiji) Pte Ltd
@@ -45,10 +45,10 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS174    | 3          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
-    #2   | AS6939   | 3          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
+    #2   | AS6939   | 3          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
     #3   | AS4637   | 3          | VOLATILE                       | Telstra International Limited
     #4   | AS4638   | 3          | VULNERABLE                     | Telecom Fiji Limited
-    #5   | AS7474   | 2          | PARTIAL: VULNERABLE (Mixed)    | SingTel Optus Pty Ltd
+    #5   | AS7474   | 2          | VULNERABLE (Atlas Verified)    | SingTel Optus Pty Ltd
     #6   | AS4648   | 2          | PARTIAL: VULNERABLE (Mixed)    | Spark New Zealand
     #7   | AS38442  | 2          | REGRESSED                      | Vodafone Fiji Limited
     #8   | AS7575   | 2          | ACTIVE LOCAL ROV               | Australian Academic and Research Network

@@ -22,7 +22,7 @@
     AS142139 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Boom! Inc.
     AS10130  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | FSM Telecommunications Corporation
     AS58524  | STUB: VULNERABLE               | -                              | 0        | 0%     | FSM Telecom
-    AS45193  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | FSM Telecommunications Corporation
+    AS45193  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 1%     | FSM Telecommunications Corporation
     AS38875  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | FSM Telecommunications Corporation
 
     ====================================================================================================
@@ -30,7 +30,7 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS6939   | 1          | ACTIVE LOCAL ROV               | Hurricane Electric LLC
+    #1   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
     #2   | AS6461   | 1          | REGRESSED                      | Zayo Bandwidth
     #3   | AS9246   | 1          | STUB: PASSIVE (Clean Pipe)     | Teleguam Holdings, LLC
     #4   | AS14593  | 1          | VULNERABLE (Atlas Verified)    | SpaceX Starlink
