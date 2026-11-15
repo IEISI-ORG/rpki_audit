@@ -3,39 +3,39 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: CL (Chile)
     ====================================================================================================
-    Total Networks:      403
-    Total Cone Gravity:  299
+    Total Networks:      404
+    Total Cone Gravity:  296
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    49 (12.2%) -> Protects 16.4% of Traffic
-    VULNERABLE NETWORKS:       270 (67.0%) -> Exposes  70.6% of Traffic
+    SECURE (ACTIVE/PASSIVE):    44 (10.9%) -> Protects 16.2% of Traffic
+    VULNERABLE NETWORKS:       277 (68.6%) -> Exposes  70.9% of Traffic
     ------------------------------------------------------------
-    Seen in IPv6:        124 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict    17 (13.7%)   IPv6 verdict    29 (23.4%)
-      VULNERABLE main verdict   103 (83.1%)   IPv6 verdict    93 (75.0%)
+    Seen in IPv6:        122 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict    14 (11.5%)   IPv6 verdict    25 (20.5%)
+      VULNERABLE main verdict   104 (85.2%)   IPv6 verdict    95 (77.9%)
 
     ====================================================================================================
      THE CL CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS263702 | REGRESSED                      | REGRESSED                      | 65       | 1%     | GRUPO ZGH SPA
-    AS14259  | INCONSISTENT                   | INCONSISTENT                   | 61       | 0%     | Gtd Internet S.A.
-    AS7004   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 29       | 95%    | TELEFÓNICA CHILE S.A.
-    AS16629  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 19       | 98%    | CTC. CORP S.A. (TELEFONICA EMPRESAS)
-    AS6429   | REGRESSED                      | REGRESSED                      | 18       | 0%     | Telmex Chile Internet S.A.
-    AS61503  | REGRESSED                      | REGRESSED                      | 18       | 0%     | SERVICIOS DE TELECOMUNICACIONES INTERCAB
-    AS6471   | Unverified (Transit/Peer?)     | -                              | 18       | -      | ENTEL CHILE S.A.
-    AS263237 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 12       | -      | PowerHost Telecom SPA
-    AS266771 | REGRESSED                      | REGRESSED                      | 10       | 22%    | MAKRONET CONSULTING TECNOLOGIA E INFORMA
+    AS263702 | REGRESSED                      | REGRESSED                      | 64       | 0%     | GRUPO ZGH SPA
+    AS14259  | REGRESSED                      | REGRESSED                      | 59       | 0%     | Gtd Internet S.A.
+    AS7004   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 29       | 98%    | TELEFÓNICA CHILE S.A.
+    AS16629  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 19       | 97%    | CTC. CORP S.A. (TELEFONICA EMPRESAS)
+    AS6471   | Unverified (Transit/Peer?)     | -                              | 19       | -      | ENTEL CHILE S.A.
+    AS6429   | REGRESSED                      | REGRESSED                      | 18       | 3%     | Telmex Chile Internet S.A.
+    AS61503  | REGRESSED                      | REGRESSED                      | 17       | 0%     | SERVICIOS DE TELECOMUNICACIONES INTERCAB
+    AS263237 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 13       | -      | PowerHost Telecom SPA
+    AS266771 | REGRESSED                      | REGRESSED                      | 9        | 12%    | MAKRONET CONSULTING TECNOLOGIA E INFORMA
     AS14117  | REGRESSED                      | REGRESSED                      | 8        | 0%     | Telefonica del Sur S.A.
-    AS265757 | REGRESSED                      | REGRESSED                      | 7        | 0%     | Intersur Limitada
-    AS11340  | REGRESSED                      | -                              | 6        | 1%     | Red Universitaria Nacional
-    AS264827 | REGRESSED                      | REGRESSED                      | 5        | 0%     | WIRCOM S.P.A.
+    AS11340  | REGRESSED                      | -                              | 6        | 0%     | Red Universitaria Nacional
+    AS265757 | REGRESSED                      | REGRESSED                      | 6        | 0%     | Intersur Limitada
     AS64139  | REGRESSED                      | REGRESSED                      | 5        | 0%     | GRUPO METROWAN TELECOM SPA
-    AS10778  | PARTIAL: VULNERABLE (Mixed)    | -                              | 4        | -      | MCL Internet
+    AS264827 | REGRESSED                      | REGRESSED                      | 5        | -      | WIRCOM S.P.A.
+    AS10778  | REGRESSED                      | -                              | 4        | -      | MCL Internet
+    AS27901  | REGRESSED                      | REGRESSED                      | 4        | 0%     | Pacifico Cable SPA.
     AS266830 | REGRESSED                      | REGRESSED                      | 3        | 0%     | AIRPOINT TELECOMUNICACIONES LIMITADA
     AS262237 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 3        | -      | Orbyta S.A.
-    AS27901  | REGRESSED                      | REGRESSED                      | 3        | 0%     | Pacifico Cable SPA.
     AS27986  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 2        | -      | ENTEL CHILE S.A.
     AS265662 | REGRESSED                      | REGRESSED                      | 1        | 0%     | TLINK SPA
 
@@ -44,12 +44,12 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS14259  | 54         | INCONSISTENT                   | Gtd Internet S.A.
+    #1   | AS14259  | 54         | REGRESSED                      | Gtd Internet S.A.
     #2   | AS263702 | 46         | REGRESSED                      | GRUPO ZGH SPA
     #3   | AS7004   | 33         | ACTIVE LOCAL ROV               | TELEFÓNICA CHILE S.A.
     #4   | AS3549   | 26         | ACTIVE LOCAL ROV               | Lumen (fka. Global Crossing)
     #5   | AS6429   | 22         | REGRESSED                      | Telmex Chile Internet S.A.
-    #6   | AS174    | 21         | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #6   | AS174    | 21         | INCONSISTENT                   | Cogent Communications, LLC
     #7   | AS3356   | 21         | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #8   | AS6471   | 20         | Unverified (Transit/Peer?)     | ENTEL CHILE S.A.
     #9   | AS263237 | 18         | PARTIAL: VULNERABLE (Mixed)    | PowerHost Telecom SPA
@@ -73,14 +73,14 @@
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
     AS27986  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/3            | ENTEL CHILE S.A.
-    AS267848 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Mainstreet Ltda
-    AS263784 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | BYNARYA SPA
-    AS265743 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | COMERCIAL WASHINGTON ERNESTO OYARCE SAZO
-    AS264814 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/2            | BITRED GROUP SPA
-    AS23140  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Universidad de Chile
+    AS27659  | PARTIAL: VULNERABLE (Mixed)    | VULNERABLE                     | 1/1            | Ingeniería e Informática Asociada Ltda (
+    AS20191  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/2            | Pontificia Universidad Catolica de Chile
     AS22047  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/2            | VTR BANDA ANCHA S.A.
-    AS20191  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Pontificia Universidad Catolica de Chile
+    AS23140  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Universidad de Chile
     AS27978  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Telmex Servicios Empresariales S.A.
-    AS61526  | PROVIDER UNKNOWN (In BGP)      | STUB: PASSIVE (Clean Pipe)     | 0/1            | PIT CHILE SP
-    AS61506  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Insacom y Cia. Limitada
     AS52489  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | TELEFÓNICA CHILE S.A.
+    AS263784 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | BYNARYA SPA
+    AS264814 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/2            | BITRED GROUP SPA
+    AS264806 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | TNA Solutions SpA
+    AS265743 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | COMERCIAL WASHINGTON ERNESTO OYARCE SAZO
+    AS267848 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Mainstreet Ltda

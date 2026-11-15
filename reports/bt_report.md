@@ -21,23 +21,23 @@
     AS38740  | REGRESSED                      | REGRESSED                      | 17       | -      | Tashi InfoComm Limited
     AS17660  | REGRESSED                      | REGRESSED                      | 9        | 0%     | DrukNet ISP
     AS18024  | REGRESSED                      | REGRESSED                      | 1        | 0%     | Bhutan Telecom Ltd
-    AS154825 | STUB: VULNERABLE               | -                              | 0        | -      | GKIT BROAD BAND PVT LTD
-    AS140322 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Green E Solutions
-    AS140695 | STUB: VULNERABLE               | -                              | 0        | -      | Bank of Bhutan Limited
-    AS138920 | NOT ROUTED                     | -                              | 0        | -      | Royal University of Bhutan
-    AS141680 | STUB: UNRELIABLE               | STUB: UNRELIABLE               | 0        | 99%    | SuperNet Infocomm
-    AS151782 | STUB: VULNERABLE               | -                              | 0        | -      | Royal Insurance Corporation of Bhutan Li
-    AS151955 | STUB: VULNERABLE               | -                              | 0        | -      | DRUK PNB BANK LIMITED
-    AS152318 | NOT ROUTED                     | -                              | 0        | -      | Gelephu Thromde
-    AS152317 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | Wangdue Phodrang Dzongkhag Administratio
-    AS152316 | NOT ROUTED                     | -                              | 0        | -      | Punakha Dzongkhag Administration
-    AS152315 | NOT ROUTED                     | -                              | 0        | -      | Sarpang Dzongkhag Administration
-    AS152314 | NOT ROUTED                     | -                              | 0        | -      | Chhukha Dzongkhag Administration
-    AS152313 | NOT ROUTED                     | -                              | 0        | -      | Samtse Dzongkhag Administration
-    AS152312 | NOT ROUTED                     | -                              | 0        | -      | Paro Dzongkhag Administration
-    AS152311 | NOT ROUTED                     | -                              | 0        | -      | Haa Dzongkhag Administration
-    AS152310 | NOT ROUTED                     | -                              | 0        | -      | Thimphu Dzongkhag Administration
-    AS152309 | NOT ROUTED                     | -                              | 0        | -      | Gasa Dzongkhag Administration
+    AS7615   | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Bhutan Internet Exchange
+    AS17482  | NOT ROUTED                     | -                              | 0        | -      | Bhutan Internet Exchange
+    AS18025  | STUB: VULNERABLE               | -                              | 0        | -      | Bhutan Telecom Ltd
+    AS18205  | NOT ROUTED                     | -                              | 0        | -      | Bhutan Telecom Ltd
+    AS23955  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 88%    | Tashi InfoComm Limited
+    AS38004  | STUB: VULNERABLE               | -                              | 0        | -      | FastLink Wireless ISP, DrukCom Pvt. Ente
+    AS59219  | NOT ROUTED                     | -                              | 0        | -      | Ministry of Information & Communications
+    AS132232 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Data Centre Services
+    AS132894 | STUB: UNRELIABLE               | STUB: UNRELIABLE               | 0        | 86%    | Sigma Internet Service
+    AS134715 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 1%     | Government Technology Agency
+    AS135147 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | T Bank Limited
+    AS135666 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Government Data Center (DITT/MoIC)
+    AS136039 | REGRESSED                      | REGRESSED                      | 0        | 2%     | NANO, Bhutan
+    AS137412 | STUB: VOLATILE                 | STUB: VOLATILE                 | 0        | 99%    | Tashicell Domestic AS Thimphu Bhutan
+    AS137925 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | GIC-Bhutan Reinsurance Co. Ltd.
+    AS137994 | STUB: VULNERABLE               | -                              | 0        | -      | Bhutan National Bank limited
+    AS138529 | STUB: UNRELIABLE               | STUB: UNRELIABLE               | 0        | 98%    | DATANET WIFI
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to BT?)
@@ -48,7 +48,7 @@
     #2   | AS17660  | 10         | REGRESSED                      | DrukNet ISP
     #3   | AS18024  | 6          | REGRESSED                      | Bhutan Telecom Ltd
     #4   | AS6453   | 3          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
-    #5   | AS2914   | 2          | INCONSISTENT                   | NTT America, Inc.
+    #5   | AS2914   | 2          | CORE: ACTIVE PROTECTOR         | NTT America, Inc.
     #6   | AS136039 | 2          | REGRESSED                      | NANO, Bhutan
-    #7   | AS1299   | 1          | INCONSISTENT                   | Arelion (fka. Telia Carrier)
+    #7   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
     #8   | AS9498   | 1          | REGRESSED                      | Bharti Airtel Ltd.

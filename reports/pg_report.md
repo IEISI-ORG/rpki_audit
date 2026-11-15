@@ -6,8 +6,8 @@
     Total Networks:      42
     Total Cone Gravity:  24
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    19 (45.2%) -> Protects 100.0% of Traffic
-    VULNERABLE NETWORKS:         9 (21.4%) -> Exposes  0.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):    18 (42.9%) -> Protects 100.0% of Traffic
+    VULNERABLE NETWORKS:        10 (23.8%) -> Exposes  0.0% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        3 networks (verdict from IPv6 providers only, column v6_verdict)
       SECURE     main verdict     2 (66.7%)   IPv6 verdict     2 (66.7%)
@@ -18,26 +18,26 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS17828  | ACTIVE (Atlas Verified)        | ACTIVE (Atlas Verified)        | 18       | 97%    | PNG DATACO LTD
-    AS58460  | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 6        | 75%    | Digicel (PNG) Ltd
-    AS155038 | NOT ROUTED                     | -                              | 0        | -      | NATIONAL BANKING CORPORATION LIMITED
-    AS155036 | NOT ROUTED                     | -                              | 0        | -      | Ok Tedi Mining Limited
-    AS155035 | NOT ROUTED                     | -                              | 0        | -      | Ok Tedi Mining Limited
-    AS154868 | NOT ROUTED                     | -                              | 0        | -      | Neotel Communications Ltd
-    AS139898 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | Digitec Communications Limited
-    AS140665 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | KINECT LIMITED
-    AS138902 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Emstret Holdings Ltd
-    AS139778 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | DALTRON
-    AS142269 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | KINA BANK
-    AS140935 | NOT ROUTED                     | -                              | 0        | -      | Asia Pacific Communication Specialist (P
-    AS152655 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Digicel (PNG) Ltd
-    AS152477 | STUB: VULNERABLE               | -                              | 0        | -      | LOTIC Bige Limited
-    AS151647 | STUB: VULNERABLE               | -                              | 0        | -      | Rural Tech Development
-    AS151398 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Credit Corporation (PNG) Limited
-    AS152883 | NOT ROUTED                     | -                              | 0        | -      | Teachers Savings and Loan Society Limite
-    AS153621 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | GIT LIMITED
-    AS153781 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Wintop Investment Limited
-    AS147024 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | bikpla.net
+    AS17828  | ACTIVE (Atlas Verified)        | ACTIVE (Atlas Verified)        | 18       | 93%    | PNG DATACO LTD
+    AS58460  | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 6        | 70%    | Digicel (PNG) Ltd
+    AS38009  | STUB: FORTUITOUS ROV           | -                              | 0        | 100%   | Telikom PNG Satellite Tier 1 AS Internet
+    AS45826  | NOT ROUTED                     | -                              | 0        | -      | Planning & Designs Department
+    AS45924  | STUB: VULNERABLE               | -                              | 0        | -      | Global Technologies Limited
+    AS55792  | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Datec-PNG
+    AS63945  | STUB: VULNERABLE               | -                              | 0        | -      | Digitec PNG Limited
+    AS132786 | STUB: VULNERABLE               | -                              | 0        | -      | Bank of Papua New Guinea
+    AS133137 | NOT ROUTED                     | -                              | 0        | -      | Telikom PNG Limited
+    AS133428 | NOT ROUTED                     | -                              | 0        | -      | Papua New Guinea University of Technolog
+    AS134151 | STUB: VULNERABLE               | -                              | 0        | -      | Steamships Ltd
+    AS134605 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Comserv PNG Ltd
+    AS135571 | NOT ROUTED                     | -                              | 0        | -      | PNG DATACO LTD
+    AS136239 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | CLICK PACIFIC LTD
+    AS136587 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | PNG DATACO LIMITED
+    AS136802 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | LBP Holdings Limited
+    AS136940 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | ComSat Ltd
+    AS137064 | NOT ROUTED                     | -                              | 0        | -      | ISC F-ROOT ABQ1
+    AS137054 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | OFC
+    AS137068 | NOT ROUTED                     | -                              | 0        | -      | Digitec PNG Limited
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PG?)
@@ -49,16 +49,16 @@
     #3   | AS6939   | 3          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
     #4   | AS4637   | 3          | VOLATILE                       | Telstra International Limited
     #5   | AS4826   | 2          | ACTIVE LOCAL ROV               | Vocus Connect International Backbone
-    #6   | AS12684  | 2          | VOLATILE                       | SES ASTRA S.A.
-    #7   | AS13335  | 2          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.
-    #8   | AS135409 | 2          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
+    #6   | AS135409 | 2          | PARTIAL: VULNERABLE (Mixed)    | Kacific Broadband Satellites Pte Ltd
+    #7   | AS12684  | 2          | REGRESSED                      | SES ASTRA S.A.
+    #8   | AS13335  | 2          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.
     #9   | AS7474   | 1          | VULNERABLE (Atlas Verified)    | SingTel Optus Pty Ltd
-    #10  | AS1299   | 1          | INCONSISTENT                   | Arelion (fka. Telia Carrier)
+    #10  | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
     #11  | AS58453  | 1          | PARTIAL: VULNERABLE (Mixed)    | China Mobile International
-    #12  | AS152655 | 1          | STUB: PASSIVE (Clean Pipe)     | Digicel (PNG) Ltd
-    #13  | AS38442  | 1          | REGRESSED                      | Vodafone Fiji Limited
-    #14  | AS31732  | 1          | VULNERABLE                     | Parsun Network Solutions PTY LTD
-    #15  | AS139898 | 1          | STUB: VULNERABLE               | Digitec Communications Limited
-    #16  | AS45411  | 1          | STUB: PASSIVE (Clean Pipe)     | APCS Australia
-    #17  | AS55792  | 1          | STUB: PASSIVE (Clean Pipe)     | Datec-PNG
-    #18  | AS24516  | 1          | VULNERABLE (Atlas Verified)    | Virtutel Pty Ltd
+    #12  | AS152655 | 1          | STUB: VULNERABLE               | Digicel (PNG) Ltd
+    #13  | AS24516  | 1          | PARTIAL: VULNERABLE (Mixed)    | Virtutel Pty Ltd
+    #14  | AS139898 | 1          | STUB: VULNERABLE               | Digitec Communications Limited
+    #15  | AS45411  | 1          | STUB: VULNERABLE               | APCS Australia
+    #16  | AS55792  | 1          | STUB: PASSIVE (Clean Pipe)     | Datec-PNG
+    #17  | AS38442  | 1          | REGRESSED                      | Vodafone Fiji Limited
+    #18  | AS31732  | 1          | VULNERABLE                     | Parsun Network Solutions PTY LTD

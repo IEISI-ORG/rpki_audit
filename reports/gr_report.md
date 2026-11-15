@@ -4,40 +4,40 @@
      NATIONAL ROUTING SECURITY: GR (Greece)
     ====================================================================================================
     Total Networks:      265
-    Total Cone Gravity:  584
+    Total Cone Gravity:  595
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):   128 (48.3%) -> Protects 90.9% of Traffic
-    VULNERABLE NETWORKS:       100 (37.7%) -> Exposes  6.0% of Traffic
+    SECURE (ACTIVE/PASSIVE):   117 (44.2%) -> Protects 90.9% of Traffic
+    VULNERABLE NETWORKS:       109 (41.1%) -> Exposes  5.9% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        93 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict    48 (51.6%)   IPv6 verdict    53 (57.0%)
-      VULNERABLE main verdict    42 (45.2%)   IPv6 verdict    38 (40.9%)
+      SECURE     main verdict    44 (47.3%)   IPv6 verdict    48 (51.6%)
+      VULNERABLE main verdict    44 (47.3%)   IPv6 verdict    41 (44.1%)
 
     ====================================================================================================
      THE GR CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS8280   | VOLATILE                       | VOLATILE                       | 350      | -      | SYNAPSECOM S.A. Provider of Telecommunic
-    AS6799   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 40       | 99%    | Ote SA (Hellenic Telecommunications Orga
+    AS8280   | VOLATILE                       | VOLATILE                       | 364      | -      | SYNAPSECOM S.A. Provider of Telecommunic
+    AS6799   | ACTIVE (Atlas Verified)        | ACTIVE (Atlas Verified)        | 39       | 99%    | Ote SA (Hellenic Telecommunications Orga
     AS1241   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 30       | 98%    | Nova Telecommunications & Media Single M
-    AS3329   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 29       | 98%    | Vodafone Greece
     AS5408   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 29       | 99%    | National Infrastructures for Research an
-    AS199081 | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 24       | 91%    | Lancom Ltd.
-    AS198477 | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 23       | -      | TI SPARKLE GREECE SA
+    AS3329   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 29       | 98%    | Vodafone Greece
+    AS199081 | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 25       | 97%    | Lancom Ltd.
+    AS198477 | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 20       | -      | TI SPARKLE GREECE SA
     AS25472  | REGRESSED                      | REGRESSED                      | 19       | 0%     | Nova Telecommunications & Media Single M
     AS56910  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 14       | -      | Digital Realty Hellas Single Member S.A
-    AS206735 | REGRESSED                      | REGRESSED                      | 11       | 1%     | Novelcomm LP
+    AS206735 | REGRESSED                      | REGRESSED                      | 11       | 0%     | Novelcomm LP
     AS216285 | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 3        | -      | MYIP NETWORKS G.P.
-    AS4601   | VULNERABLE                     | VULNERABLE                     | 2        | -      | Antonios A. Chariton
-    AS213835 | PARTIAL: VULNERABLE (Mixed)    | -                              | 2        | -      | Solidity Technology Services SA
+    AS213835 | VULNERABLE                     | -                              | 2        | -      | Solidity Technology Services SA
+    AS4601   | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 2        | -      | Antonios A. Chariton
     AS50919  | REGRESSED                      | REGRESSED                      | 1        | -      | INTERWORKS Single Member S.A.
-    AS215492 | PASSIVE (Clean Pipe)           | PASSIVE (Clean Pipe)           | 1        | -      | BUTLER CHAT I.K.E.
-    AS56457  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1        | -      | FASTPATH IKE
-    AS35506  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1        | 100%   | INFORMATION SOCIETY S.A.
     AS196945 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 1        | -      | Microbase PC
+    AS200736 | REGRESSED                      | REGRESSED                      | 1        | 0%     | MEDIANET INVEST AE
+    AS35506  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1        | 100%   | INFORMATION SOCIETY S.A.
+    AS215492 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | BUTLER CHAT I.K.E.
     AS12713  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | Ote SA (Hellenic Telecommunications Orga
-    AS51505  | REGRESSED                      | REGRESSED                      | 1        | 0%     | Dimosia Epicheirisi Ilektrismou Anonymi 
+    AS56457  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1        | -      | FASTPATH IKE
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to GR?)
@@ -45,8 +45,8 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS1241   | 31         | ACTIVE LOCAL ROV               | Nova Telecommunications & Media Single M
-    #2   | AS6799   | 30         | ACTIVE LOCAL ROV               | Ote SA (Hellenic Telecommunications Orga
-    #3   | AS174    | 29         | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #2   | AS6799   | 30         | ACTIVE (Atlas Verified)        | Ote SA (Hellenic Telecommunications Orga
+    #3   | AS174    | 29         | INCONSISTENT                   | Cogent Communications, LLC
     #4   | AS5408   | 28         | ACTIVE LOCAL ROV               | National Infrastructures for Research an
     #5   | AS3329   | 24         | ACTIVE LOCAL ROV               | Vodafone Greece
     #6   | AS198477 | 22         | PASSIVE (Clean Pipe)           | TI SPARKLE GREECE SA
@@ -60,7 +60,7 @@
     #14  | AS3356   | 8          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
     #15  | AS3491   | 6          | CORE: ACTIVE PROTECTOR         | PCCW Global (HK) Ltd.
     #16  | AS32787  | 6          | PARTIAL: VULNERABLE (Mixed)    | Akamai (Prolexic)
-    #17  | AS1299   | 5          | INCONSISTENT                   | Arelion (fka. Telia Carrier)
+    #17  | AS1299   | 5          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
     #18  | AS57463  | 5          | PARTIAL: VULNERABLE (Mixed)    | NetIX Communications JSC
     #19  | AS13335  | 4          | ACTIVE LOCAL ROV (Hardcoded)   | Cloudflare, Inc.
     #20  | AS9002   | 4          | ACTIVE LOCAL ROV               | RETN Limited
@@ -73,9 +73,6 @@
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
     AS196945 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/1            | Microbase PC
-    AS214618 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/3            | Hack The Box Single Member Private Compa
-    AS211186 | STUB: PASSIVE (Clean Pipe)     | STUB: VULNERABLE               | 1/2            | FAST TELECOM SINGLE MEMBER P.C.
     AS8522   | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Foundation of Research and Technology He
-    AS60325  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Optiland Telecommunications I.K.E.
-    AS48449  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | SMARTNET I.K.E.
     AS50520  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | HOSTMEIN IKE
+    AS60325  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Optiland Telecommunications I.K.E.

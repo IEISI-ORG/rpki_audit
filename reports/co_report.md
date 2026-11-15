@@ -3,41 +3,41 @@
     ====================================================================================================
      NATIONAL ROUTING SECURITY: CO (Colombia)
     ====================================================================================================
-    Total Networks:      531
-    Total Cone Gravity:  2,404
+    Total Networks:      533
+    Total Cone Gravity:  2,389
     ------------------------------------------------------------
-    SECURE (ACTIVE/PASSIVE):    47 ( 8.9%) -> Protects 81.6% of Traffic
-    VULNERABLE NETWORKS:       382 (71.9%) -> Exposes  11.8% of Traffic
+    SECURE (ACTIVE/PASSIVE):    44 ( 8.3%) -> Protects 81.2% of Traffic
+    VULNERABLE NETWORKS:       380 (71.3%) -> Exposes  11.7% of Traffic
     ------------------------------------------------------------
-    Seen in IPv6:        329 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict    26 ( 7.9%)   IPv6 verdict    36 (10.9%)
-      VULNERABLE main verdict   300 (91.2%)   IPv6 verdict   292 (88.8%)
+    Seen in IPv6:        326 networks (verdict from IPv6 providers only, column v6_verdict)
+      SECURE     main verdict    24 ( 7.4%)   IPv6 verdict    33 (10.1%)
+      VULNERABLE main verdict   297 (91.1%)   IPv6 verdict   290 (89.0%)
 
     ====================================================================================================
      THE CO CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS7195   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1832     | 93%    | EdgeUno
-    AS18678  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 152      | 7%     | INTERNEXA S.A. E.S.P
-    AS52320  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 111      | -      | V.tal (GlobeNet)
-    AS262191 | REGRESSED                      | REGRESSED                      | 58       | 2%     | LIBERTY NETWORKS DE COLOMBIA S.A.S
-    AS27951  | REGRESSED                      | REGRESSED                      | 53       | 0%     | Media Commerce Partners S.A
-    AS3816   | REGRESSED                      | REGRESSED                      | 47       | 4%     | COLOMBIA TELECOMUNICACIONES S.A. ESP BIC
-    AS262186 | REGRESSED                      | REGRESSED                      | 32       | 0%     | TV AZTECA SUCURSAL COLOMBIA
-    AS13489  | REGRESSED                      | REGRESSED                      | 25       | 0%     | EPM Telecomunicaciones S.A. E.S.P.
+    AS7195   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 1826     | 87%    | EdgeUno
+    AS18678  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 142      | 8%     | INTERNEXA S.A. E.S.P
+    AS52320  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 114      | -      | V.tal (GlobeNet)
+    AS262191 | REGRESSED                      | REGRESSED                      | 56       | 1%     | LIBERTY NETWORKS DE COLOMBIA S.A.S
+    AS27951  | REGRESSED                      | REGRESSED                      | 54       | 1%     | Media Commerce Partners S.A
+    AS3816   | REGRESSED                      | REGRESSED                      | 46       | 4%     | COLOMBIA TELECOMUNICACIONES S.A. ESP BIC
+    AS262186 | REGRESSED                      | REGRESSED                      | 31       | 2%     | TV AZTECA SUCURSAL COLOMBIA
     AS14080  | REGRESSED                      | REGRESSED                      | 25       | 31%    | Telmex Colombia S.A.
-    AS273103 | VOLATILE                       | VOLATILE                       | 19       | 68%    | TV&MÁS S.A.S
-    AS19429  | REGRESSED                      | REGRESSED                      | 14       | 10%    | ETB - Colombia
-    AS267708 | REGRESSED                      | REGRESSED                      | 8        | 1%     | SP SISTEMAS PALACIOS LTDA
-    AS270075 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 5        | 0%     | SUPER REDES S.A.S
+    AS13489  | REGRESSED                      | REGRESSED                      | 25       | 0%     | EPM Telecomunicaciones S.A. E.S.P.
+    AS273103 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 20       | 97%    | TV&MÁS S.A.S
+    AS19429  | REGRESSED                      | REGRESSED                      | 13       | 4%     | ETB - Colombia
+    AS267708 | REGRESSED                      | REGRESSED                      | 8        | 0%     | SP SISTEMAS PALACIOS LTDA
     AS267823 | REGRESSED                      | REGRESSED                      | 5        | 0%     | ATENEA TELECOMUNICACIONES S.A.S
-    AS265688 | REGRESSED                      | REGRESSED                      | 5        | 25%    | SINERGY SOLUCIONES INTEGRALES
-    AS272156 | REGRESSED                      | REGRESSED                      | 3        | 0%     | WEB MASTER COLOMBIA SAS
+    AS265688 | REGRESSED                      | REGRESSED                      | 5        | 17%    | SINERGY SOLUCIONES INTEGRALES
+    AS270075 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 5        | 1%     | SUPER REDES S.A.S
+    AS272156 | REGRESSED                      | REGRESSED                      | 3        | 1%     | WEB MASTER COLOMBIA SAS
     AS273168 | VULNERABLE                     | VULNERABLE                     | 3        | -      | INFRAESTRUCTURA Y REDES SAS
-    AS273020 | REGRESSED                      | REGRESSED                      | 2        | 13%    | IN QUALITY TELECOMUNICATIONS S.A.S. ZOMA
-    AS269804 | VULNERABLE                     | VULNERABLE                     | 1        | 1%     | SEPCOM COMUNICACIONES SAS
-    AS26619  | REGRESSED                      | REGRESSED                      | 1        | 1%     | GTD COLOMBIA S.A.S
+    AS273020 | REGRESSED                      | REGRESSED                      | 2        | 1%     | IN QUALITY TELECOMUNICATIONS S.A.S. ZOMA
+    AS269804 | VULNERABLE                     | VULNERABLE                     | 1        | 0%     | SEPCOM COMUNICACIONES SAS
+    AS272851 | REGRESSED                      | REGRESSED                      | 1        | 4%     | GIGA FIBRA SAS
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to CO?)
@@ -57,13 +57,13 @@
     #11  | AS7195   | 23         | ACTIVE LOCAL ROV               | EdgeUno
     #12  | AS14080  | 23         | REGRESSED                      | Telmex Colombia S.A.
     #13  | AS19429  | 20         | REGRESSED                      | ETB - Colombia
-    #14  | AS23520  | 18         | INCONSISTENT                   | Columbus Networks USA, Inc.
+    #14  | AS23520  | 18         | PARTIAL: VULNERABLE (Mixed)    | Columbus Networks USA, Inc.
     #15  | AS52320  | 15         | ACTIVE LOCAL ROV               | V.tal (GlobeNet)
-    #16  | AS174    | 13         | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #16  | AS174    | 13         | INCONSISTENT                   | Cogent Communications, LLC
     #17  | AS18747  | 10         | PARTIAL: VULNERABLE (Mixed)    | IFX Corporation
     #18  | AS267708 | 9          | REGRESSED                      | SP SISTEMAS PALACIOS LTDA
-    #19  | AS10753  | 8          | ACTIVE LOCAL ROV               | Level 3 Parent, LLC
-    #20  | AS273103 | 8          | VOLATILE                       | TV&MÁS S.A.S
+    #19  | AS10753  | 8          | PARTIAL: VULNERABLE (Mixed)    | Level 3 Parent, LLC
+    #20  | AS273103 | 8          | PARTIAL: VULNERABLE (Mixed)    | TV&MÁS S.A.S
 
     ====================================================================================================
      IPv6 DIFFERENCES (CO networks whose IPv6 verdict class differs)
@@ -74,11 +74,10 @@
     ------------------------------------------------------------------------------------------------------------------------
     AS270075 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/1            | SUPER REDES S.A.S
     AS271957 | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/5            | SOMOS NETWORKS COLOMBIA S.A.S. BIC
-    AS273001 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | TELECOMUNICACIONES DEL CATATUMBO S.A.S
-    AS272896 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | COMSSET COMUNICACIONES SAS
-    AS273131 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | NETSLINK SAS
-    AS271952 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | UNICABLE H.D. SAS
+    AS7087   | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Administración de Redes Colomsat S.A.
+    AS27941  | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | CONSULNETWORK LTDA
     AS266860 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | CONEXION DIGITAL EXPRESS S.A.S.
     AS267832 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | VELONET SAS
-    AS27941  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | CONSULNETWORK LTDA
-    AS7087   | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Administración de Redes Colomsat S.A.
+    AS271952 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | UNICABLE H.D. SAS
+    AS272896 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | COMSSET COMUNICACIONES SAS
+    AS273212 | STUB: UNRELIABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | SISTEMAS, TELECOMUNICACIONES Y BIOMEDICO

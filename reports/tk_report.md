@@ -18,15 +18,15 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS198147 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
-    AS57382  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
     AS55523  | STUB: VULNERABLE               | -                              | 0        | -      | Telecommunications Tokelau Corporation -
+    AS57382  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
+    AS198147 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | Telecommunication Tokelau Corporation Te
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TK?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS60679  | 1          | Unknown (Not in Audit)         | -
-    #2   | AS4648   | 1          | PARTIAL: VULNERABLE (Mixed)    | Spark New Zealand
-    #3   | AS56294  | 1          | PASSIVE (Clean Pipe)           | VMvault Pty Ltd
+    #1   | AS4648   | 1          | PASSIVE (Clean Pipe)           | Spark New Zealand
+    #2   | AS56294  | 1          | PASSIVE (Clean Pipe)           | VMvault Pty Ltd
+    #3   | AS60679  | 1          | Unknown (Not in Audit)         | -
