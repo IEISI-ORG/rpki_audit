@@ -26,7 +26,7 @@
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS174    | 1          | INCONSISTENT                   | Cogent Communications, LLC
+    #1   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #2   | AS1299   | 1          | CORE: ACTIVE PROTECTOR         | Arelion (fka. Telia Carrier)
     #3   | AS6453   | 1          | CORE: ACTIVE PROTECTOR         | TATA Communications (America) Inc
     #4   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC

@@ -18,26 +18,26 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS36925  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 12       | 99%    | Orange Maroc
-    AS36884  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 10       | 99%    | Wana Corporate
+    AS36925  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 12       | 97%    | Orange Maroc
+    AS36884  | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 10       | 98%    | Wana Corporate
     AS6713   | ACTIVE LOCAL ROV               | ACTIVE LOCAL ROV               | 8        | 99%    | Maroc Telecom
-    AS36956  | PASSIVE (Clean Pipe)           | -                              | 2        | -      | Office National des Postes et Telecommun
     AS328867 | PASSIVE (Clean Pipe)           | -                              | 2        | -      | Corebach Backbone SARL
-    AS30983  | STUB: FORTUITOUS ROV           | STUB: FORTUITOUS ROV           | 0        | 99%    | Moroccan Academic & Research WAN
-    AS36903  | STUB: FORTUITOUS ROV           | STUB: FORTUITOUS ROV           | 0        | 99%    | Maroc Telecom
-    AS36941  | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | MTDS
-    AS37450  | NOT ROUTED                     | -                              | 0        | -      | Al'Akhawayn University
-    AS37738  | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | -      | HOSTOWEB
+    AS36956  | PASSIVE (Clean Pipe)           | -                              | 2        | -      | Office National des Postes et Telecommun
     AS201129 | STUB: VULNERABLE               | -                              | 0        | -      | Linceris International Cloud Solutions -
-    AS218415 | STUB: VULNERABLE               | -                              | 0        | -      | CLOUDER
-    AS327917 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Direction Generale de la Securite des Sy
-    AS327989 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Genious Communications
-    AS328055 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | NPONE
-    AS328066 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | MEDAFRICA SYSTEMS
-    AS328268 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | INSTITUT NATIONAL DES POSTES ET TELECOMM
-    AS328280 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
+    AS329691 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | AFRIQUIA S.M.D.C.
+    AS329461 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Maroc Datacenter MDC
+    AS329442 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
+    AS329605 | STUB: VULNERABLE               | -                              | 0        | -      | ATTIJARIWAFABANK
+    AS329612 | STUB: VULNERABLE               | -                              | 0        | -      | MTDS
+    AS329628 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | AL BARID BANK
+    AS328541 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | Direction Générale des Impôts - Minister
+    AS328577 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Enterprise Services CDG
+    AS328671 | NOT ROUTED                     | -                              | 0        | -      | Datapacket Maroc SARL
+    AS328709 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Universite Mohammed VI POLYTECHNIQUE - U
     AS328272 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0        | -      | CIE NATIONALE ROYAL AIR MAROC
+    AS328280 | STUB: PASSIVE (Clean Pipe)     | STUB: PASSIVE (Clean Pipe)     | 0        | -      | L'Agence Nationale de Réglementation des
     AS328493 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | Societe d'Amenagement et de Developpemen
+    AS329280 | STUB: VULNERABLE               | -                              | 0        | -      | Centre Royal de Télédétection Spatiale
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to MA?)
@@ -47,7 +47,7 @@
     #1   | AS36925  | 13         | ACTIVE LOCAL ROV               | Orange Maroc
     #2   | AS6713   | 7          | ACTIVE LOCAL ROV               | Maroc Telecom
     #3   | AS36884  | 7          | ACTIVE LOCAL ROV               | Wana Corporate
-    #4   | AS174    | 4          | INCONSISTENT                   | Cogent Communications, LLC
+    #4   | AS174    | 4          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #5   | AS5511   | 3          | CORE: ACTIVE PROTECTOR         | Orange S.A.
     #6   | AS12956  | 2          | CORE: ACTIVE PROTECTOR         | Telxius (Telefonica Global)
     #7   | AS6762   | 2          | CORE: ACTIVE PROTECTOR         | Telecom Italia Sparkle (Seabone)
@@ -66,6 +66,6 @@
     E.g. Hurricane Electric gives its peers IPv6 transit and filters invalids (reports/he_ipv6_peering.md).
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
-    AS328066 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | MEDAFRICA SYSTEMS
-    AS328272 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | CIE NATIONALE ROYAL AIR MAROC
     AS329461 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Maroc Datacenter MDC
+    AS328272 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | CIE NATIONALE ROYAL AIR MAROC
+    AS328066 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | MEDAFRICA SYSTEMS

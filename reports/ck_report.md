@@ -18,18 +18,18 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS10131  | STUB: VULNERABLE               | -                              | 0        | 0%     | Telecom Cook Islands
     AS152093 | PROVIDER UNKNOWN (In BGP)      | STUB: PASSIVE (Clean Pipe)     | 0        | -      | VakaNet Limited
+    AS10131  | STUB: VULNERABLE               | -                              | 0        | 1%     | Telecom Cook Islands
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to CK?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS45177  | 1          | REGRESSED                      | Devoli
-    #2   | AS12684  | 1          | REGRESSED                      | SES ASTRA S.A.
-    #3   | AS174    | 1          | INCONSISTENT                   | Cogent Communications, LLC
-    #4   | AS9507   | 1          | PARTIAL: VULNERABLE (Mixed)    | NextHop Pty Ltd
+    #1   | AS9507   | 1          | PARTIAL: VULNERABLE (Mixed)    | NextHop Pty Ltd
+    #2   | AS45177  | 1          | REGRESSED                      | Devoli
+    #3   | AS12684  | 1          | REGRESSED                      | SES ASTRA S.A.
+    #4   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
 
     ====================================================================================================
      IPv6 DIFFERENCES (CK networks whose IPv6 verdict class differs)

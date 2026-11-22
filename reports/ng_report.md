@@ -4,40 +4,40 @@
      NATIONAL ROUTING SECURITY: NG (Nigeria)
     ====================================================================================================
     Total Networks:      266
-    Total Cone Gravity:  334
+    Total Cone Gravity:  330
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     7 ( 2.6%) -> Protects 1.2% of Traffic
-    VULNERABLE NETWORKS:       222 (83.5%) -> Exposes  43.1% of Traffic
+    VULNERABLE NETWORKS:       222 (83.5%) -> Exposes  42.1% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        42 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict     2 ( 4.8%)   IPv6 verdict     3 ( 7.1%)
-      VULNERABLE main verdict    37 (88.1%)   IPv6 verdict    36 (85.7%)
+      SECURE     main verdict     1 ( 2.4%)   IPv6 verdict     4 ( 9.5%)
+      VULNERABLE main verdict    38 (90.5%)   IPv6 verdict    36 (85.7%)
 
     ====================================================================================================
      THE NG CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS37282  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 177      | 5%     | MainOne Cable Company Nigeria Limited
-    AS29465  | VULNERABLE                     | VULNERABLE                     | 52       | 4%     | MTN NIGERIA Communication limited
-    AS37148  | REGRESSED                      | REGRESSED                      | 25       | 1%     | Globacom Limited
+    AS37282  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 180      | 1%     | MainOne Cable Company Nigeria Limited
+    AS29465  | VULNERABLE                     | VULNERABLE                     | 50       | 4%     | MTN NIGERIA Communication limited
+    AS37148  | REGRESSED                      | REGRESSED                      | 29       | 1%     | Globacom Limited
     AS36873  | VULNERABLE                     | VULNERABLE                     | 23       | 1%     | Airtel Networks Limited
     AS16284  | REGRESSED                      | -                              | 12       | 1%     | Inq. Digital Nigeria
-    AS29091  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 8        | 62%    | ipNX Nigeria Limited
-    AS36940  | VULNERABLE                     | VULNERABLE                     | 5        | -      | Internet Exchange Point of Nigeria
-    AS30988  | REGRESSED                      | REGRESSED                      | 5        | 5%     | IS InternetSolutions Limited
+    AS29091  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 6        | 69%    | ipNX Nigeria Limited
     AS36920  | ACTIVE LOCAL ROV               | -                              | 4        | 96%    | KKON Technologies Ltd
-    AS37480  | VULNERABLE                     | VULNERABLE                     | 4        | 1%     | Cobranet Limited
-    AS37088  | VULNERABLE                     | VULNERABLE                     | 4        | 2%     | VDT COMMUNICATIONS LIMITED
-    AS37125  | VULNERABLE                     | VULNERABLE                     | 3        | 3%     | Layer3 Limited
-    AS37018  | VULNERABLE                     | VULNERABLE                     | 3        | 6%     | Galaxy Backbone PLC
+    AS37018  | VULNERABLE                     | VULNERABLE                     | 4        | 1%     | Galaxy Backbone PLC
+    AS37088  | VULNERABLE                     | VULNERABLE                     | 4        | 3%     | VDT COMMUNICATIONS LIMITED
+    AS37480  | VULNERABLE                     | VULNERABLE                     | 4        | 2%     | Cobranet Limited
+    AS37125  | REGRESSED                      | REGRESSED                      | 3        | 0%     | Layer3 Limited
+    AS30988  | REGRESSED                      | REGRESSED                      | 2        | 2%     | IS InternetSolutions Limited
     AS328658 | REGRESSED                      | REGRESSED                      | 2        | 0%     | De Choicetech Integrated Ltd
-    AS37661  | REGRESSED                      | -                              | 2        | 0%     | Nigerian Research and Education Network 
+    AS37540  | REGRESSED                      | -                              | 1        | -      | Winrock Nigeria Limited
+    AS37661  | REGRESSED                      | -                              | 1        | 3%     | Nigerian Research and Education Network 
     AS328999 | VULNERABLE                     | -                              | 1        | -      | BrowsePoint Telecom Nigeria Limited
     AS328668 | VULNERABLE                     | VULNERABLE                     | 1        | -      | Nkponani Limited
     AS328527 | UNRELIABLE                     | UNRELIABLE                     | 1        | -      | PDS Networks Nigeria Limited
-    AS37540  | REGRESSED                      | -                              | 1        | -      | Winrock Nigeria Limited
     AS214354 | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 1        | -      | SiteHUB Agency Ltd
+    AS36940  | VULNERABLE                     | VULNERABLE                     | 1        | -      | Internet Exchange Point of Nigeria
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NG?)
@@ -62,8 +62,8 @@
     #16  | AS30988  | 5          | REGRESSED                      | IS InternetSolutions Limited
     #17  | AS37480  | 5          | VULNERABLE                     | Cobranet Limited
     #18  | AS20598  | 4          | PARTIAL: VULNERABLE (Mixed)    | Cybercloud Platform Limited
-    #19  | AS327727 | 4          | UNRELIABLE                     | C-Squared Limited
-    #20  | AS37125  | 4          | VULNERABLE                     | Layer3 Limited
+    #19  | AS327727 | 4          | PARTIAL: VULNERABLE (Mixed)    | C-Squared Limited
+    #20  | AS37125  | 4          | REGRESSED                      | Layer3 Limited
 
     ====================================================================================================
      IPv6 DIFFERENCES (NG networks whose IPv6 verdict class differs)
@@ -72,4 +72,6 @@
     E.g. Hurricane Electric gives its peers IPv6 transit and filters invalids (reports/he_ipv6_peering.md).
     ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
     ------------------------------------------------------------------------------------------------------------------------
+    AS37282  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/2            | MainOne Cable Company Nigeria Limited
+    AS328203 | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Platinum Index Data Communications Ltd
     AS37248  | STUB: VULNERABLE               | STUB: PASSIVE (Clean Pipe)     | 0/1            | Phase3 Telecom Limited

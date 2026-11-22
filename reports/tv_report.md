@@ -14,9 +14,9 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
-    AS23917  | REGRESSED                      | -                              | 0        | 2%     | Tuvalu Telecommunications Corporation
-    AS133117 | NOT ROUTED                     | -                              | 0        | -      | Tuvalu Telecommunications Corporation
     AS142573 | NOT ROUTED                     | -                              | 0        | -      | Government of Tuvalu
+    AS23917  | REGRESSED                      | -                              | 0        | 0%     | Tuvalu Telecommunications Corporation
+    AS133117 | NOT ROUTED                     | -                              | 0        | -      | Tuvalu Telecommunications Corporation
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to TV?)

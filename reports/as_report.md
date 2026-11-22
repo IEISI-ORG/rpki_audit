@@ -18,16 +18,16 @@
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
+    AS23657  | STUB: FORTUITOUS ROV           | -                              | 0        | 99%    | Blue Sky Communications
     AS9751   | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | AMERICAN SAMOA TELECOMMUNICATIONS AUTHOR
-    AS23657  | STUB: VOLATILE                 | -                              | 0        | 99%    | Blue Sky Communications
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to AS?)
     ====================================================================================================
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
-    #1   | AS174    | 2          | INCONSISTENT                   | Cogent Communications, LLC
-    #2   | AS11404  | 1          | REGRESSED                      | Astound (fka. Wave Broadband)
-    #3   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)
-    #4   | AS17993  | 1          | ACTIVE LOCAL ROV               | Vodafone Samoa Limited
-    #5   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #1   | AS174    | 2          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
+    #2   | AS17993  | 1          | ACTIVE LOCAL ROV               | Vodafone Samoa Limited
+    #3   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
+    #4   | AS11404  | 1          | REGRESSED                      | Astound (fka. Wave Broadband)
+    #5   | AS3356   | 1          | CORE: ACTIVE PROTECTOR         | Lumen (Level 3)

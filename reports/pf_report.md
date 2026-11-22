@@ -20,10 +20,10 @@
     -------------------------------------------------------------------------------------------------------------------------------------
     AS55943  | REGRESSED                      | REGRESSED                      | 3        | 0%     | ONATI
     AS9471   | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | ONATI
-    AS56017  | STUB: VULNERABLE               | -                              | 0        | 0%     | VITI
-    AS133896 | NOT ROUTED                     | -                              | 0        | -      | Tahiti Nui Telecom
-    AS138179 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | PACIFIC MOBILE TELECOM
     AS139263 | PROVIDER UNKNOWN (In BGP)      | -                              | 0        | -      | Universite de la Polynesie Francaise
+    AS138179 | STUB: VULNERABLE               | STUB: VULNERABLE               | 0        | 0%     | PACIFIC MOBILE TELECOM
+    AS133896 | NOT ROUTED                     | -                              | 0        | -      | Tahiti Nui Telecom
+    AS56017  | STUB: VULNERABLE               | -                              | 0        | 0%     | VITI
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to PF?)
@@ -34,4 +34,4 @@
     #2   | AS36149  | 2          | REGRESSED                      | Hawaiian Telcom Services Company, Inc.
     #3   | AS3257   | 1          | CORE: ACTIVE PROTECTOR         | GTT Communications Inc.
     #4   | AS6939   | 1          | ACTIVE (Atlas Verified)        | Hurricane Electric LLC
-    #5   | AS174    | 1          | INCONSISTENT                   | Cogent Communications, LLC
+    #5   | AS174    | 1          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC

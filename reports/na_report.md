@@ -4,40 +4,40 @@
      NATIONAL ROUTING SECURITY: NA (Namibia)
     ====================================================================================================
     Total Networks:      20
-    Total Cone Gravity:  7
+    Total Cone Gravity:  8
     ------------------------------------------------------------
     SECURE (ACTIVE/PASSIVE):     1 ( 5.0%) -> Protects 0.0% of Traffic
-    VULNERABLE NETWORKS:        16 (80.0%) -> Exposes  42.9% of Traffic
+    VULNERABLE NETWORKS:        15 (75.0%) -> Exposes  0.0% of Traffic
     ------------------------------------------------------------
     Seen in IPv6:        3 networks (verdict from IPv6 providers only, column v6_verdict)
-      SECURE     main verdict     0 ( 0.0%)   IPv6 verdict     0 ( 0.0%)
-      VULNERABLE main verdict     2 (66.7%)   IPv6 verdict     2 (66.7%)
+      SECURE     main verdict     0 ( 0.0%)   IPv6 verdict     1 (33.3%)
+      VULNERABLE main verdict     1 (33.3%)   IPv6 verdict     1 (33.3%)
 
     ====================================================================================================
      THE NA CORE (Top 20 Networks)
     ====================================================================================================
     ASN      | Verdict                        | IPv6 Verdict                   | Cone     | APNIC% | Name
     -------------------------------------------------------------------------------------------------------------------------------------
+    AS20459  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 4        | -      | Telecom Namibia
     AS37009  | PARTIAL: VULNERABLE (Mixed)    | PARTIAL: VULNERABLE (Mixed)    | 4        | 1%     | MTC - Mobile Telecommunications, Ltd.
-    AS20459  | VULNERABLE                     | VULNERABLE                     | 3        | -      | Telecom Namibia
-    AS22735  | STUB: VULNERABLE               | -                              | 0        | -      | Government of the Republic of Namibia
-    AS36877  | STUB: VULNERABLE               | -                              | 0        | -      | Africa Online (Africa) (Pty) Ltd
-    AS36999  | STUB: VULNERABLE               | -                              | 0        | 2%     | Telecom Namibia
-    AS36996  | STUB: VULNERABLE               | -                              | 0        | 1%     | Telecom Namibia
-    AS37026  | STUB: VULNERABLE               | -                              | 0        | -      | Salt Essential Information Technology
-    AS37201  | STUB: VULNERABLE               | -                              | 0        | -      | Bank Windhoek
-    AS37513  | STUB: VULNERABLE               | -                              | 0        | -      | Namibia University of Science and Techno
+    AS329802 | STUB: VULNERABLE               | -                              | 0        | -      | Unknown
+    AS329698 | STUB: VULNERABLE               | -                              | 0        | -      | Unknown
+    AS329665 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | NamPower
+    AS329395 | STUB: VULNERABLE               | -                              | 0        | 0%     | Rocketnet Internet Namibia
+    AS329400 | STUB: VULNERABLE               | -                              | 0        | -      | Loc Eight Mobile (Pty) Ltd
+    AS329626 | REGRESSED                      | REGRESSED                      | 0        | -      | Oryx Fibre Infrastructure (Pty) Ltd
+    AS328506 | STUB: VULNERABLE               | -                              | 0        | -      | Radio Electronic (Proprietary) Limited
+    AS329115 | NOT ROUTED                     | -                              | 0        | -      | Africa Online (Africa) (Pty) Ltd
+    AS329067 | STUB: VULNERABLE               | -                              | 0        | -      | Click Cloud Hosting Services CC
     AS327694 | STUB: VULNERABLE               | -                              | 0        | -      | NamPower
     AS327842 | NOT ROUTED                     | -                              | 0        | -      | Trustco Group Holdings
-    AS328506 | STUB: VULNERABLE               | -                              | 0        | -      | Radio Electronic (Proprietary) Limited
-    AS329067 | STUB: VULNERABLE               | -                              | 0        | -      | Click Cloud Hosting Services CC
-    AS329115 | NOT ROUTED                     | -                              | 0        | -      | Africa Online (Africa) (Pty) Ltd
-    AS329400 | STUB: VULNERABLE               | -                              | 0        | -      | Loc Eight Mobile (Pty) Ltd
-    AS329395 | STUB: VULNERABLE               | -                              | 0        | -      | Rocketnet Internet Namibia
-    AS329626 | STUB: UNRELIABLE               | STUB: UNRELIABLE               | 0        | -      | Oryx Fibre Infrastructure (Pty) Ltd
-    AS329665 | STUB: PASSIVE (Clean Pipe)     | -                              | 0        | -      | NamPower
-    AS329698 | STUB: VULNERABLE               | -                              | 0        | -      | Unknown
-    AS329802 | STUB: VULNERABLE               | -                              | 0        | -      | Unknown
+    AS22735  | STUB: VULNERABLE               | -                              | 0        | -      | Government of the Republic of Namibia
+    AS37201  | STUB: VULNERABLE               | -                              | 0        | -      | Bank Windhoek
+    AS36877  | STUB: VULNERABLE               | -                              | 0        | -      | Africa Online (Africa) (Pty) Ltd
+    AS37026  | STUB: VULNERABLE               | -                              | 0        | -      | Salt Essential Information Technology
+    AS36996  | STUB: VULNERABLE               | -                              | 0        | 2%     | Telecom Namibia
+    AS36999  | STUB: VULNERABLE               | -                              | 0        | -      | Telecom Namibia
+    AS37513  | STUB: VULNERABLE               | -                              | 0        | -      | Namibia University of Science and Techno
 
     ====================================================================================================
      TRANSIT SUPPLY CHAIN (Who provides to NA?)
@@ -45,13 +45,22 @@
     Rank | Upstream | Dependents | Global Status                  | Name
     ----------------------------------------------------------------------------------------------------
     #1   | AS33763  | 5          | PARTIAL: VULNERABLE (Mixed)    | Paratus Telecommunications Limited
-    #2   | AS20459  | 4          | VULNERABLE                     | Telecom Namibia
+    #2   | AS20459  | 4          | PARTIAL: VULNERABLE (Mixed)    | Telecom Namibia
     #3   | AS37009  | 4          | PARTIAL: VULNERABLE (Mixed)    | MTC - Mobile Telecommunications, Ltd.
-    #4   | AS174    | 2          | INCONSISTENT                   | Cogent Communications, LLC
+    #4   | AS174    | 2          | CORE: ACTIVE PROTECTOR         | Cogent Communications, LLC
     #5   | AS37468  | 2          | VOLATILE                       | Angola Cables
-    #6   | AS30844  | 1          | PARTIAL: VULNERABLE (Mixed)    | Liquid Intelligent Technologies 
-    #7   | AS37100  | 1          | ACTIVE LOCAL ROV               | SEACOM Limited
-    #8   | AS3741   | 1          | VULNERABLE (Atlas Verified)    | Dimension Data
-    #9   | AS30896  | 1          | STUB: VULNERABLE               | Afsat Communications Ltd
+    #6   | AS3741   | 1          | REGRESSED                      | Dimension Data
+    #7   | AS30844  | 1          | PARTIAL: VULNERABLE (Mixed)    | Liquid Intelligent Technologies 
+    #8   | AS37100  | 1          | ACTIVE LOCAL ROV               | SEACOM Limited
+    #9   | AS37662  | 1          | PARTIAL: VULNERABLE (Mixed)    | West Indian Ocean Cable Company (WIOCC)
     #10  | AS329395 | 1          | STUB: VULNERABLE               | Rocketnet Internet Namibia
-    #11  | AS37662  | 1          | PARTIAL: VULNERABLE (Mixed)    | West Indian Ocean Cable Company (WIOCC)
+    #11  | AS30896  | 1          | STUB: VULNERABLE               | Afsat Communications Ltd
+
+    ====================================================================================================
+     IPv6 DIFFERENCES (NA networks whose IPv6 verdict class differs)
+    ====================================================================================================
+    IPv6 verdict: the same evidence judged with the network's IPv6 providers only (IPv6 graph).
+    E.g. Hurricane Electric gives its peers IPv6 transit and filters invalids (reports/he_ipv6_peering.md).
+    ASN      | Verdict                        | IPv6 Verdict                   | v6 dirty/feeds | Name
+    ------------------------------------------------------------------------------------------------------------------------
+    AS20459  | PARTIAL: VULNERABLE (Mixed)    | PASSIVE (Clean Pipe)           | 0/1            | Telecom Namibia
