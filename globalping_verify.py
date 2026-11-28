@@ -43,6 +43,7 @@ import ipaddress
 import json
 import logging
 import os
+import re
 import sys
 from collections import defaultdict
 from dataclasses import dataclass
@@ -232,6 +233,10 @@ def classify(asn: int, pair: dict, target_v: str, target_i: str, lookup, ix,
         no_data = f"invalid result {(res_i or {}).get('status', 'missing')}"
     hops_v = mtr_hops(res_v) if usable(res_v) else []
     hops_i = mtr_hops(res_i) if usable(res_i) else []
+    if not no_data and not any(h["rcv"] for h in hops_i):
+        # Not even the probe's gateway answered: the probe measured nothing. An empty invalid
+        # path would otherwise read SECURE (Target Filtered) for a probe inside the target.
+        no_data = "invalid result has no answering hop"
     runs_v = analyze_harvest.as_runs(public_hop_ips(hops_v), lookup, ix)
     runs_i = analyze_harvest.as_runs(public_hop_ips(hops_i), lookup, ix)
     score_v = mtr_reach(res_v, target_v)
@@ -266,6 +271,8 @@ def classify(asn: int, pair: dict, target_v: str, target_i: str, lookup, ix,
         "weak_on_path": target_hops == 1 and bool(path_v) and path_v[0] != asn,
         "hop_asn_disagreements": hop_disagreements(hops_v + hops_i, lookup, ix),
         "origin_boundary": detail.get("boundary_asn") == BEACON_ORIGIN,
+        # No public hop on the invalid trace: the boundary is inferred from the valid path alone.
+        "empty_invalid_path": not no_data and not runs_i,
     })
     detail["verdict_origin_adjusted"] = origin_adjusted(asn, detail)
     return detail
@@ -357,7 +364,15 @@ def _read_json(path: str, default):
         return default
 
 
+def _safe_id(measurement_id) -> str:
+    """Measurement IDs come from the API and become file names: letters, digits, - and _ only."""
+    if not isinstance(measurement_id, str) or not re.fullmatch(r"[A-Za-z0-9_-]+", measurement_id):
+        raise ValueError(f"unexpected measurement id {measurement_id!r}")
+    return measurement_id
+
+
 def save_raw(paths: Paths, measurement: dict) -> None:
+    _safe_id(measurement.get("id"))
     os.makedirs(paths.raw, exist_ok=True)
     with gzip.open(os.path.join(paths.raw, f"{measurement['id']}.json.gz"), "wt") as fh:
         json.dump(measurement, fh)
@@ -366,6 +381,7 @@ def save_raw(paths: Paths, measurement: dict) -> None:
 def load_raw(paths: Paths, measurement_id: str | None) -> dict | None:
     if not measurement_id:
         return None
+    _safe_id(measurement_id)
     try:
         with gzip.open(os.path.join(paths.raw, f"{measurement_id}.json.gz"), "rt") as fh:
             return json.load(fh)
@@ -579,8 +595,9 @@ def measure_target(asn: int, locations: list[dict], ip_v: str, ip_i: str, budget
     if not valid:
         raise requests.HTTPError(f"measurement {created.measurement_id} could not be fetched")
     save_raw(paths, valid)
-    if not valid.get("results") or not budget.can_afford(created.probes_count):
-        return valid, None
+    reached = any((mtr_reach(r.get("result"), ip_v) or 0.0) >= 50.0 for r in valid.get("results") or [])
+    if valid.get("status") != "finished" or not reached or not budget.can_afford(created.probes_count):
+        return valid, None  # no probe reached the valid beacon: an invalid test would tell nothing
     try:
         again = client.create_measurement(ip_i, created.measurement_id, "mtr", MTR_OPTIONS, token)
     except requests.HTTPError as exc:
@@ -594,7 +611,9 @@ def measure_target(asn: int, locations: list[dict], ip_v: str, ip_i: str, budget
 
 
 def choose_targets(args, paths: Paths, by_asn: dict, downstream: dict) -> list[int]:
-    fresh = {a for a, r in load_results(paths.gp).items() if age_days(r) < TTL_DAYS}
+    # A result without an invalid measurement tested nothing, so it does not hold the target back.
+    fresh = {a for a, r in load_results(paths.gp).items()
+             if age_days(r) < TTL_DAYS and (r.get("measurement_ids") or {}).get("mtr_invalid")}
     if args.asns:
         return [int(a.strip().upper().removeprefix("AS")) for a in args.asns.split(",") if a.strip()][:args.limit]
     skip = fresh | {int(a) for a in load_dated(os.path.join(paths.gp, "no_probes.json"))}
@@ -645,7 +664,10 @@ def run(args, paths: Paths, client=gp) -> int:
                 break
             try:
                 measured = measure_target(asn, locations, ip_v, ip_i, budget, paths, token, client)
-            except requests.HTTPError as exc:
+            except requests.RequestException as exc:
+                # A POST that timed out may still have been accepted: count its tests.
+                if isinstance(exc, requests.Timeout):
+                    budget.charge(need // 2, None)
                 logger.info("    [!] AS%s skipped: %s", asn, exc)
                 continue
             if not measured:

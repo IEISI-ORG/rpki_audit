@@ -201,12 +201,12 @@ def build_pairs(gp_results: dict, atlas_results: dict, max_gap_days: float = MAX
     return rows
 
 
-def repeatability(runs: list[dict]) -> tuple[int, int]:
+def repeatability(runs: list[dict], key: str = "verdict") -> tuple[int, int]:
     """(targets re-run 12-48 h apart with a conclusive verdict both times, of them with the same class)."""
     by_asn: dict = defaultdict(list)
     for r in runs:
         try:
-            by_asn[int(r["asn"])].append((datetime.fromisoformat(r["timestamp"]), gv.verdict_class(r["verdict"])))
+            by_asn[int(r["asn"])].append((datetime.fromisoformat(r["timestamp"]), gv.verdict_class(r.get(key) or r["verdict"])))
         except (KeyError, ValueError, TypeError):
             continue
     n = same = 0
@@ -284,8 +284,8 @@ def _probe_line(d: dict) -> str:
 
 
 def render_compare(pairs: list[dict], runs: list[dict], names: dict, n_gp: int) -> tuple[str, dict]:
-    repeats = repeatability(runs)
-    crit, crit_adj = evaluate(pairs, repeats), evaluate(pairs, repeats, "_adj")
+    crit = evaluate(pairs, repeatability(runs))
+    crit_adj = evaluate(pairs, repeatability(runs, "verdict_origin_adjusted"), "_adj")
     ok, ok_adj = passed(crit), passed(crit_adj)
     word = lambda b: "PASS" if b else "NOT YET"  # noqa: E731
     both = [p for p in pairs if p["gp_class"] and p["atlas_class"]]

@@ -187,6 +187,23 @@ class TestNoData(unittest.TestCase):
             self.assertEqual(d["verdict"], "INCONCLUSIVE (Probe Down)", status)
             self.assertEqual(d["no_data"], f"valid result {status}")
 
+    def test_invalid_trace_where_nothing_answered_is_no_data(self):
+        in_target_valid = [GW, H_T, H_EDGE, H_DST_V]
+        for invalid in ([SILENT], [SILENT, SILENT, SILENT]):
+            r = one_probe(in_target_valid, invalid, probe_asn=T)
+            self.assertEqual(r["probe_details"][0]["verdict"], "INCONCLUSIVE (Probe Down)")
+            self.assertEqual(r["probe_details"][0]["no_data"], "invalid result has no answering hop")
+            self.assertEqual(r["verdict"], "INCONCLUSIVE")
+        d = one_probe(in_target_valid, [GW, SILENT], probe_asn=T)["probe_details"][0]   # gateway answered
+        self.assertEqual(d["verdict"], "SECURE (Target Filtered)")
+        self.assertTrue(d["empty_invalid_path"])
+
+    def test_measurement_id_must_be_a_plain_token(self):
+        with self.assertRaises(ValueError):
+            gv.save_raw(gv.Paths("unused"), {"id": "../../atlas/x"})
+        with self.assertRaises(ValueError):
+            gv.load_raw(gv.Paths("unused"), "../x")
+
     def test_finished_invalid_result_without_hops_is_no_data(self):
         d = one_probe(VALID_VIA_T, [])["probe_details"][0]
         self.assertEqual(d["verdict"], "INCONCLUSIVE (Probe Down)")
@@ -342,8 +359,9 @@ class FakeClient:
 
     RateLimited = gp.RateLimited
 
-    def __init__(self, remaining=250, header_remaining=None, fail_after=None):
+    def __init__(self, remaining=250, header_remaining=None, fail_after=None, valid_reaches=True, timeout_on=None):
         self.remaining, self.header_remaining, self.fail_after = remaining, header_remaining, fail_after
+        self.valid_reaches, self.timeout_on, self.calls = valid_reaches, timeout_on, 0
         self.posts, self.store, self.limit_calls = [], {}, 0
 
     def load_token(self):
@@ -357,13 +375,16 @@ class FakeClient:
         return gp.Limits("ip", 250, self.remaining, 0)
 
     def create_measurement(self, target, locations, mtype="mtr", options=None, token=None):
+        self.calls += 1
+        if self.timeout_on == self.calls - 1:
+            raise gp.requests.Timeout("read timed out")
         if self.fail_after is not None and len(self.posts) >= self.fail_after:
             raise gp.RateLimited("too many")
         mid = f"M{len(self.posts)}"
         if isinstance(locations, str):
             entries = [(r["probe"], result([GW, hop("60.234.8.50", [11]), SILENT])) for r in self.store[locations]["results"]]
         else:
-            entries = [(probe(loc["asn"]), result([GW, hop("60.234.8.50", [11]), H_DST_V]))
+            entries = [(probe(loc["asn"]), result([GW, hop("60.234.8.50", [11]), H_DST_V if self.valid_reaches else SILENT]))
                        for loc in locations for _ in range(loc["limit"])]
         self.store[mid] = measurement(mid, target, entries, created=now_iso().replace("+00:00", "Z"))
         self.posts.append((target, locations))
@@ -441,6 +462,21 @@ class TestRun(unittest.TestCase):
         self.assertEqual(self.run_it(client), 0)
         self.assertEqual(self.results(), ["as_11.json"])
         self.assertEqual(gv.spent_today(self.paths), 6)
+
+    def test_no_invalid_test_when_no_probe_reached_the_valid_beacon(self):
+        client = FakeClient(valid_reaches=False)
+        self.run_it(client, "--asns", "11")
+        self.assertEqual([p[0] for p in client.posts], [VALID])
+        self.assertEqual(gv.spent_today(self.paths), 3)
+        again = FakeClient()
+        self.run_it(again)                                                  # AS11 is not held back as fresh
+        self.assertEqual(again.posts[0][1], [{"asn": 11, "limit": 3}])
+
+    def test_network_error_skips_the_target_and_counts_a_timed_out_post(self):
+        client = FakeClient(timeout_on=0)
+        self.run_it(client)
+        self.assertEqual(self.results(), ["as_12.json", "as_13.json"])
+        self.assertEqual(gv.spent_today(self.paths), 3 + 12)
 
     def test_dry_run_creates_nothing(self):
         client = FakeClient()
@@ -555,6 +591,8 @@ class TestCompare(unittest.TestCase):
                 {"asn": 4, "timestamp": t0.isoformat(), "verdict": "INCONCLUSIVE"},
                 {"asn": 4, "timestamp": (t0 + timedelta(hours=24)).isoformat(), "verdict": "VULNERABLE"}]
         self.assertEqual(report.repeatability(runs), (2, 1))
+        runs[3]["verdict_origin_adjusted"] = "SECURE (Verified Active)"
+        self.assertEqual(report.repeatability(runs, "verdict_origin_adjusted"), (2, 2))
 
     def test_report_lists_disagreements_with_both_measurement_ids(self):
         g = one_probe(VALID_VIA_T, [GW, H_C, H_T, H_T2, H_U, H_EDGE, H_DST_I])
