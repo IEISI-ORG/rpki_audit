@@ -44,6 +44,7 @@ jobs:
         python3 tests/test_fetch_fallback.py
         python3 tests/test_apnic_timeseries.py
         python3 tests/test_batch_targets.py
+        python3 tests/test_roa_signing_trends.py
         python3 tests/test_beacon_baseline.py
         python3 tests/test_atlas_harvest.py
         python3 tests/test_harvest_analysis.py

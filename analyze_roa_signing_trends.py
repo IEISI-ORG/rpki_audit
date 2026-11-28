@@ -23,6 +23,32 @@ def months_ago(dt: datetime.date, months: int) -> datetime.date:
     return dt.replace(year=year, month=month, day=day)
 
 
+def has_data(snapshot: dict) -> bool:
+    """True when a snapshot has country rows (a failed APNIC fetch returns {} or {'date': None})."""
+    return any(k != 'date' for k in snapshot)
+
+
+def reported_date(snapshot: dict) -> str:
+    """APNIC's reported date for a snapshot; 'no data' when the fetch got no rows."""
+    return snapshot.get('date') or ('unknown date' if has_data(snapshot) else 'no data')
+
+
+def world_line(label: str, snapshot: dict, rollup: dict) -> str:
+    """One row of the global trend table; a missing snapshot reads 'n/a', not 0.0%."""
+    world_valid = sum(t['valid'] for t in rollup.values())
+    world_total = sum(t['total'] for t in rollup.values())
+    if not has_data(snapshot) or not world_total:
+        return f"{label:<8} | {reported_date(snapshot):<14} | {'n/a':>7} | {'n/a':>10}"
+    return (f"{label:<8} | {reported_date(snapshot):<14} | {world_valid / world_total * 100:>6.1f}% | "
+            f"{world_total:>10,}")
+
+
+def rir_cell(rollup: dict, rir: str) -> str:
+    """One RIR trend cell; 'n/a' when that snapshot has no rows for the RIR."""
+    t = rollup.get(rir)
+    return f"{t['valid_pct']:>6.1f}%" if t and t['total'] else f"{'n/a':>7}"
+
+
 def fetch_all_snapshots() -> dict:
     """Returns {label: {cc: {...}}} for each entry in LOOKBACKS."""
     today = datetime.date.today()
@@ -33,8 +59,8 @@ def fetch_all_snapshots() -> dict:
             data = rov_utils.fetch_apnic_roa_by_country(None)
         else:
             data = rov_utils.fetch_apnic_roa_by_country(months_ago(today, months))
-        print(f"    - {label:<5} (reported date {data.get('date', '?')}): "
-              f"{len(data) - 1} countries/regions")
+        n = sum(1 for k in data if k != 'date')
+        print(f"    - {label:<5} (reported date {reported_date(data)}): {n} countries/regions")
         snapshots[label] = data
     return snapshots
 
@@ -96,11 +122,7 @@ def analyze() -> None:
         print(f"{'Period':<8} | {'Reported Date':<14} | {'% Valid':<8} | {'Total Route Objects'}")
         print("-" * 60)
         for label in labels:
-            snap = snapshots[label]
-            world_valid = sum(t['valid'] for t in rollups[label].values())
-            world_total = sum(t['total'] for t in rollups[label].values())
-            world_pct = (world_valid / world_total * 100) if world_total else 0.0
-            print(f"{label:<8} | {snap.get('date', '?'):<14} | {world_pct:>6.1f}% | {world_total:>10,}")
+            print(world_line(label, snapshots[label], rollups[label]))
 
     print("\nNOTE: IPv4 and IPv6 are reported separately because they are measured\n"
           "separately by APNIC and can diverge significantly per network — do not\n"
@@ -115,7 +137,7 @@ def analyze() -> None:
     print("-" * len(header))
     for rir in all_rirs:
         row = f"{rir:<10} | {asn_count_by_rir.get(rir, 0):<10,} | "
-        row += " | ".join(f"{rir_rollups[lbl].get(rir, {}).get('valid_pct', 0):>6.1f}%" for lbl in labels)
+        row += " | ".join(rir_cell(rir_rollups[lbl], rir) for lbl in labels)
         print(row)
 
     print_header("RIR ROA COVERAGE TREND (IPv6 Route Objects, % Valid, weighted by route-object count)")
@@ -123,13 +145,18 @@ def analyze() -> None:
     print("-" * len(header))
     for rir in all_rirs:
         row = f"{rir:<10} | {asn_count_by_rir.get(rir, 0):<10,} | "
-        row += " | ".join(f"{rir_rollups_v6[lbl].get(rir, {}).get('valid_pct', 0):>6.1f}%" for lbl in labels)
+        row += " | ".join(rir_cell(rir_rollups_v6[lbl], rir) for lbl in labels)
         print(row)
 
     # ------------------------------------------------------------------
     # SECTION 3: Per-country deltas — symmetric improvers/decliners
     # ------------------------------------------------------------------
     now_snap = snapshots["Now"]
+    if not has_data(now_snap):
+        # Without the current snapshot there are no per-country deltas; keep the last CSV.
+        print("\n[!] No current APNIC snapshot: per-country deltas skipped, "
+              "roa_signing_trends.csv left unchanged.")
+        return
     rows = []
     for cc, row in now_snap.items():
         if cc == 'date' or not cc_to_rir.get(cc):
@@ -188,12 +215,12 @@ def analyze() -> None:
         print("IPv4:")
         for label in labels:
             pct = r['valid_pct_now'] if label == 'Now' else r.get(f'valid_pct_{label}')
-            print(f"  {label:<5}: {pct:.1f}% of IPv4 route objects covered by a valid ROA" if pct is not None
+            print(f"  {label:<5}: {pct:.1f}% of IPv4 route objects covered by a valid ROA" if pd.notna(pct)
                   else f"  {label:<5}: no data")
         print("IPv6:")
         for label in labels:
             pct = r['valid_pct_now_v6'] if label == 'Now' else r.get(f'valid_pct_{label}_v6')
-            print(f"  {label:<5}: {pct:.1f}% of IPv6 route objects covered by a valid ROA" if pct is not None
+            print(f"  {label:<5}: {pct:.1f}% of IPv6 route objects covered by a valid ROA" if pd.notna(pct)
                   else f"  {label:<5}: no data")
     else:
         print("[!] No data available for CN.")
