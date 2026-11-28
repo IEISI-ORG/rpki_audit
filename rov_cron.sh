@@ -27,11 +27,11 @@
 #   20 3 * * * /home/terry/rpki_audit/rov_cron.sh globalping >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 # Modes:
-#   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
+#   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~1.5-3 h; waits for each probe's results)
 #   reports  — run do_reports (audit + analysis + HTML generation)
 #   full     — do_data_gathering + atlas + reports (weekly heavyweight run)
 #   commit   — git commit changed report outputs, then push to origin (weekly, Sunday)
-#   harvest  — atlas_harvest.py --max 500 (daily; waits for atlas/full/reports; 4 GB limit)
+#   harvest  — atlas_harvest.py --max 500 (daily; waits for atlas/full, not reports; 4 GB limit)
 #   ixp      — fetch_ixp_data.py: PeeringDB + IX-F exports (monthly; waits for the others; 2 GB limit)
 #   globalping — globalping_verify.py: shadow-mode ROV test from Globalping probes, at most 200
 #              tests a night, then the comparison with Atlas (not Sundays; waits for atlas/full;
@@ -269,6 +269,9 @@ case "$MODE" in
         trap release_lock EXIT
         log "[full] === Weekly full pipeline start ==="
         run_data_gathering
+        # The 02:00 atlas batch can still be running (it waits for every probe since
+        # 2026-11-28); running both would test the same stale targets twice.
+        wait_for_lock atlas
         run_atlas
         run_reports
         log "[full] === Weekly full pipeline complete ==="
@@ -286,7 +289,8 @@ case "$MODE" in
         trap release_lock EXIT
         wait_for_lock atlas
         wait_for_lock full
-        wait_for_lock reports
+        # Not waiting for reports: reports waits for harvest, so waiting both ways
+        # deadlocked the two until the 6 h timeout when atlas ran past 06:00 (22 Nov 2026).
         run_harvest
         ;;
     ixp)
@@ -313,7 +317,7 @@ case "$MODE" in
     *)
         echo "Usage: $0 {atlas|reports|full|commit|harvest|ixp|globalping}"
         echo ""
-        echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
+        echo "  atlas    — RIPE Atlas forensic batch (nightly, ~1.5-3 h)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
         echo "  full     — Topology rebuild + atlas + reports (weekly, ~2-3 hr)"
         echo "  commit   — Commit changed report outputs and push (weekly, Sunday)"

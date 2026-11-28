@@ -333,23 +333,30 @@ Each probe produces one of **10 verdicts** based on the traceroute paths to
 | `INCONCLUSIVE (Target Boundary)` | Invalid trace stopped inside the target and the next AS isn't the beacon origin: the target or that AS dropped it | skip |
 
 **`SECURE (Upstream Filtered)` is treated as non-ROV** for the target: the invalid trace
-passed through the target into the next AS, so the target forwarded it.
+passed through the target into the next AS, so the target forwarded it. This is recorded
+in both `load_atlas_verdicts` (maps to `vulnerable`) and in `non_rov_hops`.
 
 **Stop rules (Terry, 2026-11-28).** A trace that stops *inside* the target shows only that
-the packet got there. It reads `SECURE (Target Filtered)` when the next AS on the valid
+the packet got there. It used to read `SECURE (Upstream Filtered)`, which counted against
+the target. It now reads `SECURE (Target Filtered)` when the next AS on the valid
 path is the beacon origin (`BEACON_ORIGIN_ASNS`: Cloudflare 13335, RIS 12654), which
 doesn't filter its own prefix; otherwise `INCONCLUSIVE (Target Boundary)`. An empty
 invalid path is `INCONCLUSIVE (No Invalid Path)`. Before this, `run_forensic_test`
 fetched results after a fixed 60 s, so slow invalid traces were stored empty and read as
 Target Filtered (16 of 20 fresh SECURE results on 2026-11-28, e.g. AS11426 msm 244803033
 probe 10312: 73 s trace, stored `[]`). `wait_for_results` now waits until every scheduled
-probe has reported, Atlas stops the measurement, or 330 s pass. Results stored before the
+probe has reported, Atlas stops the measurement (status id >= 4), every probe that
+reported anywhere has reported in all four measurements (from 90 s on), or 330 s pass;
+fetches have a 30 s timeout and a failed fetch keeps the results already received. The
+nightly batch runs longer (~1.5–3 h), so `harvest` no longer waits for `reports` (the two
+deadlocked until the 6 h timeout on 22 Nov) and `full` waits for the 02:00 `atlas` run. Results stored before the
 fix weren't re-fetched (Terry's choice) and age out under the 7-day TTL. The `172.` hop
-fix of the same day adds AS13335 to paths that end at a Cloudflare 172.64.0.0/13 edge hop. This is recorded in both
-`load_atlas_verdicts` (maps to `vulnerable`) and in `non_rov_hops`.
+fix of the same day adds AS13335 to paths that end at a Cloudflare 172.64.0.0/13 edge hop.
 
 ### `non_rov_hops` — global non-ROV evidence
-Every ASN in `path_i` forwarded the invalid prefix and is confirmed non-ROV at that hop.
+Every ASN in `path_i` forwarded the invalid prefix and is confirmed non-ROV at that hop,
+except the target when the trace stopped inside it (since 2026-11-28; it may be where the
+packet was dropped). The last AS of other silent traces is still counted (TODO.md).
 These are aggregated across all probes in `analyze_results()` and stored as
 `non_rov_hops: [int]` in the result file. Over time, running Atlas tests across many
 targets builds a map of ASNs confirmed to be forwarding RPKI-invalid prefixes.

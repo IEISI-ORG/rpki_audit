@@ -6,7 +6,7 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 
 | Time | Mode | Purpose | Typical runtime |
 |---|---|---|---|
-| Nightly, 02:00 | `atlas` | RIPE Atlas forensic batch (50 targets) | ~50 min |
+| Nightly, 02:00 | `atlas` | RIPE Atlas forensic batch (50 targets) | ~1.5–3 h (waits for each probe's results since 2026-11-28; was ~1.5 h) |
 | Daily, 06:00 | `reports` | Audit + analysis + HTML/MD reports (cached topology) | up to 3 hr (timeout) |
 | Weekly, Sunday 03:00 | `full` | Topology rebuild + atlas + reports | up to 6 hr (timeout) |
 | Weekly, Sunday 08:00 | `commit` | Commit and push changed report outputs | seconds (after waiting for `full`/`reports`) |
@@ -44,7 +44,7 @@ Runs `globalping_verify.py --budget 200`, then `globalping_verify.py --compare`.
 20 3 * * * ${HOME}/rpki_audit/rov_cron.sh globalping >> ${HOME}/rpki_audit/logs/cron.log 2>&1
 ```
 
-- 03:20 sits after `atlas` (02:00, ~50 min) and before `harvest` (04:30). The mode waits for the `atlas` and `full` locks, and exits at once on Sundays, when `full` runs from 03:00.
+- 03:20 is nominally after `atlas` (02:00) and before `harvest` (04:30); `atlas` can now run past 04:30. The mode waits for the `atlas` and `full` locks, and exits at once on Sundays, when `full` runs from 03:00.
 - The anonymous Globalping allowance is 250 tests an hour per source IP, shared with `~/pacific-peering` (Wednesdays about 01:40). The script calls `GET /v1/limits` first and does nothing when fewer tests remain than its budget.
 - Runs under `ulimit -v 2000000`. Output goes to `logs/globalping.log`.
 
