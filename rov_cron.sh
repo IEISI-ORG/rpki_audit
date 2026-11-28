@@ -22,6 +22,10 @@
 #   # IXP data (PeeringDB + IX-F member exports): monthly, 1st at 05:15
 #   15 5 1 * * /home/terry/rpki_audit/rov_cron.sh ixp >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
+#   # Globalping shadow run (NOT in verdicts): daily 03:20, skips Sundays itself.
+#   # Intended line, not installed yet (awaiting Terry's go-ahead, 2026-11-28):
+#   20 3 * * * /home/terry/rpki_audit/rov_cron.sh globalping >> /home/terry/rpki_audit/logs/cron.log 2>&1
+#
 # Modes:
 #   atlas    — run batch_verify_smart_v4.py (50 Atlas targets, ~50 min)
 #   reports  — run do_reports (audit + analysis + HTML generation)
@@ -29,6 +33,9 @@
 #   commit   — git commit changed report outputs, then push to origin (weekly, Sunday)
 #   harvest  — atlas_harvest.py --max 500 (daily; waits for atlas/full/reports; 4 GB limit)
 #   ixp      — fetch_ixp_data.py: PeeringDB + IX-F exports (monthly; waits for the others; 2 GB limit)
+#   globalping — globalping_verify.py: shadow-mode ROV test from Globalping probes, at most 200
+#              tests a night, then the comparison with Atlas (not Sundays; waits for atlas/full;
+#              2 GB limit). Results stay in data/globalping/ and are not used in verdicts.
 #
 # Lock files prevent overlapping runs of the same mode.
 # ============================================================
@@ -121,6 +128,24 @@ run_ixp() {
     cd "$SCRIPT_DIR"
     ( ulimit -v 2000000; $PYTHON fetch_ixp_data.py ) >> "$LOG_DIR/ixp.log" 2>&1 || log "[ixp] refresh failed"
     log "[ixp] Done."
+}
+
+# -----------------------------------------------------------
+# Stage: Globalping shadow run (results are NOT used in verdicts; see CLAUDE.md).
+# At most 200 tests a night against the anonymous allowance of 250 an hour per IP, which
+# pacific-peering shares (Wednesdays about 01:40). The script checks GET /v1/limits first
+# and does nothing when less than its budget remains. Light: network-bound apart from the
+# iptoasn table (~0.25 GB), capped with ulimit -v like harvest.
+# -----------------------------------------------------------
+run_globalping() {
+    log "[globalping] Starting Globalping shadow run (budget 200 tests)..."
+    cd "$SCRIPT_DIR"
+    ( ulimit -v 2000000; $PYTHON globalping_verify.py --budget 200 ) >> "$LOG_DIR/globalping.log" 2>&1 \
+        || log "[globalping] run failed"
+    # Agreement with same-week Atlas results -> reports/globalping_vs_atlas.md (no requests)
+    ( ulimit -v 2000000; $PYTHON globalping_verify.py --compare ) >> "$LOG_DIR/globalping.log" 2>&1 \
+        || log "[globalping] comparison failed"
+    log "[globalping] Done."
 }
 
 # -----------------------------------------------------------
@@ -273,8 +298,20 @@ case "$MODE" in
         wait_for_lock reports
         run_ixp
         ;;
+    globalping)
+        # Sunday belongs to the weekly full pipeline (03:00, up to 6 hours).
+        if [ "$(date +%u)" -eq 7 ]; then
+            log "[globalping] Sunday: skipped."
+            exit 0
+        fi
+        acquire_lock globalping
+        trap release_lock EXIT
+        wait_for_lock atlas
+        wait_for_lock full
+        run_globalping
+        ;;
     *)
-        echo "Usage: $0 {atlas|reports|full|commit|harvest|ixp}"
+        echo "Usage: $0 {atlas|reports|full|commit|harvest|ixp|globalping}"
         echo ""
         echo "  atlas    — RIPE Atlas forensic batch (nightly, ~50 min)"
         echo "  reports  — Audit + analysis + HTML reports (daily, ~30 min)"
@@ -282,6 +319,7 @@ case "$MODE" in
         echo "  commit   — Commit changed report outputs and push (weekly, Sunday)"
         echo "  harvest  — Public Atlas beacon measurements, max 500 (daily)"
         echo "  ixp      — PeeringDB + IX-F exports for IXP ASNs (monthly)"
+        echo "  globalping — Globalping shadow run, max 200 tests (daily, not Sundays; not in verdicts)"
         exit 1
         ;;
 esac

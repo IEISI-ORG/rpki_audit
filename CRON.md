@@ -10,6 +10,7 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 | Daily, 06:00 | `reports` | Audit + analysis + HTML/MD reports (cached topology) | up to 3 hr (timeout) |
 | Weekly, Sunday 03:00 | `full` | Topology rebuild + atlas + reports | up to 6 hr (timeout) |
 | Weekly, Sunday 08:00 | `commit` | Commit and push changed report outputs | seconds (after waiting for `full`/`reports`) |
+| Daily except Sunday, 03:20 (**not installed yet**) | `globalping` | Globalping shadow run, at most 200 tests; not used in verdicts | ~15 min |
 
 Live crontab (`crontab -l`):
 
@@ -35,6 +36,17 @@ Weekly heavyweight run: `do_data_gathering` (downloads RIB dumps, runs the Go ex
 Weekly scoped commit of changed report outputs, then a push to `origin` so the public reports cited on ieisi.org/citations stay current. It first waits (up to 6 hr each) for any running `full` or `reports` job to release its lock, so it never snapshots a half-written `reports/` directory. The push only happens when the branch is ahead of `origin`; a failed push (diverged history, auth) is logged and left for a manual push. Stages only already-tracked files under `reports/`, root-level CSVs, and top-level `data/*.json` (`asn_meta.json`, `downstream_graph.json`, `cc_to_rir.json`) via `git add -u -- reports/ '*.csv' ':(glob)data/*.json'`, so it can never sweep in unrelated untracked files (secrets, scratch scripts, etc.). Exits cleanly with no commit if nothing changed.
 
 Also rotates `logs/cron.log` first, via copytruncate (`cp` + in-place truncate, not `mv`) — see [Logging](#logging).
+
+### `globalping` (not installed; awaiting Terry's go-ahead, 2026-11-28)
+Runs `globalping_verify.py --budget 200`, then `globalping_verify.py --compare`. Shadow mode: results go to `data/globalping/` and `reports/globalping_vs_atlas.md` and are **not used in verdicts**. Intended crontab line:
+
+```
+20 3 * * * ${HOME}/rpki_audit/rov_cron.sh globalping >> ${HOME}/rpki_audit/logs/cron.log 2>&1
+```
+
+- 03:20 sits after `atlas` (02:00, ~50 min) and before `harvest` (04:30). The mode waits for the `atlas` and `full` locks, and exits at once on Sundays, when `full` runs from 03:00.
+- The anonymous Globalping allowance is 250 tests an hour per source IP, shared with `~/pacific-peering` (Wednesdays about 01:40). The script calls `GET /v1/limits` first and does nothing when fewer tests remain than its budget.
+- Runs under `ulimit -v 2000000`. Output goes to `logs/globalping.log`.
 
 ## Locking
 
