@@ -279,12 +279,11 @@ def write_report(cc: str, meta: dict, rows: list[dict], summary: list[dict]) -> 
                 c[r[pair]] += 1
             lines.append(f"- {pair}: " + ", ".join(f"{k} {v}" for k, v in sorted(c.items())))
         lines += ["", "| AS | name | probes | cf reach invalid | ris reach invalid | ris stop ASNs | "
-                  "verdict | APNIC | ROVista |", "|---|---|---|---|---|---|---|---|---|"]
+                  "verdict | APNIC |", "|---|---|---|---|---|---|---|---|"]
         for s in [s for s in summary if s["af"] == af]:
             lines.append(f"| {s['asn']} | {str(col(s['asn'], 'name'))[:28]} | {s['probes']} | "
                          f"{s['cf_reach_invalid']} | {s['ris_reach_invalid']} | {s['ris_stop_asns']} | "
-                         f"{col(s['asn'], 'verdict')} | {col(s['asn'], 'apnic_score')} | "
-                         f"{col(s['asn'], 'rovista_score')} |")
+                         f"{col(s['asn'], 'verdict')} | {col(s['asn'], 'apnic_score')} |")
         lines.append("")
     path = os.path.join("reports", f"{cc.lower()}_beacon_baseline.md")
     with open(path, "w") as f:

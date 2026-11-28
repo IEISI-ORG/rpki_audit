@@ -25,7 +25,6 @@ FIELDS = (
     + ["REGRESSED", "INCONSISTENT"]
     + [f"decided_{r}" for r in RUNGS]
     + ["v6_rows"] + [f"v6_{c}" for c in CLASSES]
-    + ["rovista_fresh"]
 )
 
 
@@ -52,7 +51,6 @@ def count_verdicts(rows: list[dict]) -> dict:
     rungs = Counter(r.get("decided_by", "") for r in rows)
     v6 = [r["v6_verdict"] for r in rows if r.get("v6_verdict")]
     v6_classes = Counter(rov_utils.classify_verdict(v) for v in v6)
-    rovista = sum(1 for r in rows if r.get("rovista_score", "-1") not in ("", "-1", "-1.0"))
 
     counts = {"rows": len(rows)}
     counts.update({c: classes.get(c, 0) for c in CLASSES})
@@ -61,7 +59,6 @@ def count_verdicts(rows: list[dict]) -> dict:
     counts.update({f"decided_{r}": rungs.get(r, 0) for r in RUNGS})
     counts["v6_rows"] = len(v6)
     counts.update({f"v6_{c}": v6_classes.get(c, 0) for c in CLASSES})
-    counts["rovista_fresh"] = rovista
     return counts
 
 

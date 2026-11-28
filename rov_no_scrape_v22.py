@@ -30,7 +30,6 @@ def analyze():
     meta, countries = rov_utils.load_metadata()
     rov_utils.sync_apnic_data(countries)
     rov_set, cf_set, apnic_map = rov_utils.load_security_status()
-    rovista_map = rov_utils.sync_rovista()
     atlas_secure, atlas_vulnerable, atlas_raw, atlas_stale = rov_utils.load_atlas_verdicts()
     ts_map = rov_utils.sync_apnic_timeseries(apnic_map, meta)
     
@@ -51,12 +50,8 @@ def analyze():
     # All active/known ASNs
     all_asns = set(meta.keys()) | set(cones.keys()) | set(upstreams.keys())
     
-    # Measurement evidence from APNIC; ROVista only if rov_utils.ROVISTA_IN_VERDICTS
-    # (off since 2026-10-14, see the ROVista section in CLAUDE.md).
-    evidence = {
-        asn: rov_utils.verdict_evidence(apnic_map.get(asn, -1), rovista_map.get(asn, -1))
-        for asn in all_asns
-    }
+    # Measurement evidence from APNIC (ROVista was removed on 2026-11-28).
+    evidence = {asn: rov_utils.verdict_evidence(apnic_map.get(asn, -1)) for asn in all_asns}
 
     # One ladder decides whether each network filters (rov_utils.filtering_status, 2026-10-15):
     # policy > Atlas > measurement > declared (tag, isbgpsafeyet) > unknown. Customers' dirty-feed
@@ -76,7 +71,6 @@ def analyze():
         cone = cones.get(asn, 0)
         parents = list(upstreams.get(asn, []))
         score = apnic_map.get(asn, -1)
-        rovista_score = rovista_map.get(asn, -1)
         ts = ts_map.get(asn)
         apnic_stdev, apnic_min90, apnic_max90, volatile, regression = (ts[0], ts[1], ts[2], ts[3], ts[4]) if ts else (-1.0, -1.0, -1.0, False, False)
 
@@ -84,9 +78,9 @@ def analyze():
         atlas_v = atlas_raw.get(asn, "")
         st, decided_by = status[asn]
         ctx = dict(safe_asns=safe_asns, cone=cone, volatile=volatile, atlas_v=atlas_v,
-                   in_bgp=asn in bgp_asns, evidence=evidence[asn], status=st, decided_by=decided_by,
+                   in_bgp=asn in bgp_asns, status=st, decided_by=decided_by,
                    regression=regression, rov_set=rov_set, cf_set=cf_set, atlas_secure=atlas_secure)
-        # assign_verdict, then STUB: FORTUITOUS ROV, DISPUTED, and last REGRESSED / INCONSISTENT
+        # assign_verdict, then STUB: FORTUITOUS ROV, and last REGRESSED / INCONSISTENT
         # from the evidence ladder (a tag shields from neither); see rov_utils.audit_verdict.
         verdict, dirty_feeds = rov_utils.audit_verdict(asn, parents, **ctx)
         if asn in v6_asns:
@@ -98,7 +92,7 @@ def analyze():
 
         results.append({
             'asn': asn, 'name': name, 'cc': cc, 'cone': cone,
-            'verdict': verdict, 'decided_by': decided_by, 'apnic_score': score, 'rovista_score': rovista_score,
+            'verdict': verdict, 'decided_by': decided_by, 'apnic_score': score,
             'dirty_feeds': dirty_feeds, 'total_feeds': total_feeds,
             'atlas_result': atlas_v or '', 
             'apnic_stdev': apnic_stdev, 'apnic_min90': apnic_min90, 'apnic_max90': apnic_max90,

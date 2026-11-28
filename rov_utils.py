@@ -10,7 +10,6 @@ import re
 import concurrent.futures
 import pycountry
 from collections import defaultdict, Counter
-from datetime import date, timedelta
 from io import StringIO, BytesIO
 
 # --- SHARED CONFIGURATION ---
@@ -34,23 +33,10 @@ DIR_APNIC_ROA_HISTORY = "data/apnic/roa_history"
 DIR_BGPTOOLS_CACHE = "data/bgptools"
 FILE_ASPA_REAL_CACHE = "data/aspa_real.json"
 DIR_TAGS = "data/tags"
-# ROVista (https://rovista.netsecurelab.org): per-AS ROV score from an IP-ID side
-# channel on hosts inside the AS.  Like APNIC it measures whether traffic from the
-# AS reaches RPKI-invalid prefixes, so upstream filtering also counts as filtering.
-DIR_ROVISTA = "data/rovista"
-FILE_ROVISTA = os.path.join(DIR_ROVISTA, "overview.json")
-URL_ROVISTA_OVERVIEW = "https://api.rovista.netsecurelab.org/rovista/api/overview?count=100000"
-ROVISTA_TTL_DAYS = 7          # rows whose lastUpdatedDate is older are discarded
-ROVISTA_REFRESH_SECS = 86400  # measures most days (gaps: 53 days Jun-Aug 2026); ~6MB fetch
-# Newest measurement this old: stop relying on ROVista (Terry, 2026-10-22). The sync warns; removal is manual.
-ROVISTA_ABANDON_DAYS = 30
-# Thresholds shared by APNIC and ROVista scores (0-100).
+# APNIC score thresholds (0-100) for the measurement rung of filtering_status.
+# ROVista was removed on 2026-11-28 (no measurement since 2026-10-09; see TODO.md).
 MEASURE_FILTERING_MIN = 95.0
 MEASURE_NOT_FILTERING_MAX = 30.0
-# ROVista is informational only: checked against on-path Atlas results (<= 90 days, 2026-10-14)
-# its 100% readings were right for 6 of 34 ASes (APNIC: 73 of 74 readings right). Verdicts use
-# APNIC alone; rovista_score stays in the audit CSV. True restores the equal-weight rule.
-ROVISTA_IN_VERDICTS = False
 FILE_CC_TO_RIR = "data/cc_to_rir.json"
 DIR_RRC = "output"          # parent dir; each collector writes to output/rrcNN/
 FILE_RELATIONSHIPS = "output/relationships.csv"   # legacy single-collector path
@@ -295,8 +281,7 @@ HARDCODED_SECURE: set[int] = {13335, 14789}
 
 def ensure_dirs():
     """Ensure all required data directories exist."""
-    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS, DIR_BGPTOOLS_CACHE,
-              DIR_ROVISTA]:
+    for d in [DIR_DATA, DIR_PARSED, DIR_APNIC, DIR_ATLAS, DIR_APNIC_TS, DIR_TAGS, DIR_BGPTOOLS_CACHE]:
         os.makedirs(d, exist_ok=True)
 
 
@@ -921,111 +906,6 @@ def fetch_real_aspa_deployment() -> dict:
 
     return result
 
-def parse_rovista_overview(payload: dict, today: date) -> dict[int, float]:
-    """Map ASN -> ROVista score (0-100), keeping rows updated within ROVISTA_TTL_DAYS.
-
-    About 9,600 ASes were last measured in 2024-2025 and are still listed;
-    the TTL drops them.
-    """
-    cutoff = (today - timedelta(days=ROVISTA_TTL_DAYS)).isoformat()
-    rows = payload.get("data") if isinstance(payload, dict) else None
-    if not isinstance(rows, list):
-        return {}
-    scores = {}
-    for r in rows:
-        try:
-            updated = r["lastUpdatedDate"]
-            if isinstance(updated, str) and updated >= cutoff:
-                scores[int(r["asn"])] = float(r["ratio"]) * 100.0
-        except (TypeError, ValueError, KeyError):
-            continue  # skip a malformed row, keep the rest
-    return scores
-
-
-def rovista_newest_date(payload) -> date | None:
-    """lastUpdatedDate of the newest well-formed row in an overview payload, or None if none is."""
-    rows = payload.get("data") if isinstance(payload, dict) else None
-    if not isinstance(rows, list):
-        return None
-    newest = None
-    for r in rows:
-        try:
-            int(r["asn"]), float(r["ratio"])  # same row checks as parse_rovista_overview
-            d = date.fromisoformat(r["lastUpdatedDate"])
-        except (TypeError, ValueError, KeyError):
-            continue
-        if newest is None or d > newest:
-            newest = d
-    return newest
-
-
-def sync_rovista(cache_path: str = FILE_ROVISTA, today: date | None = None,
-                 force: bool = False) -> dict[int, float]:
-    """Fetch the ROVista overview (one bulk call), falling back to the cached copy."""
-    today = today or date.today()
-    fresh = (os.path.exists(cache_path)
-             and time.time() - os.path.getmtime(cache_path) < ROVISTA_REFRESH_SECS)
-    scores = None
-    newest = None
-    if force or not fresh:
-        print("    - Fetching ROVista overview...", end=" ", flush=True)
-        try:
-            resp = requests.get(URL_ROVISTA_OVERVIEW, headers=HEADERS, timeout=120)
-            resp.raise_for_status()
-            payload = resp.json()
-            scores = parse_rovista_overview(payload, today)
-            newest = rovista_newest_date(payload)
-            if not scores and newest is None:
-                # Parsed before caching, so a bad response never replaces a good copy.
-                raise ValueError("response has no usable rows")
-        except (requests.RequestException, ValueError) as e:
-            print(f"FAIL ({e})")
-            scores = None
-        else:
-            if not scores:
-                # Well-formed, but ROVista hasn't measured lately: not a failure. Not cached
-                # (a regressed API mustn't replace fresher rows) and no fallback (the cache
-                # is no newer than what the API serves).
-                print(f"API OK, nothing measured in the last {ROVISTA_TTL_DAYS} days "
-                      f"(newest {newest})")
-                scores = {}
-        if scores:
-            print(f"OK ({len(payload['data']):,} ASes)")
-            try:
-                os.makedirs(os.path.dirname(cache_path), exist_ok=True)
-                tmp = cache_path + ".tmp"
-                with open(tmp, "w") as fh:
-                    json.dump(payload, fh)
-                os.replace(tmp, cache_path)  # atomic: no truncated cache after a crash
-            except OSError as e:
-                print(f"      -> could not write cache ({e})")
-    if scores is None:
-        scores = {}
-        if os.path.exists(cache_path):
-            if not fresh:
-                age_days = (time.time() - os.path.getmtime(cache_path)) / 86400
-                print(f"      -> using cached copy {cache_path} ({age_days:.1f} days old)")
-            try:
-                with open(cache_path) as fh:
-                    cached = json.load(fh)
-                scores = parse_rovista_overview(cached, today)
-                newest = rovista_newest_date(cached)
-            except (OSError, ValueError) as e:
-                print(f"      -> cached copy unreadable ({e})")
-    print(f"    - ROVista: {len(scores):,} ASes measured in the last {ROVISTA_TTL_DAYS} days")
-    if not scores:
-        # ROVista has had outages (53 days in Jun-Aug 2026).  Not fatal.
-        if ROVISTA_IN_VERDICTS:
-            print("    [!] WARNING: no fresh ROVista data — this audit is APNIC-only")
-        else:
-            print("    [!] WARNING: no fresh ROVista data — rovista_score column is empty "
-                  "(verdicts don't use it)")
-    if newest is not None and (today - newest).days >= ROVISTA_ABANDON_DAYS:
-        print(f"    [!] WARNING: ROVista's newest measurement is {newest}, "
-              f"{(today - newest).days} days old (limit {ROVISTA_ABANDON_DAYS}): "
-              f"stop relying on ROVista (TODO.md)")
-    return scores
-
 
 def load_security_status() -> tuple[set, set, dict]:
     """Load ROV tags, Cloudflare safe list, and APNIC scores."""
@@ -1249,7 +1129,7 @@ def classify_verdict(verdict: str) -> str:
         return "VULNERABLE"
     if any(x in v for x in ["ACTIVE", "PASSIVE", "PROTECTOR", "VOLATILE", "FORTUITOUS"]):
         return "SECURE"
-    if "PARTIAL" in v or "DISPUTED" in v:
+    if "PARTIAL" in v:
         return "PARTIAL"
     if any(x in v for x in ["VULNERABLE", "VULN"]):
         return "VULNERABLE"
@@ -1265,27 +1145,13 @@ def _measurement_reading(score: float) -> str:
     return "NONE"
 
 
-def measurement_evidence(apnic: float, rovista: float) -> str:
-    """Combine APNIC and ROVista scores (0-100, -1 = no data), weighted equally.
+def verdict_evidence(apnic: float) -> str:
+    """Measurement evidence from the APNIC score (0-100, -1 = no data).
 
-    Returns FILTERING, NOT_FILTERING, NONE (no data or only mid-range readings),
-    or DISPUTED when one says filtering and the other says not filtering.
+    FILTERING (>= MEASURE_FILTERING_MIN), NOT_FILTERING (< MEASURE_NOT_FILTERING_MAX), or NONE
+    (no data or a mid-range reading).
     """
-    readings = {_measurement_reading(apnic), _measurement_reading(rovista)} - {"NONE"}
-    if len(readings) == 2:
-        return "DISPUTED"
-    return readings.pop() if readings else "NONE"
-
-
-def verdict_evidence(apnic: float, rovista: float) -> str:
-    """Measurement evidence the audit's verdicts use (ROVista only if ROVISTA_IN_VERDICTS)."""
-    return measurement_evidence(apnic, rovista if ROVISTA_IN_VERDICTS else -1.0)
-
-
-def verdict_score(apnic: float, rovista: float) -> float:
-    """APNIC score, or the higher of APNIC and ROVista if ROVISTA_IN_VERDICTS. The audit stopped using
-    it on 2026-10-15 (the Atlas override guard it fed was replaced by filtering_status)."""
-    return max(apnic, rovista) if ROVISTA_IN_VERDICTS else apnic
+    return _measurement_reading(apnic)
 
 
 def filtering_status(asn: int, *, atlas_secure: set, atlas_vulnerable: set, evidence: str,
@@ -1326,10 +1192,10 @@ def evidence_overrides(verdict: str, *, status: str, decided_by: str, tagged: bo
 
 
 def audit_verdict(asn: int, parents, *, safe_asns: set, cone: int, volatile: bool, atlas_v: str,
-                  in_bgp: bool, evidence: str, status: str, decided_by: str, regression: bool,
+                  in_bgp: bool, status: str, decided_by: str, regression: bool,
                   rov_set: set, cf_set: set, atlas_secure: set) -> tuple[str, int]:
     """(verdict, dirty_feeds) for one network and one provider set: assign_verdict, then
-    STUB: FORTUITOUS ROV, dispute and evidence_overrides. rov_no_scrape_v22 calls it with the main
+    STUB: FORTUITOUS ROV and evidence_overrides. rov_no_scrape_v22 calls it with the main
     graph's providers (verdict) and the IPv6 graph's (v6_verdict, 2026-10-16), so both families are
     judged the same way. A provider counts as clean when it is in safe_asns (filtering_status)."""
     parents = list(parents)
@@ -1341,25 +1207,9 @@ def audit_verdict(asn: int, parents, *, safe_asns: set, cone: int, volatile: boo
     if (verdict == "STUB: ACTIVE LOCAL ROV" and asn not in rov_set and asn not in cf_set
             and asn not in atlas_secure):
         verdict = "STUB: FORTUITOUS ROV"
-    verdict = apply_dispute(verdict, evidence, asn, atlas_v)
     verdict = evidence_overrides(verdict, status=status, decided_by=decided_by,
                                  tagged=asn in rov_set, regression=regression)
     return verdict, dirty_feeds
-
-
-def apply_dispute(verdict: str, evidence: str, asn: int, atlas_v: str = "") -> str:
-    """Replace the verdict with DISPUTED when the two measurements disagree.
-
-    Kept as is: hardcoded and Tier 1 verdicts, and any AS with a conclusive
-    Atlas result, which tests the AS directly and so breaks the tie.
-    """
-    if evidence != "DISPUTED":
-        return verdict
-    if asn in HARDCODED_SECURE or asn in TIER_1_ASNS:
-        return verdict
-    if "VULNERABLE" in atlas_v or "SECURE" in atlas_v:
-        return verdict
-    return "DISPUTED"
 
 
 def cone_quality(asn: int, downstream: dict, providers_of: dict) -> tuple[int, float, float]:

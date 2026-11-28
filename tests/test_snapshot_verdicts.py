@@ -14,13 +14,13 @@ import snapshot_verdicts as sv
 
 AUDIT_ROWS = [
     {"asn": "1", "verdict": "ACTIVE LOCAL ROV", "decided_by": "apnic",
-     "v6_verdict": "ACTIVE LOCAL ROV", "rovista_score": "100.0"},
+     "v6_verdict": "ACTIVE LOCAL ROV"},
     {"asn": "2", "verdict": "STUB: VULNERABLE", "decided_by": "none",
-     "v6_verdict": "", "rovista_score": "-1"},
+     "v6_verdict": ""},
     {"asn": "3", "verdict": "REGRESSED", "decided_by": "atlas",
-     "v6_verdict": "STUB: VULNERABLE", "rovista_score": "-1.0"},
+     "v6_verdict": "STUB: VULNERABLE"},
     {"asn": "4", "verdict": "NOT ROUTED", "decided_by": "none",
-     "v6_verdict": "", "rovista_score": ""},
+     "v6_verdict": ""},
 ]
 
 
@@ -32,7 +32,6 @@ class TestCountVerdicts(unittest.TestCase):
         self.assertEqual(c["REGRESSED"], 1)
         self.assertEqual((c["decided_none"], c["decided_apnic"], c["decided_atlas"]), (2, 1, 1))
         self.assertEqual((c["v6_rows"], c["v6_SECURE"], c["v6_VULNERABLE"]), (2, 1, 1))
-        self.assertEqual(c["rovista_fresh"], 1)
 
     def test_every_field_is_filled(self):
         c = sv.count_verdicts(AUDIT_ROWS)

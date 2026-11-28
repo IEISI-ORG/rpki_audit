@@ -13,7 +13,7 @@ HE, DIRTY, STUB = 6939, 64510, 64520
 
 
 def verdict(parents, *, asn=STUB, safe=frozenset({HE}), cone=0, status=("NOT_FILTERING", "none"), **kw):
-    args = dict(volatile=False, atlas_v="", in_bgp=True, evidence="none", regression=False,
+    args = dict(volatile=False, atlas_v="", in_bgp=True, regression=False,
                 rov_set=set(), cf_set=set(), atlas_secure=set())
     args.update(kw)
     return rov_utils.audit_verdict(asn, parents, safe_asns=set(safe), cone=cone, status=status[0],

@@ -7,9 +7,6 @@ import rov_utils
 import verify_forensic_path_v2 as forensic
 
 MAX_TARGETS_PER_RUN = 50
-# DISPUTED ASes (APNIC and ROVista disagree) are queued ahead of everything else:
-# a conclusive Atlas result settles them. Lower this to leave room for stale re-tests.
-DISPUTED_SLOTS = MAX_TARGETS_PER_RUN
 NO_PROBES_FILE = "no_probes.json"  # {asn: date last found without probes}
 DIR_ATLAS_V6 = os.path.join(rov_utils.DIR_ATLAS, "v6")  # outside load_atlas_verdicts' glob
 
@@ -96,12 +93,11 @@ def _priority(verdict: str, cone: int) -> float:
 
 
 def select_targets(df: pd.DataFrame, stale: set[int], is_fresh, skip: set[int],
-                   limit: int, disputed_slots: int = DISPUTED_SLOTS) -> list[int]:
+                   limit: int) -> list[int]:
     """
     Picks ASNs for re-verification, in this order:
-      1. DISPUTED, largest cone first, up to disputed_slots
-      2. Stale cached results (TTL expired)
-      3. REGRESSED or CORE: UNPROTECTED, then VULNERABLE / UNRELIABLE, then
+      1. Stale cached results (TTL expired)
+      2. REGRESSED or CORE: UNPROTECTED, then VULNERABLE / UNRELIABLE, then
          Unverified transit, each by cone size
     is_fresh(asn) is True when a result younger than ATLAS_TTL_DAYS exists;
     those ASNs and the ones in skip (no usable probes recently) are left out.
@@ -113,11 +109,6 @@ def select_targets(df: pd.DataFrame, stale: set[int], is_fresh, skip: set[int],
     def add(asn: int, cap: int) -> None:
         if len(targets) < cap and asn not in targets and asn not in skip:
             targets.append(asn)
-
-    disputed = df.assign(cone=cone)[verdicts == "DISPUTED"].sort_values('cone', ascending=False)
-    for asn in disputed['asn'].astype(int):
-        if not is_fresh(asn):
-            add(asn, min(limit, disputed_slots))
 
     for asn in sorted(stale):
         add(asn, limit)

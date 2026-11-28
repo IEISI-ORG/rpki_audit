@@ -86,5 +86,17 @@ class TestEvidenceOverrides(unittest.TestCase):
         self.assertEqual(self.override("STUB: VULNERABLE", "NOT_FILTERING", "apnic"), "STUB: VULNERABLE")
 
 
+class TestVerdictEvidence(unittest.TestCase):
+    """The measurement rung reads the APNIC score alone (ROVista removed 2026-11-28)."""
+
+    def test_thresholds(self):
+        for apnic in (-1.0, -0.5, 0.0, 0.01, 29.99, 30.0, 59.99, 60.0, 94.99, 95.0, 100.0):
+            ev = rov_utils.verdict_evidence(apnic)
+            self.assertEqual(ev == "FILTERING", apnic >= 95.0, apnic)
+            self.assertEqual(ev == "NOT_FILTERING", 0 <= apnic < 30.0, apnic)
+            if not (apnic >= 95.0 or 0 <= apnic < 30.0):
+                self.assertEqual(ev, "NONE", apnic)
+
+
 if __name__ == "__main__":
     unittest.main()
