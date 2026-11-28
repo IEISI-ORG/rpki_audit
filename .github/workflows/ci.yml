@@ -55,6 +55,7 @@ jobs:
         python3 tests/test_verdicts.py
         python3 tests/test_evidence_hierarchy.py
         python3 tests/test_forensic_hops.py
+        python3 tests/test_globalping.py
 
   go-quality:
     name: Go Build & Lint
