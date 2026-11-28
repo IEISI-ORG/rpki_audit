@@ -10,7 +10,7 @@ All scheduled automation runs through `rov_cron.sh`, a single dispatcher with fo
 | Daily, 06:00 | `reports` | Audit + analysis + HTML/MD reports (cached topology) | up to 3 hr (timeout) |
 | Weekly, Sunday 03:00 | `full` | Topology rebuild + atlas + reports | up to 6 hr (timeout) |
 | Weekly, Sunday 08:00 | `commit` | Commit and push changed report outputs | seconds (after waiting for `full`/`reports`) |
-| Daily except Sunday, 03:20 (**not installed yet**) | `globalping` | Globalping shadow run, at most 200 tests; not used in verdicts | ~15 min |
+| Daily except Sunday, 03:20 (installed 2026-11-28) | `globalping` | Globalping shadow run, at most 200 tests; not used in verdicts | ~15 min |
 
 Live crontab (`crontab -l`):
 
@@ -37,7 +37,7 @@ Weekly scoped commit of changed report outputs, then a push to `origin` so the p
 
 Also rotates `logs/cron.log` first, via copytruncate (`cp` + in-place truncate, not `mv`) — see [Logging](#logging).
 
-### `globalping` (not installed; awaiting Terry's go-ahead, 2026-11-28)
+### `globalping` (installed 2026-11-28, Terry; first run Mon 30 Nov 03:20)
 Runs `globalping_verify.py --budget 200`, then `globalping_verify.py --compare`. Shadow mode: results go to `data/globalping/` and `reports/globalping_vs_atlas.md` and are **not used in verdicts**. Intended crontab line:
 
 ```

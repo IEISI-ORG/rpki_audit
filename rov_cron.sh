@@ -23,7 +23,7 @@
 #   15 5 1 * * /home/terry/rpki_audit/rov_cron.sh ixp >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 #   # Globalping shadow run (NOT in verdicts): daily 03:20, skips Sundays itself.
-#   # Intended line, not installed yet (awaiting Terry's go-ahead, 2026-11-28):
+#   # Installed 2026-11-28 (Terry); skips Sundays, so the first run is Mon 30 Nov:
 #   20 3 * * * /home/terry/rpki_audit/rov_cron.sh globalping >> /home/terry/rpki_audit/logs/cron.log 2>&1
 #
 # Modes:

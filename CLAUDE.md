@@ -520,8 +520,8 @@ PASS / NOT YET.
 - The other three (LakeNetworks AS6517, PLDT AS9299, T-Mobile Polska AS12912) are probes inside the target reaching
   the invalid beacon where Atlas's on-path probe did not: unread at trace level.
 
-**Cron.** `rov_cron.sh globalping` (03:20 daily, skips Sundays, `ulimit -v 2000000`, peak RSS 0.28 GiB). The crontab
-line is in `CRON.md` and is not installed.
+**Cron.** `rov_cron.sh globalping` (03:20 daily, skips Sundays, `ulimit -v 2000000`, peak RSS 0.28 GiB). Installed in the
+crontab on 2026-11-28 (Terry); the first run is Mon 30 Nov 03:20. Log: `logs/globalping.log`.
 
 Tests: `tests/test_globalping.py` (synthetic MTR JSON, no network).
 
