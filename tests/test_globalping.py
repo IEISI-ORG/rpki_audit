@@ -560,11 +560,16 @@ class TestCompare(unittest.TestCase):
         g = one_probe(VALID_VIA_T, [GW, H_C, H_T, H_T2, H_U, H_EDGE, H_DST_I])
         g["timestamp"] = now_iso()
         a = {"asn": T, "verdict": "SECURE (Verified Active)", "timestamp": now_iso(1), "verdict_counts": {},
-             "measurement_ids": {"trace_valid": 111, "trace_invalid": 222}}
+             "measurement_ids": {"trace_valid": 111, "trace_invalid": 222},
+             "probe_details": [{"verdict": "SECURE (Target Filtered)", "path_i": [], "boundary_asn": T},
+                               {"verdict": "SECURE (Target Filtered)", "path_i": [C], "boundary_asn": T},
+                               {"verdict": "INCONCLUSIVE (Off-Path)", "path_i": [], "boundary_asn": None}]}
+        self.assertEqual(report.atlas_empty_invalid(a), (1, 2))
         text, summary = report.render_compare(report.build_pairs({T: g}, {T: a}), [], {T: {"name": "Target Net"}}, 1)
         self.assertIn("**Result: NOT YET**", text)
         self.assertEqual(summary["disagreements"], [T])
         for needle in ("AS100 Target Net", "trace_valid 111", "trace_invalid 222", "mtr_valid V1", "mtr_invalid I1",
+                       "empty invalid path: 1 of 2", "1 of the 2 SECURE (Target Filtered) probe readings",
                        "| eyeball | customer | 1 | 0 | 0 | 1 | 0.0% (0/1) |"):
             self.assertIn(needle, text)
 

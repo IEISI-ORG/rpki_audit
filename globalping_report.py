@@ -162,6 +162,18 @@ def atlas_adjusted(result: dict) -> str:
     return gv.aggregate_verdict(dict(Counter(gv.origin_adjusted(asn, d) for d in details)))
 
 
+def atlas_empty_invalid(result: dict) -> tuple[int, int]:
+    """(Atlas probes read SECURE (Target Filtered) with an empty stored invalid path, all such probes).
+
+    An empty invalid path makes _classify_probe name the first AS of the valid path as the
+    boundary. On 2026-11-28, 26 of 29 such probes in fresh SECURE results were stored that way,
+    and for 20 of them the invalid traceroute now on atlas.ripe.net has mapped public hops: the
+    result was fetched before the trace was in (TODO.md).
+    """
+    hits = [d for d in result.get("probe_details") or [] if d.get("verdict") == "SECURE (Target Filtered)"]
+    return sum(1 for d in hits if not d.get("path_i")), len(hits)
+
+
 def probe_class(verdict: str) -> str | None:
     """What one probe says about the target: VULNERABLE, SECURE, or None (nothing)."""
     if verdict in ("VULNERABLE", "SECURE (Upstream Filtered)"):
@@ -281,6 +293,8 @@ def render_compare(pairs: list[dict], runs: list[dict], names: dict, n_gp: int) 
     disagree_adj = [p for p in pairs if p["gp_class_adj"] and p["atlas_class_adj"]
                     and p["gp_class_adj"] != p["atlas_class_adj"]]
     matrix = Counter((p["gp_class"] or "INCONCLUSIVE", p["atlas_class"] or "INCONCLUSIVE") for p in pairs)
+    empty = [atlas_empty_invalid(p["atlas"]) for p in pairs if p["atlas_class"] == "SECURE"]
+    n_empty, n_target_filtered = sum(e for e, _ in empty), sum(n for _, n in empty)
     hop_diff = Counter()
     hops_checked = 0
     for p in pairs:
@@ -323,7 +337,12 @@ def render_compare(pairs: list[dict], runs: list[dict], names: dict, n_gp: int) 
               f"{len(disagree)} as classified; {len(disagree_adj)} with the origin ruled out "
               f"({', '.join(str(p['asn']) for p in disagree_adj) or 'none'}). Each one needs reading at trace level: "
               "Globalping fault, Atlas fault, or a real difference. Globalping measurements: "
-              "`https://api.globalping.io/v1/measurements/<id>`; Atlas: `https://atlas.ripe.net/measurements/<id>/`.", ""]
+              "`https://api.globalping.io/v1/measurements/<id>`; Atlas: `https://atlas.ripe.net/measurements/<id>/`.", "",
+              f"Atlas side: {n_empty} of the {n_target_filtered} SECURE (Target Filtered) probe readings in the "
+              "Atlas-SECURE results compared here were stored with an empty invalid path. An empty path can mean "
+              "the invalid traceroute had not arrived when the result was fetched; the classifier then names the "
+              "first AS of the valid path as the boundary. Check the trace on atlas.ripe.net before counting such "
+              "a disagreement against Globalping.", ""]
     for p in disagree:
         g, a = p["gp"], p["atlas"]
         ids = a.get("measurement_ids") or {}
@@ -331,7 +350,8 @@ def render_compare(pairs: list[dict], runs: list[dict], names: dict, n_gp: int) 
                   f"({p['gap_days']:.1f} days apart)",
                   f"  - Atlas: {a['verdict']} ({a['timestamp'][:10]}; origin ruled out: {atlas_adjusted(a)}); "
                   f"trace_valid {ids.get('trace_valid')}, trace_invalid {ids.get('trace_invalid')}; "
-                  f"probe verdicts {a.get('verdict_counts')}",
+                  f"probe verdicts {a.get('verdict_counts')}; Target Filtered probes stored with an empty "
+                  f"invalid path: {atlas_empty_invalid(a)[0]} of {atlas_empty_invalid(a)[1]}",
                   f"  - Globalping: {g['verdict']} ({g['timestamp'][:10]}; origin ruled out: "
                   f"{g.get('verdict_origin_adjusted')}); mtr_valid {g['measurement_ids'].get('mtr_valid')}, "
                   f"mtr_invalid {g['measurement_ids'].get('mtr_invalid')}"]
