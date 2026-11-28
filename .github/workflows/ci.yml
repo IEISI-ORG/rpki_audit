@@ -54,6 +54,7 @@ jobs:
         python3 tests/test_topology_evidence.py
         python3 tests/test_verdicts.py
         python3 tests/test_evidence_hierarchy.py
+        python3 tests/test_forensic_hops.py
 
   go-quality:
     name: Go Build & Lint

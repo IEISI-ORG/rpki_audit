@@ -1,4 +1,5 @@
 import argparse
+import ipaddress
 import pandas as pd
 import requests
 import json
@@ -45,10 +46,27 @@ def get_probes(asn, count=5, af=4):
         return [p["id"] for p in probes[:count]]
     except: return []
 
+def public_ips(ip_list):
+    """Unique globally routable addresses in ip_list (order not kept).
+
+    Until 2026-11-28 every hop starting "172." was dropped as private. Only
+    172.16.0.0/12 is; Cloudflare's edge hops (e.g. 172.68.84.6) are public, so
+    AS13335 went missing from paths. Also drops CGNAT 100.64.0.0/10, link-local
+    and anything that isn't an address.
+    """
+    out = set()
+    for ip in ip_list:
+        try:
+            if ip and ipaddress.ip_address(ip).is_global:
+                out.add(ip)
+        except ValueError:
+            continue
+    return list(out)
+
 def resolve_asns(ip_list):
     """Resolves a list of IPs to ASNs using RIPEstat."""
     mapping = {}
-    unique = list(set(ip for ip in ip_list if ip and not ip.startswith(('10.', '192.168.', '172.'))))
+    unique = public_ips(ip_list)
     
     print(f"    - Resolving {len(unique)} hops to ASNs...")
     for ip in unique:
@@ -409,7 +427,8 @@ def main():
     args = parser.parse_args()
 
     if not ATLAS_API_KEY:
-        print("[!] Missing API Key"); return
+        print("[!] Missing API Key")
+        return
 
     targets = []
     
@@ -419,7 +438,8 @@ def main():
     else:
         print("[*] Loading Audit CSV to find Unverified Targets...")
         if not os.path.exists(FILE_AUDIT):
-            print("[!] CSV not found."); return
+            print("[!] CSV not found.")
+            return
         
         df = pd.read_csv(FILE_AUDIT)
         # Filter: Unverified AND Cone > 0
@@ -437,7 +457,9 @@ def main():
     
     ip_v = resolve_ip(DOMAIN_VALID)
     ip_i = resolve_ip(DOMAIN_INVALID)
-    if not ip_v: print("[-] DNS Fail"); return
+    if not ip_v:
+        print("[-] DNS Fail")
+        return
 
     results_summary = []
     
