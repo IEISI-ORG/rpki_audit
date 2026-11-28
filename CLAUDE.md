@@ -316,7 +316,7 @@ fresh measurements and a new Atlas comparison.
 from permanently overriding fresh APNIC/bgp.tools data.
 
 ### Full path taxonomy (`_classify_probe` in `verify_forensic_path_v2.py`)
-Each probe produces one of **7 verdicts** based on the traceroute paths to
+Each probe produces one of **10 verdicts** based on the traceroute paths to
 `valid.rpki.isbgpsafeyet.com` (`path_v`) and `invalid.rpki.isbgpsafeyet.com` (`path_i`):
 
 | Verdict | Meaning | Counts as for target |
@@ -329,9 +329,23 @@ Each probe produces one of **7 verdicts** based on the traceroute paths to
 | `SECURE (Target Filtered)` | Target is the drop boundary — **target confirmed doing ROV** | ROV |
 | `SECURE (Upstream Filtered)` | Target forwarded invalid prefix; upstream dropped it — **target NOT doing ROV** | non-ROV |
 | `SECURE (Pre-Target Filtered)` | Something before target filtered it; target's ROV unknown | skip |
+| `INCONCLUSIVE (No Invalid Path)` | Invalid unreachable but no public hop of the invalid trace (or no trace result) came back | skip |
+| `INCONCLUSIVE (Target Boundary)` | Invalid trace stopped inside the target and the next AS isn't the beacon origin: the target or that AS dropped it | skip |
 
-**`SECURE (Upstream Filtered)` is treated as non-ROV** for the target: the target
-forwarded the invalid prefix even though an upstream caught it. This is recorded in both
+**`SECURE (Upstream Filtered)` is treated as non-ROV** for the target: the invalid trace
+passed through the target into the next AS, so the target forwarded it.
+
+**Stop rules (Terry, 2026-11-28).** A trace that stops *inside* the target shows only that
+the packet got there. It reads `SECURE (Target Filtered)` when the next AS on the valid
+path is the beacon origin (`BEACON_ORIGIN_ASNS`: Cloudflare 13335, RIS 12654), which
+doesn't filter its own prefix; otherwise `INCONCLUSIVE (Target Boundary)`. An empty
+invalid path is `INCONCLUSIVE (No Invalid Path)`. Before this, `run_forensic_test`
+fetched results after a fixed 60 s, so slow invalid traces were stored empty and read as
+Target Filtered (16 of 20 fresh SECURE results on 2026-11-28, e.g. AS11426 msm 244803033
+probe 10312: 73 s trace, stored `[]`). `wait_for_results` now waits until every scheduled
+probe has reported, Atlas stops the measurement, or 330 s pass. Results stored before the
+fix weren't re-fetched (Terry's choice) and age out under the 7-day TTL. The `172.` hop
+fix of the same day adds AS13335 to paths that end at a Cloudflare 172.64.0.0/13 edge hop. This is recorded in both
 `load_atlas_verdicts` (maps to `vulnerable`) and in `non_rov_hops`.
 
 ### `non_rov_hops` — global non-ROV evidence
@@ -541,7 +555,7 @@ Tests: `tests/test_globalping.py` (synthetic MTR JSON, no network).
 - `rov_no_scrape_v22.py`: Main global audit engine (v22).
 - `cone-calculator.go`: Go implementation of Customer Cone gravity logic.
 - `build_topology_from_go.py`: Multi-collector topology builder with IXP phantom pruning.
-- `verify_forensic_path_v2.py`: RIPE Atlas forensic engine — full 7-outcome path taxonomy.
+- `verify_forensic_path_v2.py`: RIPE Atlas forensic engine — full path taxonomy (10 outcomes).
 - `batch_verify_smart_v4.py`: Prioritised Atlas re-verification scheduler.
 - `globalping_client.py`, `globalping_verify.py`, `globalping_report.py`: Globalping shadow mode (not in verdicts).
 - `triangulate_top_giants.py`: Multi-perspective forensic triangulation.
@@ -554,6 +568,6 @@ Tests: `tests/test_globalping.py` (synthetic MTR JSON, no network).
 - `cone`: Customer cone size (Network Gravity)
 - `apnic_score`: APNIC measured filtering rate, 0–100; `-1` = no data. (`rovista_score` was dropped on 2026-11-28.)
 - `regression`: Boolean flag for historical RPKI drop (1-year lookback, >30pt drop).
-- `atlas_result`: RIPE Atlas forensic consensus verdict (7-outcome taxonomy, 7-day TTL).
+- `atlas_result`: RIPE Atlas forensic consensus verdict (path taxonomy, 7-day TTL).
 - `non_rov_hops`: ASNs on the invalid traceroute path — confirmed forwarding RPKI-invalid prefixes.
 - `v6_verdict` / `v6_dirty_feeds` / `v6_total_feeds`: the same verdict from the IPv6 graph's providers (blank when the AS isn't in it).

@@ -195,7 +195,8 @@ class TestNoData(unittest.TestCase):
             self.assertEqual(r["probe_details"][0]["no_data"], "invalid result has no answering hop")
             self.assertEqual(r["verdict"], "INCONCLUSIVE")
         d = one_probe(in_target_valid, [GW, SILENT], probe_asn=T)["probe_details"][0]   # gateway answered
-        self.assertEqual(d["verdict"], "SECURE (Target Filtered)")
+        # No public hop on the invalid side: no data since 2026-11-28 (was Target Filtered).
+        self.assertEqual(d["verdict"], "INCONCLUSIVE (No Invalid Path)")
         self.assertTrue(d["empty_invalid_path"])
 
     def test_measurement_id_must_be_a_plain_token(self):
@@ -238,11 +239,19 @@ class TestTaxonomy(unittest.TestCase):
         self.assertEqual(r["filter_boundary"], T)
 
     def test_upstream_filtered_counts_against_the_target(self):
-        r = one_probe(VALID_VIA_T, [GW, H_C, H_T, SILENT])
+        # The invalid trace passed through the target into U: the target forwarded it.
+        r = one_probe(VALID_VIA_T, [GW, H_C, H_T, H_U, SILENT])
         self.assertEqual(r["probe_details"][0]["verdict"], "SECURE (Upstream Filtered)")
-        self.assertEqual(r["probe_details"][0]["boundary_asn"], U)
+        self.assertEqual(r["probe_details"][0]["boundary_asn"], CF)
         self.assertEqual(r["verdict"], "VULNERABLE")
         self.assertEqual(r["verdict_origin_adjusted"], "VULNERABLE")
+
+    def test_stop_inside_the_target_is_inconclusive(self):
+        # Silent after the target's hops, next AS U isn't the origin: T or U dropped it.
+        r = one_probe(VALID_VIA_T, [GW, H_C, H_T, SILENT])
+        self.assertEqual(r["probe_details"][0]["verdict"], "INCONCLUSIVE (Target Boundary)")
+        self.assertIsNone(r["probe_details"][0]["boundary_asn"])
+        self.assertEqual(r["verdict"], "INCONCLUSIVE")
 
     def test_pre_target_filtered(self):
         valid = [GW, H_FAR, H_C, H_T, H_U, H_EDGE, H_DST_V]
@@ -270,10 +279,11 @@ class TestOriginAndProvenance(unittest.TestCase):
     def test_origin_named_as_drop_point_is_flagged_and_kept_apart(self):
         r = one_probe(self.IN_TARGET_VALID, [GW, H_T, SILENT, hop("10.101.7.217", rcv=2), SILENT], probe_asn=T)
         d = r["probe_details"][0]
-        self.assertEqual(d["verdict"], "SECURE (Upstream Filtered)")      # the classifier, unchanged
-        self.assertTrue(d["origin_boundary"])
+        # Since 2026-11-28 the classifier applies the origin rule itself.
+        self.assertEqual(d["verdict"], "SECURE (Target Filtered)")
         self.assertEqual(d["verdict_origin_adjusted"], "SECURE (Target Filtered)")
-        self.assertEqual((r["verdict"], r["verdict_origin_adjusted"]), ("VULNERABLE", "SECURE (Verified Active)"))
+        self.assertEqual((r["verdict"], r["verdict_origin_adjusted"]),
+                         ("SECURE (Verified Active)", "SECURE (Verified Active)"))
 
     def test_adjustment_only_when_the_invalid_trace_ends_in_the_target(self):
         valid = [GW, H_C, H_T, H_U, H_EDGE, H_DST_V]                        # [C, T, U, CF]

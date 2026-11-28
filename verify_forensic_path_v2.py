@@ -21,6 +21,15 @@ RIPE_STAT_URL = "https://stat.ripe.net/data/network-info/data.json?resource="
 DOMAIN_VALID   = "valid.rpki.isbgpsafeyet.com"
 DOMAIN_INVALID = "invalid.rpki.isbgpsafeyet.com"
 CLOUDFLARE_ASN = 13335
+# Origins of the beacon prefixes (Cloudflare; RIPE NCC RIS AS12654). An origin doesn't filter
+# its own prefix, so an invalid trace that stops in the AS right before it stopped there.
+BEACON_ORIGIN_ASNS = frozenset({CLOUDFLARE_ASN, 12654})
+ATLAS_API = "https://atlas.ripe.net/api/v2/measurements"
+# Results are fetched once every scheduled probe has reported, the measurement has stopped,
+# or this many seconds have passed. Atlas stops a one-off ~317 s after it starts (2026-11-28).
+ATLAS_WAIT_MAX_SECS = 330
+ATLAS_POLL_SECS = 15
+ATLAS_STOPPED = {"Stopped", "Failed", "No suitable probes", "Denied", "Archived"}
 
 # Load Key
 if os.path.exists(SECRETS_FILE):
@@ -124,17 +133,56 @@ def run_forensic_test(asn, probes, ip_v, ip_i, af=4):
     ids = resp["measurements"]
     print(f"    - Measurement IDs: {ids}")
     
-    print("    - Waiting 60s for completion...")
-    time.sleep(60)
-    
-    results = []
-    for msm_id in ids:
-        success, res = AtlasResultsRequest(msm_id=msm_id).create()
-        # A placeholder keeps the ID when a measurement returns nothing; it has
-        # no prb_id, so analyze_results() skips it as a probe result.
-        results.append(res if success and res else [{'msm_id': msm_id}])
-        
-    return results # [PingV, PingI, TraceV, TraceI]
+    print(f"    - Waiting for results (up to {ATLAS_WAIT_MAX_SECS}s)...")
+    by_id = wait_for_results(ids)
+    # A placeholder keeps the ID when a measurement returns nothing; it has
+    # no prb_id, so analyze_results() skips it as a probe result.
+    return [by_id.get(m) or [{'msm_id': m}] for m in ids]  # [PingV, PingI, TraceV, TraceI]
+
+
+def _fetch_status(msm_id) -> tuple:
+    """(status name, probes scheduled) of one measurement; (None, 0) on error."""
+    try:
+        r = requests.get(f"{ATLAS_API}/{msm_id}/", params={"fields": "status,probes_scheduled"}, timeout=15)
+        r.raise_for_status()
+        d = r.json()
+        return (d.get("status") or {}).get("name"), int(d.get("probes_scheduled") or 0)
+    except (requests.RequestException, ValueError):
+        return None, 0
+
+
+def _fetch_results(msm_id) -> list:
+    success, res = AtlasResultsRequest(msm_id=msm_id).create()
+    return res if success and isinstance(res, list) else []
+
+
+def wait_for_results(ids, fetch_status=_fetch_status, fetch_results=_fetch_results,
+                     max_wait=ATLAS_WAIT_MAX_SECS, poll=ATLAS_POLL_SECS,
+                     clock=time.monotonic, sleep=time.sleep) -> dict:
+    """{msm_id: results}, fetched once each measurement is complete.
+
+    Complete: every scheduled probe has a result, or Atlas has stopped the measurement.
+    After max_wait the latest results are returned as they are. A probe whose trace hadn't
+    come in by then has no result, which the classifier reads as no data (2026-11-28: a
+    fixed 60 s wait stored slow invalid traces as empty paths, read as Target Filtered).
+    """
+    deadline = clock() + max_wait
+    results = {m: [] for m in ids}
+    pending = list(ids)
+    sleep(min(poll * 2, max_wait))
+    while True:
+        for m in list(pending):
+            status, scheduled = fetch_status(m)
+            results[m] = fetch_results(m)
+            reported = {r.get('prb_id') for r in results[m] if 'prb_id' in r}
+            if status in ATLAS_STOPPED or (scheduled and len(reported) >= scheduled):
+                pending.remove(m)
+        if not pending:
+            return results
+        if clock() >= deadline:
+            print(f"    [!] {len(pending)} measurement(s) incomplete after {max_wait}s: {pending}")
+            return results
+        sleep(poll)
 
 # ==============================================================================
 # 3. ANALYSIS LOGIC
@@ -191,6 +239,11 @@ def _classify_probe(asn: int, p_id: int,
                                         but the network as a whole leaks
         SECURE (Target Filtered)        target is the drop boundary; target
                                         confirmed doing ROV
+        INCONCLUSIVE (No Invalid Path)  invalid unreachable but no public hop of
+                                        the invalid trace (or no trace) came back
+        INCONCLUSIVE (Target Boundary)  invalid trace stopped inside the target:
+                                        the target or its next AS dropped it,
+                                        traceroute can't tell which
         SECURE (Upstream Filtered)      target forwarded the invalid prefix;
                                         an upstream of target dropped it.
                                         NOTE: target itself is NOT doing ROV here
@@ -246,6 +299,23 @@ def _classify_probe(asn: int, p_id: int,
         return out
 
     # ── Branch B: invalid prefix is NOT reachable (score_i < 10) ────────────
+    if not path_i:
+        # No public hop of the invalid trace, or no trace result at all: nothing measured
+        # (Terry, 2026-11-28). Before, the target was taken as the boundary.
+        out['verdict'] = 'INCONCLUSIVE (No Invalid Path)'
+        return out
+    if path_i[-1] == asn:
+        # Stopped inside the target. Traceroute can't show whether the target or its next AS
+        # dropped it, unless the next AS is the beacon origin, which doesn't filter its own
+        # prefix (Terry, 2026-11-28: origin rule, otherwise inconclusive).
+        nxt = path_v[target_pos_v + 1] if target_pos_v + 1 < len(path_v) else None
+        if nxt in BEACON_ORIGIN_ASNS:
+            out['verdict']       = 'SECURE (Target Filtered)'
+            out['boundary_asn']  = asn
+            out['boundary_type'] = 'target'
+        else:
+            out['verdict'] = 'INCONCLUSIVE (Target Boundary)'
+        return out
     if is_prefix_stop:
         # path_i followed path_v then stopped — clean single-boundary case
         if boundary_asn == asn:
