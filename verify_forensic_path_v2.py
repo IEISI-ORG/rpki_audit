@@ -9,7 +9,7 @@ import time
 import socket
 from datetime import datetime, timezone  # <--- Added timezone
 from ripe.atlas.cousteau import (
-    ProbeRequest, AtlasSource, Ping, Traceroute, AtlasCreateRequest, AtlasResultsRequest
+    ProbeRequest, AtlasSource, Ping, Traceroute, AtlasCreateRequest
 )
 
 # --- CONFIGURATION ---
@@ -25,11 +25,17 @@ CLOUDFLARE_ASN = 13335
 # its own prefix, so an invalid trace that stops in the AS right before it stopped there.
 BEACON_ORIGIN_ASNS = frozenset({CLOUDFLARE_ASN, 12654})
 ATLAS_API = "https://atlas.ripe.net/api/v2/measurements"
-# Results are fetched once every scheduled probe has reported, the measurement has stopped,
-# or this many seconds have passed. Atlas stops a one-off ~317 s after it starts (2026-11-28).
+# Results are fetched once every probe that reported anywhere has reported in all four
+# measurements (after ATLAS_WAIT_MIN_SECS, so a probe that never answers doesn't hold the
+# target), every scheduled probe has reported, Atlas has stopped the measurement, or
+# ATLAS_WAIT_MAX_SECS have passed. Atlas stops a one-off ~317 s after it starts (2026-11-28).
+ATLAS_WAIT_MIN_SECS = 90
 ATLAS_WAIT_MAX_SECS = 330
 ATLAS_POLL_SECS = 15
-ATLAS_STOPPED = {"Stopped", "Failed", "No suitable probes", "Denied", "Archived"}
+ATLAS_HTTP_TIMEOUT = 30
+# Atlas status ids: 4 Stopped, 5 Forced to Stop, 6 No suitable probes, 7 Failed,
+# 8 Scheduling denied (checked 2026-11-28); 0-3 are not finished.
+ATLAS_FINISHED_STATUS_MIN = 4
 
 # Load Key
 if os.path.exists(SECRETS_FILE):
@@ -141,46 +147,76 @@ def run_forensic_test(asn, probes, ip_v, ip_i, af=4):
 
 
 def _fetch_status(msm_id) -> tuple:
-    """(status name, probes scheduled) of one measurement; (None, 0) on error."""
+    """(status id, probes scheduled) of one measurement; (None, 0) on any error."""
     try:
-        r = requests.get(f"{ATLAS_API}/{msm_id}/", params={"fields": "status,probes_scheduled"}, timeout=15)
+        r = requests.get(f"{ATLAS_API}/{msm_id}/", params={"fields": "status,probes_scheduled"},
+                         timeout=ATLAS_HTTP_TIMEOUT)
         r.raise_for_status()
         d = r.json()
-        return (d.get("status") or {}).get("name"), int(d.get("probes_scheduled") or 0)
-    except (requests.RequestException, ValueError):
+        status = d.get("status") if isinstance(d, dict) else None
+        sid = status.get("id") if isinstance(status, dict) else None
+        return (int(sid) if sid is not None else None), int(d.get("probes_scheduled") or 0)
+    except (requests.RequestException, ValueError, TypeError, AttributeError):
         return None, 0
 
 
-def _fetch_results(msm_id) -> list:
-    success, res = AtlasResultsRequest(msm_id=msm_id).create()
-    return res if success and isinstance(res, list) else []
+def _fetch_results(msm_id):
+    """The measurement's results so far, or None when the request failed."""
+    try:
+        r = requests.get(f"{ATLAS_API}/{msm_id}/results/", params={"format": "json"},
+                         timeout=ATLAS_HTTP_TIMEOUT)
+        r.raise_for_status()
+        res = r.json()
+    except (requests.RequestException, ValueError):
+        return None
+    return res if isinstance(res, list) else None
+
+
+def _reported(res: list) -> set:
+    return {r.get('prb_id') for r in res if isinstance(r, dict) and 'prb_id' in r}
 
 
 def wait_for_results(ids, fetch_status=_fetch_status, fetch_results=_fetch_results,
-                     max_wait=ATLAS_WAIT_MAX_SECS, poll=ATLAS_POLL_SECS,
+                     max_wait=ATLAS_WAIT_MAX_SECS, min_wait=ATLAS_WAIT_MIN_SECS, poll=ATLAS_POLL_SECS,
                      clock=time.monotonic, sleep=time.sleep) -> dict:
-    """{msm_id: results}, fetched once each measurement is complete.
+    """{msm_id: results}, fetched once the measurements are complete.
 
-    Complete: every scheduled probe has a result, or Atlas has stopped the measurement.
-    After max_wait the latest results are returned as they are. A probe whose trace hadn't
-    come in by then has no result, which the classifier reads as no data (2026-11-28: a
-    fixed 60 s wait stored slow invalid traces as empty paths, read as Target Filtered).
+    A measurement is complete when every scheduled probe has a result, or Atlas has stopped
+    it. From min_wait on, the set is also complete when every probe that has reported in any
+    measurement has reported in all of them: a probe that never answers (offline) doesn't
+    hold the target until the deadline, and a slow trace from a probe that did answer is
+    still waited for. After max_wait the latest results are returned as they are; a missing
+    trace reads as no data (2026-11-28: a fixed 60 s wait stored slow invalid traces as empty
+    paths, read as Target Filtered). A failed fetch keeps the results already received and
+    never completes a measurement.
     """
-    deadline = clock() + max_wait
+    start = clock()
     results = {m: [] for m in ids}
-    pending = list(ids)
+    done = set()
     sleep(min(poll * 2, max_wait))
     while True:
-        for m in list(pending):
+        for m in ids:
+            if m in done:
+                continue
             status, scheduled = fetch_status(m)
-            results[m] = fetch_results(m)
-            reported = {r.get('prb_id') for r in results[m] if 'prb_id' in r}
-            if status in ATLAS_STOPPED or (scheduled and len(reported) >= scheduled):
-                pending.remove(m)
-        if not pending:
+            res = fetch_results(m)
+            if res is None:
+                continue                     # failed fetch: keep what we have, ask again
+            if res or not results[m]:
+                results[m] = res
+            finished = status is not None and status >= ATLAS_FINISHED_STATUS_MIN
+            if finished or (scheduled and len(_reported(results[m])) >= scheduled):
+                done.add(m)
+        if len(done) == len(ids):
             return results
-        if clock() >= deadline:
-            print(f"    [!] {len(pending)} measurement(s) incomplete after {max_wait}s: {pending}")
+        elapsed = clock() - start
+        if elapsed >= min_wait:
+            seen = set().union(*(_reported(results[m]) for m in ids))
+            if all(seen <= _reported(results[m]) for m in ids):
+                return results
+        if elapsed >= max_wait:
+            print(f"    [!] {len(ids) - len(done)} measurement(s) incomplete after {max_wait}s: "
+                  f"{[m for m in ids if m not in done]}")
             return results
         sleep(poll)
 
@@ -309,6 +345,8 @@ def _classify_probe(asn: int, p_id: int,
         # dropped it, unless the next AS is the beacon origin, which doesn't filter its own
         # prefix (Terry, 2026-11-28: origin rule, otherwise inconclusive).
         nxt = path_v[target_pos_v + 1] if target_pos_v + 1 < len(path_v) else None
+        # The target got the packet but may be where it was dropped: not a confirmed forwarder.
+        out['non_rov_hops'] = list(path_i[:-1])
         if nxt in BEACON_ORIGIN_ASNS:
             out['verdict']       = 'SECURE (Target Filtered)'
             out['boundary_asn']  = asn

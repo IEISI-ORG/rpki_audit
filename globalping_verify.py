@@ -213,7 +213,9 @@ def origin_adjusted(asn: int, detail: dict) -> str:
     _classify_probe names the first AS of the valid path that the invalid trace didn't
     reach. When that AS is Cloudflare (the origin of both beacons) it cannot be the
     filter: the invalid route ended in the AS before it. If that AS is the target, the
-    target is the boundary. Kept beside the unchanged verdict, never instead of it.
+    target is the boundary. Kept beside the verdict, never instead of it. Since 2026-11-28
+    _classify_probe applies this rule itself, so for new results it changes nothing; it still
+    re-reads Atlas files classified before that date.
     """
     path_i = detail.get("path_i") or []
     if (detail["verdict"] == "SECURE (Upstream Filtered)" and detail.get("boundary_asn") == BEACON_ORIGIN

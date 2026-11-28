@@ -62,10 +62,13 @@ class TestStopRules(unittest.TestCase):
 
 
 class FakeAtlas:
-    """Measurement status and results that change with each poll."""
+    """Measurement status ids and results that change with each poll (clock in seconds)."""
 
-    def __init__(self, scheduled, arrivals, status=None):
+    ONGOING, STOPPED = 2, 4
+
+    def __init__(self, scheduled, arrivals, status=None, fail_at=()):
         self.scheduled, self.arrivals, self.status = scheduled, arrivals, status or {}
+        self.fail_at = set(fail_at)          # {(msm_id, t)}: results fetch fails at that time
         self.t = 0.0
 
     def clock(self):
@@ -75,47 +78,85 @@ class FakeAtlas:
         self.t += s
 
     def fetch_status(self, m):
-        return self.status.get(m, "Ongoing"), self.scheduled[m]
+        return self.status.get(m, self.ONGOING), self.scheduled[m]
 
     def fetch_results(self, m):
+        if (m, self.t) in self.fail_at:
+            return None
         return [{"prb_id": p} for p, at in self.arrivals[m] if at <= self.t]
+
+    def wait(self, ids, **kw):
+        return forensic.wait_for_results(ids, self.fetch_status, self.fetch_results,
+                                         clock=self.clock, sleep=self.sleep, **kw)
 
 
 class TestWaitForResults(unittest.TestCase):
     def test_returns_once_every_probe_reported(self):
         a = FakeAtlas({1: 2, 2: 2}, {1: [(10, 20), (11, 25)], 2: [(10, 40), (11, 70)]})
-        out = forensic.wait_for_results([1, 2], a.fetch_status, a.fetch_results,
-                                        clock=a.clock, sleep=a.sleep)
+        out = a.wait([1, 2])
         self.assertEqual({k: len(v) for k, v in out.items()}, {1: 2, 2: 2})
         self.assertLess(a.t, 100)              # well before the 330 s limit
 
     def test_slow_trace_is_waited_for(self):
         # The 2026-11-26 case: the invalid trace took 73 s, past the old fixed 60 s wait.
         a = FakeAtlas({1: 1}, {1: [(10312, 73)]})
-        out = forensic.wait_for_results([1], a.fetch_status, a.fetch_results, clock=a.clock, sleep=a.sleep)
-        self.assertEqual(out[1], [{"prb_id": 10312}])
+        self.assertEqual(a.wait([1])[1], [{"prb_id": 10312}])
+
+    def test_slow_trace_from_a_probe_that_pinged_is_waited_for_past_min_wait(self):
+        # Ping (1) answered at 5 s; the probe's trace (2) only comes in at 150 s (AS2381, 2026-11-28).
+        a = FakeAtlas({1: 2, 2: 2}, {1: [(10, 5)], 2: [(10, 150)]})
+        out = a.wait([1, 2])
+        self.assertEqual(out[2], [{"prb_id": 10}])
+        self.assertGreaterEqual(a.t, 150)
+        self.assertLess(a.t, 330)
+
+    def test_probe_that_never_answers_does_not_hold_the_target(self):
+        # Two probes scheduled, one offline: it reports nowhere. Done at min_wait, not at 330 s.
+        a = FakeAtlas({1: 2, 2: 2}, {1: [(10, 5)], 2: [(10, 60)]})
+        out = a.wait([1, 2])
+        self.assertEqual({k: len(v) for k, v in out.items()}, {1: 1, 2: 1})
+        self.assertGreaterEqual(a.t, forensic.ATLAS_WAIT_MIN_SECS)
+        self.assertLess(a.t, forensic.ATLAS_WAIT_MIN_SECS + forensic.ATLAS_POLL_SECS + 1)
 
     def test_stopped_measurement_ends_the_wait(self):
-        a = FakeAtlas({1: 3}, {1: [(10, 5)]}, status={1: "Stopped"})
-        out = forensic.wait_for_results([1], a.fetch_status, a.fetch_results, clock=a.clock, sleep=a.sleep)
-        self.assertEqual(len(out[1]), 1)
+        a = FakeAtlas({1: 3}, {1: [(10, 5)]}, status={1: FakeAtlas.STOPPED})
+        self.assertEqual(len(a.wait([1])[1]), 1)
         self.assertLessEqual(a.t, 30)
 
-    def test_gives_up_at_the_limit_with_what_arrived(self):
-        a = FakeAtlas({1: 2}, {1: [(10, 5), (11, 10_000)]})
-        out = forensic.wait_for_results([1], a.fetch_status, a.fetch_results, max_wait=330,
-                                        clock=a.clock, sleep=a.sleep)
+    def test_failed_fetch_never_completes_a_stopped_measurement(self):
+        a = FakeAtlas({1: 1}, {1: [(10, 5)]}, status={1: FakeAtlas.STOPPED}, fail_at={(1, 30.0)})
+        out = a.wait([1])
+        self.assertEqual(out[1], [{"prb_id": 10}])     # fetched again on the next pass
+        self.assertGreater(a.t, 30)
+
+    def test_failed_fetch_keeps_results_already_received(self):
+        a = FakeAtlas({1: 2}, {1: [(10, 5), (11, 10_000)]}, fail_at={(1, 330.0)})
+        out = a.wait([1, 2][:1], min_wait=1_000)       # force the deadline path
         self.assertEqual(out[1], [{"prb_id": 10}])
+
+    def test_gives_up_at_the_limit_with_what_arrived(self):
+        # Probe 11 pinged but its trace never comes: wait to the deadline, return what arrived.
+        a = FakeAtlas({1: 2, 2: 2}, {1: [(10, 5), (11, 5)], 2: [(10, 20), (11, 10_000)]})
+        out = a.wait([1, 2], max_wait=330)
+        self.assertEqual(out[2], [{"prb_id": 10}])
         self.assertGreaterEqual(a.t, 330)
         self.assertLess(a.t, 330 + forensic.ATLAS_POLL_SECS + 1)
 
     def test_status_error_keeps_polling(self):
-        a = FakeAtlas({1: 0}, {1: [(10, 5)]})       # (None, 0) from a failed status call
+        a = FakeAtlas({1: 0}, {1: [(10, 5)]})
         a.fetch_status = lambda m: (None, 0)
-        out = forensic.wait_for_results([1], a.fetch_status, a.fetch_results, max_wait=60,
-                                        clock=a.clock, sleep=a.sleep)
+        out = a.wait([1], max_wait=60)
         self.assertEqual(len(out[1]), 1)
         self.assertGreaterEqual(a.t, 60)
+
+
+class TestNonRovHops(unittest.TestCase):
+    def test_target_is_not_a_confirmed_forwarder_when_the_trace_stops_in_it(self):
+        self.assertEqual(verdict([C, T, CF], [C, T])["non_rov_hops"], [C])             # Target Filtered
+        self.assertEqual(verdict([C, T, U, CF], [C, T])["non_rov_hops"], [C])          # Target Boundary
+
+    def test_trace_past_the_target_keeps_it(self):
+        self.assertEqual(verdict([T, U, CF], [T, U])["non_rov_hops"], [T, U])
 
 
 if __name__ == "__main__":
