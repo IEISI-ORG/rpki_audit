@@ -17,6 +17,7 @@ A high-performance toolkit for auditing global RPKI adoption (ROV and ROA) using
 - **Policy Check**: `python3 tests/test_policy_integrity.py` (Verify Tier 1 gravity and classification).
 - **Forensic Test**: `python3 verify_forensic_smart.py <ASN>` (Customer-cone perspective test).
 - **Forensic Batch**: `python3 batch_verify_smart_v4.py` (Re-verify stale/high-priority targets).
+- **Globalping shadow run**: `python3 globalping_verify.py` (`--dry-run`, `--compare`, `--coverage`; not used in verdicts).
 
 ### Heavy jobs: one at a time, with a memory cap
 `lab` has 30 GiB RAM, 30 GiB swap and no memory limits. On 2026-10-15 parallel jobs from this repo filled both and the
@@ -440,6 +441,69 @@ ASes with no usable probes are written to `data/atlas/no_probes.json` (`v6/` for
 `--af 6`) and skipped by smart selection for 7 days; `--asns` / `--cc` ignore the list.
 Tests: `tests/test_batch_targets.py`.
 
+## Globalping (shadow mode, not in verdicts)
+
+`globalping_verify.py` runs the Atlas forensic test from Globalping probes (api.globalping.io, jsDelivr). **Nothing reads
+its results into verdicts**: no `rov_utils` function loads `data/globalping/`, and that directory is outside
+`load_atlas_verdicts()`'s glob. It stays that way until `--compare` passes the criteria below and Terry decides the
+ladder position (plan: `plan/globalping_plan.md`; Terry, 2026-11-28: gather the data and validate before using it).
+
+**Method.** Two ICMP MTRs per probe (3 packets): one to the valid beacon address, then one to the invalid address with
+`locations` = the first measurement's ID, so the same probes answer in the same order. Results are paired by index and
+the probe location records must match (Globalping has no probe ID). Reach = `100 * rcv / total` on the hop whose address
+is the target. Public hops are mapped with `analyze_harvest.as_runs` (iptoasn + PeeringDB IX LAN holders); Globalping's
+own hop `asn` (Team Cymru) is kept and differences are recorded (2 of 357 hops on the first run). Each probe goes through
+`verify_forensic_path_v2._classify_probe` unchanged, and the AS verdict uses `analyze_results`' precedence.
+- `failed`, `offline` and `in-progress` results, an unpaired probe and a finished result without hops are no data
+  (`INCONCLUSIVE (Probe Down)`), never SECURE.
+- No result carries `non_rov_hops` (`write_result` refuses one that does).
+- The probe's AS is a GeoIP reading: it is used to pick probes, and the classifier only sees mapped hops.
+- Probes: single-homed direct customers first, then probes inside the target, then multi-homed customers; 3 per target.
+- Default targets: ASes with a conclusive Atlas result <= 7 days old that Globalping can reach, SECURE first.
+
+**What the API does** (test measurements, 2026-11-28, 25 tests):
+- An MTR to an unreachable address comes back `finished`, ending in silent hops (`resolvedAddress` null, 100% loss). It
+  is not reported `failed`, so reach must come from the destination hop.
+- MTR hops carry `asn` for routed addresses; private hops and IX LAN hops have an empty list. Traceroute hops have no
+  ASN and stop at 20 hops.
+- Per-location `limit` works and results keep the location order. An IPv6 literal works (`ipVersion: 6` is added by the
+  API); all 5 NZ probes picked had IPv6.
+- Cloudflare's invalid name resolves to several addresses (103.21.244.8 and .9 seen); a run resolves once and records them.
+
+**Files** (all under `data/globalping/`, gitignored): `raw/<id>.json.gz`, `probes/<date>.json.gz`, `as_<ASN>.json`
+(Atlas result schema plus `source: "globalping"`, `targets`, `verdict_origin_adjusted`, and per probe the location
+record, tags, both paths, hop lists and `hop_asn_disagreements`), `runs.jsonl`, `no_probes.json`, `budget.json`.
+`--reanalyse` rebuilds the result files from `raw/` without a request. `--data-dir` points at another data directory.
+
+**Budget.** Anonymous: 250 tests an hour per source IP, shared with `~/pacific-peering` (Wednesdays about 01:40). One
+test is one probe's result, so a target costs 6. The run calls `GET /v1/limits` first and does not start when fewer
+tests remain than its budget (default 200), follows `X-RateLimit-Remaining`, counts the day's tests in `budget.json`
+and stops on a 429. An optional `globalping_token` in `secrets.yaml` is sent when present; none exists.
+
+**Validation** (`--compare` -> `reports/globalping_vs_atlas.md`; `--coverage` -> `reports/globalping_coverage.md`).
+Pass criteria, on ASes conclusive on both sides and measured within 7 days of each other: >= 60 ASes with >= 25
+Atlas-SECURE and >= 25 Atlas-VULNERABLE; overall agreement >= 95%; Globalping SECURE confirmed >= 90%; Globalping
+VULNERABLE confirmed >= 95%; 20 targets re-run 12-48 hours later with >= 95% the same class. The report prints
+PASS / NOT YET.
+- First run (2026-11-28, 100 tests, 22 targets): 18 conclusive on both sides, 8 agree: **NOT YET**. All 10
+  disagreements are Atlas SECURE against Globalping VULNERABLE.
+- Seven of the ten come from the Atlas side. `run_forensic_test` fetches results after a fixed 60 s; an invalid
+  traceroute to an unreachable address is often not in by then, so `path_i` is stored empty and `_classify_probe` reads
+  SECURE (Target Filtered). Of 29 such probe readings in fresh Atlas SECURE results, 26 had an empty stored path, and
+  for 20 the trace now on atlas.ripe.net has mapped hops; re-classified with them, 10 of 18 SECURE results become
+  VULNERABLE and one INCONCLUSIVE. Globalping, which waits for the MTR, gives those readings directly.
+- Behind that is the boundary rule: an invalid trace that ends inside the target is read as SECURE (Upstream
+  Filtered), which counts against the target. When the next AS is Cloudflare, the origin of both beacons, it cannot
+  be the filter. `verdict_origin_adjusted` re-reads only that case as SECURE (Target Filtered), beside the unchanged
+  verdict; `--compare` shows both. Which reading is right is Terry's decision (TODO.md).
+- The other three (LakeNetworks AS6517, PLDT AS9299, T-Mobile Polska AS12912) are probes inside the target reaching
+  the invalid beacon where Atlas's on-path probe did not: unread at trace level.
+
+**Cron.** `rov_cron.sh globalping` (03:20 daily, skips Sundays, `ulimit -v 2000000`, peak RSS 0.28 GiB). The crontab
+line is in `CRON.md` and is not installed.
+
+Tests: `tests/test_globalping.py` (synthetic MTR JSON, no network).
+
 ## Key Development Conventions
 ### 1. Performance & Data Storage
 - **Packed Data**: 120k+ ASN records are consolidated into `data/as_data.jsonl.gz`.
@@ -479,6 +543,7 @@ Tests: `tests/test_batch_targets.py`.
 - `build_topology_from_go.py`: Multi-collector topology builder with IXP phantom pruning.
 - `verify_forensic_path_v2.py`: RIPE Atlas forensic engine — full 7-outcome path taxonomy.
 - `batch_verify_smart_v4.py`: Prioritised Atlas re-verification scheduler.
+- `globalping_client.py`, `globalping_verify.py`, `globalping_report.py`: Globalping shadow mode (not in verdicts).
 - `triangulate_top_giants.py`: Multi-perspective forensic triangulation.
 - `sync_transit_timeseries.py`: Proactive regression scanner for all transit providers.
 - `TODO.md`: Roadmap and pending regression investigations.
